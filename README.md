@@ -1,8 +1,6 @@
-# lib-template
+# lib-sphinx
 
-    A template library project
-    
-    Version 1
+    Extensions to the java swing library - edition "alpha"
 
 ## Requires
 
@@ -12,8 +10,8 @@
 
     <!-- not yet available -->
     <dependency>
-      <groupId>de.team33.libs</groupId>
-      <artifactId>lib-template-01</artifactId>
+      <groupId>de.team33.sphinx</groupId>
+      <artifactId>sphinx-alpha</artifactId>
       <version>1.0.0</version>
     </dependency>
 

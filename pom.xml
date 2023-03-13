@@ -2,14 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.team33.libs</groupId>
-    <artifactId>lib-template-01</artifactId>
+    <groupId>de.team33.sphinx</groupId>
+    <artifactId>sphinx-alpha</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Team33 Library Template</name>
-    <description>A library template</description>
-    <url>https://github.com/akk-team33/lib-template</url>
+    <name>Team33 Sphinx Alpha</name>
+    <description>Extensions to the java swing library - edition "alpha"</description>
+    <url>https://github.com/akk-team33/lib-sphinx</url>
 
     <licenses>
         <license>
@@ -26,16 +26,16 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git://github.com/akk-team33/lib-template.git</connection>
-        <developerConnection>scm:git:ssh://github.com:akk-team33/lib-template.git</developerConnection>
-        <url>https://github.com/akk-team33/lib-template</url>
+        <connection>scm:git:git://github.com/akk-team33/lib-sphinx.git</connection>
+        <developerConnection>scm:git:ssh://github.com:akk-team33/lib-sphinx.git</developerConnection>
+        <url>https://github.com/akk-team33/lib-sphinx</url>
     </scm>
 
     <properties>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <copyright.year>2021</copyright.year>
+        <copyright.year>2023</copyright.year>
     </properties>
 
     <dependencyManagement>
@@ -43,7 +43,7 @@
             <dependency>
                 <groupId>de.team33.patterns</groupId>
                 <artifactId>patterns-bom</artifactId>
-                <version>1.3.0</version>
+                <version>1.11.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -52,7 +52,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.8.2</version>
+                <version>5.9.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -62,7 +62,12 @@
     <dependencies>
         <dependency>
             <groupId>de.team33.patterns</groupId>
-            <artifactId>testing-01</artifactId>
+            <artifactId>building-elara</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>de.team33.patterns</groupId>
+            <artifactId>testing-titan</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -76,7 +81,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.0.0-M9</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -95,7 +100,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.5.0</version>
                 <configuration>
                     <show>protected</show>
                     <bottom><![CDATA[Copyright &copy; ${copyright.year} Andreas Kluge-Kaindl, Bremen (de). All rights reserved.]]></bottom>
