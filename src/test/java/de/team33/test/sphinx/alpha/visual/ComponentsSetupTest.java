@@ -1,6 +1,6 @@
-package de.team33.test.sphinx.alpha.visible;
+package de.team33.test.sphinx.alpha.visual;
 
-import de.team33.sphinx.alpha.visible.JFrames;
+import de.team33.sphinx.alpha.visual.JFrames;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;

@@ -1,7 +1,6 @@
-package de.team33.sphinx.alpha.visible;
+package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import de.team33.patterns.building.elara.Setup;
 
 import javax.swing.*;
 
