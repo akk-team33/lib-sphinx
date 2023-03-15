@@ -1,14 +1,28 @@
 package de.team33.sphinx.alpha.visual;
 
+import de.team33.patterns.building.elara.LateBuilder;
 import de.team33.sphinx.alpha.activity.Event;
 
 import java.awt.*;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * Utility class to handle {@link Component}s.
  */
 public final class Components {
+
+    public static <T extends Component> Builder<T, ?> builder(final Supplier<T> newResult) {
+        return new Builder<>(newResult, Builder.class);
+    }
+
+    public static class Builder<T extends Component, B extends Builder<T, B>>
+            extends LateBuilder<T, B> implements Setup<T, B> {
+
+        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+            super(newResult, builderClass);
+        }
+    }
 
     public interface Setup<T extends Component, B> extends de.team33.patterns.building.elara.Setup<T, B> {
 
