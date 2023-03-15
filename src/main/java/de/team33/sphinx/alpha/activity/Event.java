@@ -81,13 +81,26 @@ public abstract class Event<C, M> {
     public static final Event<Component, PropertyChangeEvent> PROPERTY_CHANGE =
             new Agent<>(Component::addPropertyChangeListener, Listeners::propertyChange);
 
+    public static final Event<Window, WindowEvent> WINDOW_GAINED_FOCUS =
+            new Agent<>(Window::addWindowFocusListener, Listeners::windowGainedFocus);
+
+    public static final Event<Window, WindowEvent> WINDOW_LOST_FOCUS =
+            new Agent<>(Window::addWindowFocusListener, Listeners::windowLostFocus);
+
+    public static final Event<Window, WindowEvent> WINDOW_ACTIVATED =
+            new Agent<>(Window::addWindowListener, Listeners::windowActivated);
+
+    public static final Event<Window, WindowEvent> WINDOW_CLOSED =
+            new Agent<>(Window::addWindowListener, Listeners::windowClosed);
+
+    public static final Event<Window, WindowEvent> WINDOW_CLOSING =
+            new Agent<>(Window::addWindowListener, Listeners::windowClosing);
+
+    public static final Event<Window, WindowEvent> WINDOW_DEACTIVATED =
+            new Agent<>(Window::addWindowListener, Listeners::windowDeactivated);
+
     public static final Event<Component, PropertyChangeEvent> propertyChange(final String propertyName) {
-        return new Event<Component, PropertyChangeEvent>() {
-            @Override
-            public void add(Component component, Consumer<PropertyChangeEvent> reaction) {
-                component.addPropertyChangeListener(propertyName, Listeners.propertyChange(reaction));
-            }
-        };
+        return new Agent<>((c, l) -> c.addPropertyChangeListener(propertyName, l), Listeners::propertyChange);
     }
 
     /**

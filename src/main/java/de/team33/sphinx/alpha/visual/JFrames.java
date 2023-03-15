@@ -26,7 +26,7 @@ public final class JFrames {
         }
     }
 
-    public interface Setup<T extends JFrame, B> extends Components.Setup<T, B> {
+    public interface Setup<T extends JFrame, B extends Setup<T, B>> extends Frames.Setup<T, B> {
 
         default B setDefaultCloseOperation(final int closeOperation) {
             return setup(target -> target.setDefaultCloseOperation(closeOperation));

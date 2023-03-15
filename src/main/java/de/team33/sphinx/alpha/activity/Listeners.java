@@ -203,6 +203,60 @@ public final class Listeners {
         return reaction::accept;
     }
 
+    public static WindowFocusListener windowGainedFocus(final Consumer<WindowEvent> reaction) {
+        return new WindowAdapter() {
+            @Override
+            public void windowGainedFocus(final WindowEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
+    public static WindowFocusListener windowLostFocus(final Consumer<WindowEvent> reaction) {
+        return new WindowAdapter() {
+            @Override
+            public void windowLostFocus(final WindowEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
+    public static WindowListener windowActivated(final Consumer<WindowEvent> reaction) {
+        return new WindowAdapter() {
+            @Override
+            public void windowActivated(final WindowEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
+    public static WindowListener windowClosed(final Consumer<WindowEvent> reaction) {
+        return new WindowAdapter() {
+            @Override
+            public void windowClosed(final WindowEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
+    public static WindowListener windowClosing(final Consumer<WindowEvent> reaction) {
+        return new WindowAdapter() {
+            @Override
+            public void windowClosing(final WindowEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
+    public static WindowListener windowDeactivated(final Consumer<WindowEvent> reaction) {
+        return new WindowAdapter() {
+            @Override
+            public void windowDeactivated(final WindowEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
     @SuppressWarnings({"NoopMethodInAbstractClass", "AbstractClassWithoutAbstractMethods"})
     private abstract static class InputMethodAdapter implements InputMethodListener {
 
