@@ -1,6 +1,6 @@
 package de.team33.sphinx.alpha.visual;
 
-import de.team33.sphinx.alpha.activity.Context;
+import de.team33.sphinx.alpha.activity.Event;
 
 import java.awt.*;
 import java.util.function.Consumer;
@@ -12,8 +12,8 @@ public final class Components {
 
     public interface Setup<T extends Component, B> extends de.team33.patterns.building.elara.Setup<T, B> {
 
-        default <M> B on(final Context<? super T, M> context, final Consumer<M> reaction) {
-            return setup(t -> context.add(t, reaction));
+        default <M> B on(final Event<? super T, M> event, final Consumer<M> reaction) {
+            return setup(t -> event.add(t, reaction));
         }
 
         default B setVisible(final boolean visible) {
