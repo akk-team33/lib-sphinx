@@ -5,7 +5,6 @@ import de.team33.sphinx.alpha.activity.Event;
 import de.team33.sphinx.alpha.option.PreferredBounds;
 
 import java.awt.*;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
@@ -31,21 +30,58 @@ public final class Frames {
 
     public interface Setup<T extends Frame, B extends Setup<T, B>> extends Components.Setup<T, B> {
 
-        default B setTitle(final String title) {
-            return setup(t -> t.setTitle(title));
-        }
-
-        default B setExtendedState(final int state) {
-            return setup(t -> t.setExtendedState(state));
-        }
-
         default B setPreferredBounds(final PreferredBounds bounds) {
-            return setBounds(bounds.getRectangle()).setExtendedState(bounds.getExtendedState())
-                                                   .on(Event.WINDOW_CLOSING, windowEvent -> {
-                                                       Optional.of(windowEvent.getWindow())
-                                                               .filter(Frame.class::isInstance).map(Frame.class::cast)
-                                                               .ifPresent(frame -> bounds.store(frame.getBounds(), frame.getExtendedState()));
-                                                   });
+            return this.setBounds(bounds.getRectangle())
+                       .setExtendedState(bounds.getExtendedState())
+                       .on(Event.WINDOW_CLOSING, bounds::onClosing);
+        }
+
+        default B setTitle(String title) {
+            return setup(frame -> frame.setTitle(title));
+        }
+
+        default B setIconImage(Image image) {
+            return setup(frame -> frame.setIconImage(image));
+        }
+
+        default B setMenuBar(MenuBar mb) {
+            return setup(frame -> frame.setMenuBar(mb));
+        }
+
+        default B setResizable(boolean resizable) {
+            return setup(frame -> frame.setResizable(resizable));
+        }
+
+        default B setState(int state) {
+            return setup(frame -> frame.setState(state));
+        }
+
+        default B setExtendedState(int state) {
+            return setup(frame -> frame.setExtendedState(state));
+        }
+
+        default B setMaximizedBounds(Rectangle bounds) {
+            return setup(frame -> frame.setMaximizedBounds(bounds));
+        }
+
+        default B setUndecorated(boolean undecorated) {
+            return setup(frame -> frame.setUndecorated(undecorated));
+        }
+
+        default B setOpacity(float opacity) {
+            return setup(frame -> frame.setOpacity(opacity));
+        }
+
+        default B setShape(Shape shape) {
+            return setup(frame -> frame.setShape(shape));
+        }
+
+        default B setBackground(Color bgColor) {
+            return setup(frame -> frame.setBackground(bgColor));
+        }
+
+        default B remove(MenuComponent m) {
+            return setup(frame -> frame.remove(m));
         }
     }
 }

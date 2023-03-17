@@ -1,6 +1,8 @@
 package de.team33.sphinx.alpha.option;
 
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.util.Optional;
 import java.util.prefs.Preferences;
 
 public class PreferredBounds {
@@ -36,5 +38,16 @@ public class PreferredBounds {
         prefs.putInt(WIDTH, rectangle.width);
         prefs.putInt(HEIGHT, rectangle.height);
         prefs.putInt(X_STATE, xState);
+    }
+
+    public final void onClosing(ComponentEvent event) {
+        Optional.of(event.getComponent())
+                .filter(Frame.class::isInstance)
+                .map(Frame.class::cast)
+                .ifPresent(this::onClosing);
+    }
+
+    private void onClosing(Frame frame) {
+        store(frame.getBounds(), frame.getExtendedState());
     }
 }
