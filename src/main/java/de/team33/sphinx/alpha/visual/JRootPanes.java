@@ -111,20 +111,6 @@ public final class JRootPanes {
         }
 
         /**
-         * @see JRootPane#addNotify()
-         */
-        default S addNotify() {
-            return setup(result -> result.addNotify());
-        }
-
-        /**
-         * @see JRootPane#removeNotify()
-         */
-        default S removeNotify() {
-            return setup(result -> result.removeNotify());
-        }
-
-        /**
          * @see JRootPane#setDoubleBuffered(boolean)
          */
         default S setDoubleBuffered(final boolean arg0) {

@@ -1,6 +1,8 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
+import de.team33.patterns.exceptional.e1.Conversion;
+
 import java.util.function.Supplier;
 
 import java.awt.Component;
@@ -76,7 +78,7 @@ public final class JInternalFrames {
          * @see JInternalFrame#setClosed(boolean)
          */
         default S setClosed(final boolean arg0) {
-            return setup(result -> result.setClosed(arg0));
+            return setup(Conversion.consumer(result -> result.setClosed(arg0)));
         }
 
         /**
@@ -118,7 +120,7 @@ public final class JInternalFrames {
          * @see JInternalFrame#setIcon(boolean)
          */
         default S setIcon(final boolean arg0) {
-            return setup(result -> result.setIcon(arg0));
+            return setup(Conversion.consumer(result -> result.setIcon(arg0)));
         }
 
         /**
@@ -132,7 +134,7 @@ public final class JInternalFrames {
          * @see JInternalFrame#setMaximum(boolean)
          */
         default S setMaximum(final boolean arg0) {
-            return setup(result -> result.setMaximum(arg0));
+            return setup(Conversion.consumer(result -> result.setMaximum(arg0)));
         }
 
         /**
@@ -202,7 +204,7 @@ public final class JInternalFrames {
          * @see JInternalFrame#setSelected(boolean)
          */
         default S setSelected(final boolean arg0) {
-            return setup(result -> result.setSelected(arg0));
+            return setup(Conversion.consumer(result -> result.setSelected(arg0)));
         }
 
         /**

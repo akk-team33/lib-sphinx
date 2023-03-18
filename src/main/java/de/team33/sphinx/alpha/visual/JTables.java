@@ -168,7 +168,7 @@ public final class JTables {
         /**
          * @see JTable#setRowSorter(RowSorter)
          */
-        default S setRowSorter(final RowSorter arg0) {
+        default S setRowSorter(final RowSorter<? extends TableModel> arg0) {
             return setup(result -> result.setRowSorter(arg0));
         }
 
@@ -366,20 +366,6 @@ public final class JTables {
          */
         default S setUI(final TableUI arg0) {
             return setup(result -> result.setUI(arg0));
-        }
-
-        /**
-         * @see JTable#addNotify()
-         */
-        default S addNotify() {
-            return setup(result -> result.addNotify());
-        }
-
-        /**
-         * @see JTable#removeNotify()
-         */
-        default S removeNotify() {
-            return setup(result -> result.removeNotify());
         }
     }
 }
