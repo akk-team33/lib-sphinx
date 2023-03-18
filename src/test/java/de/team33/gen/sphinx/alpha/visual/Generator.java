@@ -1,6 +1,8 @@
 package de.team33.gen.sphinx.alpha.visual;
 
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -18,11 +20,53 @@ public class Generator {
 
     private static final Logger LOG = Logger.getLogger(Generator.class.getCanonicalName());
 
-    private static final List<Class<?>> CANDIDATES = Arrays.asList(
-            JFrame.class, JButton.class, JCheckBox.class, JComboBox.class, JDesktopPane.class, JDialog.class,
-            JEditorPane.class, JFileChooser.class, JFormattedTextField.class, JLabel.class, JLayer.class,
-            JLayeredPane.class, JList.class, JMenu.class, JMenuBar.class, JMenuItem.class, JOptionPane.class,
-            JPanel.class, JPasswordField.class, JPopupMenu.class, JProgressBar.class);
+    private static final List<Class<?>> CANDIDATES = Arrays.asList(JDesktopPane.class,
+                                                                   JTableHeader.class,
+                                                                   JTextArea.class,
+                                                                   JOptionPane.class,
+                                                                   JProgressBar.class,
+                                                                   JTabbedPane.class,
+                                                                   JToolBar.class,
+                                                                   JTextField.class,
+                                                                   JPopupMenu.class,
+                                                                   JTextComponent.class,
+                                                                   JDialog.class,
+                                                                   JColorChooser.class,
+                                                                   JMenuItem.class,
+                                                                   JComponent.class,
+                                                                   JSlider.class,
+                                                                   JComboBox.class,
+                                                                   JTree.class,
+                                                                   JRootPane.class,
+                                                                   JLayer.class,
+                                                                   JSplitPane.class,
+                                                                   JPasswordField.class,
+                                                                   JLabel.class,
+                                                                   JPanel.class,
+                                                                   JButton.class,
+                                                                   JSpinner.class,
+                                                                   JWindow.class,
+                                                                   JFormattedTextField.class,
+                                                                   JToggleButton.class,
+                                                                   JScrollPane.class,
+                                                                   JCheckBox.class,
+                                                                   JScrollBar.class,
+                                                                   JLayeredPane.class,
+                                                                   JSeparator.class,
+                                                                   JRadioButton.class,
+                                                                   JList.class,
+                                                                   JInternalFrame.class,
+                                                                   JRadioButtonMenuItem.class,
+                                                                   JTextPane.class,
+                                                                   JViewport.class,
+                                                                   JToolTip.class,
+                                                                   JTable.class,
+                                                                   JMenuBar.class,
+                                                                   JEditorPane.class,
+                                                                   JFileChooser.class,
+                                                                   JMenu.class,
+                                                                   JCheckBoxMenuItem.class,
+                                                                   JFrame.class);
     private static final Path PACKAGE_PATH = Paths.get("src", "main", "java", "de", "team33", "sphinx", "alpha", "visual")
                                                   .toAbsolutePath()
                                                   .normalize();
@@ -35,6 +79,7 @@ public class Generator {
                   .filter(c -> !c.equals(Component.class)) // skip anyway!
                   .filter(Component.class::isAssignableFrom)
                   .map(UtilityClass::new)
+                  //.forEach(System.out::println);
                   .forEach(Generator::write);
     }
 
