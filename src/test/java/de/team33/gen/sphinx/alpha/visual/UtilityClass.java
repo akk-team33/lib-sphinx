@@ -29,6 +29,7 @@ public class UtilityClass {
             "/**%n" +
             " * Utility class to handle {@link %1$s}s.%n" +
             " */%n" +
+            "@SuppressWarnings(\"unused\")%n" +
             "public final class %1$ss {%n" +
             "%n" +
             "    %2$s%3$s%n" +
