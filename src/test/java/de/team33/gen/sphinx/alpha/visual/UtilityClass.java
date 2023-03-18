@@ -1,5 +1,11 @@
 package de.team33.gen.sphinx.alpha.visual;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class UtilityClass {
 
     private static final String METHOD1_FORMAT = "/**%n" +
@@ -17,9 +23,9 @@ public class UtilityClass {
             "        return new Builder<>(newTarget, Builder.class);%n" +
             "    }";
     private static final String CODE_FORMAT = "package de.team33.sphinx.alpha.visual;%n%n" +
-            "import de.team33.patterns.building.elara.LateBuilder;%n%n" +
-            "import java.awt.*;%n" +
-            "import javax.swing.*;%n%n" +
+            "import de.team33.patterns.building.elara.LateBuilder;%n" +
+            "import java.util.function.Supplier;%n%n" +
+            "%6$s%n%n" +
             "/**%n" +
             " * Utility class to handle {@link %1$s}s.%n" +
             " */%n" +
@@ -37,13 +43,30 @@ public class UtilityClass {
     private final String builderMethod2;
     private final BuilderClass builderClass;
     private final SetupClass setupClass;
+    private final String imports;
 
     public UtilityClass(final Class<?> componentClass) {
         this.setupClass = new SetupClass(componentClass);
         this.subjectClassName = componentClass.getSimpleName();
         this.builderClass = new BuilderClass(componentClass);
-        this.builderMethod1 = String.format(METHOD1_FORMAT, subjectClassName);
+        this.builderMethod1 = hasDefaultConstructor(componentClass)
+                ? String.format(METHOD1_FORMAT, subjectClassName)
+                : "";
         this.builderMethod2 = String.format(METHOD2_FORMAT, subjectClassName);
+        final Set<Class<?>> dependencies = new HashSet<>(setupClass.getDependencies());
+        this.imports = dependencies.stream()
+                                   .map(c -> c.isArray() ? c.getComponentType() : c)
+                                   .filter(c -> !c.isPrimitive())
+                                   .map(Class::getCanonicalName)
+                                   .filter(s -> !s.startsWith("java.lang"))
+                                   .sorted()
+                                   .map(s -> String.format("import %s;", s))
+                                   .collect(Collectors.joining(String.format("%n")));
+    }
+
+    private boolean hasDefaultConstructor(final Class<?> componentClass) {
+        return Stream.of(componentClass.getConstructors())
+                     .anyMatch(c -> c.getParameterCount() == 0);
     }
 
     @Override
@@ -53,7 +76,8 @@ public class UtilityClass {
                              builderMethod1,
                              builderMethod2,
                              builderClass,
-                             setupClass);
+                             setupClass,
+                             imports);
     }
 
     public String getName() {

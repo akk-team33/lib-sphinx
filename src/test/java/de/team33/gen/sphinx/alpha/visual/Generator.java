@@ -26,13 +26,13 @@ public class Generator {
     private static final Path PACKAGE_PATH = Paths.get("src", "main", "java", "de", "team33", "sphinx", "alpha", "visual")
                                                   .toAbsolutePath()
                                                   .normalize();
-    public static final OpenOption[] OPEN_OPTIONS = {
-            StandardOpenOption.CREATE_NEW};
+    public static final OpenOption[] OPEN_OPTIONS = {StandardOpenOption.CREATE_NEW}; // <-- overwrite or not?
 
     public static void main(String[] args) {
         CANDIDATES.stream()
                   .flatMap(Generator::ancestors)
                   .distinct()
+                  .filter(c -> !c.equals(Component.class)) // skip anyway!
                   .filter(Component.class::isAssignableFrom)
                   .map(UtilityClass::new)
                   .forEach(Generator::write);

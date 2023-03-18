@@ -1,6 +1,9 @@
 package de.team33.gen.sphinx.alpha.visual;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,6 +25,7 @@ public class SetupClass {
     private final String componentClassName;
     private final String superUtilityClassName;
     private final List<SetupDefaultMethod> methods;
+    private final Set<Class<?>> dependencies = new HashSet<>();
 
     public SetupClass(final Class<?> componentClass) {
         componentClassName = componentClass.getSimpleName();
@@ -33,6 +37,8 @@ public class SetupClass {
                         .filter(method -> !method.getName().endsWith("Listener"))
                         .map(SetupDefaultMethod::new)
                         .collect(Collectors.toList());
+        dependencies.add(componentClass);
+        methods.forEach(method -> dependencies.addAll(method.getDependencies()));
     }
 
     @Override
@@ -44,5 +50,9 @@ public class SetupClass {
                                               componentClassName,
                                               superUtilityClassName),
                                        TAIL));
+    }
+
+    public Set<Class<?>> getDependencies() {
+        return dependencies;
     }
 }
