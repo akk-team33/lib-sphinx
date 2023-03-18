@@ -5,41 +5,40 @@ import java.util.function.Supplier;
 
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.Image;
 import java.awt.LayoutManager;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenuBar;
 import javax.swing.TransferHandler;
 
 /**
- * Utility class to handle {@link JFrame}s.
+ * Utility class to handle {@link JDialog}s.
  */
-public final class JFrames {
+public final class JDialogs {
 
     /**
-     * Returns a new {@link Builder} for target instances of type {@link JFrame}.
+     * Returns a new {@link Builder} for target instances of type {@link JDialog}.
      */
-    public static Builder<JFrame, ?> builder() {
-        return new Builder<>(JFrame::new, Builder.class);
+    public static Builder<JDialog, ?> builder() {
+        return new Builder<>(JDialog::new, Builder.class);
     }
 
     /**
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
      * 
-     * @param <T> The final type of the target instances, at least {@link JFrame}.
+     * @param <T> The final type of the target instances, at least {@link JDialog}.
      */
-    public static <T extends JFrame> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JDialog> Builder<T, ?> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
     /**
-     * Builder implementation to build target instances of {@link JFrame}.
+     * Builder implementation to build target instances of {@link JDialog}.
      * 
-     * @param <T> The final type of the target instances, at least {@link JFrame}.
+     * @param <T> The final type of the target instances, at least {@link JDialog}.
      * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JFrame, B extends Builder<T, B>>
+    public static class Builder<T extends JDialog, B extends Builder<T, B>>
             extends LateBuilder<T, B> implements Setup<T, B> {
 
         protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
@@ -48,78 +47,71 @@ public final class JFrames {
     }
 
     /**
-     * Utility interface to set up a target instance of {@link JFrame}.
+     * Utility interface to set up a target instance of {@link JDialog}.
      * 
-     * @param <T> The final type of the target instance, at least {@link JFrame}.
+     * @param <T> The final type of the target instance, at least {@link JDialog}.
      * @param <S> The final type of the Setup implementation.
      */
-    public interface Setup<T extends JFrame, S extends Setup<T, S>> extends Frames.Setup<T, S> {
+    public interface Setup<T extends JDialog, S extends Setup<T, S>> extends Dialogs.Setup<T, S> {
 
         /**
-         * @see JFrame#setDefaultCloseOperation(int)
+         * @see JDialog#setDefaultCloseOperation(int)
          */
         default S setDefaultCloseOperation(final int arg0) {
             return setup(result -> result.setDefaultCloseOperation(arg0));
         }
 
         /**
-         * @see JFrame#setTransferHandler(TransferHandler)
+         * @see JDialog#setTransferHandler(TransferHandler)
          */
         default S setTransferHandler(final TransferHandler arg0) {
             return setup(result -> result.setTransferHandler(arg0));
         }
 
         /**
-         * @see JFrame#setJMenuBar(JMenuBar)
+         * @see JDialog#setJMenuBar(JMenuBar)
          */
         default S setJMenuBar(final JMenuBar arg0) {
             return setup(result -> result.setJMenuBar(arg0));
         }
 
         /**
-         * @see JFrame#setLayout(LayoutManager)
+         * @see JDialog#setLayout(LayoutManager)
          */
         default S setLayout(final LayoutManager arg0) {
             return setup(result -> result.setLayout(arg0));
         }
 
         /**
-         * @see JFrame#setIconImage(Image)
-         */
-        default S setIconImage(final Image arg0) {
-            return setup(result -> result.setIconImage(arg0));
-        }
-
-        /**
-         * @see JFrame#setContentPane(Container)
+         * @see JDialog#setContentPane(Container)
          */
         default S setContentPane(final Container arg0) {
             return setup(result -> result.setContentPane(arg0));
         }
 
         /**
-         * @see JFrame#setLayeredPane(JLayeredPane)
+         * @see JDialog#setLayeredPane(JLayeredPane)
          */
         default S setLayeredPane(final JLayeredPane arg0) {
             return setup(result -> result.setLayeredPane(arg0));
         }
 
         /**
-         * @see JFrame#setGlassPane(Component)
+         * @see JDialog#setGlassPane(Component)
          */
         default S setGlassPane(final Component arg0) {
             return setup(result -> result.setGlassPane(arg0));
         }
 
         /**
-         * @see JFrame#setDefaultLookAndFeelDecorated(boolean)
+         * @see JDialog#setDefaultLookAndFeelDecorated(boolean)
          */
         default S setDefaultLookAndFeelDecorated(final boolean arg0) {
             return setup(result -> result.setDefaultLookAndFeelDecorated(arg0));
         }
 
         /**
-         * @see JFrame#remove(Component)
+         * @see JDialog#remove(Component)
          */
         default S remove(final Component arg0) {
             return setup(result -> result.remove(arg0));

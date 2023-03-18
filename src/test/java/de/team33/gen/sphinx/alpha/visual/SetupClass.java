@@ -1,5 +1,6 @@
 package de.team33.gen.sphinx.alpha.visual;
 
+import java.lang.reflect.Modifier;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +32,7 @@ public class SetupClass {
         componentClassName = componentClass.getSimpleName();
         superUtilityClassName = componentClass.getSuperclass().getSimpleName() + "s";
         methods = Stream.of(componentClass.getMethods())
+                        .filter(method -> !Modifier.isStatic(method.getModifiers()))
                         .filter(method -> method.getDeclaringClass().equals(componentClass))
                         .filter(method -> Stream.of("set", "add", "remove")
                                                 .anyMatch(prefix -> method.getName().startsWith(prefix)))

@@ -25,7 +25,7 @@ class PreferredBoundsTrial {
                             .on(Event.MOUSE_RELEASED, this::mouseReleased)
                             .on(Event.MOUSE_ENTERED, this::mouseEntered)
                             .on(Event.MOUSE_EXITED, this::mouseExited)
-                            .setPreferredBounds(bounds)
+                            //.setPreferredBounds(bounds)
                             .setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE)
                             .setVisible(true)
                             .build();
