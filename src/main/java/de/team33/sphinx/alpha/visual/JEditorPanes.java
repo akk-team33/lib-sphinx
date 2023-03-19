@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.function.Supplier;
 import javax.swing.JEditorPane;
 import javax.swing.text.EditorKit;
-import javax.swing.text.JTextComponent;
 
 /**
  * Utility class to handle {@link JEditorPane}s.

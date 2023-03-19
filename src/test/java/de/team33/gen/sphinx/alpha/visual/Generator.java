@@ -71,14 +71,16 @@ public class Generator {
                                                   .toAbsolutePath()
                                                   .normalize();
     public static final OpenOption[] OPEN_OPTIONS = {
+            // StandardOpenOption.CREATE_NEW,
             StandardOpenOption.CREATE,
-            StandardOpenOption.TRUNCATE_EXISTING}; // <-- overwrite or not?
+            StandardOpenOption.TRUNCATE_EXISTING
+    }; // <-- overwrite or not?
 
     public static void main(String[] args) {
         CANDIDATES.stream()
                   .flatMap(Generator::ancestors)
                   .distinct()
-                  //.filter(c -> !c.equals(Component.class)) // skip anyway!
+                  .filter(c -> !c.equals(Component.class)) // skip anyway!
                   .filter(Component.class::isAssignableFrom)
                   .map(ComponentUtilitySource::new)
                   //.forEach(System.out::println);

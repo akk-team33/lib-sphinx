@@ -2,12 +2,18 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import de.team33.patterns.exceptional.e1.Conversion;
-
-import javax.swing.*;
-import javax.swing.JInternalFrame.JDesktopIcon;
-import javax.swing.plaf.InternalFrameUI;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Cursor;
+import java.awt.LayoutManager;
+import java.awt.Rectangle;
 import java.util.function.Supplier;
+import javax.swing.Icon;
+import javax.swing.JInternalFrame;
+import javax.swing.JInternalFrame.JDesktopIcon;
+import javax.swing.JLayeredPane;
+import javax.swing.JMenuBar;
+import javax.swing.plaf.InternalFrameUI;
 
 /**
  * Utility class to handle {@link JInternalFrame}s.
@@ -27,7 +33,7 @@ public final class JInternalFrames {
 
     /**
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
-     *
+     * 
      * @param <T> The final type of the target instances, at least {@link JInternalFrame}.
      */
     public static <T extends JInternalFrame> Builder<T, ?> builder(final Supplier<T> newTarget) {
@@ -36,7 +42,7 @@ public final class JInternalFrames {
 
     /**
      * Builder implementation to build target instances of {@link JInternalFrame}.
-     *
+     * 
      * @param <T> The final type of the target instances, at least {@link JInternalFrame}.
      * @param <B> The final type of the Builder implementation.
      */
@@ -50,7 +56,7 @@ public final class JInternalFrames {
 
     /**
      * Utility interface to set up a target instance of {@link JInternalFrame}.
-     *
+     * 
      * @param <T> The final type of the target instance, at least {@link JInternalFrame}.
      * @param <S> The final type of the Setup implementation.
      */
