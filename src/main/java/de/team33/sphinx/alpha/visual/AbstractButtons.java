@@ -186,7 +186,7 @@ public final class AbstractButtons {
         /**
          * @see AbstractButton#setMultiClickThreshhold(long)
          */
-        default S setMultiClickThreshhold(final long arg0) {
+        default S setMultiClickThreshold(final long arg0) {
             return setup(result -> result.setMultiClickThreshhold(arg0));
         }
 

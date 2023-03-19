@@ -103,7 +103,7 @@ public final class JTables {
          * @see JTable#removeEditor()
          */
         default S removeEditor() {
-            return setup(result -> result.removeEditor());
+            return setup(JTable::removeEditor);
         }
 
         /**

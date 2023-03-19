@@ -74,7 +74,7 @@ public final class JDesktopPanes {
          * @see JDesktopPane#removeAll()
          */
         default S removeAll() {
-            return setup(result -> result.removeAll());
+            return setup(JDesktopPane::removeAll);
         }
 
         /**

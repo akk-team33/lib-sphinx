@@ -83,7 +83,7 @@ public final class JPopupMenus {
          * @see JPopupMenu#addSeparator()
          */
         default S addSeparator() {
-            return setup(result -> result.addSeparator());
+            return setup(JPopupMenu::addSeparator);
         }
 
         /**

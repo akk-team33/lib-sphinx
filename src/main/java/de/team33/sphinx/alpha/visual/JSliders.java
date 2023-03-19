@@ -80,7 +80,7 @@ public final class JSliders {
         /**
          * @see JSlider#setLabelTable(Dictionary)
          */
-        default S setLabelTable(final Dictionary arg0) {
+        default S setLabelTable(final Dictionary<?, ?> arg0) {
             return setup(result -> result.setLabelTable(arg0));
         }
 

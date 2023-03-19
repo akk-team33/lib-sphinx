@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.util.function.Supplier;
-import javax.swing.JComponent;
 import javax.swing.JSplitPane;
 import javax.swing.plaf.SplitPaneUI;
 
@@ -72,7 +71,7 @@ public final class JSplitPanes {
          * @see JSplitPane#removeAll()
          */
         default S removeAll() {
-            return setup(result -> result.removeAll());
+            return setup(JSplitPane::removeAll);
         }
 
         /**

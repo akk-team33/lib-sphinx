@@ -64,7 +64,7 @@ public final class JLayeredPanes {
          * @see JLayeredPane#removeAll()
          */
         default S removeAll() {
-            return setup(result -> result.removeAll());
+            return setup(JLayeredPane::removeAll);
         }
 
         /**

@@ -109,7 +109,7 @@ public final class Containers {
          * @see Container#removeAll()
          */
         default S removeAll() {
-            return setup(result -> result.removeAll());
+            return setup(Container::removeAll);
         }
 
         /**

@@ -96,7 +96,7 @@ public final class JMenus {
          * @see JMenu#addSeparator()
          */
         default S addSeparator() {
-            return setup(result -> result.addSeparator());
+            return setup(JMenu::addSeparator);
         }
 
         /**
@@ -124,7 +124,7 @@ public final class JMenus {
          * @see JMenu#removeAll()
          */
         default S removeAll() {
-            return setup(result -> result.removeAll());
+            return setup(JMenu::removeAll);
         }
 
         /**

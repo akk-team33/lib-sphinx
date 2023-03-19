@@ -131,7 +131,7 @@ public final class JTabbedPanes {
          * @see JTabbedPane#removeAll()
          */
         default S removeAll() {
-            return setup(result -> result.removeAll());
+            return setup(JTabbedPane::removeAll);
         }
 
         /**

@@ -68,7 +68,7 @@ public final class JToolBars {
          * @see JToolBar#addSeparator()
          */
         default S addSeparator() {
-            return setup(result -> result.addSeparator());
+            return setup(JToolBar::addSeparator);
         }
 
         /**
