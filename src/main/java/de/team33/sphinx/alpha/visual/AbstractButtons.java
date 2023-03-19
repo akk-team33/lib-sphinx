@@ -1,10 +1,9 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Insets;
 import java.awt.LayoutManager;
+import java.util.function.Supplier;
 import javax.swing.AbstractButton;
 import javax.swing.Action;
 import javax.swing.ButtonModel;
@@ -16,6 +15,9 @@ import javax.swing.plaf.ButtonUI;
  */
 @SuppressWarnings("unused")
 public final class AbstractButtons {
+
+    private AbstractButtons() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
@@ -56,80 +58,24 @@ public final class AbstractButtons {
         }
 
         /**
-         * @see AbstractButton#setModel(ButtonModel)
+         * @see AbstractButton#setActionCommand(String)
          */
-        default S setModel(final ButtonModel arg0) {
-            return setup(result -> result.setModel(arg0));
+        default S setActionCommand(final String arg0) {
+            return setup(result -> result.setActionCommand(arg0));
         }
 
         /**
-         * @see AbstractButton#setUI(ButtonUI)
+         * @see AbstractButton#setBorderPainted(boolean)
          */
-        default S setUI(final ButtonUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setBorderPainted(final boolean arg0) {
+            return setup(result -> result.setBorderPainted(arg0));
         }
 
         /**
-         * @see AbstractButton#setHideActionText(boolean)
+         * @see AbstractButton#setContentAreaFilled(boolean)
          */
-        default S setHideActionText(final boolean arg0) {
-            return setup(result -> result.setHideActionText(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setText(String)
-         */
-        default S setText(final String arg0) {
-            return setup(result -> result.setText(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setSelected(boolean)
-         */
-        default S setSelected(final boolean arg0) {
-            return setup(result -> result.setSelected(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setMargin(Insets)
-         */
-        default S setMargin(final Insets arg0) {
-            return setup(result -> result.setMargin(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setIcon(Icon)
-         */
-        default S setIcon(final Icon arg0) {
-            return setup(result -> result.setIcon(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setPressedIcon(Icon)
-         */
-        default S setPressedIcon(final Icon arg0) {
-            return setup(result -> result.setPressedIcon(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setSelectedIcon(Icon)
-         */
-        default S setSelectedIcon(final Icon arg0) {
-            return setup(result -> result.setSelectedIcon(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setRolloverIcon(Icon)
-         */
-        default S setRolloverIcon(final Icon arg0) {
-            return setup(result -> result.setRolloverIcon(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setRolloverSelectedIcon(Icon)
-         */
-        default S setRolloverSelectedIcon(final Icon arg0) {
-            return setup(result -> result.setRolloverSelectedIcon(arg0));
+        default S setContentAreaFilled(final boolean arg0) {
+            return setup(result -> result.setContentAreaFilled(arg0));
         }
 
         /**
@@ -147,52 +93,17 @@ public final class AbstractButtons {
         }
 
         /**
-         * @see AbstractButton#setVerticalAlignment(int)
+         * @see AbstractButton#setDisplayedMnemonicIndex(int)
          */
-        default S setVerticalAlignment(final int arg0) {
-            return setup(result -> result.setVerticalAlignment(arg0));
+        default S setDisplayedMnemonicIndex(final int arg0) {
+            return setup(result -> result.setDisplayedMnemonicIndex(arg0));
         }
 
         /**
-         * @see AbstractButton#setHorizontalAlignment(int)
+         * @see AbstractButton#setEnabled(boolean)
          */
-        default S setHorizontalAlignment(final int arg0) {
-            return setup(result -> result.setHorizontalAlignment(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setVerticalTextPosition(int)
-         */
-        default S setVerticalTextPosition(final int arg0) {
-            return setup(result -> result.setVerticalTextPosition(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setHorizontalTextPosition(int)
-         */
-        default S setHorizontalTextPosition(final int arg0) {
-            return setup(result -> result.setHorizontalTextPosition(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setIconTextGap(int)
-         */
-        default S setIconTextGap(final int arg0) {
-            return setup(result -> result.setIconTextGap(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setActionCommand(String)
-         */
-        default S setActionCommand(final String arg0) {
-            return setup(result -> result.setActionCommand(arg0));
-        }
-
-        /**
-         * @see AbstractButton#setBorderPainted(boolean)
-         */
-        default S setBorderPainted(final boolean arg0) {
-            return setup(result -> result.setBorderPainted(arg0));
+        default S setEnabled(final boolean arg0) {
+            return setup(result -> result.setEnabled(arg0));
         }
 
         /**
@@ -203,17 +114,52 @@ public final class AbstractButtons {
         }
 
         /**
-         * @see AbstractButton#setContentAreaFilled(boolean)
+         * @see AbstractButton#setHideActionText(boolean)
          */
-        default S setContentAreaFilled(final boolean arg0) {
-            return setup(result -> result.setContentAreaFilled(arg0));
+        default S setHideActionText(final boolean arg0) {
+            return setup(result -> result.setHideActionText(arg0));
         }
 
         /**
-         * @see AbstractButton#setRolloverEnabled(boolean)
+         * @see AbstractButton#setHorizontalAlignment(int)
          */
-        default S setRolloverEnabled(final boolean arg0) {
-            return setup(result -> result.setRolloverEnabled(arg0));
+        default S setHorizontalAlignment(final int arg0) {
+            return setup(result -> result.setHorizontalAlignment(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setHorizontalTextPosition(int)
+         */
+        default S setHorizontalTextPosition(final int arg0) {
+            return setup(result -> result.setHorizontalTextPosition(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setIcon(Icon)
+         */
+        default S setIcon(final Icon arg0) {
+            return setup(result -> result.setIcon(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setIconTextGap(int)
+         */
+        default S setIconTextGap(final int arg0) {
+            return setup(result -> result.setIconTextGap(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setLayout(LayoutManager)
+         */
+        default S setLayout(final LayoutManager arg0) {
+            return setup(result -> result.setLayout(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setMargin(Insets)
+         */
+        default S setMargin(final Insets arg0) {
+            return setup(result -> result.setMargin(arg0));
         }
 
         /**
@@ -231,31 +177,87 @@ public final class AbstractButtons {
         }
 
         /**
-         * @see AbstractButton#setDisplayedMnemonicIndex(int)
+         * @see AbstractButton#setModel(ButtonModel)
          */
-        default S setDisplayedMnemonicIndex(final int arg0) {
-            return setup(result -> result.setDisplayedMnemonicIndex(arg0));
+        default S setModel(final ButtonModel arg0) {
+            return setup(result -> result.setModel(arg0));
         }
 
         /**
          * @see AbstractButton#setMultiClickThreshhold(long)
          */
-        default S setMultiClickThreshold(final long arg0) {
+        default S setMultiClickThreshhold(final long arg0) {
             return setup(result -> result.setMultiClickThreshhold(arg0));
         }
 
         /**
-         * @see AbstractButton#setLayout(LayoutManager)
+         * @see AbstractButton#setPressedIcon(Icon)
          */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
+        default S setPressedIcon(final Icon arg0) {
+            return setup(result -> result.setPressedIcon(arg0));
         }
 
         /**
-         * @see AbstractButton#setEnabled(boolean)
+         * @see AbstractButton#setRolloverEnabled(boolean)
          */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
+        default S setRolloverEnabled(final boolean arg0) {
+            return setup(result -> result.setRolloverEnabled(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setRolloverIcon(Icon)
+         */
+        default S setRolloverIcon(final Icon arg0) {
+            return setup(result -> result.setRolloverIcon(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setRolloverSelectedIcon(Icon)
+         */
+        default S setRolloverSelectedIcon(final Icon arg0) {
+            return setup(result -> result.setRolloverSelectedIcon(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setSelected(boolean)
+         */
+        default S setSelected(final boolean arg0) {
+            return setup(result -> result.setSelected(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setSelectedIcon(Icon)
+         */
+        default S setSelectedIcon(final Icon arg0) {
+            return setup(result -> result.setSelectedIcon(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setText(String)
+         */
+        default S setText(final String arg0) {
+            return setup(result -> result.setText(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setUI(ButtonUI)
+         */
+        default S setUI(final ButtonUI arg0) {
+            return setup(result -> result.setUI(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setVerticalAlignment(int)
+         */
+        default S setVerticalAlignment(final int arg0) {
+            return setup(result -> result.setVerticalAlignment(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setVerticalTextPosition(int)
+         */
+        default S setVerticalTextPosition(final int arg0) {
+            return setup(result -> result.setVerticalTextPosition(arg0));
         }
     }
 }

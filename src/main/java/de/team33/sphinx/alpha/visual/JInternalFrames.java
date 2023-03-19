@@ -3,24 +3,20 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import de.team33.patterns.exceptional.e1.Conversion;
 
-import java.util.function.Supplier;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Cursor;
-import java.awt.LayoutManager;
-import java.awt.Rectangle;
-import javax.swing.Icon;
-import javax.swing.JInternalFrame;
+import javax.swing.*;
 import javax.swing.JInternalFrame.JDesktopIcon;
-import javax.swing.JLayeredPane;
-import javax.swing.JMenuBar;
 import javax.swing.plaf.InternalFrameUI;
+import java.awt.*;
+import java.util.function.Supplier;
 
 /**
  * Utility class to handle {@link JInternalFrame}s.
  */
+@SuppressWarnings("unused")
 public final class JInternalFrames {
+
+    private JInternalFrames() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JInternalFrame}.
@@ -31,7 +27,7 @@ public final class JInternalFrames {
 
     /**
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
-     * 
+     *
      * @param <T> The final type of the target instances, at least {@link JInternalFrame}.
      */
     public static <T extends JInternalFrame> Builder<T, ?> builder(final Supplier<T> newTarget) {
@@ -40,7 +36,7 @@ public final class JInternalFrames {
 
     /**
      * Builder implementation to build target instances of {@link JInternalFrame}.
-     * 
+     *
      * @param <T> The final type of the target instances, at least {@link JInternalFrame}.
      * @param <B> The final type of the Builder implementation.
      */
@@ -54,7 +50,7 @@ public final class JInternalFrames {
 
     /**
      * Utility interface to set up a target instance of {@link JInternalFrame}.
-     * 
+     *
      * @param <T> The final type of the target instance, at least {@link JInternalFrame}.
      * @param <S> The final type of the Setup implementation.
      */
@@ -82,59 +78,17 @@ public final class JInternalFrames {
         }
 
         /**
-         * @see JInternalFrame#setIconifiable(boolean)
+         * @see JInternalFrame#setContentPane(Container)
          */
-        default S setIconifiable(final boolean arg0) {
-            return setup(result -> result.setIconifiable(arg0));
+        default S setContentPane(final Container arg0) {
+            return setup(result -> result.setContentPane(arg0));
         }
 
         /**
-         * @see JInternalFrame#setMaximizable(boolean)
+         * @see JInternalFrame#setCursor(Cursor)
          */
-        default S setMaximizable(final boolean arg0) {
-            return setup(result -> result.setMaximizable(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setFrameIcon(Icon)
-         */
-        default S setFrameIcon(final Icon arg0) {
-            return setup(result -> result.setFrameIcon(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setDesktopIcon(JDesktopIcon)
-         */
-        default S setDesktopIcon(final JDesktopIcon arg0) {
-            return setup(result -> result.setDesktopIcon(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setNormalBounds(Rectangle)
-         */
-        default S setNormalBounds(final Rectangle arg0) {
-            return setup(result -> result.setNormalBounds(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setIcon(boolean)
-         */
-        default S setIcon(final boolean arg0) {
-            return setup(Conversion.consumer(result -> result.setIcon(arg0)));
-        }
-
-        /**
-         * @see JInternalFrame#setResizable(boolean)
-         */
-        default S setResizable(final boolean arg0) {
-            return setup(result -> result.setResizable(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setMaximum(boolean)
-         */
-        default S setMaximum(final boolean arg0) {
-            return setup(Conversion.consumer(result -> result.setMaximum(arg0)));
+        default S setCursor(final Cursor arg0) {
+            return setup(result -> result.setCursor(arg0));
         }
 
         /**
@@ -145,24 +99,24 @@ public final class JInternalFrames {
         }
 
         /**
-         * @see JInternalFrame#setJMenuBar(JMenuBar)
+         * @see JInternalFrame#setDesktopIcon(JDesktopIcon)
          */
-        default S setJMenuBar(final JMenuBar arg0) {
-            return setup(result -> result.setJMenuBar(arg0));
+        default S setDesktopIcon(final JDesktopIcon arg0) {
+            return setup(result -> result.setDesktopIcon(arg0));
         }
 
         /**
-         * @see JInternalFrame#setContentPane(Container)
+         * @see JInternalFrame#setFocusCycleRoot(boolean)
          */
-        default S setContentPane(final Container arg0) {
-            return setup(result -> result.setContentPane(arg0));
+        default S setFocusCycleRoot(final boolean arg0) {
+            return setup(result -> result.setFocusCycleRoot(arg0));
         }
 
         /**
-         * @see JInternalFrame#setLayeredPane(JLayeredPane)
+         * @see JInternalFrame#setFrameIcon(Icon)
          */
-        default S setLayeredPane(final JLayeredPane arg0) {
-            return setup(result -> result.setLayeredPane(arg0));
+        default S setFrameIcon(final Icon arg0) {
+            return setup(result -> result.setFrameIcon(arg0));
         }
 
         /**
@@ -173,10 +127,87 @@ public final class JInternalFrames {
         }
 
         /**
-         * @see JInternalFrame#setMenuBar(JMenuBar)
+         * @see JInternalFrame#setIcon(boolean)
          */
-        default S setMenuBar(final JMenuBar arg0) {
-            return setup(result -> result.setMenuBar(arg0));
+        default S setIcon(final boolean arg0) {
+            return setup(Conversion.consumer(result -> result.setIcon(arg0)));
+        }
+
+        /**
+         * @see JInternalFrame#setIconifiable(boolean)
+         */
+        default S setIconifiable(final boolean arg0) {
+            return setup(result -> result.setIconifiable(arg0));
+        }
+
+        /**
+         * @see JInternalFrame#setJMenuBar(JMenuBar)
+         */
+        default S setJMenuBar(final JMenuBar arg0) {
+            return setup(result -> result.setJMenuBar(arg0));
+        }
+
+        /**
+         * @see JInternalFrame#setLayer(Integer)
+         */
+        default S setLayer(final Integer arg0) {
+            return setup(result -> result.setLayer(arg0));
+        }
+
+        /**
+         * @see JInternalFrame#setLayer(int)
+         */
+        default S setLayer(final int arg0) {
+            return setup(result -> result.setLayer(arg0));
+        }
+
+        /**
+         * @see JInternalFrame#setLayeredPane(JLayeredPane)
+         */
+        default S setLayeredPane(final JLayeredPane arg0) {
+            return setup(result -> result.setLayeredPane(arg0));
+        }
+
+        /**
+         * @see JInternalFrame#setLayout(LayoutManager)
+         */
+        default S setLayout(final LayoutManager arg0) {
+            return setup(result -> result.setLayout(arg0));
+        }
+
+        /**
+         * @see JInternalFrame#setMaximizable(boolean)
+         */
+        default S setMaximizable(final boolean arg0) {
+            return setup(result -> result.setMaximizable(arg0));
+        }
+
+        /**
+         * @see JInternalFrame#setMaximum(boolean)
+         */
+        default S setMaximum(final boolean arg0) {
+            return setup(Conversion.consumer(result -> result.setMaximum(arg0)));
+        }
+
+        /**
+         * @see JInternalFrame#setNormalBounds(Rectangle)
+         */
+        default S setNormalBounds(final Rectangle arg0) {
+            return setup(result -> result.setNormalBounds(arg0));
+        }
+
+        /**
+         * @see JInternalFrame#setResizable(boolean)
+         */
+        default S setResizable(final boolean arg0) {
+            return setup(result -> result.setResizable(arg0));
+        }
+
+        /**
+         * @see JInternalFrame#setSelected(boolean)
+         */
+        default S setSelected(final boolean arg0) {
+            return setup(Conversion.consumer(result -> result.setSelected(arg0)));
         }
 
         /**
@@ -191,48 +222,6 @@ public final class JInternalFrames {
          */
         default S setUI(final InternalFrameUI arg0) {
             return setup(result -> result.setUI(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setFocusCycleRoot(boolean)
-         */
-        default S setFocusCycleRoot(final boolean arg0) {
-            return setup(result -> result.setFocusCycleRoot(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setSelected(boolean)
-         */
-        default S setSelected(final boolean arg0) {
-            return setup(Conversion.consumer(result -> result.setSelected(arg0)));
-        }
-
-        /**
-         * @see JInternalFrame#setLayer(int)
-         */
-        default S setLayer(final int arg0) {
-            return setup(result -> result.setLayer(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setLayer(Integer)
-         */
-        default S setLayer(final Integer arg0) {
-            return setup(result -> result.setLayer(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setCursor(Cursor)
-         */
-        default S setCursor(final Cursor arg0) {
-            return setup(result -> result.setCursor(arg0));
         }
     }
 }

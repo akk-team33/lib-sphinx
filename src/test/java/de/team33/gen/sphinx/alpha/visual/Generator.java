@@ -78,7 +78,7 @@ public class Generator {
         CANDIDATES.stream()
                   .flatMap(Generator::ancestors)
                   .distinct()
-                  .filter(c -> !c.equals(Component.class)) // skip anyway!
+                  //.filter(c -> !c.equals(Component.class)) // skip anyway!
                   .filter(Component.class::isAssignableFrom)
                   .map(ComponentUtilitySource::new)
                   //.forEach(System.out::println);

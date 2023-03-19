@@ -1,7 +1,11 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.util.Set;
+import java.util.function.Supplier;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.InputVerifier;
@@ -9,16 +13,15 @@ import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
 import javax.swing.TransferHandler;
 import javax.swing.border.Border;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.util.function.Supplier;
 
 /**
  * Utility class to handle {@link JComponent}s.
  */
 @SuppressWarnings("unused")
 public final class JComponents {
+
+    private JComponents() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
@@ -52,6 +55,13 @@ public final class JComponents {
     public interface Setup<T extends JComponent, S extends Setup<T, S>> extends Containers.Setup<T, S> {
 
         /**
+         * @see JComponent#setActionMap(ActionMap)
+         */
+        default S setActionMap(final ActionMap arg0) {
+            return setup(result -> result.setActionMap(arg0));
+        }
+
+        /**
          * @see JComponent#setAlignmentX(float)
          */
         default S setAlignmentX(final float arg0) {
@@ -66,94 +76,10 @@ public final class JComponents {
         }
 
         /**
-         * @see JComponent#setInheritsPopupMenu(boolean)
-         */
-        default S setInheritsPopupMenu(final boolean arg0) {
-            return setup(result -> result.setInheritsPopupMenu(arg0));
-        }
-
-        /**
-         * @see JComponent#setComponentPopupMenu(JPopupMenu)
-         */
-        default S setComponentPopupMenu(final JPopupMenu arg0) {
-            return setup(result -> result.setComponentPopupMenu(arg0));
-        }
-
-        /**
-         * @see JComponent#setRequestFocusEnabled(boolean)
-         */
-        default S setRequestFocusEnabled(final boolean arg0) {
-            return setup(result -> result.setRequestFocusEnabled(arg0));
-        }
-
-        /**
-         * @see JComponent#setVerifyInputWhenFocusTarget(boolean)
-         */
-        default S setVerifyInputWhenFocusTarget(final boolean arg0) {
-            return setup(result -> result.setVerifyInputWhenFocusTarget(arg0));
-        }
-
-        /**
-         * @see JComponent#setBorder(Border)
-         */
-        default S setBorder(final Border arg0) {
-            return setup(result -> result.setBorder(arg0));
-        }
-
-        /**
-         * @see JComponent#setInputVerifier(InputVerifier)
-         */
-        default S setInputVerifier(final InputVerifier arg0) {
-            return setup(result -> result.setInputVerifier(arg0));
-        }
-
-        /**
-         * @see JComponent#setDebugGraphicsOptions(int)
-         */
-        default S setDebugGraphicsOptions(final int arg0) {
-            return setup(result -> result.setDebugGraphicsOptions(arg0));
-        }
-
-        /**
-         * @see JComponent#setInputMap(int, InputMap)
-         */
-        default S setInputMap(final int arg0, final InputMap arg1) {
-            return setup(result -> result.setInputMap(arg0, arg1));
-        }
-
-        /**
-         * @see JComponent#setActionMap(ActionMap)
-         */
-        default S setActionMap(final ActionMap arg0) {
-            return setup(result -> result.setActionMap(arg0));
-        }
-
-        /**
-         * @see JComponent#setToolTipText(String)
-         */
-        default S setToolTipText(final String arg0) {
-            return setup(result -> result.setToolTipText(arg0));
-        }
-
-        /**
          * @see JComponent#setAutoscrolls(boolean)
          */
         default S setAutoscrolls(final boolean arg0) {
             return setup(result -> result.setAutoscrolls(arg0));
-        }
-
-        /**
-         * @see JComponent#setDoubleBuffered(boolean)
-         */
-        default S setDoubleBuffered(final boolean arg0) {
-            return setup(result -> result.setDoubleBuffered(arg0));
-        }
-
-        /**
-         * @see JComponent#setTransferHandler(TransferHandler)
-         */
-        default S setTransferHandler(final TransferHandler arg0) {
-            return setup(result -> result.setTransferHandler(arg0));
         }
 
         /**
@@ -164,31 +90,31 @@ public final class JComponents {
         }
 
         /**
-         * @see JComponent#setOpaque(boolean)
+         * @see JComponent#setBorder(Border)
          */
-        default S setOpaque(final boolean arg0) {
-            return setup(result -> result.setOpaque(arg0));
+        default S setBorder(final Border arg0) {
+            return setup(result -> result.setBorder(arg0));
         }
 
         /**
-         * @see JComponent#setVisible(boolean)
+         * @see JComponent#setComponentPopupMenu(JPopupMenu)
          */
-        default S setVisible(final boolean arg0) {
-            return setup(result -> result.setVisible(arg0));
+        default S setComponentPopupMenu(final JPopupMenu arg0) {
+            return setup(result -> result.setComponentPopupMenu(arg0));
         }
 
         /**
-         * @see JComponent#setMinimumSize(Dimension)
+         * @see JComponent#setDebugGraphicsOptions(int)
          */
-        default S setMinimumSize(final Dimension arg0) {
-            return setup(result -> result.setMinimumSize(arg0));
+        default S setDebugGraphicsOptions(final int arg0) {
+            return setup(result -> result.setDebugGraphicsOptions(arg0));
         }
 
         /**
-         * @see JComponent#setFont(Font)
+         * @see JComponent#setDoubleBuffered(boolean)
          */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
+        default S setDoubleBuffered(final boolean arg0) {
+            return setup(result -> result.setDoubleBuffered(arg0));
         }
 
         /**
@@ -199,10 +125,66 @@ public final class JComponents {
         }
 
         /**
+         * @see JComponent#setFocusTraversalKeys(int, Set)
+         */
+        default S setFocusTraversalKeys(final int arg0, final Set<? extends java.awt.AWTKeyStroke> arg1) {
+            return setup(result -> result.setFocusTraversalKeys(arg0, arg1));
+        }
+
+        /**
+         * @see JComponent#setFont(Font)
+         */
+        default S setFont(final Font arg0) {
+            return setup(result -> result.setFont(arg0));
+        }
+
+        /**
          * @see JComponent#setForeground(Color)
          */
         default S setForeground(final Color arg0) {
             return setup(result -> result.setForeground(arg0));
+        }
+
+        /**
+         * @see JComponent#setInheritsPopupMenu(boolean)
+         */
+        default S setInheritsPopupMenu(final boolean arg0) {
+            return setup(result -> result.setInheritsPopupMenu(arg0));
+        }
+
+        /**
+         * @see JComponent#setInputMap(int, InputMap)
+         */
+        default S setInputMap(final int arg0, final InputMap arg1) {
+            return setup(result -> result.setInputMap(arg0, arg1));
+        }
+
+        /**
+         * @see JComponent#setInputVerifier(InputVerifier)
+         */
+        default S setInputVerifier(final InputVerifier arg0) {
+            return setup(result -> result.setInputVerifier(arg0));
+        }
+
+        /**
+         * @see JComponent#setMaximumSize(Dimension)
+         */
+        default S setMaximumSize(final Dimension arg0) {
+            return setup(result -> result.setMaximumSize(arg0));
+        }
+
+        /**
+         * @see JComponent#setMinimumSize(Dimension)
+         */
+        default S setMinimumSize(final Dimension arg0) {
+            return setup(result -> result.setMinimumSize(arg0));
+        }
+
+        /**
+         * @see JComponent#setOpaque(boolean)
+         */
+        default S setOpaque(final boolean arg0) {
+            return setup(result -> result.setOpaque(arg0));
         }
 
         /**
@@ -213,10 +195,38 @@ public final class JComponents {
         }
 
         /**
-         * @see JComponent#setMaximumSize(Dimension)
+         * @see JComponent#setRequestFocusEnabled(boolean)
          */
-        default S setMaximumSize(final Dimension arg0) {
-            return setup(result -> result.setMaximumSize(arg0));
+        default S setRequestFocusEnabled(final boolean arg0) {
+            return setup(result -> result.setRequestFocusEnabled(arg0));
+        }
+
+        /**
+         * @see JComponent#setToolTipText(String)
+         */
+        default S setToolTipText(final String arg0) {
+            return setup(result -> result.setToolTipText(arg0));
+        }
+
+        /**
+         * @see JComponent#setTransferHandler(TransferHandler)
+         */
+        default S setTransferHandler(final TransferHandler arg0) {
+            return setup(result -> result.setTransferHandler(arg0));
+        }
+
+        /**
+         * @see JComponent#setVerifyInputWhenFocusTarget(boolean)
+         */
+        default S setVerifyInputWhenFocusTarget(final boolean arg0) {
+            return setup(result -> result.setVerifyInputWhenFocusTarget(arg0));
+        }
+
+        /**
+         * @see JComponent#setVisible(boolean)
+         */
+        default S setVisible(final boolean arg0) {
+            return setup(result -> result.setVisible(arg0));
         }
     }
 }

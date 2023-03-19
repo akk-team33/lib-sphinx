@@ -1,9 +1,8 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Color;
+import java.util.function.Supplier;
 import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
@@ -14,7 +13,11 @@ import javax.swing.plaf.ColorChooserUI;
 /**
  * Utility class to handle {@link JColorChooser}s.
  */
+@SuppressWarnings("unused")
 public final class JColorChoosers {
+
+    private JColorChoosers() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JColorChooser}.
@@ -55,27 +58,6 @@ public final class JColorChoosers {
     public interface Setup<T extends JColorChooser, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JColorChooser#setDragEnabled(boolean)
-         */
-        default S setDragEnabled(final boolean arg0) {
-            return setup(result -> result.setDragEnabled(arg0));
-        }
-
-        /**
-         * @see JColorChooser#setSelectionModel(ColorSelectionModel)
-         */
-        default S setSelectionModel(final ColorSelectionModel arg0) {
-            return setup(result -> result.setSelectionModel(arg0));
-        }
-
-        /**
-         * @see JColorChooser#setPreviewPanel(JComponent)
-         */
-        default S setPreviewPanel(final JComponent arg0) {
-            return setup(result -> result.setPreviewPanel(arg0));
-        }
-
-        /**
          * @see JColorChooser#addChooserPanel(AbstractColorChooserPanel)
          */
         default S addChooserPanel(final AbstractColorChooserPanel arg0) {
@@ -92,15 +74,15 @@ public final class JColorChoosers {
         /**
          * @see JColorChooser#setChooserPanels(AbstractColorChooserPanel[])
          */
-        default S setChooserPanels(final AbstractColorChooserPanel[] arg0) {
+        default S setChooserPanels(final javax.swing.colorchooser.AbstractColorChooserPanel[] arg0) {
             return setup(result -> result.setChooserPanels(arg0));
         }
 
         /**
-         * @see JColorChooser#setUI(ColorChooserUI)
+         * @see JColorChooser#setColor(Color)
          */
-        default S setUI(final ColorChooserUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setColor(final Color arg0) {
+            return setup(result -> result.setColor(arg0));
         }
 
         /**
@@ -118,10 +100,31 @@ public final class JColorChoosers {
         }
 
         /**
-         * @see JColorChooser#setColor(Color)
+         * @see JColorChooser#setDragEnabled(boolean)
          */
-        default S setColor(final Color arg0) {
-            return setup(result -> result.setColor(arg0));
+        default S setDragEnabled(final boolean arg0) {
+            return setup(result -> result.setDragEnabled(arg0));
+        }
+
+        /**
+         * @see JColorChooser#setPreviewPanel(JComponent)
+         */
+        default S setPreviewPanel(final JComponent arg0) {
+            return setup(result -> result.setPreviewPanel(arg0));
+        }
+
+        /**
+         * @see JColorChooser#setSelectionModel(ColorSelectionModel)
+         */
+        default S setSelectionModel(final ColorSelectionModel arg0) {
+            return setup(result -> result.setSelectionModel(arg0));
+        }
+
+        /**
+         * @see JColorChooser#setUI(ColorChooserUI)
+         */
+        default S setUI(final ColorChooserUI arg0) {
+            return setup(result -> result.setUI(arg0));
         }
     }
 }

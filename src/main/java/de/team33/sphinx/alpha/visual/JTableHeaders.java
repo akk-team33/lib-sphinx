@@ -2,7 +2,7 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
+import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.plaf.TableHeaderUI;
 import javax.swing.table.JTableHeader;
@@ -13,7 +13,11 @@ import javax.swing.table.TableColumnModel;
 /**
  * Utility class to handle {@link JTableHeader}s.
  */
+@SuppressWarnings("unused")
 public final class JTableHeaders {
+
+    private JTableHeaders() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JTableHeader}.
@@ -54,31 +58,10 @@ public final class JTableHeaders {
     public interface Setup<T extends JTableHeader, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JTableHeader#setTable(JTable)
+         * @see JTableHeader#setColumnModel(TableColumnModel)
          */
-        default S setTable(final JTable arg0) {
-            return setup(result -> result.setTable(arg0));
-        }
-
-        /**
-         * @see JTableHeader#setReorderingAllowed(boolean)
-         */
-        default S setReorderingAllowed(final boolean arg0) {
-            return setup(result -> result.setReorderingAllowed(arg0));
-        }
-
-        /**
-         * @see JTableHeader#setResizingAllowed(boolean)
-         */
-        default S setResizingAllowed(final boolean arg0) {
-            return setup(result -> result.setResizingAllowed(arg0));
-        }
-
-        /**
-         * @see JTableHeader#setUpdateTableInRealTime(boolean)
-         */
-        default S setUpdateTableInRealTime(final boolean arg0) {
-            return setup(result -> result.setUpdateTableInRealTime(arg0));
+        default S setColumnModel(final TableColumnModel arg0) {
+            return setup(result -> result.setColumnModel(arg0));
         }
 
         /**
@@ -86,13 +69,6 @@ public final class JTableHeaders {
          */
         default S setDefaultRenderer(final TableCellRenderer arg0) {
             return setup(result -> result.setDefaultRenderer(arg0));
-        }
-
-        /**
-         * @see JTableHeader#setColumnModel(TableColumnModel)
-         */
-        default S setColumnModel(final TableColumnModel arg0) {
-            return setup(result -> result.setColumnModel(arg0));
         }
 
         /**
@@ -110,6 +86,20 @@ public final class JTableHeaders {
         }
 
         /**
+         * @see JTableHeader#setReorderingAllowed(boolean)
+         */
+        default S setReorderingAllowed(final boolean arg0) {
+            return setup(result -> result.setReorderingAllowed(arg0));
+        }
+
+        /**
+         * @see JTableHeader#setResizingAllowed(boolean)
+         */
+        default S setResizingAllowed(final boolean arg0) {
+            return setup(result -> result.setResizingAllowed(arg0));
+        }
+
+        /**
          * @see JTableHeader#setResizingColumn(TableColumn)
          */
         default S setResizingColumn(final TableColumn arg0) {
@@ -117,10 +107,24 @@ public final class JTableHeaders {
         }
 
         /**
+         * @see JTableHeader#setTable(JTable)
+         */
+        default S setTable(final JTable arg0) {
+            return setup(result -> result.setTable(arg0));
+        }
+
+        /**
          * @see JTableHeader#setUI(TableHeaderUI)
          */
         default S setUI(final TableHeaderUI arg0) {
             return setup(result -> result.setUI(arg0));
+        }
+
+        /**
+         * @see JTableHeader#setUpdateTableInRealTime(boolean)
+         */
+        default S setUpdateTableInRealTime(final boolean arg0) {
+            return setup(result -> result.setUpdateTableInRealTime(arg0));
         }
     }
 }

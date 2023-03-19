@@ -1,18 +1,22 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Component;
+import java.util.function.Supplier;
 import javax.swing.DesktopManager;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.plaf.DesktopPaneUI;
 
 /**
  * Utility class to handle {@link JDesktopPane}s.
  */
+@SuppressWarnings("unused")
 public final class JDesktopPanes {
+
+    private JDesktopPanes() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JDesktopPane}.
@@ -53,23 +57,16 @@ public final class JDesktopPanes {
     public interface Setup<T extends JDesktopPane, S extends Setup<T, S>> extends JLayeredPanes.Setup<T, S> {
 
         /**
-         * @see JDesktopPane#setUI(DesktopPaneUI)
+         * @see JDesktopPane#remove(Component)
          */
-        default S setUI(final DesktopPaneUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S remove(final Component arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
          * @see JDesktopPane#remove(int)
          */
         default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JDesktopPane#remove(Component)
-         */
-        default S remove(final Component arg0) {
             return setup(result -> result.remove(arg0));
         }
 
@@ -81,10 +78,10 @@ public final class JDesktopPanes {
         }
 
         /**
-         * @see JDesktopPane#setDragMode(int)
+         * @see JDesktopPane#setComponentZOrder(Component, int)
          */
-        default S setDragMode(final int arg0) {
-            return setup(result -> result.setDragMode(arg0));
+        default S setComponentZOrder(final Component arg0, final int arg1) {
+            return setup(result -> result.setComponentZOrder(arg0, arg1));
         }
 
         /**
@@ -95,6 +92,13 @@ public final class JDesktopPanes {
         }
 
         /**
+         * @see JDesktopPane#setDragMode(int)
+         */
+        default S setDragMode(final int arg0) {
+            return setup(result -> result.setDragMode(arg0));
+        }
+
+        /**
          * @see JDesktopPane#setSelectedFrame(JInternalFrame)
          */
         default S setSelectedFrame(final JInternalFrame arg0) {
@@ -102,10 +106,10 @@ public final class JDesktopPanes {
         }
 
         /**
-         * @see JDesktopPane#setComponentZOrder(Component, int)
+         * @see JDesktopPane#setUI(DesktopPaneUI)
          */
-        default S setComponentZOrder(final Component arg0, final int arg1) {
-            return setup(result -> result.setComponentZOrder(arg0, arg1));
+        default S setUI(final DesktopPaneUI arg0) {
+            return setup(result -> result.setUI(arg0));
         }
     }
 }

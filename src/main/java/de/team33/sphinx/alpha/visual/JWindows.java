@@ -1,11 +1,11 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.LayoutManager;
+import java.awt.Window;
+import java.util.function.Supplier;
 import javax.swing.JLayeredPane;
 import javax.swing.JWindow;
 import javax.swing.TransferHandler;
@@ -13,7 +13,11 @@ import javax.swing.TransferHandler;
 /**
  * Utility class to handle {@link JWindow}s.
  */
+@SuppressWarnings("unused")
 public final class JWindows {
+
+    private JWindows() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JWindow}.
@@ -68,17 +72,17 @@ public final class JWindows {
         }
 
         /**
-         * @see JWindow#setLayeredPane(JLayeredPane)
-         */
-        default S setLayeredPane(final JLayeredPane arg0) {
-            return setup(result -> result.setLayeredPane(arg0));
-        }
-
-        /**
          * @see JWindow#setGlassPane(Component)
          */
         default S setGlassPane(final Component arg0) {
             return setup(result -> result.setGlassPane(arg0));
+        }
+
+        /**
+         * @see JWindow#setLayeredPane(JLayeredPane)
+         */
+        default S setLayeredPane(final JLayeredPane arg0) {
+            return setup(result -> result.setLayeredPane(arg0));
         }
 
         /**

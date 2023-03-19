@@ -2,13 +2,17 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  * Utility class to handle {@link JPasswordField}s.
  */
+@SuppressWarnings("unused")
 public final class JPasswordFields {
+
+    private JPasswordFields() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JPasswordField}.

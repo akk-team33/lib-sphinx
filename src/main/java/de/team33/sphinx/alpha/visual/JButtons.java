@@ -2,13 +2,17 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 
 /**
  * Utility class to handle {@link JButton}s.
  */
+@SuppressWarnings("unused")
 public final class JButtons {
+
+    private JButtons() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JButton}.

@@ -2,14 +2,18 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.plaf.PanelUI;
 
 /**
  * Utility class to handle {@link JPanel}s.
  */
+@SuppressWarnings("unused")
 public final class JPanels {
+
+    private JPanels() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JPanel}.

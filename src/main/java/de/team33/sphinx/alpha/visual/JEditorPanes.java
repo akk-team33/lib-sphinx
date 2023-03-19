@@ -3,17 +3,20 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import de.team33.patterns.exceptional.e1.Conversion;
 
-import java.util.function.Supplier;
-
 import java.net.URL;
+import java.util.function.Supplier;
 import javax.swing.JEditorPane;
 import javax.swing.text.EditorKit;
+import javax.swing.text.JTextComponent;
 
 /**
  * Utility class to handle {@link JEditorPane}s.
  */
 @SuppressWarnings("unused")
 public final class JEditorPanes {
+
+    private JEditorPanes() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JEditorPane}.
@@ -54,17 +57,24 @@ public final class JEditorPanes {
     public interface Setup<T extends JEditorPane, S extends Setup<T, S>> extends JTextComponents.Setup<T, S> {
 
         /**
-         * @see JEditorPane#setText(String)
-         */
-        default S setText(final String arg0) {
-            return setup(result -> result.setText(arg0));
-        }
-
-        /**
          * @see JEditorPane#setContentType(String)
          */
         default S setContentType(final String arg0) {
             return setup(result -> result.setContentType(arg0));
+        }
+
+        /**
+         * @see JEditorPane#setEditorKit(EditorKit)
+         */
+        default S setEditorKit(final EditorKit arg0) {
+            return setup(result -> result.setEditorKit(arg0));
+        }
+
+        /**
+         * @see JEditorPane#setEditorKitForContentType(String, EditorKit)
+         */
+        default S setEditorKitForContentType(final String arg0, final EditorKit arg1) {
+            return setup(result -> result.setEditorKitForContentType(arg0, arg1));
         }
 
         /**
@@ -82,17 +92,10 @@ public final class JEditorPanes {
         }
 
         /**
-         * @see JEditorPane#setEditorKit(EditorKit)
+         * @see JEditorPane#setText(String)
          */
-        default S setEditorKit(final EditorKit arg0) {
-            return setup(result -> result.setEditorKit(arg0));
-        }
-
-        /**
-         * @see JEditorPane#setEditorKitForContentType(String, EditorKit)
-         */
-        default S setEditorKitForContentType(final String arg0, final EditorKit arg1) {
-            return setup(result -> result.setEditorKitForContentType(arg0, arg1));
+        default S setText(final String arg0) {
+            return setup(result -> result.setText(arg0));
         }
     }
 }

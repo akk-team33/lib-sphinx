@@ -1,10 +1,9 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Component;
 import java.awt.Container;
+import java.util.function.Supplier;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenuBar;
@@ -14,7 +13,11 @@ import javax.swing.plaf.RootPaneUI;
 /**
  * Utility class to handle {@link JRootPane}s.
  */
+@SuppressWarnings("unused")
 public final class JRootPanes {
+
+    private JRootPanes() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JRootPane}.
@@ -55,27 +58,6 @@ public final class JRootPanes {
     public interface Setup<T extends JRootPane, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JRootPane#setDefaultButton(JButton)
-         */
-        default S setDefaultButton(final JButton arg0) {
-            return setup(result -> result.setDefaultButton(arg0));
-        }
-
-        /**
-         * @see JRootPane#setWindowDecorationStyle(int)
-         */
-        default S setWindowDecorationStyle(final int arg0) {
-            return setup(result -> result.setWindowDecorationStyle(arg0));
-        }
-
-        /**
-         * @see JRootPane#setJMenuBar(JMenuBar)
-         */
-        default S setJMenuBar(final JMenuBar arg0) {
-            return setup(result -> result.setJMenuBar(arg0));
-        }
-
-        /**
          * @see JRootPane#setContentPane(Container)
          */
         default S setContentPane(final Container arg0) {
@@ -83,10 +65,17 @@ public final class JRootPanes {
         }
 
         /**
-         * @see JRootPane#setLayeredPane(JLayeredPane)
+         * @see JRootPane#setDefaultButton(JButton)
          */
-        default S setLayeredPane(final JLayeredPane arg0) {
-            return setup(result -> result.setLayeredPane(arg0));
+        default S setDefaultButton(final JButton arg0) {
+            return setup(result -> result.setDefaultButton(arg0));
+        }
+
+        /**
+         * @see JRootPane#setDoubleBuffered(boolean)
+         */
+        default S setDoubleBuffered(final boolean arg0) {
+            return setup(result -> result.setDoubleBuffered(arg0));
         }
 
         /**
@@ -97,10 +86,17 @@ public final class JRootPanes {
         }
 
         /**
-         * @see JRootPane#setMenuBar(JMenuBar)
+         * @see JRootPane#setJMenuBar(JMenuBar)
          */
-        default S setMenuBar(final JMenuBar arg0) {
-            return setup(result -> result.setMenuBar(arg0));
+        default S setJMenuBar(final JMenuBar arg0) {
+            return setup(result -> result.setJMenuBar(arg0));
+        }
+
+        /**
+         * @see JRootPane#setLayeredPane(JLayeredPane)
+         */
+        default S setLayeredPane(final JLayeredPane arg0) {
+            return setup(result -> result.setLayeredPane(arg0));
         }
 
         /**
@@ -111,10 +107,10 @@ public final class JRootPanes {
         }
 
         /**
-         * @see JRootPane#setDoubleBuffered(boolean)
+         * @see JRootPane#setWindowDecorationStyle(int)
          */
-        default S setDoubleBuffered(final boolean arg0) {
-            return setup(result -> result.setDoubleBuffered(arg0));
+        default S setWindowDecorationStyle(final int arg0) {
+            return setup(result -> result.setWindowDecorationStyle(arg0));
         }
     }
 }

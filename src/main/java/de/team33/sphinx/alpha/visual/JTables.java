@@ -1,11 +1,11 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.function.Supplier;
 import javax.swing.DropMode;
+import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowSorter;
@@ -20,7 +20,11 @@ import javax.swing.table.TableModel;
 /**
  * Utility class to handle {@link JTable}s.
  */
+@SuppressWarnings("unused")
 public final class JTables {
+
+    private JTables() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JTable}.
@@ -61,38 +65,164 @@ public final class JTables {
     public interface Setup<T extends JTable, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JTable#setSelectionForeground(Color)
+         * @see JTable#addColumn(TableColumn)
          */
-        default S setSelectionForeground(final Color arg0) {
-            return setup(result -> result.setSelectionForeground(arg0));
+        default S addColumn(final TableColumn arg0) {
+            return setup(result -> result.addColumn(arg0));
         }
 
         /**
-         * @see JTable#setSelectionBackground(Color)
+         * @see JTable#addColumnSelectionInterval(int, int)
          */
-        default S setSelectionBackground(final Color arg0) {
-            return setup(result -> result.setSelectionBackground(arg0));
+        default S addColumnSelectionInterval(final int arg0, final int arg1) {
+            return setup(result -> result.addColumnSelectionInterval(arg0, arg1));
         }
 
         /**
-         * @see JTable#setSelectionMode(int)
+         * @see JTable#addRowSelectionInterval(int, int)
          */
-        default S setSelectionMode(final int arg0) {
-            return setup(result -> result.setSelectionMode(arg0));
+        default S addRowSelectionInterval(final int arg0, final int arg1) {
+            return setup(result -> result.addRowSelectionInterval(arg0, arg1));
         }
 
         /**
-         * @see JTable#setTableHeader(JTableHeader)
+         * @see JTable#removeColumn(TableColumn)
          */
-        default S setTableHeader(final JTableHeader arg0) {
-            return setup(result -> result.setTableHeader(arg0));
+        default S removeColumn(final TableColumn arg0) {
+            return setup(result -> result.removeColumn(arg0));
         }
 
         /**
-         * @see JTable#setRowMargin(int)
+         * @see JTable#removeColumnSelectionInterval(int, int)
          */
-        default S setRowMargin(final int arg0) {
-            return setup(result -> result.setRowMargin(arg0));
+        default S removeColumnSelectionInterval(final int arg0, final int arg1) {
+            return setup(result -> result.removeColumnSelectionInterval(arg0, arg1));
+        }
+
+        /**
+         * @see JTable#removeEditor()
+         */
+        default S removeEditor() {
+            return setup(result -> result.removeEditor());
+        }
+
+        /**
+         * @see JTable#removeRowSelectionInterval(int, int)
+         */
+        default S removeRowSelectionInterval(final int arg0, final int arg1) {
+            return setup(result -> result.removeRowSelectionInterval(arg0, arg1));
+        }
+
+        /**
+         * @see JTable#setAutoCreateColumnsFromModel(boolean)
+         */
+        default S setAutoCreateColumnsFromModel(final boolean arg0) {
+            return setup(result -> result.setAutoCreateColumnsFromModel(arg0));
+        }
+
+        /**
+         * @see JTable#setAutoCreateRowSorter(boolean)
+         */
+        default S setAutoCreateRowSorter(final boolean arg0) {
+            return setup(result -> result.setAutoCreateRowSorter(arg0));
+        }
+
+        /**
+         * @see JTable#setAutoResizeMode(int)
+         */
+        default S setAutoResizeMode(final int arg0) {
+            return setup(result -> result.setAutoResizeMode(arg0));
+        }
+
+        /**
+         * @see JTable#setCellEditor(TableCellEditor)
+         */
+        default S setCellEditor(final TableCellEditor arg0) {
+            return setup(result -> result.setCellEditor(arg0));
+        }
+
+        /**
+         * @see JTable#setCellSelectionEnabled(boolean)
+         */
+        default S setCellSelectionEnabled(final boolean arg0) {
+            return setup(result -> result.setCellSelectionEnabled(arg0));
+        }
+
+        /**
+         * @see JTable#setColumnModel(TableColumnModel)
+         */
+        default S setColumnModel(final TableColumnModel arg0) {
+            return setup(result -> result.setColumnModel(arg0));
+        }
+
+        /**
+         * @see JTable#setColumnSelectionAllowed(boolean)
+         */
+        default S setColumnSelectionAllowed(final boolean arg0) {
+            return setup(result -> result.setColumnSelectionAllowed(arg0));
+        }
+
+        /**
+         * @see JTable#setColumnSelectionInterval(int, int)
+         */
+        default S setColumnSelectionInterval(final int arg0, final int arg1) {
+            return setup(result -> result.setColumnSelectionInterval(arg0, arg1));
+        }
+
+        /**
+         * @see JTable#setDefaultEditor(Class, TableCellEditor)
+         */
+        default S setDefaultEditor(final Class<?> arg0, final TableCellEditor arg1) {
+            return setup(result -> result.setDefaultEditor(arg0, arg1));
+        }
+
+        /**
+         * @see JTable#setDefaultRenderer(Class, TableCellRenderer)
+         */
+        default S setDefaultRenderer(final Class<?> arg0, final TableCellRenderer arg1) {
+            return setup(result -> result.setDefaultRenderer(arg0, arg1));
+        }
+
+        /**
+         * @see JTable#setDragEnabled(boolean)
+         */
+        default S setDragEnabled(final boolean arg0) {
+            return setup(result -> result.setDragEnabled(arg0));
+        }
+
+        /**
+         * @see JTable#setDropMode(DropMode)
+         */
+        default S setDropMode(final DropMode arg0) {
+            return setup(result -> result.setDropMode(arg0));
+        }
+
+        /**
+         * @see JTable#setEditingColumn(int)
+         */
+        default S setEditingColumn(final int arg0) {
+            return setup(result -> result.setEditingColumn(arg0));
+        }
+
+        /**
+         * @see JTable#setEditingRow(int)
+         */
+        default S setEditingRow(final int arg0) {
+            return setup(result -> result.setEditingRow(arg0));
+        }
+
+        /**
+         * @see JTable#setFillsViewportHeight(boolean)
+         */
+        default S setFillsViewportHeight(final boolean arg0) {
+            return setup(result -> result.setFillsViewportHeight(arg0));
+        }
+
+        /**
+         * @see JTable#setGridColor(Color)
+         */
+        default S setGridColor(final Color arg0) {
+            return setup(result -> result.setGridColor(arg0));
         }
 
         /**
@@ -103,10 +233,87 @@ public final class JTables {
         }
 
         /**
-         * @see JTable#setGridColor(Color)
+         * @see JTable#setModel(TableModel)
          */
-        default S setGridColor(final Color arg0) {
-            return setup(result -> result.setGridColor(arg0));
+        default S setModel(final TableModel arg0) {
+            return setup(result -> result.setModel(arg0));
+        }
+
+        /**
+         * @see JTable#setPreferredScrollableViewportSize(Dimension)
+         */
+        default S setPreferredScrollableViewportSize(final Dimension arg0) {
+            return setup(result -> result.setPreferredScrollableViewportSize(arg0));
+        }
+
+        /**
+         * @see JTable#setRowHeight(int)
+         */
+        default S setRowHeight(final int arg0) {
+            return setup(result -> result.setRowHeight(arg0));
+        }
+
+        /**
+         * @see JTable#setRowHeight(int, int)
+         */
+        default S setRowHeight(final int arg0, final int arg1) {
+            return setup(result -> result.setRowHeight(arg0, arg1));
+        }
+
+        /**
+         * @see JTable#setRowMargin(int)
+         */
+        default S setRowMargin(final int arg0) {
+            return setup(result -> result.setRowMargin(arg0));
+        }
+
+        /**
+         * @see JTable#setRowSelectionAllowed(boolean)
+         */
+        default S setRowSelectionAllowed(final boolean arg0) {
+            return setup(result -> result.setRowSelectionAllowed(arg0));
+        }
+
+        /**
+         * @see JTable#setRowSelectionInterval(int, int)
+         */
+        default S setRowSelectionInterval(final int arg0, final int arg1) {
+            return setup(result -> result.setRowSelectionInterval(arg0, arg1));
+        }
+
+        /**
+         * @see JTable#setRowSorter(RowSorter)
+         */
+        default S setRowSorter(final RowSorter<? extends javax.swing.table.TableModel> arg0) {
+            return setup(result -> result.setRowSorter(arg0));
+        }
+
+        /**
+         * @see JTable#setSelectionBackground(Color)
+         */
+        default S setSelectionBackground(final Color arg0) {
+            return setup(result -> result.setSelectionBackground(arg0));
+        }
+
+        /**
+         * @see JTable#setSelectionForeground(Color)
+         */
+        default S setSelectionForeground(final Color arg0) {
+            return setup(result -> result.setSelectionForeground(arg0));
+        }
+
+        /**
+         * @see JTable#setSelectionMode(int)
+         */
+        default S setSelectionMode(final int arg0) {
+            return setup(result -> result.setSelectionMode(arg0));
+        }
+
+        /**
+         * @see JTable#setSelectionModel(ListSelectionModel)
+         */
+        default S setSelectionModel(final ListSelectionModel arg0) {
+            return setup(result -> result.setSelectionModel(arg0));
         }
 
         /**
@@ -131,31 +338,24 @@ public final class JTables {
         }
 
         /**
-         * @see JTable#setAutoResizeMode(int)
+         * @see JTable#setSurrendersFocusOnKeystroke(boolean)
          */
-        default S setAutoResizeMode(final int arg0) {
-            return setup(result -> result.setAutoResizeMode(arg0));
+        default S setSurrendersFocusOnKeystroke(final boolean arg0) {
+            return setup(result -> result.setSurrendersFocusOnKeystroke(arg0));
         }
 
         /**
-         * @see JTable#setAutoCreateColumnsFromModel(boolean)
+         * @see JTable#setTableHeader(JTableHeader)
          */
-        default S setAutoCreateColumnsFromModel(final boolean arg0) {
-            return setup(result -> result.setAutoCreateColumnsFromModel(arg0));
+        default S setTableHeader(final JTableHeader arg0) {
+            return setup(result -> result.setTableHeader(arg0));
         }
 
         /**
-         * @see JTable#setDefaultEditor(Class, TableCellEditor)
+         * @see JTable#setUI(TableUI)
          */
-        default S setDefaultEditor(final Class arg0, final TableCellEditor arg1) {
-            return setup(result -> result.setDefaultEditor(arg0, arg1));
-        }
-
-        /**
-         * @see JTable#setAutoCreateRowSorter(boolean)
-         */
-        default S setAutoCreateRowSorter(final boolean arg0) {
-            return setup(result -> result.setAutoCreateRowSorter(arg0));
+        default S setUI(final TableUI arg0) {
+            return setup(result -> result.setUI(arg0));
         }
 
         /**
@@ -166,206 +366,10 @@ public final class JTables {
         }
 
         /**
-         * @see JTable#setRowSorter(RowSorter)
-         */
-        default S setRowSorter(final RowSorter<? extends TableModel> arg0) {
-            return setup(result -> result.setRowSorter(arg0));
-        }
-
-        /**
-         * @see JTable#setRowSelectionAllowed(boolean)
-         */
-        default S setRowSelectionAllowed(final boolean arg0) {
-            return setup(result -> result.setRowSelectionAllowed(arg0));
-        }
-
-        /**
-         * @see JTable#setColumnSelectionAllowed(boolean)
-         */
-        default S setColumnSelectionAllowed(final boolean arg0) {
-            return setup(result -> result.setColumnSelectionAllowed(arg0));
-        }
-
-        /**
-         * @see JTable#setCellSelectionEnabled(boolean)
-         */
-        default S setCellSelectionEnabled(final boolean arg0) {
-            return setup(result -> result.setCellSelectionEnabled(arg0));
-        }
-
-        /**
-         * @see JTable#setRowSelectionInterval(int, int)
-         */
-        default S setRowSelectionInterval(final int arg0, final int arg1) {
-            return setup(result -> result.setRowSelectionInterval(arg0, arg1));
-        }
-
-        /**
-         * @see JTable#setColumnSelectionInterval(int, int)
-         */
-        default S setColumnSelectionInterval(final int arg0, final int arg1) {
-            return setup(result -> result.setColumnSelectionInterval(arg0, arg1));
-        }
-
-        /**
-         * @see JTable#addRowSelectionInterval(int, int)
-         */
-        default S addRowSelectionInterval(final int arg0, final int arg1) {
-            return setup(result -> result.addRowSelectionInterval(arg0, arg1));
-        }
-
-        /**
-         * @see JTable#addColumnSelectionInterval(int, int)
-         */
-        default S addColumnSelectionInterval(final int arg0, final int arg1) {
-            return setup(result -> result.addColumnSelectionInterval(arg0, arg1));
-        }
-
-        /**
-         * @see JTable#removeRowSelectionInterval(int, int)
-         */
-        default S removeRowSelectionInterval(final int arg0, final int arg1) {
-            return setup(result -> result.removeRowSelectionInterval(arg0, arg1));
-        }
-
-        /**
-         * @see JTable#removeColumnSelectionInterval(int, int)
-         */
-        default S removeColumnSelectionInterval(final int arg0, final int arg1) {
-            return setup(result -> result.removeColumnSelectionInterval(arg0, arg1));
-        }
-
-        /**
          * @see JTable#setValueAt(Object, int, int)
          */
         default S setValueAt(final Object arg0, final int arg1, final int arg2) {
             return setup(result -> result.setValueAt(arg0, arg1, arg2));
-        }
-
-        /**
-         * @see JTable#addColumn(TableColumn)
-         */
-        default S addColumn(final TableColumn arg0) {
-            return setup(result -> result.addColumn(arg0));
-        }
-
-        /**
-         * @see JTable#removeColumn(TableColumn)
-         */
-        default S removeColumn(final TableColumn arg0) {
-            return setup(result -> result.removeColumn(arg0));
-        }
-
-        /**
-         * @see JTable#setSurrendersFocusOnKeystroke(boolean)
-         */
-        default S setSurrendersFocusOnKeystroke(final boolean arg0) {
-            return setup(result -> result.setSurrendersFocusOnKeystroke(arg0));
-        }
-
-        /**
-         * @see JTable#setPreferredScrollableViewportSize(Dimension)
-         */
-        default S setPreferredScrollableViewportSize(final Dimension arg0) {
-            return setup(result -> result.setPreferredScrollableViewportSize(arg0));
-        }
-
-        /**
-         * @see JTable#setFillsViewportHeight(boolean)
-         */
-        default S setFillsViewportHeight(final boolean arg0) {
-            return setup(result -> result.setFillsViewportHeight(arg0));
-        }
-
-        /**
-         * @see JTable#setEditingColumn(int)
-         */
-        default S setEditingColumn(final int arg0) {
-            return setup(result -> result.setEditingColumn(arg0));
-        }
-
-        /**
-         * @see JTable#setEditingRow(int)
-         */
-        default S setEditingRow(final int arg0) {
-            return setup(result -> result.setEditingRow(arg0));
-        }
-
-        /**
-         * @see JTable#removeEditor()
-         */
-        default S removeEditor() {
-            return setup(result -> result.removeEditor());
-        }
-
-        /**
-         * @see JTable#setDefaultRenderer(Class, TableCellRenderer)
-         */
-        default S setDefaultRenderer(final Class arg0, final TableCellRenderer arg1) {
-            return setup(result -> result.setDefaultRenderer(arg0, arg1));
-        }
-
-        /**
-         * @see JTable#setColumnModel(TableColumnModel)
-         */
-        default S setColumnModel(final TableColumnModel arg0) {
-            return setup(result -> result.setColumnModel(arg0));
-        }
-
-        /**
-         * @see JTable#setDragEnabled(boolean)
-         */
-        default S setDragEnabled(final boolean arg0) {
-            return setup(result -> result.setDragEnabled(arg0));
-        }
-
-        /**
-         * @see JTable#setDropMode(DropMode)
-         */
-        default S setDropMode(final DropMode arg0) {
-            return setup(result -> result.setDropMode(arg0));
-        }
-
-        /**
-         * @see JTable#setModel(TableModel)
-         */
-        default S setModel(final TableModel arg0) {
-            return setup(result -> result.setModel(arg0));
-        }
-
-        /**
-         * @see JTable#setSelectionModel(ListSelectionModel)
-         */
-        default S setSelectionModel(final ListSelectionModel arg0) {
-            return setup(result -> result.setSelectionModel(arg0));
-        }
-
-        /**
-         * @see JTable#setCellEditor(TableCellEditor)
-         */
-        default S setCellEditor(final TableCellEditor arg0) {
-            return setup(result -> result.setCellEditor(arg0));
-        }
-
-        /**
-         * @see JTable#setRowHeight(int)
-         */
-        default S setRowHeight(final int arg0) {
-            return setup(result -> result.setRowHeight(arg0));
-        }
-
-        /**
-         * @see JTable#setRowHeight(int, int)
-         */
-        default S setRowHeight(final int arg0, final int arg1) {
-            return setup(result -> result.setRowHeight(arg0, arg1));
-        }
-
-        /**
-         * @see JTable#setUI(TableUI)
-         */
-        default S setUI(final TableUI arg0) {
-            return setup(result -> result.setUI(arg0));
         }
     }
 }

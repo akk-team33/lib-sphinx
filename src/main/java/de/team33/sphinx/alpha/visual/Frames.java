@@ -1,8 +1,6 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Image;
@@ -10,12 +8,16 @@ import java.awt.MenuBar;
 import java.awt.MenuComponent;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.util.function.Supplier;
 
 /**
  * Utility class to handle {@link Frame}s.
  */
 @SuppressWarnings("unused")
 public final class Frames {
+
+    private Frames() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link Frame}.
@@ -56,10 +58,10 @@ public final class Frames {
     public interface Setup<T extends Frame, S extends Setup<T, S>> extends Windows.Setup<T, S> {
 
         /**
-         * @see Frame#setIconImage(Image)
+         * @see Frame#remove(MenuComponent)
          */
-        default S setIconImage(final Image arg0) {
-            return setup(result -> result.setIconImage(arg0));
+        default S remove(final MenuComponent arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
@@ -70,38 +72,17 @@ public final class Frames {
         }
 
         /**
-         * @see Frame#setUndecorated(boolean)
-         */
-        default S setUndecorated(final boolean arg0) {
-            return setup(result -> result.setUndecorated(arg0));
-        }
-
-        /**
-         * @see Frame#setMenuBar(MenuBar)
-         */
-        default S setMenuBar(final MenuBar arg0) {
-            return setup(result -> result.setMenuBar(arg0));
-        }
-
-        /**
-         * @see Frame#setTitle(String)
-         */
-        default S setTitle(final String arg0) {
-            return setup(result -> result.setTitle(arg0));
-        }
-
-        /**
-         * @see Frame#setResizable(boolean)
-         */
-        default S setResizable(final boolean arg0) {
-            return setup(result -> result.setResizable(arg0));
-        }
-
-        /**
          * @see Frame#setExtendedState(int)
          */
         default S setExtendedState(final int arg0) {
             return setup(result -> result.setExtendedState(arg0));
+        }
+
+        /**
+         * @see Frame#setIconImage(Image)
+         */
+        default S setIconImage(final Image arg0) {
+            return setup(result -> result.setIconImage(arg0));
         }
 
         /**
@@ -112,10 +93,24 @@ public final class Frames {
         }
 
         /**
+         * @see Frame#setMenuBar(MenuBar)
+         */
+        default S setMenuBar(final MenuBar arg0) {
+            return setup(result -> result.setMenuBar(arg0));
+        }
+
+        /**
          * @see Frame#setOpacity(float)
          */
         default S setOpacity(final float arg0) {
             return setup(result -> result.setOpacity(arg0));
+        }
+
+        /**
+         * @see Frame#setResizable(boolean)
+         */
+        default S setResizable(final boolean arg0) {
+            return setup(result -> result.setResizable(arg0));
         }
 
         /**
@@ -126,17 +121,24 @@ public final class Frames {
         }
 
         /**
-         * @see Frame#remove(MenuComponent)
-         */
-        default S remove(final MenuComponent arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
          * @see Frame#setState(int)
          */
         default S setState(final int arg0) {
             return setup(result -> result.setState(arg0));
+        }
+
+        /**
+         * @see Frame#setTitle(String)
+         */
+        default S setTitle(final String arg0) {
+            return setup(result -> result.setTitle(arg0));
+        }
+
+        /**
+         * @see Frame#setUndecorated(boolean)
+         */
+        default S setUndecorated(final boolean arg0) {
+            return setup(result -> result.setUndecorated(arg0));
         }
     }
 }

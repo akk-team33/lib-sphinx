@@ -3,19 +3,30 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import de.team33.sphinx.alpha.activity.Event;
 
-import java.awt.*;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.MenuComponent;
+import java.awt.Point;
+import java.awt.PopupMenu;
+import java.awt.Rectangle;
 import java.awt.dnd.DropTarget;
 import java.util.Locale;
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * Utility class to handle {@link Component}s.
  */
 @SuppressWarnings("unused")
 public final class Components {
+
+    private Components() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
@@ -57,10 +68,17 @@ public final class Components {
         }
 
         /**
-         * @see Component#setLocale(Locale)
+         * @see Component#add(PopupMenu)
          */
-        default S setLocale(final Locale arg0) {
-            return setup(result -> result.setLocale(arg0));
+        default S add(final PopupMenu arg0) {
+            return setup(result -> result.add(arg0));
+        }
+
+        /**
+         * @see Component#remove(MenuComponent)
+         */
+        default S remove(final MenuComponent arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
@@ -68,41 +86,6 @@ public final class Components {
          */
         default S setBackground(final Color arg0) {
             return setup(result -> result.setBackground(arg0));
-        }
-
-        /**
-         * @see Component#setVisible(boolean)
-         */
-        default S setVisible(final boolean arg0) {
-            return setup(result -> result.setVisible(arg0));
-        }
-
-        /**
-         * @see Component#setCursor(Cursor)
-         */
-        default S setCursor(final Cursor arg0) {
-            return setup(result -> result.setCursor(arg0));
-        }
-
-        /**
-         * @see Component#setMinimumSize(Dimension)
-         */
-        default S setMinimumSize(final Dimension arg0) {
-            return setup(result -> result.setMinimumSize(arg0));
-        }
-
-        /**
-         * @see Component#setLocation(int, int)
-         */
-        default S setLocation(final int arg0, final int arg1) {
-            return setup(result -> result.setLocation(arg0, arg1));
-        }
-
-        /**
-         * @see Component#setLocation(Point)
-         */
-        default S setLocation(final Point arg0) {
-            return setup(result -> result.setLocation(arg0));
         }
 
         /**
@@ -120,52 +103,17 @@ public final class Components {
         }
 
         /**
-         * @see Component#add(PopupMenu)
+         * @see Component#setComponentOrientation(ComponentOrientation)
          */
-        default S add(final PopupMenu arg0) {
-            return setup(result -> result.add(arg0));
+        default S setComponentOrientation(final ComponentOrientation arg0) {
+            return setup(result -> result.setComponentOrientation(arg0));
         }
 
         /**
-         * @see Component#remove(MenuComponent)
+         * @see Component#setCursor(Cursor)
          */
-        default S remove(final MenuComponent arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see Component#setName(String)
-         */
-        default S setName(final String arg0) {
-            return setup(result -> result.setName(arg0));
-        }
-
-        /**
-         * @see Component#setSize(int, int)
-         */
-        default S setSize(final int arg0, final int arg1) {
-            return setup(result -> result.setSize(arg0, arg1));
-        }
-
-        /**
-         * @see Component#setSize(Dimension)
-         */
-        default S setSize(final Dimension arg0) {
-            return setup(result -> result.setSize(arg0));
-        }
-
-        /**
-         * @see Component#setFont(Font)
-         */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
-        }
-
-        /**
-         * @see Component#setFocusTraversalKeys(int, Set)
-         */
-        default S setFocusTraversalKeys(final int arg0, final Set<? extends AWTKeyStroke> arg1) {
-            return setup(result -> result.setFocusTraversalKeys(arg0, arg1));
+        default S setCursor(final Cursor arg0) {
+            return setup(result -> result.setCursor(arg0));
         }
 
         /**
@@ -183,38 +131,10 @@ public final class Components {
         }
 
         /**
-         * @see Component#setForeground(Color)
+         * @see Component#setFocusTraversalKeys(int, Set)
          */
-        default S setForeground(final Color arg0) {
-            return setup(result -> result.setForeground(arg0));
-        }
-
-        /**
-         * @see Component#setPreferredSize(Dimension)
-         */
-        default S setPreferredSize(final Dimension arg0) {
-            return setup(result -> result.setPreferredSize(arg0));
-        }
-
-        /**
-         * @see Component#setMaximumSize(Dimension)
-         */
-        default S setMaximumSize(final Dimension arg0) {
-            return setup(result -> result.setMaximumSize(arg0));
-        }
-
-        /**
-         * @see Component#setIgnoreRepaint(boolean)
-         */
-        default S setIgnoreRepaint(final boolean arg0) {
-            return setup(result -> result.setIgnoreRepaint(arg0));
-        }
-
-        /**
-         * @see Component#setFocusable(boolean)
-         */
-        default S setFocusable(final boolean arg0) {
-            return setup(result -> result.setFocusable(arg0));
+        default S setFocusTraversalKeys(final int arg0, final Set<? extends java.awt.AWTKeyStroke> arg1) {
+            return setup(result -> result.setFocusTraversalKeys(arg0, arg1));
         }
 
         /**
@@ -225,10 +145,101 @@ public final class Components {
         }
 
         /**
-         * @see Component#setComponentOrientation(ComponentOrientation)
+         * @see Component#setFocusable(boolean)
          */
-        default S setComponentOrientation(final ComponentOrientation arg0) {
-            return setup(result -> result.setComponentOrientation(arg0));
+        default S setFocusable(final boolean arg0) {
+            return setup(result -> result.setFocusable(arg0));
+        }
+
+        /**
+         * @see Component#setFont(Font)
+         */
+        default S setFont(final Font arg0) {
+            return setup(result -> result.setFont(arg0));
+        }
+
+        /**
+         * @see Component#setForeground(Color)
+         */
+        default S setForeground(final Color arg0) {
+            return setup(result -> result.setForeground(arg0));
+        }
+
+        /**
+         * @see Component#setIgnoreRepaint(boolean)
+         */
+        default S setIgnoreRepaint(final boolean arg0) {
+            return setup(result -> result.setIgnoreRepaint(arg0));
+        }
+
+        /**
+         * @see Component#setLocale(Locale)
+         */
+        default S setLocale(final Locale arg0) {
+            return setup(result -> result.setLocale(arg0));
+        }
+
+        /**
+         * @see Component#setLocation(Point)
+         */
+        default S setLocation(final Point arg0) {
+            return setup(result -> result.setLocation(arg0));
+        }
+
+        /**
+         * @see Component#setLocation(int, int)
+         */
+        default S setLocation(final int arg0, final int arg1) {
+            return setup(result -> result.setLocation(arg0, arg1));
+        }
+
+        /**
+         * @see Component#setMaximumSize(Dimension)
+         */
+        default S setMaximumSize(final Dimension arg0) {
+            return setup(result -> result.setMaximumSize(arg0));
+        }
+
+        /**
+         * @see Component#setMinimumSize(Dimension)
+         */
+        default S setMinimumSize(final Dimension arg0) {
+            return setup(result -> result.setMinimumSize(arg0));
+        }
+
+        /**
+         * @see Component#setName(String)
+         */
+        default S setName(final String arg0) {
+            return setup(result -> result.setName(arg0));
+        }
+
+        /**
+         * @see Component#setPreferredSize(Dimension)
+         */
+        default S setPreferredSize(final Dimension arg0) {
+            return setup(result -> result.setPreferredSize(arg0));
+        }
+
+        /**
+         * @see Component#setSize(Dimension)
+         */
+        default S setSize(final Dimension arg0) {
+            return setup(result -> result.setSize(arg0));
+        }
+
+        /**
+         * @see Component#setSize(int, int)
+         */
+        default S setSize(final int arg0, final int arg1) {
+            return setup(result -> result.setSize(arg0, arg1));
+        }
+
+        /**
+         * @see Component#setVisible(boolean)
+         */
+        default S setVisible(final boolean arg0) {
+            return setup(result -> result.setVisible(arg0));
         }
     }
 }

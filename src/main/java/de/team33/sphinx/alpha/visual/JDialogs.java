@@ -1,11 +1,11 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dialog;
 import java.awt.LayoutManager;
+import java.util.function.Supplier;
 import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenuBar;
@@ -14,7 +14,11 @@ import javax.swing.TransferHandler;
 /**
  * Utility class to handle {@link JDialog}s.
  */
+@SuppressWarnings("unused")
 public final class JDialogs {
+
+    private JDialogs() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JDialog}.
@@ -55,31 +59,10 @@ public final class JDialogs {
     public interface Setup<T extends JDialog, S extends Setup<T, S>> extends Dialogs.Setup<T, S> {
 
         /**
-         * @see JDialog#setDefaultCloseOperation(int)
+         * @see JDialog#remove(Component)
          */
-        default S setDefaultCloseOperation(final int arg0) {
-            return setup(result -> result.setDefaultCloseOperation(arg0));
-        }
-
-        /**
-         * @see JDialog#setTransferHandler(TransferHandler)
-         */
-        default S setTransferHandler(final TransferHandler arg0) {
-            return setup(result -> result.setTransferHandler(arg0));
-        }
-
-        /**
-         * @see JDialog#setJMenuBar(JMenuBar)
-         */
-        default S setJMenuBar(final JMenuBar arg0) {
-            return setup(result -> result.setJMenuBar(arg0));
-        }
-
-        /**
-         * @see JDialog#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
+        default S remove(final Component arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
@@ -90,10 +73,10 @@ public final class JDialogs {
         }
 
         /**
-         * @see JDialog#setLayeredPane(JLayeredPane)
+         * @see JDialog#setDefaultCloseOperation(int)
          */
-        default S setLayeredPane(final JLayeredPane arg0) {
-            return setup(result -> result.setLayeredPane(arg0));
+        default S setDefaultCloseOperation(final int arg0) {
+            return setup(result -> result.setDefaultCloseOperation(arg0));
         }
 
         /**
@@ -104,17 +87,31 @@ public final class JDialogs {
         }
 
         /**
-         * @see JDialog#setDefaultLookAndFeelDecorated(boolean)
+         * @see JDialog#setJMenuBar(JMenuBar)
          */
-        default S setDefaultLookAndFeelDecorated(final boolean arg0) {
-            return setup(result -> result.setDefaultLookAndFeelDecorated(arg0));
+        default S setJMenuBar(final JMenuBar arg0) {
+            return setup(result -> result.setJMenuBar(arg0));
         }
 
         /**
-         * @see JDialog#remove(Component)
+         * @see JDialog#setLayeredPane(JLayeredPane)
          */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
+        default S setLayeredPane(final JLayeredPane arg0) {
+            return setup(result -> result.setLayeredPane(arg0));
+        }
+
+        /**
+         * @see JDialog#setLayout(LayoutManager)
+         */
+        default S setLayout(final LayoutManager arg0) {
+            return setup(result -> result.setLayout(arg0));
+        }
+
+        /**
+         * @see JDialog#setTransferHandler(TransferHandler)
+         */
+        default S setTransferHandler(final TransferHandler arg0) {
+            return setup(result -> result.setTransferHandler(arg0));
         }
     }
 }

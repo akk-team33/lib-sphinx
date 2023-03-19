@@ -1,19 +1,23 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager;
+import java.util.function.Supplier;
 import javax.swing.Action;
+import javax.swing.JComponent;
 import javax.swing.JToolBar;
 import javax.swing.plaf.ToolBarUI;
 
 /**
  * Utility class to handle {@link JToolBar}s.
  */
+@SuppressWarnings("unused")
 public final class JToolBars {
+
+    private JToolBars() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JToolBar}.
@@ -61,17 +65,17 @@ public final class JToolBars {
         }
 
         /**
-         * @see JToolBar#setMargin(Insets)
+         * @see JToolBar#addSeparator()
          */
-        default S setMargin(final Insets arg0) {
-            return setup(result -> result.setMargin(arg0));
+        default S addSeparator() {
+            return setup(result -> result.addSeparator());
         }
 
         /**
-         * @see JToolBar#setOrientation(int)
+         * @see JToolBar#addSeparator(Dimension)
          */
-        default S setOrientation(final int arg0) {
-            return setup(result -> result.setOrientation(arg0));
+        default S addSeparator(final Dimension arg0) {
+            return setup(result -> result.addSeparator(arg0));
         }
 
         /**
@@ -89,6 +93,27 @@ public final class JToolBars {
         }
 
         /**
+         * @see JToolBar#setLayout(LayoutManager)
+         */
+        default S setLayout(final LayoutManager arg0) {
+            return setup(result -> result.setLayout(arg0));
+        }
+
+        /**
+         * @see JToolBar#setMargin(Insets)
+         */
+        default S setMargin(final Insets arg0) {
+            return setup(result -> result.setMargin(arg0));
+        }
+
+        /**
+         * @see JToolBar#setOrientation(int)
+         */
+        default S setOrientation(final int arg0) {
+            return setup(result -> result.setOrientation(arg0));
+        }
+
+        /**
          * @see JToolBar#setRollover(boolean)
          */
         default S setRollover(final boolean arg0) {
@@ -96,31 +121,10 @@ public final class JToolBars {
         }
 
         /**
-         * @see JToolBar#addSeparator()
-         */
-        default S addSeparator() {
-            return setup(result -> result.addSeparator());
-        }
-
-        /**
-         * @see JToolBar#addSeparator(Dimension)
-         */
-        default S addSeparator(final Dimension arg0) {
-            return setup(result -> result.addSeparator(arg0));
-        }
-
-        /**
          * @see JToolBar#setUI(ToolBarUI)
          */
         default S setUI(final ToolBarUI arg0) {
             return setup(result -> result.setUI(arg0));
-        }
-
-        /**
-         * @see JToolBar#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
         }
     }
 }

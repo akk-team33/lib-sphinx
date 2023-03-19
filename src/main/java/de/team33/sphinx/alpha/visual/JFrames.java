@@ -1,12 +1,12 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.LayoutManager;
+import java.util.function.Supplier;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenuBar;
@@ -15,7 +15,11 @@ import javax.swing.TransferHandler;
 /**
  * Utility class to handle {@link JFrame}s.
  */
+@SuppressWarnings("unused")
 public final class JFrames {
+
+    private JFrames() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JFrame}.
@@ -56,38 +60,10 @@ public final class JFrames {
     public interface Setup<T extends JFrame, S extends Setup<T, S>> extends Frames.Setup<T, S> {
 
         /**
-         * @see JFrame#setDefaultCloseOperation(int)
+         * @see JFrame#remove(Component)
          */
-        default S setDefaultCloseOperation(final int arg0) {
-            return setup(result -> result.setDefaultCloseOperation(arg0));
-        }
-
-        /**
-         * @see JFrame#setTransferHandler(TransferHandler)
-         */
-        default S setTransferHandler(final TransferHandler arg0) {
-            return setup(result -> result.setTransferHandler(arg0));
-        }
-
-        /**
-         * @see JFrame#setJMenuBar(JMenuBar)
-         */
-        default S setJMenuBar(final JMenuBar arg0) {
-            return setup(result -> result.setJMenuBar(arg0));
-        }
-
-        /**
-         * @see JFrame#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
-        }
-
-        /**
-         * @see JFrame#setIconImage(Image)
-         */
-        default S setIconImage(final Image arg0) {
-            return setup(result -> result.setIconImage(arg0));
+        default S remove(final Component arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
@@ -98,10 +74,10 @@ public final class JFrames {
         }
 
         /**
-         * @see JFrame#setLayeredPane(JLayeredPane)
+         * @see JFrame#setDefaultCloseOperation(int)
          */
-        default S setLayeredPane(final JLayeredPane arg0) {
-            return setup(result -> result.setLayeredPane(arg0));
+        default S setDefaultCloseOperation(final int arg0) {
+            return setup(result -> result.setDefaultCloseOperation(arg0));
         }
 
         /**
@@ -112,17 +88,38 @@ public final class JFrames {
         }
 
         /**
-         * @see JFrame#setDefaultLookAndFeelDecorated(boolean)
+         * @see JFrame#setIconImage(Image)
          */
-        default S setDefaultLookAndFeelDecorated(final boolean arg0) {
-            return setup(result -> result.setDefaultLookAndFeelDecorated(arg0));
+        default S setIconImage(final Image arg0) {
+            return setup(result -> result.setIconImage(arg0));
         }
 
         /**
-         * @see JFrame#remove(Component)
+         * @see JFrame#setJMenuBar(JMenuBar)
          */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
+        default S setJMenuBar(final JMenuBar arg0) {
+            return setup(result -> result.setJMenuBar(arg0));
+        }
+
+        /**
+         * @see JFrame#setLayeredPane(JLayeredPane)
+         */
+        default S setLayeredPane(final JLayeredPane arg0) {
+            return setup(result -> result.setLayeredPane(arg0));
+        }
+
+        /**
+         * @see JFrame#setLayout(LayoutManager)
+         */
+        default S setLayout(final LayoutManager arg0) {
+            return setup(result -> result.setLayout(arg0));
+        }
+
+        /**
+         * @see JFrame#setTransferHandler(TransferHandler)
+         */
+        default S setTransferHandler(final TransferHandler arg0) {
+            return setup(result -> result.setTransferHandler(arg0));
         }
     }
 }

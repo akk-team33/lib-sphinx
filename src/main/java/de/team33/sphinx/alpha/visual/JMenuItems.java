@@ -2,7 +2,7 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
+import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
@@ -11,7 +11,11 @@ import javax.swing.plaf.MenuItemUI;
 /**
  * Utility class to handle {@link JMenuItem}s.
  */
+@SuppressWarnings("unused")
 public final class JMenuItems {
+
+    private JMenuItems() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JMenuItem}.
@@ -52,6 +56,27 @@ public final class JMenuItems {
     public interface Setup<T extends JMenuItem, S extends Setup<T, S>> extends AbstractButtons.Setup<T, S> {
 
         /**
+         * @see JMenuItem#setAccelerator(KeyStroke)
+         */
+        default S setAccelerator(final KeyStroke arg0) {
+            return setup(result -> result.setAccelerator(arg0));
+        }
+
+        /**
+         * @see JMenuItem#setArmed(boolean)
+         */
+        default S setArmed(final boolean arg0) {
+            return setup(result -> result.setArmed(arg0));
+        }
+
+        /**
+         * @see JMenuItem#setEnabled(boolean)
+         */
+        default S setEnabled(final boolean arg0) {
+            return setup(result -> result.setEnabled(arg0));
+        }
+
+        /**
          * @see JMenuItem#setModel(ButtonModel)
          */
         default S setModel(final ButtonModel arg0) {
@@ -63,27 +88,6 @@ public final class JMenuItems {
          */
         default S setUI(final MenuItemUI arg0) {
             return setup(result -> result.setUI(arg0));
-        }
-
-        /**
-         * @see JMenuItem#setArmed(boolean)
-         */
-        default S setArmed(final boolean arg0) {
-            return setup(result -> result.setArmed(arg0));
-        }
-
-        /**
-         * @see JMenuItem#setAccelerator(KeyStroke)
-         */
-        default S setAccelerator(final KeyStroke arg0) {
-            return setup(result -> result.setAccelerator(arg0));
-        }
-
-        /**
-         * @see JMenuItem#setEnabled(boolean)
-         */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
         }
     }
 }

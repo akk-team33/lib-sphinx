@@ -1,16 +1,20 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Component;
+import java.util.function.Supplier;
+import javax.swing.JComponent;
 import javax.swing.JSplitPane;
 import javax.swing.plaf.SplitPaneUI;
 
 /**
  * Utility class to handle {@link JSplitPane}s.
  */
+@SuppressWarnings("unused")
 public final class JSplitPanes {
+
+    private JSplitPanes() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JSplitPane}.
@@ -51,16 +55,16 @@ public final class JSplitPanes {
     public interface Setup<T extends JSplitPane, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JSplitPane#remove(int)
+         * @see JSplitPane#remove(Component)
          */
-        default S remove(final int arg0) {
+        default S remove(final Component arg0) {
             return setup(result -> result.remove(arg0));
         }
 
         /**
-         * @see JSplitPane#remove(Component)
+         * @see JSplitPane#remove(int)
          */
-        default S remove(final Component arg0) {
+        default S remove(final int arg0) {
             return setup(result -> result.remove(arg0));
         }
 
@@ -72,52 +76,10 @@ public final class JSplitPanes {
         }
 
         /**
-         * @see JSplitPane#setDividerSize(int)
-         */
-        default S setDividerSize(final int arg0) {
-            return setup(result -> result.setDividerSize(arg0));
-        }
-
-        /**
-         * @see JSplitPane#setLeftComponent(Component)
-         */
-        default S setLeftComponent(final Component arg0) {
-            return setup(result -> result.setLeftComponent(arg0));
-        }
-
-        /**
-         * @see JSplitPane#setTopComponent(Component)
-         */
-        default S setTopComponent(final Component arg0) {
-            return setup(result -> result.setTopComponent(arg0));
-        }
-
-        /**
-         * @see JSplitPane#setRightComponent(Component)
-         */
-        default S setRightComponent(final Component arg0) {
-            return setup(result -> result.setRightComponent(arg0));
-        }
-
-        /**
          * @see JSplitPane#setBottomComponent(Component)
          */
         default S setBottomComponent(final Component arg0) {
             return setup(result -> result.setBottomComponent(arg0));
-        }
-
-        /**
-         * @see JSplitPane#setOneTouchExpandable(boolean)
-         */
-        default S setOneTouchExpandable(final boolean arg0) {
-            return setup(result -> result.setOneTouchExpandable(arg0));
-        }
-
-        /**
-         * @see JSplitPane#setLastDividerLocation(int)
-         */
-        default S setLastDividerLocation(final int arg0) {
-            return setup(result -> result.setLastDividerLocation(arg0));
         }
 
         /**
@@ -128,10 +90,10 @@ public final class JSplitPanes {
         }
 
         /**
-         * @see JSplitPane#setResizeWeight(double)
+         * @see JSplitPane#setDividerLocation(double)
          */
-        default S setResizeWeight(final double arg0) {
-            return setup(result -> result.setResizeWeight(arg0));
+        default S setDividerLocation(final double arg0) {
+            return setup(result -> result.setDividerLocation(arg0));
         }
 
         /**
@@ -142,10 +104,31 @@ public final class JSplitPanes {
         }
 
         /**
-         * @see JSplitPane#setDividerLocation(double)
+         * @see JSplitPane#setDividerSize(int)
          */
-        default S setDividerLocation(final double arg0) {
-            return setup(result -> result.setDividerLocation(arg0));
+        default S setDividerSize(final int arg0) {
+            return setup(result -> result.setDividerSize(arg0));
+        }
+
+        /**
+         * @see JSplitPane#setLastDividerLocation(int)
+         */
+        default S setLastDividerLocation(final int arg0) {
+            return setup(result -> result.setLastDividerLocation(arg0));
+        }
+
+        /**
+         * @see JSplitPane#setLeftComponent(Component)
+         */
+        default S setLeftComponent(final Component arg0) {
+            return setup(result -> result.setLeftComponent(arg0));
+        }
+
+        /**
+         * @see JSplitPane#setOneTouchExpandable(boolean)
+         */
+        default S setOneTouchExpandable(final boolean arg0) {
+            return setup(result -> result.setOneTouchExpandable(arg0));
         }
 
         /**
@@ -153,6 +136,27 @@ public final class JSplitPanes {
          */
         default S setOrientation(final int arg0) {
             return setup(result -> result.setOrientation(arg0));
+        }
+
+        /**
+         * @see JSplitPane#setResizeWeight(double)
+         */
+        default S setResizeWeight(final double arg0) {
+            return setup(result -> result.setResizeWeight(arg0));
+        }
+
+        /**
+         * @see JSplitPane#setRightComponent(Component)
+         */
+        default S setRightComponent(final Component arg0) {
+            return setup(result -> result.setRightComponent(arg0));
+        }
+
+        /**
+         * @see JSplitPane#setTopComponent(Component)
+         */
+        default S setTopComponent(final Component arg0) {
+            return setup(result -> result.setTopComponent(arg0));
         }
 
         /**

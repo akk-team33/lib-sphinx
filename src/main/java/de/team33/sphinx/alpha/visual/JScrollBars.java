@@ -2,15 +2,19 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
 import javax.swing.BoundedRangeModel;
+import javax.swing.JComponent;
 import javax.swing.JScrollBar;
 import javax.swing.plaf.ScrollBarUI;
 
 /**
  * Utility class to handle {@link JScrollBar}s.
  */
+@SuppressWarnings("unused")
 public final class JScrollBars {
+
+    private JScrollBars() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JScrollBar}.
@@ -51,20 +55,6 @@ public final class JScrollBars {
     public interface Setup<T extends JScrollBar, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JScrollBar#setValue(int)
-         */
-        default S setValue(final int arg0) {
-            return setup(result -> result.setValue(arg0));
-        }
-
-        /**
-         * @see JScrollBar#setUnitIncrement(int)
-         */
-        default S setUnitIncrement(final int arg0) {
-            return setup(result -> result.setUnitIncrement(arg0));
-        }
-
-        /**
          * @see JScrollBar#setBlockIncrement(int)
          */
         default S setBlockIncrement(final int arg0) {
@@ -72,38 +62,10 @@ public final class JScrollBars {
         }
 
         /**
-         * @see JScrollBar#setVisibleAmount(int)
+         * @see JScrollBar#setEnabled(boolean)
          */
-        default S setVisibleAmount(final int arg0) {
-            return setup(result -> result.setVisibleAmount(arg0));
-        }
-
-        /**
-         * @see JScrollBar#setValues(int, int, int, int)
-         */
-        default S setValues(final int arg0, final int arg1, final int arg2, final int arg3) {
-            return setup(result -> result.setValues(arg0, arg1, arg2, arg3));
-        }
-
-        /**
-         * @see JScrollBar#setOrientation(int)
-         */
-        default S setOrientation(final int arg0) {
-            return setup(result -> result.setOrientation(arg0));
-        }
-
-        /**
-         * @see JScrollBar#setModel(BoundedRangeModel)
-         */
-        default S setModel(final BoundedRangeModel arg0) {
-            return setup(result -> result.setModel(arg0));
-        }
-
-        /**
-         * @see JScrollBar#setMinimum(int)
-         */
-        default S setMinimum(final int arg0) {
-            return setup(result -> result.setMinimum(arg0));
+        default S setEnabled(final boolean arg0) {
+            return setup(result -> result.setEnabled(arg0));
         }
 
         /**
@@ -114,10 +76,24 @@ public final class JScrollBars {
         }
 
         /**
-         * @see JScrollBar#setValueIsAdjusting(boolean)
+         * @see JScrollBar#setMinimum(int)
          */
-        default S setValueIsAdjusting(final boolean arg0) {
-            return setup(result -> result.setValueIsAdjusting(arg0));
+        default S setMinimum(final int arg0) {
+            return setup(result -> result.setMinimum(arg0));
+        }
+
+        /**
+         * @see JScrollBar#setModel(BoundedRangeModel)
+         */
+        default S setModel(final BoundedRangeModel arg0) {
+            return setup(result -> result.setModel(arg0));
+        }
+
+        /**
+         * @see JScrollBar#setOrientation(int)
+         */
+        default S setOrientation(final int arg0) {
+            return setup(result -> result.setOrientation(arg0));
         }
 
         /**
@@ -128,10 +104,38 @@ public final class JScrollBars {
         }
 
         /**
-         * @see JScrollBar#setEnabled(boolean)
+         * @see JScrollBar#setUnitIncrement(int)
          */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
+        default S setUnitIncrement(final int arg0) {
+            return setup(result -> result.setUnitIncrement(arg0));
+        }
+
+        /**
+         * @see JScrollBar#setValue(int)
+         */
+        default S setValue(final int arg0) {
+            return setup(result -> result.setValue(arg0));
+        }
+
+        /**
+         * @see JScrollBar#setValueIsAdjusting(boolean)
+         */
+        default S setValueIsAdjusting(final boolean arg0) {
+            return setup(result -> result.setValueIsAdjusting(arg0));
+        }
+
+        /**
+         * @see JScrollBar#setValues(int, int, int, int)
+         */
+        default S setValues(final int arg0, final int arg1, final int arg2, final int arg3) {
+            return setup(result -> result.setValues(arg0, arg1, arg2, arg3));
+        }
+
+        /**
+         * @see JScrollBar#setVisibleAmount(int)
+         */
+        default S setVisibleAmount(final int arg0) {
+            return setup(result -> result.setVisibleAmount(arg0));
         }
     }
 }

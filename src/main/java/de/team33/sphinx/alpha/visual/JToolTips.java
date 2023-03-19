@@ -2,14 +2,17 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
 import javax.swing.JComponent;
 import javax.swing.JToolTip;
 
 /**
  * Utility class to handle {@link JToolTip}s.
  */
+@SuppressWarnings("unused")
 public final class JToolTips {
+
+    private JToolTips() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JToolTip}.
@@ -50,17 +53,17 @@ public final class JToolTips {
     public interface Setup<T extends JToolTip, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JToolTip#setTipText(String)
-         */
-        default S setTipText(final String arg0) {
-            return setup(result -> result.setTipText(arg0));
-        }
-
-        /**
          * @see JToolTip#setComponent(JComponent)
          */
         default S setComponent(final JComponent arg0) {
             return setup(result -> result.setComponent(arg0));
+        }
+
+        /**
+         * @see JToolTip#setTipText(String)
+         */
+        default S setTipText(final String arg0) {
+            return setup(result -> result.setTipText(arg0));
         }
     }
 }

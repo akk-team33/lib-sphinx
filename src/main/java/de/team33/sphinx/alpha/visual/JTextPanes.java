@@ -2,7 +2,7 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
+import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.Document;
@@ -13,7 +13,11 @@ import javax.swing.text.StyledDocument;
 /**
  * Utility class to handle {@link JTextPane}s.
  */
+@SuppressWarnings("unused")
 public final class JTextPanes {
+
+    private JTextPanes() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JTextPane}.
@@ -54,13 +58,6 @@ public final class JTextPanes {
     public interface Setup<T extends JTextPane, S extends Setup<T, S>> extends JEditorPanes.Setup<T, S> {
 
         /**
-         * @see JTextPane#setStyledDocument(StyledDocument)
-         */
-        default S setStyledDocument(final StyledDocument arg0) {
-            return setup(result -> result.setStyledDocument(arg0));
-        }
-
-        /**
          * @see JTextPane#addStyle(String, Style)
          */
         default S addStyle(final String arg0, final Style arg1) {
@@ -75,13 +72,6 @@ public final class JTextPanes {
         }
 
         /**
-         * @see JTextPane#setLogicalStyle(Style)
-         */
-        default S setLogicalStyle(final Style arg0) {
-            return setup(result -> result.setLogicalStyle(arg0));
-        }
-
-        /**
          * @see JTextPane#setCharacterAttributes(AttributeSet, boolean)
          */
         default S setCharacterAttributes(final AttributeSet arg0, final boolean arg1) {
@@ -89,10 +79,10 @@ public final class JTextPanes {
         }
 
         /**
-         * @see JTextPane#setParagraphAttributes(AttributeSet, boolean)
+         * @see JTextPane#setDocument(Document)
          */
-        default S setParagraphAttributes(final AttributeSet arg0, final boolean arg1) {
-            return setup(result -> result.setParagraphAttributes(arg0, arg1));
+        default S setDocument(final Document arg0) {
+            return setup(result -> result.setDocument(arg0));
         }
 
         /**
@@ -103,10 +93,24 @@ public final class JTextPanes {
         }
 
         /**
-         * @see JTextPane#setDocument(Document)
+         * @see JTextPane#setLogicalStyle(Style)
          */
-        default S setDocument(final Document arg0) {
-            return setup(result -> result.setDocument(arg0));
+        default S setLogicalStyle(final Style arg0) {
+            return setup(result -> result.setLogicalStyle(arg0));
+        }
+
+        /**
+         * @see JTextPane#setParagraphAttributes(AttributeSet, boolean)
+         */
+        default S setParagraphAttributes(final AttributeSet arg0, final boolean arg1) {
+            return setup(result -> result.setParagraphAttributes(arg0, arg1));
+        }
+
+        /**
+         * @see JTextPane#setStyledDocument(StyledDocument)
+         */
+        default S setStyledDocument(final StyledDocument arg0) {
+            return setup(result -> result.setStyledDocument(arg0));
         }
     }
 }

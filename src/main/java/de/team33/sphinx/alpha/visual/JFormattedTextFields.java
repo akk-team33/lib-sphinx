@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
 import javax.swing.JFormattedTextField;
 import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.text.Document;
@@ -12,6 +11,9 @@ import javax.swing.text.Document;
  */
 @SuppressWarnings("unused")
 public final class JFormattedTextFields {
+
+    private JFormattedTextFields() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JFormattedTextField}.
@@ -52,13 +54,6 @@ public final class JFormattedTextFields {
     public interface Setup<T extends JFormattedTextField, S extends Setup<T, S>> extends JTextFields.Setup<T, S> {
 
         /**
-         * @see JFormattedTextField#setValue(Object)
-         */
-        default S setValue(final Object arg0) {
-            return setup(result -> result.setValue(arg0));
-        }
-
-        /**
          * @see JFormattedTextField#setDocument(Document)
          */
         default S setDocument(final Document arg0) {
@@ -77,6 +72,13 @@ public final class JFormattedTextFields {
          */
         default S setFormatterFactory(final AbstractFormatterFactory arg0) {
             return setup(result -> result.setFormatterFactory(arg0));
+        }
+
+        /**
+         * @see JFormattedTextField#setValue(Object)
+         */
+        default S setValue(final Object arg0) {
+            return setup(result -> result.setValue(arg0));
         }
     }
 }

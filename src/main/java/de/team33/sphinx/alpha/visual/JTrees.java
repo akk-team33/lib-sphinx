@@ -2,8 +2,8 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
 import javax.swing.DropMode;
+import javax.swing.JComponent;
 import javax.swing.JTree;
 import javax.swing.plaf.TreeUI;
 import javax.swing.tree.TreeCellEditor;
@@ -16,7 +16,11 @@ import javax.swing.tree.TreeSelectionModel;
 /**
  * Utility class to handle {@link JTree}s.
  */
+@SuppressWarnings("unused")
 public final class JTrees {
+
+    private JTrees() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JTree}.
@@ -57,59 +61,10 @@ public final class JTrees {
     public interface Setup<T extends JTree, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JTree#setToggleClickCount(int)
+         * @see JTree#addSelectionInterval(int, int)
          */
-        default S setToggleClickCount(final int arg0) {
-            return setup(result -> result.setToggleClickCount(arg0));
-        }
-
-        /**
-         * @see JTree#setExpandsSelectedPaths(boolean)
-         */
-        default S setExpandsSelectedPaths(final boolean arg0) {
-            return setup(result -> result.setExpandsSelectedPaths(arg0));
-        }
-
-        /**
-         * @see JTree#setSelectionPath(TreePath)
-         */
-        default S setSelectionPath(final TreePath arg0) {
-            return setup(result -> result.setSelectionPath(arg0));
-        }
-
-        /**
-         * @see JTree#setSelectionPaths(TreePath[])
-         */
-        default S setSelectionPaths(final TreePath[] arg0) {
-            return setup(result -> result.setSelectionPaths(arg0));
-        }
-
-        /**
-         * @see JTree#setLeadSelectionPath(TreePath)
-         */
-        default S setLeadSelectionPath(final TreePath arg0) {
-            return setup(result -> result.setLeadSelectionPath(arg0));
-        }
-
-        /**
-         * @see JTree#setAnchorSelectionPath(TreePath)
-         */
-        default S setAnchorSelectionPath(final TreePath arg0) {
-            return setup(result -> result.setAnchorSelectionPath(arg0));
-        }
-
-        /**
-         * @see JTree#setSelectionRow(int)
-         */
-        default S setSelectionRow(final int arg0) {
-            return setup(result -> result.setSelectionRow(arg0));
-        }
-
-        /**
-         * @see JTree#setSelectionRows(int[])
-         */
-        default S setSelectionRows(final int[] arg0) {
-            return setup(result -> result.setSelectionRows(arg0));
+        default S addSelectionInterval(final int arg0, final int arg1) {
+            return setup(result -> result.addSelectionInterval(arg0, arg1));
         }
 
         /**
@@ -122,7 +77,7 @@ public final class JTrees {
         /**
          * @see JTree#addSelectionPaths(TreePath[])
          */
-        default S addSelectionPaths(final TreePath[] arg0) {
+        default S addSelectionPaths(final javax.swing.tree.TreePath[] arg0) {
             return setup(result -> result.addSelectionPaths(arg0));
         }
 
@@ -138,20 +93,6 @@ public final class JTrees {
          */
         default S addSelectionRows(final int[] arg0) {
             return setup(result -> result.addSelectionRows(arg0));
-        }
-
-        /**
-         * @see JTree#setSelectionInterval(int, int)
-         */
-        default S setSelectionInterval(final int arg0, final int arg1) {
-            return setup(result -> result.setSelectionInterval(arg0, arg1));
-        }
-
-        /**
-         * @see JTree#addSelectionInterval(int, int)
-         */
-        default S addSelectionInterval(final int arg0, final int arg1) {
-            return setup(result -> result.addSelectionInterval(arg0, arg1));
         }
 
         /**
@@ -171,7 +112,7 @@ public final class JTrees {
         /**
          * @see JTree#removeSelectionPaths(TreePath[])
          */
-        default S removeSelectionPaths(final TreePath[] arg0) {
+        default S removeSelectionPaths(final javax.swing.tree.TreePath[] arg0) {
             return setup(result -> result.removeSelectionPaths(arg0));
         }
 
@@ -190,10 +131,24 @@ public final class JTrees {
         }
 
         /**
-         * @see JTree#setVisibleRowCount(int)
+         * @see JTree#setAnchorSelectionPath(TreePath)
          */
-        default S setVisibleRowCount(final int arg0) {
-            return setup(result -> result.setVisibleRowCount(arg0));
+        default S setAnchorSelectionPath(final TreePath arg0) {
+            return setup(result -> result.setAnchorSelectionPath(arg0));
+        }
+
+        /**
+         * @see JTree#setCellEditor(TreeCellEditor)
+         */
+        default S setCellEditor(final TreeCellEditor arg0) {
+            return setup(result -> result.setCellEditor(arg0));
+        }
+
+        /**
+         * @see JTree#setCellRenderer(TreeCellRenderer)
+         */
+        default S setCellRenderer(final TreeCellRenderer arg0) {
+            return setup(result -> result.setCellRenderer(arg0));
         }
 
         /**
@@ -218,59 +173,10 @@ public final class JTrees {
         }
 
         /**
-         * @see JTree#setModel(TreeModel)
+         * @see JTree#setExpandsSelectedPaths(boolean)
          */
-        default S setModel(final TreeModel arg0) {
-            return setup(result -> result.setModel(arg0));
-        }
-
-        /**
-         * @see JTree#setSelectionModel(TreeSelectionModel)
-         */
-        default S setSelectionModel(final TreeSelectionModel arg0) {
-            return setup(result -> result.setSelectionModel(arg0));
-        }
-
-        /**
-         * @see JTree#setCellRenderer(TreeCellRenderer)
-         */
-        default S setCellRenderer(final TreeCellRenderer arg0) {
-            return setup(result -> result.setCellRenderer(arg0));
-        }
-
-        /**
-         * @see JTree#setCellEditor(TreeCellEditor)
-         */
-        default S setCellEditor(final TreeCellEditor arg0) {
-            return setup(result -> result.setCellEditor(arg0));
-        }
-
-        /**
-         * @see JTree#setRootVisible(boolean)
-         */
-        default S setRootVisible(final boolean arg0) {
-            return setup(result -> result.setRootVisible(arg0));
-        }
-
-        /**
-         * @see JTree#setShowsRootHandles(boolean)
-         */
-        default S setShowsRootHandles(final boolean arg0) {
-            return setup(result -> result.setShowsRootHandles(arg0));
-        }
-
-        /**
-         * @see JTree#setRowHeight(int)
-         */
-        default S setRowHeight(final int arg0) {
-            return setup(result -> result.setRowHeight(arg0));
-        }
-
-        /**
-         * @see JTree#setLargeModel(boolean)
-         */
-        default S setLargeModel(final boolean arg0) {
-            return setup(result -> result.setLargeModel(arg0));
+        default S setExpandsSelectedPaths(final boolean arg0) {
+            return setup(result -> result.setExpandsSelectedPaths(arg0));
         }
 
         /**
@@ -281,6 +187,41 @@ public final class JTrees {
         }
 
         /**
+         * @see JTree#setLargeModel(boolean)
+         */
+        default S setLargeModel(final boolean arg0) {
+            return setup(result -> result.setLargeModel(arg0));
+        }
+
+        /**
+         * @see JTree#setLeadSelectionPath(TreePath)
+         */
+        default S setLeadSelectionPath(final TreePath arg0) {
+            return setup(result -> result.setLeadSelectionPath(arg0));
+        }
+
+        /**
+         * @see JTree#setModel(TreeModel)
+         */
+        default S setModel(final TreeModel arg0) {
+            return setup(result -> result.setModel(arg0));
+        }
+
+        /**
+         * @see JTree#setRootVisible(boolean)
+         */
+        default S setRootVisible(final boolean arg0) {
+            return setup(result -> result.setRootVisible(arg0));
+        }
+
+        /**
+         * @see JTree#setRowHeight(int)
+         */
+        default S setRowHeight(final int arg0) {
+            return setup(result -> result.setRowHeight(arg0));
+        }
+
+        /**
          * @see JTree#setScrollsOnExpand(boolean)
          */
         default S setScrollsOnExpand(final boolean arg0) {
@@ -288,10 +229,73 @@ public final class JTrees {
         }
 
         /**
+         * @see JTree#setSelectionInterval(int, int)
+         */
+        default S setSelectionInterval(final int arg0, final int arg1) {
+            return setup(result -> result.setSelectionInterval(arg0, arg1));
+        }
+
+        /**
+         * @see JTree#setSelectionModel(TreeSelectionModel)
+         */
+        default S setSelectionModel(final TreeSelectionModel arg0) {
+            return setup(result -> result.setSelectionModel(arg0));
+        }
+
+        /**
+         * @see JTree#setSelectionPath(TreePath)
+         */
+        default S setSelectionPath(final TreePath arg0) {
+            return setup(result -> result.setSelectionPath(arg0));
+        }
+
+        /**
+         * @see JTree#setSelectionPaths(TreePath[])
+         */
+        default S setSelectionPaths(final javax.swing.tree.TreePath[] arg0) {
+            return setup(result -> result.setSelectionPaths(arg0));
+        }
+
+        /**
+         * @see JTree#setSelectionRow(int)
+         */
+        default S setSelectionRow(final int arg0) {
+            return setup(result -> result.setSelectionRow(arg0));
+        }
+
+        /**
+         * @see JTree#setSelectionRows(int[])
+         */
+        default S setSelectionRows(final int[] arg0) {
+            return setup(result -> result.setSelectionRows(arg0));
+        }
+
+        /**
+         * @see JTree#setShowsRootHandles(boolean)
+         */
+        default S setShowsRootHandles(final boolean arg0) {
+            return setup(result -> result.setShowsRootHandles(arg0));
+        }
+
+        /**
+         * @see JTree#setToggleClickCount(int)
+         */
+        default S setToggleClickCount(final int arg0) {
+            return setup(result -> result.setToggleClickCount(arg0));
+        }
+
+        /**
          * @see JTree#setUI(TreeUI)
          */
         default S setUI(final TreeUI arg0) {
             return setup(result -> result.setUI(arg0));
+        }
+
+        /**
+         * @see JTree#setVisibleRowCount(int)
+         */
+        default S setVisibleRowCount(final int arg0) {
+            return setup(result -> result.setVisibleRowCount(arg0));
         }
     }
 }

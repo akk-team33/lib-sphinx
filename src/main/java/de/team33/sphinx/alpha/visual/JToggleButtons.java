@@ -2,13 +2,17 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
+import javax.swing.AbstractButton;
 import javax.swing.JToggleButton;
 
 /**
  * Utility class to handle {@link JToggleButton}s.
  */
+@SuppressWarnings("unused")
 public final class JToggleButtons {
+
+    private JToggleButtons() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JToggleButton}.
@@ -47,7 +51,5 @@ public final class JToggleButtons {
      * @param <S> The final type of the Setup implementation.
      */
     public interface Setup<T extends JToggleButton, S extends Setup<T, S>> extends AbstractButtons.Setup<T, S> {
-
-        
     }
 }

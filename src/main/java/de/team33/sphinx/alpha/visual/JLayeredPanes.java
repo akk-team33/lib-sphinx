@@ -1,15 +1,19 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Component;
+import java.util.function.Supplier;
+import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
 
 /**
  * Utility class to handle {@link JLayeredPane}s.
  */
+@SuppressWarnings("unused")
 public final class JLayeredPanes {
+
+    private JLayeredPanes() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JLayeredPane}.

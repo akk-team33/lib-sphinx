@@ -2,13 +2,17 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
 import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
 
 /**
  * Utility class to handle {@link JRadioButton}s.
  */
+@SuppressWarnings("unused")
 public final class JRadioButtons {
+
+    private JRadioButtons() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JRadioButton}.
@@ -47,7 +51,5 @@ public final class JRadioButtons {
      * @param <S> The final type of the Setup implementation.
      */
     public interface Setup<T extends JRadioButton, S extends Setup<T, S>> extends JToggleButtons.Setup<T, S> {
-
-        
     }
 }

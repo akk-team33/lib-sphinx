@@ -1,10 +1,10 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Component;
 import java.awt.Insets;
+import java.util.function.Supplier;
+import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.SingleSelectionModel;
@@ -13,7 +13,11 @@ import javax.swing.plaf.MenuBarUI;
 /**
  * Utility class to handle {@link JMenuBar}s.
  */
+@SuppressWarnings("unused")
 public final class JMenuBars {
+
+    private JMenuBars() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JMenuBar}.
@@ -54,24 +58,10 @@ public final class JMenuBars {
     public interface Setup<T extends JMenuBar, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JMenuBar#setUI(MenuBarUI)
+         * @see JMenuBar#add(JMenu)
          */
-        default S setUI(final MenuBarUI arg0) {
-            return setup(result -> result.setUI(arg0));
-        }
-
-        /**
-         * @see JMenuBar#setSelected(Component)
-         */
-        default S setSelected(final Component arg0) {
-            return setup(result -> result.setSelected(arg0));
-        }
-
-        /**
-         * @see JMenuBar#setMargin(Insets)
-         */
-        default S setMargin(final Insets arg0) {
-            return setup(result -> result.setMargin(arg0));
+        default S add(final JMenu arg0) {
+            return setup(result -> result.add(arg0));
         }
 
         /**
@@ -89,10 +79,17 @@ public final class JMenuBars {
         }
 
         /**
-         * @see JMenuBar#add(JMenu)
+         * @see JMenuBar#setMargin(Insets)
          */
-        default S add(final JMenu arg0) {
-            return setup(result -> result.add(arg0));
+        default S setMargin(final Insets arg0) {
+            return setup(result -> result.setMargin(arg0));
+        }
+
+        /**
+         * @see JMenuBar#setSelected(Component)
+         */
+        default S setSelected(final Component arg0) {
+            return setup(result -> result.setSelected(arg0));
         }
 
         /**
@@ -100,6 +97,13 @@ public final class JMenuBars {
          */
         default S setSelectionModel(final SingleSelectionModel arg0) {
             return setup(result -> result.setSelectionModel(arg0));
+        }
+
+        /**
+         * @see JMenuBar#setUI(MenuBarUI)
+         */
+        default S setUI(final MenuBarUI arg0) {
+            return setup(result -> result.setUI(arg0));
         }
     }
 }

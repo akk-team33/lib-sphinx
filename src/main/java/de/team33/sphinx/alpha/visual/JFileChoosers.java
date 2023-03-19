@@ -1,10 +1,9 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
+import java.io.File;
+import java.io.File;
 import java.util.function.Supplier;
-
-import java.io.File;
-import java.io.File;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
@@ -14,7 +13,11 @@ import javax.swing.filechooser.FileView;
 /**
  * Utility class to handle {@link JFileChooser}s.
  */
+@SuppressWarnings("unused")
 public final class JFileChoosers {
+
+    private JFileChoosers() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JFileChooser}.
@@ -55,83 +58,6 @@ public final class JFileChoosers {
     public interface Setup<T extends JFileChooser, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JFileChooser#setDragEnabled(boolean)
-         */
-        default S setDragEnabled(final boolean arg0) {
-            return setup(result -> result.setDragEnabled(arg0));
-        }
-
-        /**
-         * @see JFileChooser#setSelectedFile(File)
-         */
-        default S setSelectedFile(final File arg0) {
-            return setup(result -> result.setSelectedFile(arg0));
-        }
-
-        /**
-         * @see JFileChooser#setSelectedFiles(File[])
-         */
-        default S setSelectedFiles(final File[] arg0) {
-            return setup(result -> result.setSelectedFiles(arg0));
-        }
-
-        /**
-         * @see JFileChooser#setCurrentDirectory(File)
-         */
-        default S setCurrentDirectory(final File arg0) {
-            return setup(result -> result.setCurrentDirectory(arg0));
-        }
-
-        /**
-         * @see JFileChooser#setControlButtonsAreShown(boolean)
-         */
-        default S setControlButtonsAreShown(final boolean arg0) {
-            return setup(result -> result.setControlButtonsAreShown(arg0));
-        }
-
-        /**
-         * @see JFileChooser#setDialogType(int)
-         */
-        default S setDialogType(final int arg0) {
-            return setup(result -> result.setDialogType(arg0));
-        }
-
-        /**
-         * @see JFileChooser#setDialogTitle(String)
-         */
-        default S setDialogTitle(final String arg0) {
-            return setup(result -> result.setDialogTitle(arg0));
-        }
-
-        /**
-         * @see JFileChooser#setApproveButtonToolTipText(String)
-         */
-        default S setApproveButtonToolTipText(final String arg0) {
-            return setup(result -> result.setApproveButtonToolTipText(arg0));
-        }
-
-        /**
-         * @see JFileChooser#setApproveButtonMnemonic(int)
-         */
-        default S setApproveButtonMnemonic(final int arg0) {
-            return setup(result -> result.setApproveButtonMnemonic(arg0));
-        }
-
-        /**
-         * @see JFileChooser#setApproveButtonMnemonic(char)
-         */
-        default S setApproveButtonMnemonic(final char arg0) {
-            return setup(result -> result.setApproveButtonMnemonic(arg0));
-        }
-
-        /**
-         * @see JFileChooser#setApproveButtonText(String)
-         */
-        default S setApproveButtonText(final String arg0) {
-            return setup(result -> result.setApproveButtonText(arg0));
-        }
-
-        /**
          * @see JFileChooser#addChoosableFileFilter(FileFilter)
          */
         default S addChoosableFileFilter(final FileFilter arg0) {
@@ -160,24 +86,66 @@ public final class JFileChoosers {
         }
 
         /**
-         * @see JFileChooser#setFileSelectionMode(int)
+         * @see JFileChooser#setApproveButtonMnemonic(char)
          */
-        default S setFileSelectionMode(final int arg0) {
-            return setup(result -> result.setFileSelectionMode(arg0));
+        default S setApproveButtonMnemonic(final char arg0) {
+            return setup(result -> result.setApproveButtonMnemonic(arg0));
         }
 
         /**
-         * @see JFileChooser#setMultiSelectionEnabled(boolean)
+         * @see JFileChooser#setApproveButtonMnemonic(int)
          */
-        default S setMultiSelectionEnabled(final boolean arg0) {
-            return setup(result -> result.setMultiSelectionEnabled(arg0));
+        default S setApproveButtonMnemonic(final int arg0) {
+            return setup(result -> result.setApproveButtonMnemonic(arg0));
         }
 
         /**
-         * @see JFileChooser#setFileHidingEnabled(boolean)
+         * @see JFileChooser#setApproveButtonText(String)
          */
-        default S setFileHidingEnabled(final boolean arg0) {
-            return setup(result -> result.setFileHidingEnabled(arg0));
+        default S setApproveButtonText(final String arg0) {
+            return setup(result -> result.setApproveButtonText(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setApproveButtonToolTipText(String)
+         */
+        default S setApproveButtonToolTipText(final String arg0) {
+            return setup(result -> result.setApproveButtonToolTipText(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setControlButtonsAreShown(boolean)
+         */
+        default S setControlButtonsAreShown(final boolean arg0) {
+            return setup(result -> result.setControlButtonsAreShown(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setCurrentDirectory(File)
+         */
+        default S setCurrentDirectory(final File arg0) {
+            return setup(result -> result.setCurrentDirectory(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setDialogTitle(String)
+         */
+        default S setDialogTitle(final String arg0) {
+            return setup(result -> result.setDialogTitle(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setDialogType(int)
+         */
+        default S setDialogType(final int arg0) {
+            return setup(result -> result.setDialogType(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setDragEnabled(boolean)
+         */
+        default S setDragEnabled(final boolean arg0) {
+            return setup(result -> result.setDragEnabled(arg0));
         }
 
         /**
@@ -188,10 +156,17 @@ public final class JFileChoosers {
         }
 
         /**
-         * @see JFileChooser#setFileView(FileView)
+         * @see JFileChooser#setFileHidingEnabled(boolean)
          */
-        default S setFileView(final FileView arg0) {
-            return setup(result -> result.setFileView(arg0));
+        default S setFileHidingEnabled(final boolean arg0) {
+            return setup(result -> result.setFileHidingEnabled(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setFileSelectionMode(int)
+         */
+        default S setFileSelectionMode(final int arg0) {
+            return setup(result -> result.setFileSelectionMode(arg0));
         }
 
         /**
@@ -199,6 +174,34 @@ public final class JFileChoosers {
          */
         default S setFileSystemView(final FileSystemView arg0) {
             return setup(result -> result.setFileSystemView(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setFileView(FileView)
+         */
+        default S setFileView(final FileView arg0) {
+            return setup(result -> result.setFileView(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setMultiSelectionEnabled(boolean)
+         */
+        default S setMultiSelectionEnabled(final boolean arg0) {
+            return setup(result -> result.setMultiSelectionEnabled(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setSelectedFile(File)
+         */
+        default S setSelectedFile(final File arg0) {
+            return setup(result -> result.setSelectedFile(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setSelectedFiles(File[])
+         */
+        default S setSelectedFiles(final java.io.File[] arg0) {
+            return setup(result -> result.setSelectedFiles(arg0));
         }
     }
 }

@@ -2,14 +2,17 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JMenuItem;
 
 /**
  * Utility class to handle {@link JCheckBoxMenuItem}s.
  */
 @SuppressWarnings("unused")
 public final class JCheckBoxMenuItems {
+
+    private JCheckBoxMenuItems() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JCheckBoxMenuItem}.

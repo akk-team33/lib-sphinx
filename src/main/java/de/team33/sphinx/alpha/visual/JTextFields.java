@@ -1,17 +1,21 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Font;
+import java.util.function.Supplier;
 import javax.swing.Action;
 import javax.swing.JTextField;
 import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
 
 /**
  * Utility class to handle {@link JTextField}s.
  */
+@SuppressWarnings("unused")
 public final class JTextFields {
+
+    private JTextFields() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JTextField}.
@@ -59,17 +63,17 @@ public final class JTextFields {
         }
 
         /**
-         * @see JTextField#setHorizontalAlignment(int)
-         */
-        default S setHorizontalAlignment(final int arg0) {
-            return setup(result -> result.setHorizontalAlignment(arg0));
-        }
-
-        /**
          * @see JTextField#setActionCommand(String)
          */
         default S setActionCommand(final String arg0) {
             return setup(result -> result.setActionCommand(arg0));
+        }
+
+        /**
+         * @see JTextField#setColumns(int)
+         */
+        default S setColumns(final int arg0) {
+            return setup(result -> result.setColumns(arg0));
         }
 
         /**
@@ -87,10 +91,10 @@ public final class JTextFields {
         }
 
         /**
-         * @see JTextField#setColumns(int)
+         * @see JTextField#setHorizontalAlignment(int)
          */
-        default S setColumns(final int arg0) {
-            return setup(result -> result.setColumns(arg0));
+        default S setHorizontalAlignment(final int arg0) {
+            return setup(result -> result.setHorizontalAlignment(arg0));
         }
 
         /**

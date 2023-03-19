@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
 import javax.swing.JComponent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
@@ -11,7 +10,11 @@ import javax.swing.plaf.SpinnerUI;
 /**
  * Utility class to handle {@link JSpinner}s.
  */
+@SuppressWarnings("unused")
 public final class JSpinners {
+
+    private JSpinners() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JSpinner}.
@@ -52,10 +55,10 @@ public final class JSpinners {
     public interface Setup<T extends JSpinner, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JSpinner#setValue(Object)
+         * @see JSpinner#setEditor(JComponent)
          */
-        default S setValue(final Object arg0) {
-            return setup(result -> result.setValue(arg0));
+        default S setEditor(final JComponent arg0) {
+            return setup(result -> result.setEditor(arg0));
         }
 
         /**
@@ -66,17 +69,17 @@ public final class JSpinners {
         }
 
         /**
-         * @see JSpinner#setEditor(JComponent)
-         */
-        default S setEditor(final JComponent arg0) {
-            return setup(result -> result.setEditor(arg0));
-        }
-
-        /**
          * @see JSpinner#setUI(SpinnerUI)
          */
         default S setUI(final SpinnerUI arg0) {
             return setup(result -> result.setUI(arg0));
+        }
+
+        /**
+         * @see JSpinner#setValue(Object)
+         */
+        default S setValue(final Object arg0) {
+            return setup(result -> result.setValue(arg0));
         }
     }
 }

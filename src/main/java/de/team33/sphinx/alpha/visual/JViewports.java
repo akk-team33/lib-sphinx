@@ -1,11 +1,10 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.function.Supplier;
 import javax.swing.JViewport;
 import javax.swing.border.Border;
 import javax.swing.plaf.ViewportUI;
@@ -13,7 +12,11 @@ import javax.swing.plaf.ViewportUI;
 /**
  * Utility class to handle {@link JViewport}s.
  */
+@SuppressWarnings("unused")
 public final class JViewports {
+
+    private JViewports() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JViewport}.
@@ -61,6 +64,34 @@ public final class JViewports {
         }
 
         /**
+         * @see JViewport#setBorder(Border)
+         */
+        default S setBorder(final Border arg0) {
+            return setup(result -> result.setBorder(arg0));
+        }
+
+        /**
+         * @see JViewport#setExtentSize(Dimension)
+         */
+        default S setExtentSize(final Dimension arg0) {
+            return setup(result -> result.setExtentSize(arg0));
+        }
+
+        /**
+         * @see JViewport#setScrollMode(int)
+         */
+        default S setScrollMode(final int arg0) {
+            return setup(result -> result.setScrollMode(arg0));
+        }
+
+        /**
+         * @see JViewport#setUI(ViewportUI)
+         */
+        default S setUI(final ViewportUI arg0) {
+            return setup(result -> result.setUI(arg0));
+        }
+
+        /**
          * @see JViewport#setView(Component)
          */
         default S setView(final Component arg0) {
@@ -75,45 +106,10 @@ public final class JViewports {
         }
 
         /**
-         * @see JViewport#setScrollMode(int)
-         */
-        default S setScrollMode(final int arg0) {
-            return setup(result -> result.setScrollMode(arg0));
-        }
-
-        /**
-         * @see JViewport#setBackingStoreEnabled(boolean)
-         */
-        default S setBackingStoreEnabled(final boolean arg0) {
-            return setup(result -> result.setBackingStoreEnabled(arg0));
-        }
-
-        /**
          * @see JViewport#setViewSize(Dimension)
          */
         default S setViewSize(final Dimension arg0) {
             return setup(result -> result.setViewSize(arg0));
-        }
-
-        /**
-         * @see JViewport#setExtentSize(Dimension)
-         */
-        default S setExtentSize(final Dimension arg0) {
-            return setup(result -> result.setExtentSize(arg0));
-        }
-
-        /**
-         * @see JViewport#setUI(ViewportUI)
-         */
-        default S setUI(final ViewportUI arg0) {
-            return setup(result -> result.setUI(arg0));
-        }
-
-        /**
-         * @see JViewport#setBorder(Border)
-         */
-        default S setBorder(final Border arg0) {
-            return setup(result -> result.setBorder(arg0));
         }
     }
 }

@@ -2,13 +2,17 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-
+import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
 /**
  * Utility class to handle {@link JRadioButtonMenuItem}s.
  */
+@SuppressWarnings("unused")
 public final class JRadioButtonMenuItems {
+
+    private JRadioButtonMenuItems() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JRadioButtonMenuItem}.
@@ -47,7 +51,5 @@ public final class JRadioButtonMenuItems {
      * @param <S> The final type of the Setup implementation.
      */
     public interface Setup<T extends JRadioButtonMenuItem, S extends Setup<T, S>> extends JMenuItems.Setup<T, S> {
-
-        
     }
 }

@@ -1,10 +1,9 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.util.function.Supplier;
-
 import java.awt.Component;
 import java.awt.ComponentOrientation;
+import java.util.function.Supplier;
 import javax.swing.Action;
 import javax.swing.ButtonModel;
 import javax.swing.JMenu;
@@ -14,7 +13,11 @@ import javax.swing.KeyStroke;
 /**
  * Utility class to handle {@link JMenu}s.
  */
+@SuppressWarnings("unused")
 public final class JMenus {
+
+    private JMenus() {
+    }
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JMenu}.
@@ -55,30 +58,9 @@ public final class JMenus {
     public interface Setup<T extends JMenu, S extends Setup<T, S>> extends JMenuItems.Setup<T, S> {
 
         /**
-         * @see JMenu#setModel(ButtonModel)
+         * @see JMenu#add(Action)
          */
-        default S setModel(final ButtonModel arg0) {
-            return setup(result -> result.setModel(arg0));
-        }
-
-        /**
-         * @see JMenu#setSelected(boolean)
-         */
-        default S setSelected(final boolean arg0) {
-            return setup(result -> result.setSelected(arg0));
-        }
-
-        /**
-         * @see JMenu#setAccelerator(KeyStroke)
-         */
-        default S setAccelerator(final KeyStroke arg0) {
-            return setup(result -> result.setAccelerator(arg0));
-        }
-
-        /**
-         * @see JMenu#add(JMenuItem)
-         */
-        default S add(final JMenuItem arg0) {
+        default S add(final Action arg0) {
             return setup(result -> result.add(arg0));
         }
 
@@ -97,6 +79,13 @@ public final class JMenus {
         }
 
         /**
+         * @see JMenu#add(JMenuItem)
+         */
+        default S add(final JMenuItem arg0) {
+            return setup(result -> result.add(arg0));
+        }
+
+        /**
          * @see JMenu#add(String)
          */
         default S add(final String arg0) {
@@ -104,16 +93,16 @@ public final class JMenus {
         }
 
         /**
-         * @see JMenu#add(Action)
+         * @see JMenu#addSeparator()
          */
-        default S add(final Action arg0) {
-            return setup(result -> result.add(arg0));
+        default S addSeparator() {
+            return setup(result -> result.addSeparator());
         }
 
         /**
-         * @see JMenu#remove(int)
+         * @see JMenu#remove(Component)
          */
-        default S remove(final int arg0) {
+        default S remove(final Component arg0) {
             return setup(result -> result.remove(arg0));
         }
 
@@ -125,9 +114,9 @@ public final class JMenus {
         }
 
         /**
-         * @see JMenu#remove(Component)
+         * @see JMenu#remove(int)
          */
-        default S remove(final Component arg0) {
+        default S remove(final int arg0) {
             return setup(result -> result.remove(arg0));
         }
 
@@ -139,17 +128,17 @@ public final class JMenus {
         }
 
         /**
+         * @see JMenu#setAccelerator(KeyStroke)
+         */
+        default S setAccelerator(final KeyStroke arg0) {
+            return setup(result -> result.setAccelerator(arg0));
+        }
+
+        /**
          * @see JMenu#setComponentOrientation(ComponentOrientation)
          */
         default S setComponentOrientation(final ComponentOrientation arg0) {
             return setup(result -> result.setComponentOrientation(arg0));
-        }
-
-        /**
-         * @see JMenu#setPopupMenuVisible(boolean)
-         */
-        default S setPopupMenuVisible(final boolean arg0) {
-            return setup(result -> result.setPopupMenuVisible(arg0));
         }
 
         /**
@@ -167,10 +156,24 @@ public final class JMenus {
         }
 
         /**
-         * @see JMenu#addSeparator()
+         * @see JMenu#setModel(ButtonModel)
          */
-        default S addSeparator() {
-            return setup(result -> result.addSeparator());
+        default S setModel(final ButtonModel arg0) {
+            return setup(result -> result.setModel(arg0));
+        }
+
+        /**
+         * @see JMenu#setPopupMenuVisible(boolean)
+         */
+        default S setPopupMenuVisible(final boolean arg0) {
+            return setup(result -> result.setPopupMenuVisible(arg0));
+        }
+
+        /**
+         * @see JMenu#setSelected(boolean)
+         */
+        default S setSelected(final boolean arg0) {
+            return setup(result -> result.setSelected(arg0));
         }
     }
 }
