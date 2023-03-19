@@ -35,10 +35,10 @@ public class Generator {
                                                                    JMenuItem.class,
                                                                    JComponent.class,
                                                                    JSlider.class,
-                                                                   JComboBox.class,
+                                                                   //JComboBox.class, skip for now
                                                                    JTree.class,
                                                                    JRootPane.class,
-                                                                   JLayer.class,
+                                                                   //JLayer.class, skip for now
                                                                    JSplitPane.class,
                                                                    JPasswordField.class,
                                                                    JLabel.class,
@@ -54,7 +54,7 @@ public class Generator {
                                                                    JLayeredPane.class,
                                                                    JSeparator.class,
                                                                    JRadioButton.class,
-                                                                   JList.class,
+                                                                   // JList.class, skip for now
                                                                    JInternalFrame.class,
                                                                    JRadioButtonMenuItem.class,
                                                                    JTextPane.class,
@@ -70,7 +70,9 @@ public class Generator {
     private static final Path PACKAGE_PATH = Paths.get("src", "main", "java", "de", "team33", "sphinx", "alpha", "visual")
                                                   .toAbsolutePath()
                                                   .normalize();
-    public static final OpenOption[] OPEN_OPTIONS = {StandardOpenOption.CREATE_NEW}; // <-- overwrite or not?
+    public static final OpenOption[] OPEN_OPTIONS = {
+            StandardOpenOption.CREATE,
+            StandardOpenOption.TRUNCATE_EXISTING}; // <-- overwrite or not?
 
     public static void main(String[] args) {
         CANDIDATES.stream()
@@ -78,16 +80,16 @@ public class Generator {
                   .distinct()
                   .filter(c -> !c.equals(Component.class)) // skip anyway!
                   .filter(Component.class::isAssignableFrom)
-                  .map(UtilityClass::new)
+                  .map(ComponentUtilitySource::new)
                   //.forEach(System.out::println);
                   .forEach(Generator::write);
     }
 
-    private static void write(final UtilityClass utilityClass) {
-        final String fileName = utilityClass.getName() + ".java";
+    private static void write(final ComponentUtilitySource source) {
+        final String fileName = source.getName() + ".java";
         final Path filePath = PACKAGE_PATH.resolve(fileName);
         try {
-            Files.write(filePath, utilityClass.toString().getBytes(StandardCharsets.UTF_8), OPEN_OPTIONS);
+            Files.write(filePath, source.toString().getBytes(StandardCharsets.UTF_8), OPEN_OPTIONS);
         } catch (IOException e) {
             LOG.info(() -> "failed (already existing?): " + fileName + " (" + filePath + ")");
         }

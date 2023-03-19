@@ -1,10 +1,14 @@
 package de.team33.gen.sphinx.alpha.visual;
 
+import java.awt.*;
+
 import static java.lang.String.format;
 
-public class BuilderClass {
+public class BuilderClassSource {
 
-    private static final String CODE_FORMAT = "/**%n" +
+    private static final String CODE_FORMAT = //
+            "%n%n" +
+            "    /**%n" +
             "     * Builder implementation to build target instances of {@link %1$s}.%n" +
             "     * %n" +
             "     * @param <T> The final type of the target instances, at least {@link %1$s}.%n" +
@@ -19,12 +23,17 @@ public class BuilderClass {
 
     private final String targetClassName;
 
-    public BuilderClass(final Class<?> componentClass) {
+    public BuilderClassSource(final Class<?> componentClass) {
         this.targetClassName = componentClass.getSimpleName();
     }
 
     @Override
     public String toString() {
         return format(CODE_FORMAT, targetClassName);
+    }
+
+    public static void main(String[] args) {
+        final BuilderClassSource source = new BuilderClassSource(Container.class);
+        System.out.println(source);
     }
 }
