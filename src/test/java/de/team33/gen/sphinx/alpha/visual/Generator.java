@@ -71,9 +71,9 @@ public class Generator {
                                                   .toAbsolutePath()
                                                   .normalize();
     public static final OpenOption[] OPEN_OPTIONS = {
-            // StandardOpenOption.CREATE_NEW,
-            StandardOpenOption.CREATE,
-            StandardOpenOption.TRUNCATE_EXISTING
+            StandardOpenOption.CREATE_NEW,
+            // StandardOpenOption.CREATE,
+            // StandardOpenOption.TRUNCATE_EXISTING
     }; // <-- overwrite or not?
 
     public static void main(String[] args) {
