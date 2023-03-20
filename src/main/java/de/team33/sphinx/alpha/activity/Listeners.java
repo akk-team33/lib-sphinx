@@ -11,6 +11,12 @@ public final class Listeners {
     private Listeners() {
     }
 
+    /**
+     * Converts a given {@link Consumer} into a {@link ComponentListener}
+     * that responds to a specific {@link ComponentEvent}.
+     *
+     * @see ComponentListener#componentResized(ComponentEvent)
+     */
     public static ComponentListener componentResized(final Consumer<ComponentEvent> reaction) {
         return new ComponentAdapter() {
             @Override
