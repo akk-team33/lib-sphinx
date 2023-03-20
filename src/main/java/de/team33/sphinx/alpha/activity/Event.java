@@ -15,6 +15,12 @@ import java.util.function.Consumer;
 @SuppressWarnings("unused")
 public interface Event<C, M> {
 
+    /**
+     * Represents an event that can occur on {@link Component}s.
+     *
+     * @see ComponentListener#componentHidden(ComponentEvent)
+     * @see Component#addComponentListener(ComponentListener)
+     */
     Event<Component, ComponentEvent> COMPONENT_HIDDEN =
             new Agent<>(Component::addComponentListener, Listeners::componentHidden).event();
 

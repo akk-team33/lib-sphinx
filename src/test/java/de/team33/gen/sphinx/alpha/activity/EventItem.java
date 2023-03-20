@@ -10,7 +10,14 @@ import java.util.Set;
 
 public class EventItem {
 
-    private static final String FORMAT = "%n%n" +
+    private static final String FORMAT = //
+            "%n%n" +
+            "    /**%n" +
+            "     * Represents an event that can occur on {@link %1$s}s.%n" +
+            "     *%n" +
+            "     * @see %6$s#%5$s(%2$s)%n" +
+            "     * @see %1$s#%4$s(%6$s)%n" +
+            "     */%n" +
             "    Event<%1$s, %2$s> %3$s =%n" +
             "            new Agent<>(%1$s::%4$s, Listeners::%5$s).event();";
 
@@ -20,14 +27,18 @@ public class EventItem {
     private final String itemName;
     private final String addListenerMethodName;
     private final String toListenerMethodName;
+    private final String listenerClassName;
 
     public EventItem(final Method addListenerMethod, final Method listenerMethod) {
+        assert 1 == addListenerMethod.getParameterCount();
         assert 1 == listenerMethod.getParameterCount();
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         final Class<?> addListenerClass = addListenerMethod.getDeclaringClass();
         final Class<?> eventClass = listenerMethod.getParameterTypes()[0];
-        this.dependencies = new HashSet<>(Arrays.asList(addListenerClass, eventClass));
+        final Class<?> listenerClass = addListenerMethod.getParameterTypes()[0];
+        this.dependencies = new HashSet<>(Arrays.asList(addListenerClass, eventClass, listenerClass));
         this.addListenerClassName = addListenerClass.getSimpleName();
+        this.listenerClassName = listenerClass.getSimpleName();
         this.eventClassName = eventClass.getSimpleName();
         this.itemName = camelToUpperCase(listenerMethod.getName());
         this.addListenerMethodName = addListenerMethod.getName();
@@ -55,7 +66,8 @@ public class EventItem {
                              eventClassName,
                              itemName,
                              addListenerMethodName,
-                             toListenerMethodName);
+                             toListenerMethodName,
+                             listenerClassName);
     }
 
     public static void main(String[] args) throws NoSuchMethodException {
