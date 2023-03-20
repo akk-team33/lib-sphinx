@@ -6,7 +6,6 @@ import java.util.function.Supplier;
 import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
-import javax.swing.colorchooser.AbstractColorChooserPanel;
 import javax.swing.colorchooser.ColorSelectionModel;
 import javax.swing.plaf.ColorChooserUI;
 

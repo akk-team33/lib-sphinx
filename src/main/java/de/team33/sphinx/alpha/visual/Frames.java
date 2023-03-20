@@ -1,6 +1,9 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
+import de.team33.sphinx.alpha.activity.Event;
+import de.team33.sphinx.alpha.option.Persistence;
+
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Image;
@@ -56,6 +59,14 @@ public final class Frames {
      * @param <S> The final type of the Setup implementation.
      */
     public interface Setup<T extends Frame, S extends Setup<T, S>> extends Windows.Setup<T, S> {
+
+        default S setPersistence(final Persistence persistence) {
+            return this.setBounds(persistence.getBounds())
+                       .setExtendedState(persistence.getExtendedState())
+                       .on(Event.WINDOW_STATE_CHANGED, persistence::onStateChanged)
+                       .on(Event.COMPONENT_MOVED, persistence::onMovedOrResized)
+                       .on(Event.COMPONENT_RESIZED, persistence::onMovedOrResized);
+        }
 
         /**
          * @see Frame#remove(MenuComponent)
