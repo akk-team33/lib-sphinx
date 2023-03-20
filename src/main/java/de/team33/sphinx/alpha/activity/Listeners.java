@@ -129,7 +129,7 @@ public final class Listeners {
      *
      * @see HierarchyBoundsListener#ancestorMoved(HierarchyEvent)
      */
-    public static HierarchyBoundsListener ancestorMoved_(final Consumer<HierarchyEvent> reaction) {
+    public static HierarchyBoundsListener ancestorMoved(final Consumer<HierarchyEvent> reaction) {
         return new HierarchyBoundsAdapter() {
             @Override
             public void ancestorMoved(final HierarchyEvent e) {
@@ -419,7 +419,7 @@ public final class Listeners {
      *
      * @see AncestorListener#ancestorMoved(AncestorEvent)
      */
-    public static AncestorListener ancestorMoved(final Consumer<AncestorEvent> reaction) {
+    public static AncestorListener jcAncestorMoved(final Consumer<AncestorEvent> reaction) {
         return new AncestorAdapter() {
             @Override
             public void ancestorMoved(final AncestorEvent e) {
@@ -854,7 +854,7 @@ public final class Listeners {
      *
      * @see ListSelectionListener#valueChanged(ListSelectionEvent)
      */
-    public static ListSelectionListener valueChanged(final Consumer<ListSelectionEvent> reaction) {
+    public static ListSelectionListener listValueChanged(final Consumer<ListSelectionEvent> reaction) {
         return reaction::accept;
     }
 
