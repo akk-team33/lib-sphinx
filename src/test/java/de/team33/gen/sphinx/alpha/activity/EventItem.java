@@ -11,8 +11,8 @@ import java.util.Set;
 public class EventItem {
 
     private static final String FORMAT = "%n%n" +
-            "    public static final Event<%1$s, %2$s> %3$s =%n" +
-            "            new Agent<>(%1$s::%4$s, Listeners::%5$s);";
+            "    Event<%1$s, %2$s> %3$s =%n" +
+            "            new Agent<>(%1$s::%4$s, Listeners::%5$s).event();";
 
     private final Set<Class<?>> dependencies;
     private final String addListenerClassName;
