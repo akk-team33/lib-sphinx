@@ -129,7 +129,7 @@ public final class Listeners {
      *
      * @see HierarchyBoundsListener#ancestorMoved(HierarchyEvent)
      */
-    public static HierarchyBoundsListener ancestorMoved(final Consumer<HierarchyEvent> reaction) {
+    public static HierarchyBoundsListener ancestorBoundsMoved(final Consumer<HierarchyEvent> reaction) {
         return new HierarchyBoundsAdapter() {
             @Override
             public void ancestorMoved(final HierarchyEvent e) {
@@ -144,7 +144,7 @@ public final class Listeners {
      *
      * @see HierarchyBoundsListener#ancestorResized(HierarchyEvent)
      */
-    public static HierarchyBoundsListener ancestorResized(final Consumer<HierarchyEvent> reaction) {
+    public static HierarchyBoundsListener ancestorBoundsResized(final Consumer<HierarchyEvent> reaction) {
         return new HierarchyBoundsAdapter() {
             @Override
             public void ancestorResized(final HierarchyEvent e) {
@@ -387,6 +387,21 @@ public final class Listeners {
      * Converts a given {@link Consumer} into a {@link AncestorListener}
      * that reacts on a specific {@link AncestorEvent}.
      *
+     * @see AncestorListener#ancestorMoved(AncestorEvent)
+     */
+    public static AncestorListener ancestorMoved(final Consumer<AncestorEvent> reaction) {
+        return new AncestorAdapter() {
+            @Override
+            public void ancestorMoved(final AncestorEvent e) {
+                reaction.accept(e);
+            }
+        };
+    }
+
+    /**
+     * Converts a given {@link Consumer} into a {@link AncestorListener}
+     * that reacts on a specific {@link AncestorEvent}.
+     *
      * @see AncestorListener#ancestorAdded(AncestorEvent)
      */
     public static AncestorListener ancestorAdded(final Consumer<AncestorEvent> reaction) {
@@ -408,21 +423,6 @@ public final class Listeners {
         return new AncestorAdapter() {
             @Override
             public void ancestorRemoved(final AncestorEvent e) {
-                reaction.accept(e);
-            }
-        };
-    }
-
-    /**
-     * Converts a given {@link Consumer} into a {@link AncestorListener}
-     * that reacts on a specific {@link AncestorEvent}.
-     *
-     * @see AncestorListener#ancestorMoved(AncestorEvent)
-     */
-    public static AncestorListener jcAncestorMoved(final Consumer<AncestorEvent> reaction) {
-        return new AncestorAdapter() {
-            @Override
-            public void ancestorMoved(final AncestorEvent e) {
                 reaction.accept(e);
             }
         };

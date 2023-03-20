@@ -99,7 +99,7 @@ public interface Event<C, M> {
      * @see Component#addHierarchyBoundsListener(HierarchyBoundsListener)
      */
     Event<Component, HierarchyEvent> ANCESTOR_MOVED =
-            new EventAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorMoved).event();
+            new EventAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsMoved).event();
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -108,7 +108,7 @@ public interface Event<C, M> {
      * @see Component#addHierarchyBoundsListener(HierarchyBoundsListener)
      */
     Event<Component, HierarchyEvent> ANCESTOR_RESIZED =
-            new EventAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorResized).event();
+            new EventAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsResized).event();
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -261,7 +261,7 @@ public interface Event<C, M> {
      * @see JComponent#addAncestorListener(AncestorListener)
      */
     Event<JComponent, AncestorEvent> JC_ANCESTOR_MOVED =
-            new EventAgent<>(JComponent::addAncestorListener, Listeners::jcAncestorMoved).event();
+            new EventAgent<>(JComponent::addAncestorListener, Listeners::ancestorMoved).event();
 
     /**
      * Represents an event that can occur on {@link JComponent}s.
