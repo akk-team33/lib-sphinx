@@ -40,7 +40,7 @@ public interface Event<C, M> {
             new Agent<>(Component::addFocusListener, Listeners::focusLost).event();
 
     Event<Component, HierarchyEvent> ANCESTOR_MOVED =
-            new Agent<>(Component::addHierarchyBoundsListener, Listeners::ancestorMoved).event();
+            new Agent<>(Component::addHierarchyBoundsListener, Listeners::ancestorMoved_).event();
 
     Event<Component, HierarchyEvent> ANCESTOR_RESIZED =
             new Agent<>(Component::addHierarchyBoundsListener, Listeners::ancestorResized).event();
