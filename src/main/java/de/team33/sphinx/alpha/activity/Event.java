@@ -98,7 +98,7 @@ public interface Event<C, M> {
      * @see HierarchyBoundsListener#ancestorMoved(HierarchyEvent)
      * @see Component#addHierarchyBoundsListener(HierarchyBoundsListener)
      */
-    Event<Component, HierarchyEvent> ANCESTOR_MOVED =
+    Event<Component, HierarchyEvent> ANCESTOR_BOUNDS_MOVED =
             new EventAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsMoved).event();
 
     /**
@@ -107,7 +107,7 @@ public interface Event<C, M> {
      * @see HierarchyBoundsListener#ancestorResized(HierarchyEvent)
      * @see Component#addHierarchyBoundsListener(HierarchyBoundsListener)
      */
-    Event<Component, HierarchyEvent> ANCESTOR_RESIZED =
+    Event<Component, HierarchyEvent> ANCESTOR_BOUNDS_RESIZED =
             new EventAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsResized).event();
 
     /**
@@ -257,15 +257,6 @@ public interface Event<C, M> {
     /**
      * Represents an event that can occur on {@link JComponent}s.
      *
-     * @see AncestorListener#ancestorMoved(AncestorEvent)
-     * @see JComponent#addAncestorListener(AncestorListener)
-     */
-    Event<JComponent, AncestorEvent> JC_ANCESTOR_MOVED =
-            new EventAgent<>(JComponent::addAncestorListener, Listeners::ancestorMoved).event();
-
-    /**
-     * Represents an event that can occur on {@link JComponent}s.
-     *
      * @see AncestorListener#ancestorAdded(AncestorEvent)
      * @see JComponent#addAncestorListener(AncestorListener)
      */
@@ -280,6 +271,15 @@ public interface Event<C, M> {
      */
     Event<JComponent, AncestorEvent> ANCESTOR_REMOVED =
             new EventAgent<>(JComponent::addAncestorListener, Listeners::ancestorRemoved).event();
+
+    /**
+     * Represents an event that can occur on {@link JComponent}s.
+     *
+     * @see AncestorListener#ancestorMoved(AncestorEvent)
+     * @see JComponent#addAncestorListener(AncestorListener)
+     */
+    Event<JComponent, AncestorEvent> ANCESTOR_MOVED =
+            new EventAgent<>(JComponent::addAncestorListener, Listeners::ancestorMoved).event();
 
     /**
      * Represents an event that can occur on {@link JTextComponent}s.
@@ -350,7 +350,7 @@ public interface Event<C, M> {
      * @see MenuKeyListener#menuKeyPressed(MenuKeyEvent)
      * @see JPopupMenu#addMenuKeyListener(MenuKeyListener)
      */
-    Event<JPopupMenu, MenuKeyEvent> JPM_MENU_KEY_PRESSED =
+    Event<JPopupMenu, MenuKeyEvent> MENU_KEY_PRESSED =
             new EventAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyPressed).event();
 
     /**
@@ -359,7 +359,7 @@ public interface Event<C, M> {
      * @see MenuKeyListener#menuKeyReleased(MenuKeyEvent)
      * @see JPopupMenu#addMenuKeyListener(MenuKeyListener)
      */
-    Event<JPopupMenu, MenuKeyEvent> JPM_MENU_KEY_RELEASED =
+    Event<JPopupMenu, MenuKeyEvent> MENU_KEY_RELEASED =
             new EventAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyReleased).event();
 
     /**
@@ -368,7 +368,7 @@ public interface Event<C, M> {
      * @see MenuKeyListener#menuKeyTyped(MenuKeyEvent)
      * @see JPopupMenu#addMenuKeyListener(MenuKeyListener)
      */
-    Event<JPopupMenu, MenuKeyEvent> JPM_MENU_KEY_TYPED =
+    Event<JPopupMenu, MenuKeyEvent> MENU_KEY_TYPED =
             new EventAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyTyped).event();
 
     /**
@@ -473,20 +473,20 @@ public interface Event<C, M> {
     /**
      * Represents an event that can occur on {@link AbstractButton}s.
      *
-     * @see ChangeListener#stateChanged(ChangeEvent)
-     * @see AbstractButton#addChangeListener(ChangeListener)
-     */
-    Event<AbstractButton, ChangeEvent> BTN_STATE_CHANGED =
-            new EventAgent<>(AbstractButton::addChangeListener, Listeners::stateChanged).event();
-
-    /**
-     * Represents an event that can occur on {@link AbstractButton}s.
-     *
      * @see ActionListener#actionPerformed(ActionEvent)
      * @see AbstractButton#addActionListener(ActionListener)
      */
     Event<AbstractButton, ActionEvent> ACTION_PERFORMED =
             new EventAgent<>(AbstractButton::addActionListener, Listeners::actionPerformed).event();
+
+    /**
+     * Represents an event that can occur on {@link AbstractButton}s.
+     *
+     * @see ChangeListener#stateChanged(ChangeEvent)
+     * @see AbstractButton#addChangeListener(ChangeListener)
+     */
+    Event<AbstractButton, ChangeEvent> STATE_CHANGED =
+            new EventAgent<>(AbstractButton::addChangeListener, Listeners::stateChanged).event();
 
     /**
      * Represents an event that can occur on {@link JMenuItem}s.
@@ -530,7 +530,7 @@ public interface Event<C, M> {
      * @see MenuKeyListener#menuKeyPressed(MenuKeyEvent)
      * @see JMenuItem#addMenuKeyListener(MenuKeyListener)
      */
-    Event<JMenuItem, MenuKeyEvent> MENU_KEY_PRESSED =
+    Event<JMenuItem, MenuKeyEvent> MENU_ITEM_KEY_PRESSED =
             new EventAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyPressed).event();
 
     /**
@@ -539,7 +539,7 @@ public interface Event<C, M> {
      * @see MenuKeyListener#menuKeyReleased(MenuKeyEvent)
      * @see JMenuItem#addMenuKeyListener(MenuKeyListener)
      */
-    Event<JMenuItem, MenuKeyEvent> MENU_KEY_RELEASED =
+    Event<JMenuItem, MenuKeyEvent> MENU_ITEM_KEY_RELEASED =
             new EventAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyReleased).event();
 
     /**
@@ -548,7 +548,7 @@ public interface Event<C, M> {
      * @see MenuKeyListener#menuKeyTyped(MenuKeyEvent)
      * @see JMenuItem#addMenuKeyListener(MenuKeyListener)
      */
-    Event<JMenuItem, MenuKeyEvent> MENU_KEY_TYPED =
+    Event<JMenuItem, MenuKeyEvent> MENU_ITEM_KEY_TYPED =
             new EventAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyTyped).event();
 
     /**
@@ -557,8 +557,58 @@ public interface Event<C, M> {
      * @see ChangeListener#stateChanged(ChangeEvent)
      * @see JSlider#addChangeListener(ChangeListener)
      */
-    Event<JSlider, ChangeEvent> JS_STATE_CHANGED =
+    Event<JSlider, ChangeEvent> JSL_STATE_CHANGED =
             new EventAgent<>(JSlider::addChangeListener, Listeners::stateChanged).event();
+
+    /**
+     * Represents an event that can occur on {@link JComboBox}s.
+     *
+     * @see ItemListener#itemStateChanged(ItemEvent)
+     * @see JComboBox#addItemListener(ItemListener)
+     */
+    Event<JComboBox<?>, ItemEvent> JCB_ITEM_STATE_CHANGED =
+            new EventAgent<>((JComboBox<?> c, ItemListener l) -> c.addItemListener(l),
+                             Listeners::itemStateChanged).event();
+
+    /**
+     * Represents an event that can occur on {@link JComboBox}s.
+     *
+     * @see ActionListener#actionPerformed(ActionEvent)
+     * @see JComboBox#addActionListener(ActionListener)
+     */
+    Event<JComboBox<?>, ActionEvent> JCB_ACTION_PERFORMED =
+            new EventAgent<>((JComboBox<?> c, ActionListener l) -> c.addActionListener(l),
+                             Listeners::actionPerformed).event();
+
+    /**
+     * Represents an event that can occur on {@link JComboBox}s.
+     *
+     * @see PopupMenuListener#popupMenuWillBecomeVisible(PopupMenuEvent)
+     * @see JComboBox#addPopupMenuListener(PopupMenuListener)
+     */
+    Event<JComboBox<?>, PopupMenuEvent> JCB_POPUP_WILL_BECOME_VISIBLE =
+            new EventAgent<>((JComboBox<?> c, PopupMenuListener l) -> c.addPopupMenuListener(l),
+                             Listeners::popupMenuWillBecomeVisible).event();
+
+    /**
+     * Represents an event that can occur on {@link JComboBox}s.
+     *
+     * @see PopupMenuListener#popupMenuWillBecomeInvisible(PopupMenuEvent)
+     * @see JComboBox#addPopupMenuListener(PopupMenuListener)
+     */
+    Event<JComboBox<?>, PopupMenuEvent> JCB_POPUP_WILL_BECOME_INVISIBLE =
+            new EventAgent<>((JComboBox<?> c, PopupMenuListener l) -> c.addPopupMenuListener(l),
+                             Listeners::popupMenuWillBecomeInvisible).event();
+
+    /**
+     * Represents an event that can occur on {@link JComboBox}s.
+     *
+     * @see PopupMenuListener#popupMenuCanceled(PopupMenuEvent)
+     * @see JComboBox#addPopupMenuListener(PopupMenuListener)
+     */
+    Event<JComboBox<?>, PopupMenuEvent> JCB_POPUP_CANCELED =
+            new EventAgent<>((JComboBox<?> c, PopupMenuListener l) -> c.addPopupMenuListener(l),
+                             Listeners::popupMenuCanceled).event();
 
     /**
      * Represents an event that can occur on {@link JTree}s.
