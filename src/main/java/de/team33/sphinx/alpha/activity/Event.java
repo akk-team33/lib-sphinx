@@ -3,9 +3,8 @@ package de.team33.sphinx.alpha.activity;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
-import java.util.function.BiConsumer;
+import java.beans.PropertyChangeListener;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 /**
  * Abstracts sorts of activities or events.
@@ -13,115 +12,101 @@ import java.util.function.Function;
  * @param <C> The component type in whose context the activity or event takes place.
  * @param <M> The message type being transferred in the context of the activity or event.
  */
-public abstract class Event<C, M> {
+@SuppressWarnings("unused")
+public interface Event<C, M> {
 
-    public static final Event<Component, ComponentEvent> COMPONENT_HIDDEN =
-            new Agent<>(Component::addComponentListener, Listeners::componentHidden);
+    Event<Component, ComponentEvent> COMPONENT_HIDDEN =
+            new Agent<>(Component::addComponentListener, Listeners::componentHidden).event();
 
-    public static final Event<Component, ComponentEvent> COMPONENT_MOVED =
-            new Agent<>(Component::addComponentListener, Listeners::componentMoved);
+    Event<Component, ComponentEvent> COMPONENT_MOVED =
+            new Agent<>(Component::addComponentListener, Listeners::componentMoved).event();
 
-    public static final Event<Component, ComponentEvent> COMPONENT_RESIZED =
-            new Agent<>(Component::addComponentListener, Listeners::componentResized);
+    Event<Component, ComponentEvent> COMPONENT_RESIZED =
+            new Agent<>(Component::addComponentListener, Listeners::componentResized).event();
 
-    public static final Event<Component, ComponentEvent> COMPONENT_SHOWN =
-            new Agent<>(Component::addComponentListener, Listeners::componentShown);
+    Event<Component, ComponentEvent> COMPONENT_SHOWN =
+            new Agent<>(Component::addComponentListener, Listeners::componentShown).event();
 
-    public static final Event<Component, FocusEvent> FOCUS_GAINED =
-            new Agent<>(Component::addFocusListener, Listeners::focusGained);
+    Event<Component, FocusEvent> FOCUS_GAINED =
+            new Agent<>(Component::addFocusListener, Listeners::focusGained).event();
 
-    public static final Event<Component, FocusEvent> FOCUS_LOST =
-            new Agent<>(Component::addFocusListener, Listeners::focusLost);
+    Event<Component, FocusEvent> FOCUS_LOST =
+            new Agent<>(Component::addFocusListener, Listeners::focusLost).event();
 
-    public static final Event<Component, HierarchyEvent> ANCESTOR_MOVED =
-            new Agent<>(Component::addHierarchyBoundsListener, Listeners::ancestorMoved);
+    Event<Component, HierarchyEvent> ANCESTOR_MOVED =
+            new Agent<>(Component::addHierarchyBoundsListener, Listeners::ancestorMoved).event();
 
-    public static final Event<Component, HierarchyEvent> ANCESTOR_RESIZED =
-            new Agent<>(Component::addHierarchyBoundsListener, Listeners::ancestorResized);
+    Event<Component, HierarchyEvent> ANCESTOR_RESIZED =
+            new Agent<>(Component::addHierarchyBoundsListener, Listeners::ancestorResized).event();
 
-    public static final Event<Component, HierarchyEvent> HIERARCHIE_CHANGED =
-            new Agent<>(Component::addHierarchyListener, Listeners::hierarchyChanged);
+    Event<Component, HierarchyEvent> HIERARCHIE_CHANGED =
+            new Agent<>(Component::addHierarchyListener, Listeners::hierarchyChanged).event();
 
-    public static final Event<Component, InputMethodEvent> CARET_POSITION_CHANGED =
-            new Agent<>(Component::addInputMethodListener, Listeners::caretPositionChanged);
+    Event<Component, InputMethodEvent> CARET_POSITION_CHANGED =
+            new Agent<>(Component::addInputMethodListener, Listeners::caretPositionChanged).event();
 
-    public static final Event<Component, InputMethodEvent> INPUT_METHOD_TEXT_CHANGED =
-            new Agent<>(Component::addInputMethodListener, Listeners::inputMethodTextChanged);
+    Event<Component, InputMethodEvent> INPUT_METHOD_TEXT_CHANGED =
+            new Agent<>(Component::addInputMethodListener, Listeners::inputMethodTextChanged).event();
 
-    public static final Event<Component, KeyEvent> KEY_TYPED =
-            new Agent<>(Component::addKeyListener, Listeners::keyTyped);
+    Event<Component, KeyEvent> KEY_TYPED =
+            new Agent<>(Component::addKeyListener, Listeners::keyTyped).event();
 
-    public static final Event<Component, KeyEvent> KEY_PRESSED =
-            new Agent<>(Component::addKeyListener, Listeners::keyPressed);
+    Event<Component, KeyEvent> KEY_PRESSED =
+            new Agent<>(Component::addKeyListener, Listeners::keyPressed).event();
 
-    public static final Event<Component, KeyEvent> KEY_RELEASED =
-            new Agent<>(Component::addKeyListener, Listeners::keyReleased);
+    Event<Component, KeyEvent> KEY_RELEASED =
+            new Agent<>(Component::addKeyListener, Listeners::keyReleased).event();
 
-    public static final Event<Component, MouseEvent> MOUSE_CLICKED =
-            new Agent<>(Component::addMouseListener, Listeners::mouseClicked);
+    Event<Component, MouseEvent> MOUSE_CLICKED =
+            new Agent<>(Component::addMouseListener, Listeners::mouseClicked).event();
 
-    public static final Event<Component, MouseEvent> MOUSE_ENTERED =
-            new Agent<>(Component::addMouseListener, Listeners::mouseEntered);
+    Event<Component, MouseEvent> MOUSE_ENTERED =
+            new Agent<>(Component::addMouseListener, Listeners::mouseEntered).event();
 
-    public static final Event<Component, MouseEvent> MOUSE_EXITED =
-            new Agent<>(Component::addMouseListener, Listeners::mouseExited);
+    Event<Component, MouseEvent> MOUSE_EXITED =
+            new Agent<>(Component::addMouseListener, Listeners::mouseExited).event();
 
-    public static final Event<Component, MouseEvent> MOUSE_PRESSED =
-            new Agent<>(Component::addMouseListener, Listeners::mousePressed);
+    Event<Component, MouseEvent> MOUSE_PRESSED =
+            new Agent<>(Component::addMouseListener, Listeners::mousePressed).event();
 
-    public static final Event<Component, MouseEvent> MOUSE_RELEASED =
-            new Agent<>(Component::addMouseListener, Listeners::mouseReleased);
+    Event<Component, MouseEvent> MOUSE_RELEASED =
+            new Agent<>(Component::addMouseListener, Listeners::mouseReleased).event();
 
-    public static final Event<Component, MouseEvent> MOUSE_DRAGGED =
-            new Agent<>(Component::addMouseMotionListener, Listeners::mouseDragged);
+    Event<Component, MouseEvent> MOUSE_DRAGGED =
+            new Agent<>(Component::addMouseMotionListener, Listeners::mouseDragged).event();
 
-    public static final Event<Component, MouseWheelEvent> MOUSE_WHEEL_MOVED =
-            new Agent<>(Component::addMouseWheelListener, Listeners::mouseWheelMoved);
+    Event<Component, MouseWheelEvent> MOUSE_WHEEL_MOVED =
+            new Agent<>(Component::addMouseWheelListener, Listeners::mouseWheelMoved).event();
 
-    public static final Event<Component, PropertyChangeEvent> PROPERTY_CHANGE =
-            new Agent<>(Component::addPropertyChangeListener, Listeners::propertyChange);
+    Event<Component, PropertyChangeEvent> PROPERTY_CHANGE =
+            new Agent<>((Component c, PropertyChangeListener l) -> c.addPropertyChangeListener(l), Listeners::propertyChange).event();
 
-    public static final Event<Window, WindowEvent> WINDOW_GAINED_FOCUS =
-            new Agent<>(Window::addWindowFocusListener, Listeners::windowGainedFocus);
+    Event<Window, WindowEvent> WINDOW_GAINED_FOCUS =
+            new Agent<>(Window::addWindowFocusListener, Listeners::windowGainedFocus).event();
 
-    public static final Event<Window, WindowEvent> WINDOW_LOST_FOCUS =
-            new Agent<>(Window::addWindowFocusListener, Listeners::windowLostFocus);
+    Event<Window, WindowEvent> WINDOW_LOST_FOCUS =
+            new Agent<>(Window::addWindowFocusListener, Listeners::windowLostFocus).event();
 
-    public static final Event<Window, WindowEvent> WINDOW_ACTIVATED =
-            new Agent<>(Window::addWindowListener, Listeners::windowActivated);
+    Event<Window, WindowEvent> WINDOW_ACTIVATED =
+            new Agent<>(Window::addWindowListener, Listeners::windowActivated).event();
 
-    public static final Event<Window, WindowEvent> WINDOW_CLOSED =
-            new Agent<>(Window::addWindowListener, Listeners::windowClosed);
+    Event<Window, WindowEvent> WINDOW_CLOSED =
+            new Agent<>(Window::addWindowListener, Listeners::windowClosed).event();
 
-    public static final Event<Window, WindowEvent> WINDOW_CLOSING =
-            new Agent<>(Window::addWindowListener, Listeners::windowClosing);
+    Event<Window, WindowEvent> WINDOW_CLOSING =
+            new Agent<>(Window::addWindowListener, Listeners::windowClosing).event();
 
-    public static final Event<Window, WindowEvent> WINDOW_DEACTIVATED =
-            new Agent<>(Window::addWindowListener, Listeners::windowDeactivated);
+    Event<Window, WindowEvent> WINDOW_DEACTIVATED =
+            new Agent<>(Window::addWindowListener, Listeners::windowDeactivated).event();
 
-    public static final Event<Component, PropertyChangeEvent> propertyChange(final String propertyName) {
-        return new Agent<>((c, l) -> c.addPropertyChangeListener(propertyName, l), Listeners::propertyChange);
+    static Event<Component, PropertyChangeEvent> propertyChange(final String propertyName) {
+        return new Agent<>((Component c, PropertyChangeListener l) -> c.addPropertyChangeListener(propertyName, l),
+                           Listeners::propertyChange).event();
     }
 
     /**
      * Adds an appropriate {@link Consumer} to a given component of type {@code <C>} to process the associated
      * message of type {@code <M>} when an activity or event as expected in this context occurs.
      */
-    public abstract void add(C component, Consumer<M> reaction);
-
-    private static class Agent<C, L, M> extends Event<C, M> {
-
-        private final BiConsumer<C, L> addition;
-        private final Function<Consumer<M>, L> mapping;
-
-        public Agent(BiConsumer<C, L> addition, Function<Consumer<M>, L> mapping) {
-            this.addition = addition;
-            this.mapping = mapping;
-        }
-
-        @Override
-        public void add(C component, Consumer<M> reaction) {
-            addition.accept(component, mapping.apply(reaction));
-        }
-    }
+    void add(C component, Consumer<M> reaction);
 }
