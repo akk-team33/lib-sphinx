@@ -19,7 +19,7 @@ public class EventItem {
             "     * @see %1$s#%4$s(%6$s)%n" +
             "     */%n" +
             "    Event<%1$s, %2$s> %3$s =%n" +
-            "            new Agent<>(%1$s::%4$s, Listeners::%5$s).event();";
+            "            new EventAgent<>(%1$s::%4$s, Listeners::%5$s).event();";
 
     private final Set<Class<?>> dependencies;
     private final String addListenerClassName;

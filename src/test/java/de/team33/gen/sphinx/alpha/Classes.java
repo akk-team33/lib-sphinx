@@ -24,10 +24,10 @@ public class Classes {
                                                                   JMenuItem.class,
                                                                   JComponent.class,
                                                                   JSlider.class,
-                                                                  JComboBox.class, // skip for now
+                                                                  JComboBox.class, // skip for now?
                                                                   JTree.class,
                                                                   JRootPane.class,
-                                                                  JLayer.class, // skip for now
+                                                                  JLayer.class, // skip for now?
                                                                   JSplitPane.class,
                                                                   JPasswordField.class,
                                                                   JLabel.class,
@@ -43,7 +43,7 @@ public class Classes {
                                                                   JLayeredPane.class,
                                                                   JSeparator.class,
                                                                   JRadioButton.class,
-                                                                  JList.class, // skip for now
+                                                                  JList.class, // skip for now?
                                                                   JInternalFrame.class,
                                                                   JRadioButtonMenuItem.class,
                                                                   JTextPane.class,
