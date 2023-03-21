@@ -13,7 +13,7 @@ class ComponentsSetupTest {
     private static final Supply SUPPLY = new Supply();
 
     @Test
-    void setLocationSize() {
+    final void setLocationSize() {
         final Point location = SUPPLY.nextPoint();
         final Dimension size = SUPPLY.nextDimension();
         final JFrame frame = JFrames.builder()
@@ -27,7 +27,7 @@ class ComponentsSetupTest {
     }
 
     @Test
-    void setBounds_Rectangle() {
+    final void setBounds_Rectangle() {
         final Rectangle bounds = SUPPLY.nextRectangle();
         final JFrame frame = JFrames.builder()
                                     .setBounds(bounds)
@@ -38,7 +38,7 @@ class ComponentsSetupTest {
     }
 
     @Test
-    void setBounds_xywh() {
+    final void setBounds_xywh() {
         final Rectangle bounds = SUPPLY.nextRectangle();
         final JFrame frame = JFrames.builder()
                                     .setBounds(bounds.x, bounds.y, bounds.width, bounds.height)

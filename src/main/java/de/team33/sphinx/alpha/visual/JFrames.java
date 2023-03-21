@@ -1,8 +1,6 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import de.team33.sphinx.alpha.activity.Event;
-import de.team33.sphinx.alpha.option.Persistence;
 
 import java.awt.Component;
 import java.awt.Container;

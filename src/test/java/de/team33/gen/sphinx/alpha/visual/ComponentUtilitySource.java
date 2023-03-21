@@ -81,16 +81,16 @@ public class ComponentUtilitySource {
         return 0 == (componentClass.getModifiers() & Modifier.ABSTRACT);
     }
 
-    public String getName() {
+    public final String getName() {
         return target + "s";
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return String.format(FORMAT, target, factoryMethod1, factoryMethod2, builderSource, setupSource, imports);
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final ComponentUtilitySource source = new ComponentUtilitySource(JFrame.class);
         System.out.println(source);
     }

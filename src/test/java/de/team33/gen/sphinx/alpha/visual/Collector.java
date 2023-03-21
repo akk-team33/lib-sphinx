@@ -12,7 +12,7 @@ public class Collector {
 
     private static final Logger LOG = Logger.getLogger(Collector.class.getCanonicalName());
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final Set<? extends Class<?>> classes = ClassPath.classNames()
                                                          .filter(name -> name.startsWith("javax.swing"))
                                                          .map(Collector::toClass)
@@ -31,7 +31,7 @@ public class Collector {
     private static Class<?> toClass(final String name) {
         try {
             return Class.forName(name);
-        } catch (ClassNotFoundException e) {
+        } catch (final ClassNotFoundException e) {
             LOG.info("cannot load class " + name);
             return null;
         }

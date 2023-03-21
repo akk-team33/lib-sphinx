@@ -14,7 +14,7 @@ class EventAgent<C, L, M> {
         this.mapping = mapping;
     }
 
-    Event<C, M> event() {
+    final Event<C, M> event() {
         return (component, reaction) -> addition.accept(component, mapping.apply(reaction));
     }
 }

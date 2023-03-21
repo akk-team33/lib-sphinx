@@ -13,7 +13,7 @@ class JFramesTest {
     private static final Supply SUPPLY = new Supply();
 
     @Test
-    void setLocationSize() {
+    final void setLocationSize() {
         final Point location = SUPPLY.nextPoint();
         final Dimension size = SUPPLY.nextDimension();
         final JFrame frame = JFrames.builder()

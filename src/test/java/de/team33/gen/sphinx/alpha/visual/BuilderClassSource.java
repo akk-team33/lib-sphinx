@@ -28,11 +28,11 @@ public class BuilderClassSource {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return format(CODE_FORMAT, targetClassName);
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final BuilderClassSource source = new BuilderClassSource(Container.class);
         System.out.println(source);
     }

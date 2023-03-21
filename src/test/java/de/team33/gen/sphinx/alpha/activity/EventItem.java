@@ -60,7 +60,7 @@ public class EventItem {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return String.format(FORMAT,
                              addListenerClassName,
                              eventClassName,
@@ -70,7 +70,7 @@ public class EventItem {
                              listenerClassName);
     }
 
-    public static void main(String[] args) throws NoSuchMethodException {
+    public static void main(final String[] args) throws NoSuchMethodException {
         final Method addListenerMethod = Window.class.getMethod("addWindowListener",
                                                                 WindowListener.class);
         final Method listenerMethod = WindowListener.class.getMethod("windowClosing",

@@ -20,13 +20,13 @@ public class EventItems {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return items.stream()
                     .map(EventItem::toString)
                     .collect(Collectors.joining());
     }
 
-    public static void main(String[] args) throws NoSuchMethodException {
+    public static void main(final String[] args) throws NoSuchMethodException {
         final Method addListenerMethod = Window.class.getMethod("addWindowListener",
                                                                 WindowListener.class);
         final EventItems source = new EventItems(addListenerMethod);

@@ -25,7 +25,7 @@ public class Generator {
             // StandardOpenOption.TRUNCATE_EXISTING
     }; // <-- overwrite or not?
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Classes.stream()
                .filter(c -> !c.equals(Component.class)) // skip anyway!
                .filter(Component.class::isAssignableFrom)
@@ -39,7 +39,7 @@ public class Generator {
         final Path filePath = PACKAGE_PATH.resolve(fileName);
         try {
             Files.write(filePath, source.toString().getBytes(StandardCharsets.UTF_8), OPEN_OPTIONS);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             LOG.info(() -> "failed (already existing?): " + fileName + " (" + filePath + ")");
         }
     }

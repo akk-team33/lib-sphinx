@@ -1022,15 +1022,15 @@ public final class Listeners {
     private abstract static class AncestorAdapter implements AncestorListener {
 
         @Override
-        public void ancestorAdded(AncestorEvent event) {
+        public void ancestorAdded(final AncestorEvent event) {
         }
 
         @Override
-        public void ancestorRemoved(AncestorEvent event) {
+        public void ancestorRemoved(final AncestorEvent event) {
         }
 
         @Override
-        public void ancestorMoved(AncestorEvent event) {
+        public void ancestorMoved(final AncestorEvent event) {
         }
     }
 
@@ -1050,15 +1050,15 @@ public final class Listeners {
     private abstract static class PopupMenuAdapter implements PopupMenuListener {
 
         @Override
-        public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+        public void popupMenuWillBecomeVisible(final PopupMenuEvent e) {
         }
 
         @Override
-        public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+        public void popupMenuWillBecomeInvisible(final PopupMenuEvent e) {
         }
 
         @Override
-        public void popupMenuCanceled(PopupMenuEvent e) {
+        public void popupMenuCanceled(final PopupMenuEvent e) {
         }
     }
 
@@ -1066,15 +1066,15 @@ public final class Listeners {
     private abstract static class MenuKeyAdapter implements MenuKeyListener {
 
         @Override
-        public void menuKeyTyped(MenuKeyEvent e) {
+        public void menuKeyTyped(final MenuKeyEvent e) {
         }
 
         @Override
-        public void menuKeyPressed(MenuKeyEvent e) {
+        public void menuKeyPressed(final MenuKeyEvent e) {
         }
 
         @Override
-        public void menuKeyReleased(MenuKeyEvent e) {
+        public void menuKeyReleased(final MenuKeyEvent e) {
         }
     }
 
@@ -1082,19 +1082,19 @@ public final class Listeners {
     private abstract static class MenuDragMouseAdapter implements MenuDragMouseListener {
 
         @Override
-        public void menuDragMouseEntered(MenuDragMouseEvent e) {
+        public void menuDragMouseEntered(final MenuDragMouseEvent e) {
         }
 
         @Override
-        public void menuDragMouseExited(MenuDragMouseEvent e) {
+        public void menuDragMouseExited(final MenuDragMouseEvent e) {
         }
 
         @Override
-        public void menuDragMouseDragged(MenuDragMouseEvent e) {
+        public void menuDragMouseDragged(final MenuDragMouseEvent e) {
         }
 
         @Override
-        public void menuDragMouseReleased(MenuDragMouseEvent e) {
+        public void menuDragMouseReleased(final MenuDragMouseEvent e) {
         }
     }
 
@@ -1102,11 +1102,11 @@ public final class Listeners {
     private abstract static class TreeExpansionAdapter implements TreeExpansionListener {
 
         @Override
-        public void treeExpanded(TreeExpansionEvent event) {
+        public void treeExpanded(final TreeExpansionEvent event) {
         }
 
         @Override
-        public void treeCollapsed(TreeExpansionEvent event) {
+        public void treeCollapsed(final TreeExpansionEvent event) {
         }
     }
 
@@ -1114,11 +1114,11 @@ public final class Listeners {
     private abstract static class TreeWillExpandAdapter implements TreeWillExpandListener {
 
         @Override
-        public void treeWillExpand(TreeExpansionEvent event) {
+        public void treeWillExpand(final TreeExpansionEvent event) {
         }
 
         @Override
-        public void treeWillCollapse(TreeExpansionEvent event) {
+        public void treeWillCollapse(final TreeExpansionEvent event) {
         }
     }
 
@@ -1126,15 +1126,15 @@ public final class Listeners {
     private abstract static class MenuAdapter implements MenuListener {
         @Override
 
-        public void menuSelected(MenuEvent e) {
+        public void menuSelected(final MenuEvent e) {
         }
 
         @Override
-        public void menuDeselected(MenuEvent e) {
+        public void menuDeselected(final MenuEvent e) {
         }
 
         @Override
-        public void menuCanceled(MenuEvent e) {
+        public void menuCanceled(final MenuEvent e) {
         }
     }
 }

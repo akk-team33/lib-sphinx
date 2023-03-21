@@ -9,19 +9,19 @@ import java.util.Random;
 public class Supply extends Random implements Generator {
 
     @Override
-    public BigInteger nextBits(final int numBits) {
+    public final BigInteger nextBits(final int numBits) {
         return new BigInteger(numBits, this);
     }
 
-    public Point nextPoint() {
+    public final Point nextPoint() {
         return new Point(nextInt(16, 1024), nextInt(16, 1024));
     }
 
-    public Dimension nextDimension() {
+    public final Dimension nextDimension() {
         return new Dimension(nextInt(16, 1024), nextInt(16, 1024));
     }
 
-    public Rectangle nextRectangle() {
+    public final Rectangle nextRectangle() {
         return new Rectangle(nextPoint(), nextDimension());
     }
 }

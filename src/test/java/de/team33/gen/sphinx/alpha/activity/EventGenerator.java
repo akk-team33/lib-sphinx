@@ -20,18 +20,18 @@ class EventGenerator {
                              .collect(Collectors.toList());
     }
 
-    boolean isStuff() {
+    final boolean isStuff() {
         return 0 < content.size();
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return content.stream()
                       .map(EventItems::toString)
                       .collect(Collectors.joining());
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Classes.stream()
                .map(EventGenerator::new)
                .filter(EventGenerator::isStuff)

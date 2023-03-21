@@ -40,7 +40,7 @@ class JFramesTrial {
         frame.setTitle("mouse pressed @(" + e.getX() + ", " + e.getY() + ")");
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SwingUtilities.invokeLater(() -> new JFramesTrial(args));
     }
 }

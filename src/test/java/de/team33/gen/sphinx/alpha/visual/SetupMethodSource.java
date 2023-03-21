@@ -51,20 +51,20 @@ public class SetupMethodSource {
         return result;
     }
 
-    public Set<Class<?>> getDependencies() {
+    public final Set<Class<?>> getDependencies() {
         return dependencies;
     }
 
-    public String getSignature() {
+    public final String getSignature() {
         return "S " + name + "(" + parameterTypes + ")";
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return String.format(FORMAT, target, name, parameterTypes, formalParameters, actualParameters);
     }
 
-    public static void main(String[] args) throws NoSuchMethodException {
+    public static void main(final String[] args) throws NoSuchMethodException {
         final Method method = Container.class.getMethod("setFocusTraversalKeys", int.class, Set.class);
         final SetupMethodSource source = new SetupMethodSource(method);
         source.getDependencies().forEach(System.out::println);

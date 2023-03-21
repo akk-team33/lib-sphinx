@@ -48,16 +48,16 @@ public class SetupInterfaceSource {
                              .collect(Collectors.joining());
     }
 
-    public Set<Class<?>> getDependencies() {
+    public final Set<Class<?>> getDependencies() {
         return dependencies;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return String.format(FORMAT, target, ancestor, methods);
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final SetupInterfaceSource source = new SetupInterfaceSource(Container.class);
         source.getDependencies().forEach(System.out::println);
         System.out.println(source);

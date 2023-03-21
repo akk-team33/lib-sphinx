@@ -46,11 +46,11 @@ public class ListenersItem {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return String.format(FORMAT, listenerClassName, listenerMethodName, eventClassName, adapterClassName);
     }
 
-    public static void main(String[] args) throws NoSuchMethodException {
+    public static void main(final String[] args) throws NoSuchMethodException {
         final Method listenerMethod = WindowListener.class.getMethod("windowClosing",
                                                                      WindowEvent.class);
         final ListenersItem source = new ListenersItem(listenerMethod);
