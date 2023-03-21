@@ -7,7 +7,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.VetoableChangeListener;
 import java.util.function.Consumer;
 
-@SuppressWarnings({"AnonymousInnerClass", "unused"})
+@SuppressWarnings({"AnonymousInnerClass", "unused", "WeakerAccess", "ClassWithTooManyMethods"})
 public final class Listeners {
 
     private Listeners() {
@@ -19,7 +19,7 @@ public final class Listeners {
      *
      * @see PropertyChangeListener#propertyChange(PropertyChangeEvent)
      */
-    public static PropertyChangeListener propertyChange(final Consumer<PropertyChangeEvent> reaction) {
+    public static PropertyChangeListener propertyChange(final Consumer<? super PropertyChangeEvent> reaction) {
         return reaction::accept;
     }
 
@@ -29,7 +29,7 @@ public final class Listeners {
      *
      * @see ComponentListener#componentResized(ComponentEvent)
      */
-    public static ComponentListener componentResized(final Consumer<ComponentEvent> reaction) {
+    public static ComponentListener componentResized(final Consumer<? super ComponentEvent> reaction) {
         return new ComponentAdapter() {
             @Override
             public void componentResized(final ComponentEvent e) {
@@ -44,7 +44,7 @@ public final class Listeners {
      *
      * @see ComponentListener#componentMoved(ComponentEvent)
      */
-    public static ComponentListener componentMoved(final Consumer<ComponentEvent> reaction) {
+    public static ComponentListener componentMoved(final Consumer<? super ComponentEvent> reaction) {
         return new ComponentAdapter() {
             @Override
             public void componentMoved(final ComponentEvent e) {
@@ -59,7 +59,7 @@ public final class Listeners {
      *
      * @see ComponentListener#componentShown(ComponentEvent)
      */
-    public static ComponentListener componentShown(final Consumer<ComponentEvent> reaction) {
+    public static ComponentListener componentShown(final Consumer<? super ComponentEvent> reaction) {
         return new ComponentAdapter() {
             @Override
             public void componentShown(final ComponentEvent e) {
@@ -74,7 +74,7 @@ public final class Listeners {
      *
      * @see ComponentListener#componentHidden(ComponentEvent)
      */
-    public static ComponentListener componentHidden(final Consumer<ComponentEvent> reaction) {
+    public static ComponentListener componentHidden(final Consumer<? super ComponentEvent> reaction) {
         return new ComponentAdapter() {
             @Override
             public void componentHidden(final ComponentEvent e) {
@@ -89,7 +89,7 @@ public final class Listeners {
      *
      * @see FocusListener#focusGained(FocusEvent)
      */
-    public static FocusListener focusGained(final Consumer<FocusEvent> reaction) {
+    public static FocusListener focusGained(final Consumer<? super FocusEvent> reaction) {
         return new FocusAdapter() {
             @Override
             public void focusGained(final FocusEvent e) {
@@ -104,7 +104,7 @@ public final class Listeners {
      *
      * @see FocusListener#focusLost(FocusEvent)
      */
-    public static FocusListener focusLost(final Consumer<FocusEvent> reaction) {
+    public static FocusListener focusLost(final Consumer<? super FocusEvent> reaction) {
         return new FocusAdapter() {
             @Override
             public void focusLost(final FocusEvent e) {
@@ -119,7 +119,7 @@ public final class Listeners {
      *
      * @see HierarchyListener#hierarchyChanged(HierarchyEvent)
      */
-    public static HierarchyListener hierarchyChanged(final Consumer<HierarchyEvent> reaction) {
+    public static HierarchyListener hierarchyChanged(final Consumer<? super HierarchyEvent> reaction) {
         return reaction::accept;
     }
 
@@ -129,7 +129,7 @@ public final class Listeners {
      *
      * @see HierarchyBoundsListener#ancestorMoved(HierarchyEvent)
      */
-    public static HierarchyBoundsListener ancestorBoundsMoved(final Consumer<HierarchyEvent> reaction) {
+    public static HierarchyBoundsListener ancestorBoundsMoved(final Consumer<? super HierarchyEvent> reaction) {
         return new HierarchyBoundsAdapter() {
             @Override
             public void ancestorMoved(final HierarchyEvent e) {
@@ -144,7 +144,7 @@ public final class Listeners {
      *
      * @see HierarchyBoundsListener#ancestorResized(HierarchyEvent)
      */
-    public static HierarchyBoundsListener ancestorBoundsResized(final Consumer<HierarchyEvent> reaction) {
+    public static HierarchyBoundsListener ancestorBoundsResized(final Consumer<? super HierarchyEvent> reaction) {
         return new HierarchyBoundsAdapter() {
             @Override
             public void ancestorResized(final HierarchyEvent e) {
@@ -159,7 +159,7 @@ public final class Listeners {
      *
      * @see KeyListener#keyTyped(KeyEvent)
      */
-    public static KeyListener keyTyped(final Consumer<KeyEvent> reaction) {
+    public static KeyListener keyTyped(final Consumer<? super KeyEvent> reaction) {
         return new KeyAdapter() {
             @Override
             public void keyTyped(final KeyEvent e) {
@@ -174,7 +174,7 @@ public final class Listeners {
      *
      * @see KeyListener#keyPressed(KeyEvent)
      */
-    public static KeyListener keyPressed(final Consumer<KeyEvent> reaction) {
+    public static KeyListener keyPressed(final Consumer<? super KeyEvent> reaction) {
         return new KeyAdapter() {
             @Override
             public void keyPressed(final KeyEvent e) {
@@ -189,7 +189,7 @@ public final class Listeners {
      *
      * @see KeyListener#keyReleased(KeyEvent)
      */
-    public static KeyListener keyReleased(final Consumer<KeyEvent> reaction) {
+    public static KeyListener keyReleased(final Consumer<? super KeyEvent> reaction) {
         return new KeyAdapter() {
             @Override
             public void keyReleased(final KeyEvent e) {
@@ -204,7 +204,7 @@ public final class Listeners {
      *
      * @see MouseListener#mousePressed(MouseEvent)
      */
-    public static MouseListener mousePressed(final Consumer<MouseEvent> reaction) {
+    public static MouseListener mousePressed(final Consumer<? super MouseEvent> reaction) {
         return new MouseAdapter() {
             @Override
             public void mousePressed(final MouseEvent e) {
@@ -219,7 +219,7 @@ public final class Listeners {
      *
      * @see MouseListener#mouseReleased(MouseEvent)
      */
-    public static MouseListener mouseReleased(final Consumer<MouseEvent> reaction) {
+    public static MouseListener mouseReleased(final Consumer<? super MouseEvent> reaction) {
         return new MouseAdapter() {
             @Override
             public void mouseReleased(final MouseEvent e) {
@@ -234,7 +234,7 @@ public final class Listeners {
      *
      * @see MouseListener#mouseClicked(MouseEvent)
      */
-    public static MouseListener mouseClicked(final Consumer<MouseEvent> reaction) {
+    public static MouseListener mouseClicked(final Consumer<? super MouseEvent> reaction) {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(final MouseEvent e) {
@@ -249,7 +249,7 @@ public final class Listeners {
      *
      * @see MouseListener#mouseExited(MouseEvent)
      */
-    public static MouseListener mouseExited(final Consumer<MouseEvent> reaction) {
+    public static MouseListener mouseExited(final Consumer<? super MouseEvent> reaction) {
         return new MouseAdapter() {
             @Override
             public void mouseExited(final MouseEvent e) {
@@ -264,7 +264,7 @@ public final class Listeners {
      *
      * @see MouseListener#mouseEntered(MouseEvent)
      */
-    public static MouseListener mouseEntered(final Consumer<MouseEvent> reaction) {
+    public static MouseListener mouseEntered(final Consumer<? super MouseEvent> reaction) {
         return new MouseAdapter() {
             @Override
             public void mouseEntered(final MouseEvent e) {
@@ -279,7 +279,7 @@ public final class Listeners {
      *
      * @see MouseMotionListener#mouseMoved(MouseEvent)
      */
-    public static MouseMotionListener mouseMoved(final Consumer<MouseEvent> reaction) {
+    public static MouseMotionListener mouseMoved(final Consumer<? super MouseEvent> reaction) {
         return new MouseMotionAdapter() {
             @Override
             public void mouseMoved(final MouseEvent e) {
@@ -294,7 +294,7 @@ public final class Listeners {
      *
      * @see MouseMotionListener#mouseDragged(MouseEvent)
      */
-    public static MouseMotionListener mouseDragged(final Consumer<MouseEvent> reaction) {
+    public static MouseMotionListener mouseDragged(final Consumer<? super MouseEvent> reaction) {
         return new MouseMotionAdapter() {
             @Override
             public void mouseDragged(final MouseEvent e) {
@@ -309,7 +309,7 @@ public final class Listeners {
      *
      * @see MouseWheelListener#mouseWheelMoved(MouseWheelEvent)
      */
-    public static MouseWheelListener mouseWheelMoved(final Consumer<MouseWheelEvent> reaction) {
+    public static MouseWheelListener mouseWheelMoved(final Consumer<? super MouseWheelEvent> reaction) {
         return reaction::accept;
     }
 
@@ -319,7 +319,7 @@ public final class Listeners {
      *
      * @see InputMethodListener#inputMethodTextChanged(InputMethodEvent)
      */
-    public static InputMethodListener inputMethodTextChanged(final Consumer<InputMethodEvent> reaction) {
+    public static InputMethodListener inputMethodTextChanged(final Consumer<? super InputMethodEvent> reaction) {
         return new InputMethodAdapter() {
             @Override
             public void inputMethodTextChanged(final InputMethodEvent e) {
@@ -334,7 +334,7 @@ public final class Listeners {
      *
      * @see InputMethodListener#caretPositionChanged(InputMethodEvent)
      */
-    public static InputMethodListener caretPositionChanged(final Consumer<InputMethodEvent> reaction) {
+    public static InputMethodListener caretPositionChanged(final Consumer<? super InputMethodEvent> reaction) {
         return new InputMethodAdapter() {
             @Override
             public void caretPositionChanged(final InputMethodEvent e) {
@@ -349,7 +349,7 @@ public final class Listeners {
      *
      * @see ContainerListener#componentAdded(ContainerEvent)
      */
-    public static ContainerListener componentAdded(final Consumer<ContainerEvent> reaction) {
+    public static ContainerListener componentAdded(final Consumer<? super ContainerEvent> reaction) {
         return new ContainerAdapter() {
             @Override
             public void componentAdded(final ContainerEvent e) {
@@ -364,7 +364,7 @@ public final class Listeners {
      *
      * @see ContainerListener#componentRemoved(ContainerEvent)
      */
-    public static ContainerListener componentRemoved(final Consumer<ContainerEvent> reaction) {
+    public static ContainerListener componentRemoved(final Consumer<? super ContainerEvent> reaction) {
         return new ContainerAdapter() {
             @Override
             public void componentRemoved(final ContainerEvent e) {
@@ -379,7 +379,7 @@ public final class Listeners {
      *
      * @see VetoableChangeListener#vetoableChange(PropertyChangeEvent)
      */
-    public static VetoableChangeListener vetoableChange(final Consumer<PropertyChangeEvent> reaction) {
+    public static VetoableChangeListener vetoableChange(final Consumer<? super PropertyChangeEvent> reaction) {
         return reaction::accept;
     }
 
@@ -389,7 +389,7 @@ public final class Listeners {
      *
      * @see AncestorListener#ancestorMoved(AncestorEvent)
      */
-    public static AncestorListener ancestorMoved(final Consumer<AncestorEvent> reaction) {
+    public static AncestorListener ancestorMoved(final Consumer<? super AncestorEvent> reaction) {
         return new AncestorAdapter() {
             @Override
             public void ancestorMoved(final AncestorEvent e) {
@@ -404,7 +404,7 @@ public final class Listeners {
      *
      * @see AncestorListener#ancestorAdded(AncestorEvent)
      */
-    public static AncestorListener ancestorAdded(final Consumer<AncestorEvent> reaction) {
+    public static AncestorListener ancestorAdded(final Consumer<? super AncestorEvent> reaction) {
         return new AncestorAdapter() {
             @Override
             public void ancestorAdded(final AncestorEvent e) {
@@ -419,7 +419,7 @@ public final class Listeners {
      *
      * @see AncestorListener#ancestorRemoved(AncestorEvent)
      */
-    public static AncestorListener ancestorRemoved(final Consumer<AncestorEvent> reaction) {
+    public static AncestorListener ancestorRemoved(final Consumer<? super AncestorEvent> reaction) {
         return new AncestorAdapter() {
             @Override
             public void ancestorRemoved(final AncestorEvent e) {
@@ -434,7 +434,7 @@ public final class Listeners {
      *
      * @see CaretListener#caretUpdate(CaretEvent)
      */
-    public static CaretListener caretUpdate(final Consumer<CaretEvent> reaction) {
+    public static CaretListener caretUpdate(final Consumer<? super CaretEvent> reaction) {
         return reaction::accept;
     }
 
@@ -444,7 +444,7 @@ public final class Listeners {
      *
      * @see ChangeListener#stateChanged(ChangeEvent)
      */
-    public static ChangeListener stateChanged(final Consumer<ChangeEvent> reaction) {
+    public static ChangeListener stateChanged(final Consumer<? super ChangeEvent> reaction) {
         return reaction::accept;
     }
 
@@ -454,7 +454,7 @@ public final class Listeners {
      *
      * @see ActionListener#actionPerformed(ActionEvent)
      */
-    public static ActionListener actionPerformed(final Consumer<ActionEvent> reaction) {
+    public static ActionListener actionPerformed(final Consumer<? super ActionEvent> reaction) {
         return reaction::accept;
     }
 
@@ -464,7 +464,7 @@ public final class Listeners {
      *
      * @see PopupMenuListener#popupMenuWillBecomeVisible(PopupMenuEvent)
      */
-    public static PopupMenuListener popupMenuWillBecomeVisible(final Consumer<PopupMenuEvent> reaction) {
+    public static PopupMenuListener popupMenuWillBecomeVisible(final Consumer<? super PopupMenuEvent> reaction) {
         return new PopupMenuAdapter() {
             @Override
             public void popupMenuWillBecomeVisible(final PopupMenuEvent e) {
@@ -479,7 +479,7 @@ public final class Listeners {
      *
      * @see PopupMenuListener#popupMenuWillBecomeInvisible(PopupMenuEvent)
      */
-    public static PopupMenuListener popupMenuWillBecomeInvisible(final Consumer<PopupMenuEvent> reaction) {
+    public static PopupMenuListener popupMenuWillBecomeInvisible(final Consumer<? super PopupMenuEvent> reaction) {
         return new PopupMenuAdapter() {
             @Override
             public void popupMenuWillBecomeInvisible(final PopupMenuEvent e) {
@@ -494,7 +494,7 @@ public final class Listeners {
      *
      * @see PopupMenuListener#popupMenuCanceled(PopupMenuEvent)
      */
-    public static PopupMenuListener popupMenuCanceled(final Consumer<PopupMenuEvent> reaction) {
+    public static PopupMenuListener popupMenuCanceled(final Consumer<? super PopupMenuEvent> reaction) {
         return new PopupMenuAdapter() {
             @Override
             public void popupMenuCanceled(final PopupMenuEvent e) {
@@ -509,7 +509,7 @@ public final class Listeners {
      *
      * @see MenuKeyListener#menuKeyPressed(MenuKeyEvent)
      */
-    public static MenuKeyListener menuKeyPressed(final Consumer<MenuKeyEvent> reaction) {
+    public static MenuKeyListener menuKeyPressed(final Consumer<? super MenuKeyEvent> reaction) {
         return new MenuKeyAdapter() {
             @Override
             public void menuKeyPressed(final MenuKeyEvent e) {
@@ -524,7 +524,7 @@ public final class Listeners {
      *
      * @see MenuKeyListener#menuKeyReleased(MenuKeyEvent)
      */
-    public static MenuKeyListener menuKeyReleased(final Consumer<MenuKeyEvent> reaction) {
+    public static MenuKeyListener menuKeyReleased(final Consumer<? super MenuKeyEvent> reaction) {
         return new MenuKeyAdapter() {
             @Override
             public void menuKeyReleased(final MenuKeyEvent e) {
@@ -539,7 +539,7 @@ public final class Listeners {
      *
      * @see MenuKeyListener#menuKeyTyped(MenuKeyEvent)
      */
-    public static MenuKeyListener menuKeyTyped(final Consumer<MenuKeyEvent> reaction) {
+    public static MenuKeyListener menuKeyTyped(final Consumer<? super MenuKeyEvent> reaction) {
         return new MenuKeyAdapter() {
             @Override
             public void menuKeyTyped(final MenuKeyEvent e) {
@@ -554,7 +554,7 @@ public final class Listeners {
      *
      * @see WindowListener#windowOpened(WindowEvent)
      */
-    public static WindowListener windowOpened(final Consumer<WindowEvent> reaction) {
+    public static WindowListener windowOpened(final Consumer<? super WindowEvent> reaction) {
         return new WindowAdapter() {
             @Override
             public void windowOpened(final WindowEvent e) {
@@ -569,7 +569,7 @@ public final class Listeners {
      *
      * @see WindowListener#windowClosing(WindowEvent)
      */
-    public static WindowListener windowClosing(final Consumer<WindowEvent> reaction) {
+    public static WindowListener windowClosing(final Consumer<? super WindowEvent> reaction) {
         return new WindowAdapter() {
             @Override
             public void windowClosing(final WindowEvent e) {
@@ -584,7 +584,7 @@ public final class Listeners {
      *
      * @see WindowListener#windowClosed(WindowEvent)
      */
-    public static WindowListener windowClosed(final Consumer<WindowEvent> reaction) {
+    public static WindowListener windowClosed(final Consumer<? super WindowEvent> reaction) {
         return new WindowAdapter() {
             @Override
             public void windowClosed(final WindowEvent e) {
@@ -599,7 +599,7 @@ public final class Listeners {
      *
      * @see WindowListener#windowIconified(WindowEvent)
      */
-    public static WindowListener windowIconified(final Consumer<WindowEvent> reaction) {
+    public static WindowListener windowIconified(final Consumer<? super WindowEvent> reaction) {
         return new WindowAdapter() {
             @Override
             public void windowIconified(final WindowEvent e) {
@@ -614,7 +614,7 @@ public final class Listeners {
      *
      * @see WindowListener#windowDeiconified(WindowEvent)
      */
-    public static WindowListener windowDeiconified(final Consumer<WindowEvent> reaction) {
+    public static WindowListener windowDeiconified(final Consumer<? super WindowEvent> reaction) {
         return new WindowAdapter() {
             @Override
             public void windowDeiconified(final WindowEvent e) {
@@ -629,7 +629,7 @@ public final class Listeners {
      *
      * @see WindowListener#windowActivated(WindowEvent)
      */
-    public static WindowListener windowActivated(final Consumer<WindowEvent> reaction) {
+    public static WindowListener windowActivated(final Consumer<? super WindowEvent> reaction) {
         return new WindowAdapter() {
             @Override
             public void windowActivated(final WindowEvent e) {
@@ -644,7 +644,7 @@ public final class Listeners {
      *
      * @see WindowListener#windowDeactivated(WindowEvent)
      */
-    public static WindowListener windowDeactivated(final Consumer<WindowEvent> reaction) {
+    public static WindowListener windowDeactivated(final Consumer<? super WindowEvent> reaction) {
         return new WindowAdapter() {
             @Override
             public void windowDeactivated(final WindowEvent e) {
@@ -659,7 +659,7 @@ public final class Listeners {
      *
      * @see WindowFocusListener#windowGainedFocus(WindowEvent)
      */
-    public static WindowFocusListener windowGainedFocus(final Consumer<WindowEvent> reaction) {
+    public static WindowFocusListener windowGainedFocus(final Consumer<? super WindowEvent> reaction) {
         return new WindowAdapter() {
             @Override
             public void windowGainedFocus(final WindowEvent e) {
@@ -674,7 +674,7 @@ public final class Listeners {
      *
      * @see WindowFocusListener#windowLostFocus(WindowEvent)
      */
-    public static WindowFocusListener windowLostFocus(final Consumer<WindowEvent> reaction) {
+    public static WindowFocusListener windowLostFocus(final Consumer<? super WindowEvent> reaction) {
         return new WindowAdapter() {
             @Override
             public void windowLostFocus(final WindowEvent e) {
@@ -689,7 +689,7 @@ public final class Listeners {
      *
      * @see WindowStateListener#windowStateChanged(WindowEvent)
      */
-    public static WindowStateListener windowStateChanged(final Consumer<WindowEvent> reaction) {
+    public static WindowStateListener windowStateChanged(final Consumer<? super WindowEvent> reaction) {
         return new WindowAdapter() {
             @Override
             public void windowStateChanged(final WindowEvent e) {
@@ -704,7 +704,7 @@ public final class Listeners {
      *
      * @see ItemListener#itemStateChanged(ItemEvent)
      */
-    public static ItemListener itemStateChanged(final Consumer<ItemEvent> reaction) {
+    public static ItemListener itemStateChanged(final Consumer<? super ItemEvent> reaction) {
         return reaction::accept;
     }
 
@@ -714,7 +714,7 @@ public final class Listeners {
      *
      * @see MenuDragMouseListener#menuDragMouseEntered(MenuDragMouseEvent)
      */
-    public static MenuDragMouseListener menuDragMouseEntered(final Consumer<MenuDragMouseEvent> reaction) {
+    public static MenuDragMouseListener menuDragMouseEntered(final Consumer<? super MenuDragMouseEvent> reaction) {
         return new MenuDragMouseAdapter() {
             @Override
             public void menuDragMouseEntered(final MenuDragMouseEvent e) {
@@ -729,7 +729,7 @@ public final class Listeners {
      *
      * @see MenuDragMouseListener#menuDragMouseExited(MenuDragMouseEvent)
      */
-    public static MenuDragMouseListener menuDragMouseExited(final Consumer<MenuDragMouseEvent> reaction) {
+    public static MenuDragMouseListener menuDragMouseExited(final Consumer<? super MenuDragMouseEvent> reaction) {
         return new MenuDragMouseAdapter() {
             @Override
             public void menuDragMouseExited(final MenuDragMouseEvent e) {
@@ -744,7 +744,7 @@ public final class Listeners {
      *
      * @see MenuDragMouseListener#menuDragMouseDragged(MenuDragMouseEvent)
      */
-    public static MenuDragMouseListener menuDragMouseDragged(final Consumer<MenuDragMouseEvent> reaction) {
+    public static MenuDragMouseListener menuDragMouseDragged(final Consumer<? super MenuDragMouseEvent> reaction) {
         return new MenuDragMouseAdapter() {
             @Override
             public void menuDragMouseDragged(final MenuDragMouseEvent e) {
@@ -759,7 +759,7 @@ public final class Listeners {
      *
      * @see MenuDragMouseListener#menuDragMouseReleased(MenuDragMouseEvent)
      */
-    public static MenuDragMouseListener menuDragMouseReleased(final Consumer<MenuDragMouseEvent> reaction) {
+    public static MenuDragMouseListener menuDragMouseReleased(final Consumer<? super MenuDragMouseEvent> reaction) {
         return new MenuDragMouseAdapter() {
             @Override
             public void menuDragMouseReleased(final MenuDragMouseEvent e) {
@@ -774,7 +774,7 @@ public final class Listeners {
      *
      * @see TreeExpansionListener#treeExpanded(TreeExpansionEvent)
      */
-    public static TreeExpansionListener treeExpanded(final Consumer<TreeExpansionEvent> reaction) {
+    public static TreeExpansionListener treeExpanded(final Consumer<? super TreeExpansionEvent> reaction) {
         return new TreeExpansionAdapter() {
             @Override
             public void treeExpanded(final TreeExpansionEvent e) {
@@ -789,7 +789,7 @@ public final class Listeners {
      *
      * @see TreeExpansionListener#treeCollapsed(TreeExpansionEvent)
      */
-    public static TreeExpansionListener treeCollapsed(final Consumer<TreeExpansionEvent> reaction) {
+    public static TreeExpansionListener treeCollapsed(final Consumer<? super TreeExpansionEvent> reaction) {
         return new TreeExpansionAdapter() {
             @Override
             public void treeCollapsed(final TreeExpansionEvent e) {
@@ -804,7 +804,7 @@ public final class Listeners {
      *
      * @see TreeWillExpandListener#treeWillExpand(TreeExpansionEvent)
      */
-    public static TreeWillExpandListener treeWillExpand(final Consumer<TreeExpansionEvent> reaction) {
+    public static TreeWillExpandListener treeWillExpand(final Consumer<? super TreeExpansionEvent> reaction) {
         return new TreeWillExpandAdapter() {
             @Override
             public void treeWillExpand(final TreeExpansionEvent e) {
@@ -819,7 +819,7 @@ public final class Listeners {
      *
      * @see TreeWillExpandListener#treeWillCollapse(TreeExpansionEvent)
      */
-    public static TreeWillExpandListener treeWillCollapse(final Consumer<TreeExpansionEvent> reaction) {
+    public static TreeWillExpandListener treeWillCollapse(final Consumer<? super TreeExpansionEvent> reaction) {
         return new TreeWillExpandAdapter() {
             @Override
             public void treeWillCollapse(final TreeExpansionEvent e) {
@@ -834,7 +834,7 @@ public final class Listeners {
      *
      * @see TreeSelectionListener#valueChanged(TreeSelectionEvent)
      */
-    public static TreeSelectionListener treeValueChanged(final Consumer<TreeSelectionEvent> reaction) {
+    public static TreeSelectionListener treeValueChanged(final Consumer<? super TreeSelectionEvent> reaction) {
         return reaction::accept;
     }
 
@@ -844,7 +844,7 @@ public final class Listeners {
      *
      * @see AdjustmentListener#adjustmentValueChanged(AdjustmentEvent)
      */
-    public static AdjustmentListener adjustmentValueChanged(final Consumer<AdjustmentEvent> reaction) {
+    public static AdjustmentListener adjustmentValueChanged(final Consumer<? super AdjustmentEvent> reaction) {
         return reaction::accept;
     }
 
@@ -854,7 +854,7 @@ public final class Listeners {
      *
      * @see ListSelectionListener#valueChanged(ListSelectionEvent)
      */
-    public static ListSelectionListener listValueChanged(final Consumer<ListSelectionEvent> reaction) {
+    public static ListSelectionListener listValueChanged(final Consumer<? super ListSelectionEvent> reaction) {
         return reaction::accept;
     }
 
@@ -864,7 +864,7 @@ public final class Listeners {
      *
      * @see InternalFrameListener#internalFrameOpened(InternalFrameEvent)
      */
-    public static InternalFrameListener internalFrameOpened(final Consumer<InternalFrameEvent> reaction) {
+    public static InternalFrameListener internalFrameOpened(final Consumer<? super InternalFrameEvent> reaction) {
         return new InternalFrameAdapter() {
             @Override
             public void internalFrameOpened(final InternalFrameEvent e) {
@@ -879,7 +879,7 @@ public final class Listeners {
      *
      * @see InternalFrameListener#internalFrameClosing(InternalFrameEvent)
      */
-    public static InternalFrameListener internalFrameClosing(final Consumer<InternalFrameEvent> reaction) {
+    public static InternalFrameListener internalFrameClosing(final Consumer<? super InternalFrameEvent> reaction) {
         return new InternalFrameAdapter() {
             @Override
             public void internalFrameClosing(final InternalFrameEvent e) {
@@ -894,7 +894,7 @@ public final class Listeners {
      *
      * @see InternalFrameListener#internalFrameClosed(InternalFrameEvent)
      */
-    public static InternalFrameListener internalFrameClosed(final Consumer<InternalFrameEvent> reaction) {
+    public static InternalFrameListener internalFrameClosed(final Consumer<? super InternalFrameEvent> reaction) {
         return new InternalFrameAdapter() {
             @Override
             public void internalFrameClosed(final InternalFrameEvent e) {
@@ -909,7 +909,7 @@ public final class Listeners {
      *
      * @see InternalFrameListener#internalFrameIconified(InternalFrameEvent)
      */
-    public static InternalFrameListener internalFrameIconified(final Consumer<InternalFrameEvent> reaction) {
+    public static InternalFrameListener internalFrameIconified(final Consumer<? super InternalFrameEvent> reaction) {
         return new InternalFrameAdapter() {
             @Override
             public void internalFrameIconified(final InternalFrameEvent e) {
@@ -924,7 +924,7 @@ public final class Listeners {
      *
      * @see InternalFrameListener#internalFrameDeiconified(InternalFrameEvent)
      */
-    public static InternalFrameListener internalFrameDeiconified(final Consumer<InternalFrameEvent> reaction) {
+    public static InternalFrameListener internalFrameDeiconified(final Consumer<? super InternalFrameEvent> reaction) {
         return new InternalFrameAdapter() {
             @Override
             public void internalFrameDeiconified(final InternalFrameEvent e) {
@@ -939,7 +939,7 @@ public final class Listeners {
      *
      * @see InternalFrameListener#internalFrameActivated(InternalFrameEvent)
      */
-    public static InternalFrameListener internalFrameActivated(final Consumer<InternalFrameEvent> reaction) {
+    public static InternalFrameListener internalFrameActivated(final Consumer<? super InternalFrameEvent> reaction) {
         return new InternalFrameAdapter() {
             @Override
             public void internalFrameActivated(final InternalFrameEvent e) {
@@ -954,7 +954,7 @@ public final class Listeners {
      *
      * @see InternalFrameListener#internalFrameDeactivated(InternalFrameEvent)
      */
-    public static InternalFrameListener internalFrameDeactivated(final Consumer<InternalFrameEvent> reaction) {
+    public static InternalFrameListener internalFrameDeactivated(final Consumer<? super InternalFrameEvent> reaction) {
         return new InternalFrameAdapter() {
             @Override
             public void internalFrameDeactivated(final InternalFrameEvent e) {
@@ -969,7 +969,7 @@ public final class Listeners {
      *
      * @see HyperlinkListener#hyperlinkUpdate(HyperlinkEvent)
      */
-    public static HyperlinkListener hyperlinkUpdate(final Consumer<HyperlinkEvent> reaction) {
+    public static HyperlinkListener hyperlinkUpdate(final Consumer<? super HyperlinkEvent> reaction) {
         return reaction::accept;
     }
 
@@ -979,7 +979,7 @@ public final class Listeners {
      *
      * @see MenuListener#menuSelected(MenuEvent)
      */
-    public static MenuListener menuSelected(final Consumer<MenuEvent> reaction) {
+    public static MenuListener menuSelected(final Consumer<? super MenuEvent> reaction) {
         return new MenuAdapter() {
             @Override
             public void menuSelected(final MenuEvent e) {
@@ -994,7 +994,7 @@ public final class Listeners {
      *
      * @see MenuListener#menuDeselected(MenuEvent)
      */
-    public static MenuListener menuDeselected(final Consumer<MenuEvent> reaction) {
+    public static MenuListener menuDeselected(final Consumer<? super MenuEvent> reaction) {
         return new MenuAdapter() {
             @Override
             public void menuDeselected(final MenuEvent e) {
@@ -1009,7 +1009,7 @@ public final class Listeners {
      *
      * @see MenuListener#menuCanceled(MenuEvent)
      */
-    public static MenuListener menuCanceled(final Consumer<MenuEvent> reaction) {
+    public static MenuListener menuCanceled(final Consumer<? super MenuEvent> reaction) {
         return new MenuAdapter() {
             @Override
             public void menuCanceled(final MenuEvent e) {
@@ -1019,7 +1019,7 @@ public final class Listeners {
     }
 
     @SuppressWarnings({"NoopMethodInAbstractClass", "AbstractClassWithoutAbstractMethods"})
-    private abstract static class AncestorAdapter implements AncestorListener {
+    abstract static class AncestorAdapter implements AncestorListener {
 
         @Override
         public void ancestorAdded(final AncestorEvent event) {
@@ -1035,7 +1035,7 @@ public final class Listeners {
     }
 
     @SuppressWarnings({"NoopMethodInAbstractClass", "AbstractClassWithoutAbstractMethods"})
-    private abstract static class InputMethodAdapter implements InputMethodListener {
+    abstract static class InputMethodAdapter implements InputMethodListener {
 
         @Override
         public void inputMethodTextChanged(final InputMethodEvent event) {
@@ -1047,7 +1047,7 @@ public final class Listeners {
     }
 
     @SuppressWarnings({"NoopMethodInAbstractClass", "AbstractClassWithoutAbstractMethods"})
-    private abstract static class PopupMenuAdapter implements PopupMenuListener {
+    abstract static class PopupMenuAdapter implements PopupMenuListener {
 
         @Override
         public void popupMenuWillBecomeVisible(final PopupMenuEvent e) {
@@ -1063,7 +1063,7 @@ public final class Listeners {
     }
 
     @SuppressWarnings({"NoopMethodInAbstractClass", "AbstractClassWithoutAbstractMethods"})
-    private abstract static class MenuKeyAdapter implements MenuKeyListener {
+    abstract static class MenuKeyAdapter implements MenuKeyListener {
 
         @Override
         public void menuKeyTyped(final MenuKeyEvent e) {
@@ -1079,7 +1079,7 @@ public final class Listeners {
     }
 
     @SuppressWarnings({"NoopMethodInAbstractClass", "AbstractClassWithoutAbstractMethods"})
-    private abstract static class MenuDragMouseAdapter implements MenuDragMouseListener {
+    abstract static class MenuDragMouseAdapter implements MenuDragMouseListener {
 
         @Override
         public void menuDragMouseEntered(final MenuDragMouseEvent e) {
@@ -1099,7 +1099,7 @@ public final class Listeners {
     }
 
     @SuppressWarnings({"NoopMethodInAbstractClass", "AbstractClassWithoutAbstractMethods"})
-    private abstract static class TreeExpansionAdapter implements TreeExpansionListener {
+    abstract static class TreeExpansionAdapter implements TreeExpansionListener {
 
         @Override
         public void treeExpanded(final TreeExpansionEvent event) {
@@ -1111,7 +1111,7 @@ public final class Listeners {
     }
 
     @SuppressWarnings({"NoopMethodInAbstractClass", "AbstractClassWithoutAbstractMethods"})
-    private abstract static class TreeWillExpandAdapter implements TreeWillExpandListener {
+    abstract static class TreeWillExpandAdapter implements TreeWillExpandListener {
 
         @Override
         public void treeWillExpand(final TreeExpansionEvent event) {
@@ -1123,7 +1123,7 @@ public final class Listeners {
     }
 
     @SuppressWarnings({"NoopMethodInAbstractClass", "AbstractClassWithoutAbstractMethods"})
-    private abstract static class MenuAdapter implements MenuListener {
+    abstract static class MenuAdapter implements MenuListener {
         @Override
 
         public void menuSelected(final MenuEvent e) {
