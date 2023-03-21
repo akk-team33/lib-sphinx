@@ -57,29 +57,29 @@ public final class JSpinners {
         /**
          * @see JSpinner#setEditor(JComponent)
          */
-        default S setEditor(final JComponent arg0) {
-            return setup(result -> result.setEditor(arg0));
+        default S setEditor(final JComponent editor) {
+            return setup(result -> result.setEditor(editor));
         }
 
         /**
          * @see JSpinner#setModel(SpinnerModel)
          */
-        default S setModel(final SpinnerModel arg0) {
-            return setup(result -> result.setModel(arg0));
+        default S setModel(final SpinnerModel model) {
+            return setup(result -> result.setModel(model));
         }
 
         /**
          * @see JSpinner#setUI(SpinnerUI)
          */
-        default S setUI(final SpinnerUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final SpinnerUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JSpinner#setValue(Object)
          */
-        default S setValue(final Object arg0) {
-            return setup(result -> result.setValue(arg0));
+        default S setValue(final Object value) {
+            return setup(result -> result.setValue(value));
         }
     }
 }

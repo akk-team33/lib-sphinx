@@ -4,7 +4,6 @@ import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Font;
 import java.util.function.Supplier;
 import javax.swing.JTextArea;
-import javax.swing.text.JTextComponent;
 
 /**
  * Utility class to handle {@link JTextArea}s.
@@ -56,43 +55,43 @@ public final class JTextAreas {
         /**
          * @see JTextArea#setColumns(int)
          */
-        default S setColumns(final int arg0) {
-            return setup(result -> result.setColumns(arg0));
+        default S setColumns(final int columns) {
+            return setup(result -> result.setColumns(columns));
         }
 
         /**
          * @see JTextArea#setFont(Font)
          */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
+        default S setFont(final Font f) {
+            return setup(result -> result.setFont(f));
         }
 
         /**
          * @see JTextArea#setLineWrap(boolean)
          */
-        default S setLineWrap(final boolean arg0) {
-            return setup(result -> result.setLineWrap(arg0));
+        default S setLineWrap(final boolean wrap) {
+            return setup(result -> result.setLineWrap(wrap));
         }
 
         /**
          * @see JTextArea#setRows(int)
          */
-        default S setRows(final int arg0) {
-            return setup(result -> result.setRows(arg0));
+        default S setRows(final int rows) {
+            return setup(result -> result.setRows(rows));
         }
 
         /**
          * @see JTextArea#setTabSize(int)
          */
-        default S setTabSize(final int arg0) {
-            return setup(result -> result.setTabSize(arg0));
+        default S setTabSize(final int size) {
+            return setup(result -> result.setTabSize(size));
         }
 
         /**
          * @see JTextArea#setWrapStyleWord(boolean)
          */
-        default S setWrapStyleWord(final boolean arg0) {
-            return setup(result -> result.setWrapStyleWord(arg0));
+        default S setWrapStyleWord(final boolean word) {
+            return setup(result -> result.setWrapStyleWord(word));
         }
     }
 }

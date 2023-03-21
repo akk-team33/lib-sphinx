@@ -53,134 +53,134 @@ public final class AbstractButtons {
         /**
          * @see AbstractButton#setAction(Action)
          */
-        default S setAction(final Action arg0) {
-            return setup(result -> result.setAction(arg0));
+        default S setAction(final Action a) {
+            return setup(result -> result.setAction(a));
         }
 
         /**
          * @see AbstractButton#setActionCommand(String)
          */
-        default S setActionCommand(final String arg0) {
-            return setup(result -> result.setActionCommand(arg0));
+        default S setActionCommand(final String actionCommand) {
+            return setup(result -> result.setActionCommand(actionCommand));
         }
 
         /**
          * @see AbstractButton#setBorderPainted(boolean)
          */
-        default S setBorderPainted(final boolean arg0) {
-            return setup(result -> result.setBorderPainted(arg0));
+        default S setBorderPainted(final boolean b) {
+            return setup(result -> result.setBorderPainted(b));
         }
 
         /**
          * @see AbstractButton#setContentAreaFilled(boolean)
          */
-        default S setContentAreaFilled(final boolean arg0) {
-            return setup(result -> result.setContentAreaFilled(arg0));
+        default S setContentAreaFilled(final boolean b) {
+            return setup(result -> result.setContentAreaFilled(b));
         }
 
         /**
          * @see AbstractButton#setDisabledIcon(Icon)
          */
-        default S setDisabledIcon(final Icon arg0) {
-            return setup(result -> result.setDisabledIcon(arg0));
+        default S setDisabledIcon(final Icon disabledIcon) {
+            return setup(result -> result.setDisabledIcon(disabledIcon));
         }
 
         /**
          * @see AbstractButton#setDisabledSelectedIcon(Icon)
          */
-        default S setDisabledSelectedIcon(final Icon arg0) {
-            return setup(result -> result.setDisabledSelectedIcon(arg0));
+        default S setDisabledSelectedIcon(final Icon disabledSelectedIcon) {
+            return setup(result -> result.setDisabledSelectedIcon(disabledSelectedIcon));
         }
 
         /**
          * @see AbstractButton#setDisplayedMnemonicIndex(int)
          */
-        default S setDisplayedMnemonicIndex(final int arg0) {
-            return setup(result -> result.setDisplayedMnemonicIndex(arg0));
+        default S setDisplayedMnemonicIndex(final int index) {
+            return setup(result -> result.setDisplayedMnemonicIndex(index));
         }
 
         /**
          * @see AbstractButton#setEnabled(boolean)
          */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
+        default S setEnabled(final boolean b) {
+            return setup(result -> result.setEnabled(b));
         }
 
         /**
          * @see AbstractButton#setFocusPainted(boolean)
          */
-        default S setFocusPainted(final boolean arg0) {
-            return setup(result -> result.setFocusPainted(arg0));
+        default S setFocusPainted(final boolean b) {
+            return setup(result -> result.setFocusPainted(b));
         }
 
         /**
          * @see AbstractButton#setHideActionText(boolean)
          */
-        default S setHideActionText(final boolean arg0) {
-            return setup(result -> result.setHideActionText(arg0));
+        default S setHideActionText(final boolean hideActionText) {
+            return setup(result -> result.setHideActionText(hideActionText));
         }
 
         /**
          * @see AbstractButton#setHorizontalAlignment(int)
          */
-        default S setHorizontalAlignment(final int arg0) {
-            return setup(result -> result.setHorizontalAlignment(arg0));
+        default S setHorizontalAlignment(final int alignment) {
+            return setup(result -> result.setHorizontalAlignment(alignment));
         }
 
         /**
          * @see AbstractButton#setHorizontalTextPosition(int)
          */
-        default S setHorizontalTextPosition(final int arg0) {
-            return setup(result -> result.setHorizontalTextPosition(arg0));
+        default S setHorizontalTextPosition(final int textPosition) {
+            return setup(result -> result.setHorizontalTextPosition(textPosition));
         }
 
         /**
          * @see AbstractButton#setIcon(Icon)
          */
-        default S setIcon(final Icon arg0) {
-            return setup(result -> result.setIcon(arg0));
+        default S setIcon(final Icon defaultIcon) {
+            return setup(result -> result.setIcon(defaultIcon));
         }
 
         /**
          * @see AbstractButton#setIconTextGap(int)
          */
-        default S setIconTextGap(final int arg0) {
-            return setup(result -> result.setIconTextGap(arg0));
+        default S setIconTextGap(final int iconTextGap) {
+            return setup(result -> result.setIconTextGap(iconTextGap));
         }
 
         /**
          * @see AbstractButton#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
+        default S setLayout(final LayoutManager mgr) {
+            return setup(result -> result.setLayout(mgr));
         }
 
         /**
          * @see AbstractButton#setMargin(Insets)
          */
-        default S setMargin(final Insets arg0) {
-            return setup(result -> result.setMargin(arg0));
+        default S setMargin(final Insets m) {
+            return setup(result -> result.setMargin(m));
         }
 
         /**
          * @see AbstractButton#setMnemonic(char)
          */
-        default S setMnemonic(final char arg0) {
-            return setup(result -> result.setMnemonic(arg0));
+        default S setMnemonic(final char mnemonic) {
+            return setup(result -> result.setMnemonic(mnemonic));
         }
 
         /**
          * @see AbstractButton#setMnemonic(int)
          */
-        default S setMnemonic(final int arg0) {
-            return setup(result -> result.setMnemonic(arg0));
+        default S setMnemonic(final int mnemonic) {
+            return setup(result -> result.setMnemonic(mnemonic));
         }
 
         /**
          * @see AbstractButton#setModel(ButtonModel)
          */
-        default S setModel(final ButtonModel arg0) {
-            return setup(result -> result.setModel(arg0));
+        default S setModel(final ButtonModel newModel) {
+            return setup(result -> result.setModel(newModel));
         }
 
         /**
@@ -193,71 +193,71 @@ public final class AbstractButtons {
         /**
          * @see AbstractButton#setPressedIcon(Icon)
          */
-        default S setPressedIcon(final Icon arg0) {
-            return setup(result -> result.setPressedIcon(arg0));
+        default S setPressedIcon(final Icon pressedIcon) {
+            return setup(result -> result.setPressedIcon(pressedIcon));
         }
 
         /**
          * @see AbstractButton#setRolloverEnabled(boolean)
          */
-        default S setRolloverEnabled(final boolean arg0) {
-            return setup(result -> result.setRolloverEnabled(arg0));
+        default S setRolloverEnabled(final boolean b) {
+            return setup(result -> result.setRolloverEnabled(b));
         }
 
         /**
          * @see AbstractButton#setRolloverIcon(Icon)
          */
-        default S setRolloverIcon(final Icon arg0) {
-            return setup(result -> result.setRolloverIcon(arg0));
+        default S setRolloverIcon(final Icon rolloverIcon) {
+            return setup(result -> result.setRolloverIcon(rolloverIcon));
         }
 
         /**
          * @see AbstractButton#setRolloverSelectedIcon(Icon)
          */
-        default S setRolloverSelectedIcon(final Icon arg0) {
-            return setup(result -> result.setRolloverSelectedIcon(arg0));
+        default S setRolloverSelectedIcon(final Icon rolloverSelectedIcon) {
+            return setup(result -> result.setRolloverSelectedIcon(rolloverSelectedIcon));
         }
 
         /**
          * @see AbstractButton#setSelected(boolean)
          */
-        default S setSelected(final boolean arg0) {
-            return setup(result -> result.setSelected(arg0));
+        default S setSelected(final boolean b) {
+            return setup(result -> result.setSelected(b));
         }
 
         /**
          * @see AbstractButton#setSelectedIcon(Icon)
          */
-        default S setSelectedIcon(final Icon arg0) {
-            return setup(result -> result.setSelectedIcon(arg0));
+        default S setSelectedIcon(final Icon selectedIcon) {
+            return setup(result -> result.setSelectedIcon(selectedIcon));
         }
 
         /**
          * @see AbstractButton#setText(String)
          */
-        default S setText(final String arg0) {
-            return setup(result -> result.setText(arg0));
+        default S setText(final String text) {
+            return setup(result -> result.setText(text));
         }
 
         /**
          * @see AbstractButton#setUI(ButtonUI)
          */
-        default S setUI(final ButtonUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final ButtonUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see AbstractButton#setVerticalAlignment(int)
          */
-        default S setVerticalAlignment(final int arg0) {
-            return setup(result -> result.setVerticalAlignment(arg0));
+        default S setVerticalAlignment(final int alignment) {
+            return setup(result -> result.setVerticalAlignment(alignment));
         }
 
         /**
          * @see AbstractButton#setVerticalTextPosition(int)
          */
-        default S setVerticalTextPosition(final int arg0) {
-            return setup(result -> result.setVerticalTextPosition(arg0));
+        default S setVerticalTextPosition(final int textPosition) {
+            return setup(result -> result.setVerticalTextPosition(textPosition));
         }
     }
 }

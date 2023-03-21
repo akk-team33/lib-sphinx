@@ -59,50 +59,50 @@ public final class Containers {
         /**
          * @see Container#add(Component)
          */
-        default S add(final Component arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final Component comp) {
+            return setup(result -> result.add(comp));
         }
 
         /**
          * @see Container#add(Component, Object)
          */
-        default S add(final Component arg0, final Object arg1) {
-            return setup(result -> result.add(arg0, arg1));
+        default S add(final Component comp, final Object constraints) {
+            return setup(result -> result.add(comp, constraints));
         }
 
         /**
          * @see Container#add(Component, Object, int)
          */
-        default S add(final Component arg0, final Object arg1, final int arg2) {
-            return setup(result -> result.add(arg0, arg1, arg2));
+        default S add(final Component comp, final Object constraints, final int index) {
+            return setup(result -> result.add(comp, constraints, index));
         }
 
         /**
          * @see Container#add(Component, int)
          */
-        default S add(final Component arg0, final int arg1) {
-            return setup(result -> result.add(arg0, arg1));
+        default S add(final Component comp, final int index) {
+            return setup(result -> result.add(comp, index));
         }
 
         /**
          * @see Container#add(String, Component)
          */
-        default S add(final String arg0, final Component arg1) {
-            return setup(result -> result.add(arg0, arg1));
+        default S add(final String name, final Component comp) {
+            return setup(result -> result.add(name, comp));
         }
 
         /**
          * @see Container#remove(Component)
          */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final Component comp) {
+            return setup(result -> result.remove(comp));
         }
 
         /**
          * @see Container#remove(int)
          */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final int index) {
+            return setup(result -> result.remove(index));
         }
 
         /**
@@ -115,50 +115,50 @@ public final class Containers {
         /**
          * @see Container#setComponentZOrder(Component, int)
          */
-        default S setComponentZOrder(final Component arg0, final int arg1) {
-            return setup(result -> result.setComponentZOrder(arg0, arg1));
+        default S setComponentZOrder(final Component comp, final int index) {
+            return setup(result -> result.setComponentZOrder(comp, index));
         }
 
         /**
          * @see Container#setFocusCycleRoot(boolean)
          */
-        default S setFocusCycleRoot(final boolean arg0) {
-            return setup(result -> result.setFocusCycleRoot(arg0));
+        default S setFocusCycleRoot(final boolean focusCycleRoot) {
+            return setup(result -> result.setFocusCycleRoot(focusCycleRoot));
         }
 
         /**
          * @see Container#setFocusTraversalKeys(int, Set)
          */
-        default S setFocusTraversalKeys(final int arg0, final Set<? extends java.awt.AWTKeyStroke> arg1) {
-            return setup(result -> result.setFocusTraversalKeys(arg0, arg1));
+        default S setFocusTraversalKeys(final int id, final Set<? extends java.awt.AWTKeyStroke> keystrokes) {
+            return setup(result -> result.setFocusTraversalKeys(id, keystrokes));
         }
 
         /**
          * @see Container#setFocusTraversalPolicy(FocusTraversalPolicy)
          */
-        default S setFocusTraversalPolicy(final FocusTraversalPolicy arg0) {
-            return setup(result -> result.setFocusTraversalPolicy(arg0));
+        default S setFocusTraversalPolicy(final FocusTraversalPolicy policy) {
+            return setup(result -> result.setFocusTraversalPolicy(policy));
         }
 
         /**
          * @see Container#setFocusTraversalPolicyProvider(boolean)
          */
-        default S setFocusTraversalPolicyProvider(final boolean arg0) {
-            return setup(result -> result.setFocusTraversalPolicyProvider(arg0));
+        default S setFocusTraversalPolicyProvider(final boolean provider) {
+            return setup(result -> result.setFocusTraversalPolicyProvider(provider));
         }
 
         /**
          * @see Container#setFont(Font)
          */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
+        default S setFont(final Font f) {
+            return setup(result -> result.setFont(f));
         }
 
         /**
          * @see Container#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
+        default S setLayout(final LayoutManager mgr) {
+            return setup(result -> result.setLayout(mgr));
         }
     }
 }

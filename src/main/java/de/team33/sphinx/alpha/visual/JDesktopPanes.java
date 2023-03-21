@@ -6,7 +6,6 @@ import java.util.function.Supplier;
 import javax.swing.DesktopManager;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.JLayeredPane;
 import javax.swing.plaf.DesktopPaneUI;
 
 /**
@@ -59,15 +58,15 @@ public final class JDesktopPanes {
         /**
          * @see JDesktopPane#remove(Component)
          */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final Component comp) {
+            return setup(result -> result.remove(comp));
         }
 
         /**
          * @see JDesktopPane#remove(int)
          */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final int index) {
+            return setup(result -> result.remove(index));
         }
 
         /**
@@ -80,36 +79,36 @@ public final class JDesktopPanes {
         /**
          * @see JDesktopPane#setComponentZOrder(Component, int)
          */
-        default S setComponentZOrder(final Component arg0, final int arg1) {
-            return setup(result -> result.setComponentZOrder(arg0, arg1));
+        default S setComponentZOrder(final Component comp, final int index) {
+            return setup(result -> result.setComponentZOrder(comp, index));
         }
 
         /**
          * @see JDesktopPane#setDesktopManager(DesktopManager)
          */
-        default S setDesktopManager(final DesktopManager arg0) {
-            return setup(result -> result.setDesktopManager(arg0));
+        default S setDesktopManager(final DesktopManager d) {
+            return setup(result -> result.setDesktopManager(d));
         }
 
         /**
          * @see JDesktopPane#setDragMode(int)
          */
-        default S setDragMode(final int arg0) {
-            return setup(result -> result.setDragMode(arg0));
+        default S setDragMode(final int dragMode) {
+            return setup(result -> result.setDragMode(dragMode));
         }
 
         /**
          * @see JDesktopPane#setSelectedFrame(JInternalFrame)
          */
-        default S setSelectedFrame(final JInternalFrame arg0) {
-            return setup(result -> result.setSelectedFrame(arg0));
+        default S setSelectedFrame(final JInternalFrame f) {
+            return setup(result -> result.setSelectedFrame(f));
         }
 
         /**
          * @see JDesktopPane#setUI(DesktopPaneUI)
          */
-        default S setUI(final DesktopPaneUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final DesktopPaneUI ui) {
+            return setup(result -> result.setUI(ui));
         }
     }
 }

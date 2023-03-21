@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Dialog.ModalityType;
 import java.awt.Shape;
-import java.awt.Window;
 import java.util.function.Supplier;
 
 /**
@@ -51,64 +50,64 @@ public final class Dialogs {
         /**
          * @see Dialog#setBackground(Color)
          */
-        default S setBackground(final Color arg0) {
-            return setup(result -> result.setBackground(arg0));
+        default S setBackground(final Color bgColor) {
+            return setup(result -> result.setBackground(bgColor));
         }
 
         /**
          * @see Dialog#setModal(boolean)
          */
-        default S setModal(final boolean arg0) {
-            return setup(result -> result.setModal(arg0));
+        default S setModal(final boolean modal) {
+            return setup(result -> result.setModal(modal));
         }
 
         /**
          * @see Dialog#setModalityType(ModalityType)
          */
-        default S setModalityType(final ModalityType arg0) {
-            return setup(result -> result.setModalityType(arg0));
+        default S setModalityType(final ModalityType type) {
+            return setup(result -> result.setModalityType(type));
         }
 
         /**
          * @see Dialog#setOpacity(float)
          */
-        default S setOpacity(final float arg0) {
-            return setup(result -> result.setOpacity(arg0));
+        default S setOpacity(final float opacity) {
+            return setup(result -> result.setOpacity(opacity));
         }
 
         /**
          * @see Dialog#setResizable(boolean)
          */
-        default S setResizable(final boolean arg0) {
-            return setup(result -> result.setResizable(arg0));
+        default S setResizable(final boolean resizable) {
+            return setup(result -> result.setResizable(resizable));
         }
 
         /**
          * @see Dialog#setShape(Shape)
          */
-        default S setShape(final Shape arg0) {
-            return setup(result -> result.setShape(arg0));
+        default S setShape(final Shape shape) {
+            return setup(result -> result.setShape(shape));
         }
 
         /**
          * @see Dialog#setTitle(String)
          */
-        default S setTitle(final String arg0) {
-            return setup(result -> result.setTitle(arg0));
+        default S setTitle(final String title) {
+            return setup(result -> result.setTitle(title));
         }
 
         /**
          * @see Dialog#setUndecorated(boolean)
          */
-        default S setUndecorated(final boolean arg0) {
-            return setup(result -> result.setUndecorated(arg0));
+        default S setUndecorated(final boolean undecorated) {
+            return setup(result -> result.setUndecorated(undecorated));
         }
 
         /**
          * @see Dialog#setVisible(boolean)
          */
-        default S setVisible(final boolean arg0) {
-            return setup(result -> result.setVisible(arg0));
+        default S setVisible(final boolean b) {
+            return setup(result -> result.setVisible(b));
         }
     }
 }

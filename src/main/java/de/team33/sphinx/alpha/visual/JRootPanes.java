@@ -60,57 +60,57 @@ public final class JRootPanes {
         /**
          * @see JRootPane#setContentPane(Container)
          */
-        default S setContentPane(final Container arg0) {
-            return setup(result -> result.setContentPane(arg0));
+        default S setContentPane(final Container content) {
+            return setup(result -> result.setContentPane(content));
         }
 
         /**
          * @see JRootPane#setDefaultButton(JButton)
          */
-        default S setDefaultButton(final JButton arg0) {
-            return setup(result -> result.setDefaultButton(arg0));
+        default S setDefaultButton(final JButton defaultButton) {
+            return setup(result -> result.setDefaultButton(defaultButton));
         }
 
         /**
          * @see JRootPane#setDoubleBuffered(boolean)
          */
-        default S setDoubleBuffered(final boolean arg0) {
-            return setup(result -> result.setDoubleBuffered(arg0));
+        default S setDoubleBuffered(final boolean aFlag) {
+            return setup(result -> result.setDoubleBuffered(aFlag));
         }
 
         /**
          * @see JRootPane#setGlassPane(Component)
          */
-        default S setGlassPane(final Component arg0) {
-            return setup(result -> result.setGlassPane(arg0));
+        default S setGlassPane(final Component glass) {
+            return setup(result -> result.setGlassPane(glass));
         }
 
         /**
          * @see JRootPane#setJMenuBar(JMenuBar)
          */
-        default S setJMenuBar(final JMenuBar arg0) {
-            return setup(result -> result.setJMenuBar(arg0));
+        default S setJMenuBar(final JMenuBar menu) {
+            return setup(result -> result.setJMenuBar(menu));
         }
 
         /**
          * @see JRootPane#setLayeredPane(JLayeredPane)
          */
-        default S setLayeredPane(final JLayeredPane arg0) {
-            return setup(result -> result.setLayeredPane(arg0));
+        default S setLayeredPane(final JLayeredPane layered) {
+            return setup(result -> result.setLayeredPane(layered));
         }
 
         /**
          * @see JRootPane#setUI(RootPaneUI)
          */
-        default S setUI(final RootPaneUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final RootPaneUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JRootPane#setWindowDecorationStyle(int)
          */
-        default S setWindowDecorationStyle(final int arg0) {
-            return setup(result -> result.setWindowDecorationStyle(arg0));
+        default S setWindowDecorationStyle(final int windowDecorationStyle) {
+            return setup(result -> result.setWindowDecorationStyle(windowDecorationStyle));
         }
     }
 }

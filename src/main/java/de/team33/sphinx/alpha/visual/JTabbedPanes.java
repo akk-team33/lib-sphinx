@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.util.function.Supplier;
 import javax.swing.Icon;
-import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.SingleSelectionModel;
 import javax.swing.plaf.TabbedPaneUI;
@@ -60,71 +59,71 @@ public final class JTabbedPanes {
         /**
          * @see JTabbedPane#add(Component)
          */
-        default S add(final Component arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final Component component) {
+            return setup(result -> result.add(component));
         }
 
         /**
          * @see JTabbedPane#add(Component, Object)
          */
-        default S add(final Component arg0, final Object arg1) {
-            return setup(result -> result.add(arg0, arg1));
+        default S add(final Component component, final Object constraints) {
+            return setup(result -> result.add(component, constraints));
         }
 
         /**
          * @see JTabbedPane#add(Component, Object, int)
          */
-        default S add(final Component arg0, final Object arg1, final int arg2) {
-            return setup(result -> result.add(arg0, arg1, arg2));
+        default S add(final Component component, final Object constraints, final int index) {
+            return setup(result -> result.add(component, constraints, index));
         }
 
         /**
          * @see JTabbedPane#add(Component, int)
          */
-        default S add(final Component arg0, final int arg1) {
-            return setup(result -> result.add(arg0, arg1));
+        default S add(final Component component, final int index) {
+            return setup(result -> result.add(component, index));
         }
 
         /**
          * @see JTabbedPane#add(String, Component)
          */
-        default S add(final String arg0, final Component arg1) {
-            return setup(result -> result.add(arg0, arg1));
+        default S add(final String title, final Component component) {
+            return setup(result -> result.add(title, component));
         }
 
         /**
          * @see JTabbedPane#addTab(String, Component)
          */
-        default S addTab(final String arg0, final Component arg1) {
-            return setup(result -> result.addTab(arg0, arg1));
+        default S addTab(final String title, final Component component) {
+            return setup(result -> result.addTab(title, component));
         }
 
         /**
          * @see JTabbedPane#addTab(String, Icon, Component)
          */
-        default S addTab(final String arg0, final Icon arg1, final Component arg2) {
-            return setup(result -> result.addTab(arg0, arg1, arg2));
+        default S addTab(final String title, final Icon icon, final Component component) {
+            return setup(result -> result.addTab(title, icon, component));
         }
 
         /**
          * @see JTabbedPane#addTab(String, Icon, Component, String)
          */
-        default S addTab(final String arg0, final Icon arg1, final Component arg2, final String arg3) {
-            return setup(result -> result.addTab(arg0, arg1, arg2, arg3));
+        default S addTab(final String title, final Icon icon, final Component component, final String tip) {
+            return setup(result -> result.addTab(title, icon, component, tip));
         }
 
         /**
          * @see JTabbedPane#remove(Component)
          */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final Component component) {
+            return setup(result -> result.remove(component));
         }
 
         /**
          * @see JTabbedPane#remove(int)
          */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final int index) {
+            return setup(result -> result.remove(index));
         }
 
         /**
@@ -137,127 +136,127 @@ public final class JTabbedPanes {
         /**
          * @see JTabbedPane#removeTabAt(int)
          */
-        default S removeTabAt(final int arg0) {
-            return setup(result -> result.removeTabAt(arg0));
+        default S removeTabAt(final int index) {
+            return setup(result -> result.removeTabAt(index));
         }
 
         /**
          * @see JTabbedPane#setBackgroundAt(int, Color)
          */
-        default S setBackgroundAt(final int arg0, final Color arg1) {
-            return setup(result -> result.setBackgroundAt(arg0, arg1));
+        default S setBackgroundAt(final int index, final Color background) {
+            return setup(result -> result.setBackgroundAt(index, background));
         }
 
         /**
          * @see JTabbedPane#setComponentAt(int, Component)
          */
-        default S setComponentAt(final int arg0, final Component arg1) {
-            return setup(result -> result.setComponentAt(arg0, arg1));
+        default S setComponentAt(final int index, final Component component) {
+            return setup(result -> result.setComponentAt(index, component));
         }
 
         /**
          * @see JTabbedPane#setDisabledIconAt(int, Icon)
          */
-        default S setDisabledIconAt(final int arg0, final Icon arg1) {
-            return setup(result -> result.setDisabledIconAt(arg0, arg1));
+        default S setDisabledIconAt(final int index, final Icon disabledIcon) {
+            return setup(result -> result.setDisabledIconAt(index, disabledIcon));
         }
 
         /**
          * @see JTabbedPane#setDisplayedMnemonicIndexAt(int, int)
          */
-        default S setDisplayedMnemonicIndexAt(final int arg0, final int arg1) {
-            return setup(result -> result.setDisplayedMnemonicIndexAt(arg0, arg1));
+        default S setDisplayedMnemonicIndexAt(final int tabIndex, final int mnemonicIndex) {
+            return setup(result -> result.setDisplayedMnemonicIndexAt(tabIndex, mnemonicIndex));
         }
 
         /**
          * @see JTabbedPane#setEnabledAt(int, boolean)
          */
-        default S setEnabledAt(final int arg0, final boolean arg1) {
-            return setup(result -> result.setEnabledAt(arg0, arg1));
+        default S setEnabledAt(final int index, final boolean enabled) {
+            return setup(result -> result.setEnabledAt(index, enabled));
         }
 
         /**
          * @see JTabbedPane#setForegroundAt(int, Color)
          */
-        default S setForegroundAt(final int arg0, final Color arg1) {
-            return setup(result -> result.setForegroundAt(arg0, arg1));
+        default S setForegroundAt(final int index, final Color foreground) {
+            return setup(result -> result.setForegroundAt(index, foreground));
         }
 
         /**
          * @see JTabbedPane#setIconAt(int, Icon)
          */
-        default S setIconAt(final int arg0, final Icon arg1) {
-            return setup(result -> result.setIconAt(arg0, arg1));
+        default S setIconAt(final int index, final Icon icon) {
+            return setup(result -> result.setIconAt(index, icon));
         }
 
         /**
          * @see JTabbedPane#setMnemonicAt(int, int)
          */
-        default S setMnemonicAt(final int arg0, final int arg1) {
-            return setup(result -> result.setMnemonicAt(arg0, arg1));
+        default S setMnemonicAt(final int tabIndex, final int mnemonic) {
+            return setup(result -> result.setMnemonicAt(tabIndex, mnemonic));
         }
 
         /**
          * @see JTabbedPane#setModel(SingleSelectionModel)
          */
-        default S setModel(final SingleSelectionModel arg0) {
-            return setup(result -> result.setModel(arg0));
+        default S setModel(final SingleSelectionModel model) {
+            return setup(result -> result.setModel(model));
         }
 
         /**
          * @see JTabbedPane#setSelectedComponent(Component)
          */
-        default S setSelectedComponent(final Component arg0) {
-            return setup(result -> result.setSelectedComponent(arg0));
+        default S setSelectedComponent(final Component c) {
+            return setup(result -> result.setSelectedComponent(c));
         }
 
         /**
          * @see JTabbedPane#setSelectedIndex(int)
          */
-        default S setSelectedIndex(final int arg0) {
-            return setup(result -> result.setSelectedIndex(arg0));
+        default S setSelectedIndex(final int index) {
+            return setup(result -> result.setSelectedIndex(index));
         }
 
         /**
          * @see JTabbedPane#setTabComponentAt(int, Component)
          */
-        default S setTabComponentAt(final int arg0, final Component arg1) {
-            return setup(result -> result.setTabComponentAt(arg0, arg1));
+        default S setTabComponentAt(final int index, final Component component) {
+            return setup(result -> result.setTabComponentAt(index, component));
         }
 
         /**
          * @see JTabbedPane#setTabLayoutPolicy(int)
          */
-        default S setTabLayoutPolicy(final int arg0) {
-            return setup(result -> result.setTabLayoutPolicy(arg0));
+        default S setTabLayoutPolicy(final int tabLayoutPolicy) {
+            return setup(result -> result.setTabLayoutPolicy(tabLayoutPolicy));
         }
 
         /**
          * @see JTabbedPane#setTabPlacement(int)
          */
-        default S setTabPlacement(final int arg0) {
-            return setup(result -> result.setTabPlacement(arg0));
+        default S setTabPlacement(final int tabPlacement) {
+            return setup(result -> result.setTabPlacement(tabPlacement));
         }
 
         /**
          * @see JTabbedPane#setTitleAt(int, String)
          */
-        default S setTitleAt(final int arg0, final String arg1) {
-            return setup(result -> result.setTitleAt(arg0, arg1));
+        default S setTitleAt(final int index, final String title) {
+            return setup(result -> result.setTitleAt(index, title));
         }
 
         /**
          * @see JTabbedPane#setToolTipTextAt(int, String)
          */
-        default S setToolTipTextAt(final int arg0, final String arg1) {
-            return setup(result -> result.setToolTipTextAt(arg0, arg1));
+        default S setToolTipTextAt(final int index, final String toolTipText) {
+            return setup(result -> result.setToolTipTextAt(index, toolTipText));
         }
 
         /**
          * @see JTabbedPane#setUI(TabbedPaneUI)
          */
-        default S setUI(final TabbedPaneUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final TabbedPaneUI ui) {
+            return setup(result -> result.setUI(ui));
         }
     }
 }

@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-import javax.swing.JComponent;
 import javax.swing.JSeparator;
 import javax.swing.plaf.SeparatorUI;
 
@@ -56,15 +55,15 @@ public final class JSeparators {
         /**
          * @see JSeparator#setOrientation(int)
          */
-        default S setOrientation(final int arg0) {
-            return setup(result -> result.setOrientation(arg0));
+        default S setOrientation(final int orientation) {
+            return setup(result -> result.setOrientation(orientation));
         }
 
         /**
          * @see JSeparator#setUI(SeparatorUI)
          */
-        default S setUI(final SeparatorUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final SeparatorUI ui) {
+            return setup(result -> result.setUI(ui));
         }
     }
 }

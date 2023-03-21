@@ -4,7 +4,6 @@ import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.util.function.Supplier;
 import javax.swing.Icon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.plaf.LabelUI;
 
@@ -58,92 +57,92 @@ public final class JLabels {
         /**
          * @see JLabel#setDisabledIcon(Icon)
          */
-        default S setDisabledIcon(final Icon arg0) {
-            return setup(result -> result.setDisabledIcon(arg0));
+        default S setDisabledIcon(final Icon disabledIcon) {
+            return setup(result -> result.setDisabledIcon(disabledIcon));
         }
 
         /**
          * @see JLabel#setDisplayedMnemonic(char)
          */
-        default S setDisplayedMnemonic(final char arg0) {
-            return setup(result -> result.setDisplayedMnemonic(arg0));
+        default S setDisplayedMnemonic(final char aChar) {
+            return setup(result -> result.setDisplayedMnemonic(aChar));
         }
 
         /**
          * @see JLabel#setDisplayedMnemonic(int)
          */
-        default S setDisplayedMnemonic(final int arg0) {
-            return setup(result -> result.setDisplayedMnemonic(arg0));
+        default S setDisplayedMnemonic(final int key) {
+            return setup(result -> result.setDisplayedMnemonic(key));
         }
 
         /**
          * @see JLabel#setDisplayedMnemonicIndex(int)
          */
-        default S setDisplayedMnemonicIndex(final int arg0) {
-            return setup(result -> result.setDisplayedMnemonicIndex(arg0));
+        default S setDisplayedMnemonicIndex(final int index) {
+            return setup(result -> result.setDisplayedMnemonicIndex(index));
         }
 
         /**
          * @see JLabel#setHorizontalAlignment(int)
          */
-        default S setHorizontalAlignment(final int arg0) {
-            return setup(result -> result.setHorizontalAlignment(arg0));
+        default S setHorizontalAlignment(final int alignment) {
+            return setup(result -> result.setHorizontalAlignment(alignment));
         }
 
         /**
          * @see JLabel#setHorizontalTextPosition(int)
          */
-        default S setHorizontalTextPosition(final int arg0) {
-            return setup(result -> result.setHorizontalTextPosition(arg0));
+        default S setHorizontalTextPosition(final int textPosition) {
+            return setup(result -> result.setHorizontalTextPosition(textPosition));
         }
 
         /**
          * @see JLabel#setIcon(Icon)
          */
-        default S setIcon(final Icon arg0) {
-            return setup(result -> result.setIcon(arg0));
+        default S setIcon(final Icon icon) {
+            return setup(result -> result.setIcon(icon));
         }
 
         /**
          * @see JLabel#setIconTextGap(int)
          */
-        default S setIconTextGap(final int arg0) {
-            return setup(result -> result.setIconTextGap(arg0));
+        default S setIconTextGap(final int iconTextGap) {
+            return setup(result -> result.setIconTextGap(iconTextGap));
         }
 
         /**
          * @see JLabel#setLabelFor(Component)
          */
-        default S setLabelFor(final Component arg0) {
-            return setup(result -> result.setLabelFor(arg0));
+        default S setLabelFor(final Component c) {
+            return setup(result -> result.setLabelFor(c));
         }
 
         /**
          * @see JLabel#setText(String)
          */
-        default S setText(final String arg0) {
-            return setup(result -> result.setText(arg0));
+        default S setText(final String text) {
+            return setup(result -> result.setText(text));
         }
 
         /**
          * @see JLabel#setUI(LabelUI)
          */
-        default S setUI(final LabelUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final LabelUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JLabel#setVerticalAlignment(int)
          */
-        default S setVerticalAlignment(final int arg0) {
-            return setup(result -> result.setVerticalAlignment(arg0));
+        default S setVerticalAlignment(final int alignment) {
+            return setup(result -> result.setVerticalAlignment(alignment));
         }
 
         /**
          * @see JLabel#setVerticalTextPosition(int)
          */
-        default S setVerticalTextPosition(final int arg0) {
-            return setup(result -> result.setVerticalTextPosition(arg0));
+        default S setVerticalTextPosition(final int textPosition) {
+            return setup(result -> result.setVerticalTextPosition(textPosition));
         }
     }
 }

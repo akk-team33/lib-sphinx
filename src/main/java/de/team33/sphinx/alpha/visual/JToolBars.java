@@ -6,7 +6,6 @@ import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.Action;
-import javax.swing.JComponent;
 import javax.swing.JToolBar;
 import javax.swing.plaf.ToolBarUI;
 
@@ -60,8 +59,8 @@ public final class JToolBars {
         /**
          * @see JToolBar#add(Action)
          */
-        default S add(final Action arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final Action a) {
+            return setup(result -> result.add(a));
         }
 
         /**
@@ -74,57 +73,57 @@ public final class JToolBars {
         /**
          * @see JToolBar#addSeparator(Dimension)
          */
-        default S addSeparator(final Dimension arg0) {
-            return setup(result -> result.addSeparator(arg0));
+        default S addSeparator(final Dimension size) {
+            return setup(result -> result.addSeparator(size));
         }
 
         /**
          * @see JToolBar#setBorderPainted(boolean)
          */
-        default S setBorderPainted(final boolean arg0) {
-            return setup(result -> result.setBorderPainted(arg0));
+        default S setBorderPainted(final boolean b) {
+            return setup(result -> result.setBorderPainted(b));
         }
 
         /**
          * @see JToolBar#setFloatable(boolean)
          */
-        default S setFloatable(final boolean arg0) {
-            return setup(result -> result.setFloatable(arg0));
+        default S setFloatable(final boolean b) {
+            return setup(result -> result.setFloatable(b));
         }
 
         /**
          * @see JToolBar#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
+        default S setLayout(final LayoutManager mgr) {
+            return setup(result -> result.setLayout(mgr));
         }
 
         /**
          * @see JToolBar#setMargin(Insets)
          */
-        default S setMargin(final Insets arg0) {
-            return setup(result -> result.setMargin(arg0));
+        default S setMargin(final Insets m) {
+            return setup(result -> result.setMargin(m));
         }
 
         /**
          * @see JToolBar#setOrientation(int)
          */
-        default S setOrientation(final int arg0) {
-            return setup(result -> result.setOrientation(arg0));
+        default S setOrientation(final int o) {
+            return setup(result -> result.setOrientation(o));
         }
 
         /**
          * @see JToolBar#setRollover(boolean)
          */
-        default S setRollover(final boolean arg0) {
-            return setup(result -> result.setRollover(arg0));
+        default S setRollover(final boolean rollover) {
+            return setup(result -> result.setRollover(rollover));
         }
 
         /**
          * @see JToolBar#setUI(ToolBarUI)
          */
-        default S setUI(final ToolBarUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final ToolBarUI ui) {
+            return setup(result -> result.setUI(ui));
         }
     }
 }

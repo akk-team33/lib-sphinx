@@ -6,7 +6,6 @@ import java.awt.ComponentOrientation;
 import java.awt.Insets;
 import java.util.function.Supplier;
 import javax.swing.DropMode;
-import javax.swing.JComponent;
 import javax.swing.plaf.TextUI;
 import javax.swing.text.Caret;
 import javax.swing.text.Document;
@@ -58,141 +57,141 @@ public final class JTextComponents {
         /**
          * @see JTextComponent#setCaret(Caret)
          */
-        default S setCaret(final Caret arg0) {
-            return setup(result -> result.setCaret(arg0));
+        default S setCaret(final Caret c) {
+            return setup(result -> result.setCaret(c));
         }
 
         /**
          * @see JTextComponent#setCaretColor(Color)
          */
-        default S setCaretColor(final Color arg0) {
-            return setup(result -> result.setCaretColor(arg0));
+        default S setCaretColor(final Color c) {
+            return setup(result -> result.setCaretColor(c));
         }
 
         /**
          * @see JTextComponent#setCaretPosition(int)
          */
-        default S setCaretPosition(final int arg0) {
-            return setup(result -> result.setCaretPosition(arg0));
+        default S setCaretPosition(final int position) {
+            return setup(result -> result.setCaretPosition(position));
         }
 
         /**
          * @see JTextComponent#setComponentOrientation(ComponentOrientation)
          */
-        default S setComponentOrientation(final ComponentOrientation arg0) {
-            return setup(result -> result.setComponentOrientation(arg0));
+        default S setComponentOrientation(final ComponentOrientation o) {
+            return setup(result -> result.setComponentOrientation(o));
         }
 
         /**
          * @see JTextComponent#setDisabledTextColor(Color)
          */
-        default S setDisabledTextColor(final Color arg0) {
-            return setup(result -> result.setDisabledTextColor(arg0));
+        default S setDisabledTextColor(final Color c) {
+            return setup(result -> result.setDisabledTextColor(c));
         }
 
         /**
          * @see JTextComponent#setDocument(Document)
          */
-        default S setDocument(final Document arg0) {
-            return setup(result -> result.setDocument(arg0));
+        default S setDocument(final Document doc) {
+            return setup(result -> result.setDocument(doc));
         }
 
         /**
          * @see JTextComponent#setDragEnabled(boolean)
          */
-        default S setDragEnabled(final boolean arg0) {
-            return setup(result -> result.setDragEnabled(arg0));
+        default S setDragEnabled(final boolean b) {
+            return setup(result -> result.setDragEnabled(b));
         }
 
         /**
          * @see JTextComponent#setDropMode(DropMode)
          */
-        default S setDropMode(final DropMode arg0) {
-            return setup(result -> result.setDropMode(arg0));
+        default S setDropMode(final DropMode dropMode) {
+            return setup(result -> result.setDropMode(dropMode));
         }
 
         /**
          * @see JTextComponent#setEditable(boolean)
          */
-        default S setEditable(final boolean arg0) {
-            return setup(result -> result.setEditable(arg0));
+        default S setEditable(final boolean b) {
+            return setup(result -> result.setEditable(b));
         }
 
         /**
          * @see JTextComponent#setFocusAccelerator(char)
          */
-        default S setFocusAccelerator(final char arg0) {
-            return setup(result -> result.setFocusAccelerator(arg0));
+        default S setFocusAccelerator(final char aKey) {
+            return setup(result -> result.setFocusAccelerator(aKey));
         }
 
         /**
          * @see JTextComponent#setHighlighter(Highlighter)
          */
-        default S setHighlighter(final Highlighter arg0) {
-            return setup(result -> result.setHighlighter(arg0));
+        default S setHighlighter(final Highlighter h) {
+            return setup(result -> result.setHighlighter(h));
         }
 
         /**
          * @see JTextComponent#setKeymap(Keymap)
          */
-        default S setKeymap(final Keymap arg0) {
-            return setup(result -> result.setKeymap(arg0));
+        default S setKeymap(final Keymap map) {
+            return setup(result -> result.setKeymap(map));
         }
 
         /**
          * @see JTextComponent#setMargin(Insets)
          */
-        default S setMargin(final Insets arg0) {
-            return setup(result -> result.setMargin(arg0));
+        default S setMargin(final Insets m) {
+            return setup(result -> result.setMargin(m));
         }
 
         /**
          * @see JTextComponent#setNavigationFilter(NavigationFilter)
          */
-        default S setNavigationFilter(final NavigationFilter arg0) {
-            return setup(result -> result.setNavigationFilter(arg0));
+        default S setNavigationFilter(final NavigationFilter filter) {
+            return setup(result -> result.setNavigationFilter(filter));
         }
 
         /**
          * @see JTextComponent#setSelectedTextColor(Color)
          */
-        default S setSelectedTextColor(final Color arg0) {
-            return setup(result -> result.setSelectedTextColor(arg0));
+        default S setSelectedTextColor(final Color c) {
+            return setup(result -> result.setSelectedTextColor(c));
         }
 
         /**
          * @see JTextComponent#setSelectionColor(Color)
          */
-        default S setSelectionColor(final Color arg0) {
-            return setup(result -> result.setSelectionColor(arg0));
+        default S setSelectionColor(final Color c) {
+            return setup(result -> result.setSelectionColor(c));
         }
 
         /**
          * @see JTextComponent#setSelectionEnd(int)
          */
-        default S setSelectionEnd(final int arg0) {
-            return setup(result -> result.setSelectionEnd(arg0));
+        default S setSelectionEnd(final int selectionEnd) {
+            return setup(result -> result.setSelectionEnd(selectionEnd));
         }
 
         /**
          * @see JTextComponent#setSelectionStart(int)
          */
-        default S setSelectionStart(final int arg0) {
-            return setup(result -> result.setSelectionStart(arg0));
+        default S setSelectionStart(final int selectionStart) {
+            return setup(result -> result.setSelectionStart(selectionStart));
         }
 
         /**
          * @see JTextComponent#setText(String)
          */
-        default S setText(final String arg0) {
-            return setup(result -> result.setText(arg0));
+        default S setText(final String t) {
+            return setup(result -> result.setText(t));
         }
 
         /**
          * @see JTextComponent#setUI(TextUI)
          */
-        default S setUI(final TextUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final TextUI ui) {
+            return setup(result -> result.setUI(ui));
         }
     }
 }

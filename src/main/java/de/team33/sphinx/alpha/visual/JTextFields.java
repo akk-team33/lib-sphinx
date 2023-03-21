@@ -6,7 +6,6 @@ import java.util.function.Supplier;
 import javax.swing.Action;
 import javax.swing.JTextField;
 import javax.swing.text.Document;
-import javax.swing.text.JTextComponent;
 
 /**
  * Utility class to handle {@link JTextField}s.
@@ -58,50 +57,50 @@ public final class JTextFields {
         /**
          * @see JTextField#setAction(Action)
          */
-        default S setAction(final Action arg0) {
-            return setup(result -> result.setAction(arg0));
+        default S setAction(final Action a) {
+            return setup(result -> result.setAction(a));
         }
 
         /**
          * @see JTextField#setActionCommand(String)
          */
-        default S setActionCommand(final String arg0) {
-            return setup(result -> result.setActionCommand(arg0));
+        default S setActionCommand(final String command) {
+            return setup(result -> result.setActionCommand(command));
         }
 
         /**
          * @see JTextField#setColumns(int)
          */
-        default S setColumns(final int arg0) {
-            return setup(result -> result.setColumns(arg0));
+        default S setColumns(final int columns) {
+            return setup(result -> result.setColumns(columns));
         }
 
         /**
          * @see JTextField#setDocument(Document)
          */
-        default S setDocument(final Document arg0) {
-            return setup(result -> result.setDocument(arg0));
+        default S setDocument(final Document doc) {
+            return setup(result -> result.setDocument(doc));
         }
 
         /**
          * @see JTextField#setFont(Font)
          */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
+        default S setFont(final Font f) {
+            return setup(result -> result.setFont(f));
         }
 
         /**
          * @see JTextField#setHorizontalAlignment(int)
          */
-        default S setHorizontalAlignment(final int arg0) {
-            return setup(result -> result.setHorizontalAlignment(arg0));
+        default S setHorizontalAlignment(final int alignment) {
+            return setup(result -> result.setHorizontalAlignment(alignment));
         }
 
         /**
          * @see JTextField#setScrollOffset(int)
          */
-        default S setScrollOffset(final int arg0) {
-            return setup(result -> result.setScrollOffset(arg0));
+        default S setScrollOffset(final int scrollOffset) {
+            return setup(result -> result.setScrollOffset(scrollOffset));
         }
     }
 }

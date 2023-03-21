@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.Document;
@@ -60,57 +59,57 @@ public final class JTextPanes {
         /**
          * @see JTextPane#addStyle(String, Style)
          */
-        default S addStyle(final String arg0, final Style arg1) {
-            return setup(result -> result.addStyle(arg0, arg1));
+        default S addStyle(final String nm, final Style parent) {
+            return setup(result -> result.addStyle(nm, parent));
         }
 
         /**
          * @see JTextPane#removeStyle(String)
          */
-        default S removeStyle(final String arg0) {
-            return setup(result -> result.removeStyle(arg0));
+        default S removeStyle(final String nm) {
+            return setup(result -> result.removeStyle(nm));
         }
 
         /**
          * @see JTextPane#setCharacterAttributes(AttributeSet, boolean)
          */
-        default S setCharacterAttributes(final AttributeSet arg0, final boolean arg1) {
-            return setup(result -> result.setCharacterAttributes(arg0, arg1));
+        default S setCharacterAttributes(final AttributeSet attr, final boolean replace) {
+            return setup(result -> result.setCharacterAttributes(attr, replace));
         }
 
         /**
          * @see JTextPane#setDocument(Document)
          */
-        default S setDocument(final Document arg0) {
-            return setup(result -> result.setDocument(arg0));
+        default S setDocument(final Document doc) {
+            return setup(result -> result.setDocument(doc));
         }
 
         /**
          * @see JTextPane#setEditorKit(EditorKit)
          */
-        default S setEditorKit(final EditorKit arg0) {
-            return setup(result -> result.setEditorKit(arg0));
+        default S setEditorKit(final EditorKit kit) {
+            return setup(result -> result.setEditorKit(kit));
         }
 
         /**
          * @see JTextPane#setLogicalStyle(Style)
          */
-        default S setLogicalStyle(final Style arg0) {
-            return setup(result -> result.setLogicalStyle(arg0));
+        default S setLogicalStyle(final Style s) {
+            return setup(result -> result.setLogicalStyle(s));
         }
 
         /**
          * @see JTextPane#setParagraphAttributes(AttributeSet, boolean)
          */
-        default S setParagraphAttributes(final AttributeSet arg0, final boolean arg1) {
-            return setup(result -> result.setParagraphAttributes(arg0, arg1));
+        default S setParagraphAttributes(final AttributeSet attr, final boolean replace) {
+            return setup(result -> result.setParagraphAttributes(attr, replace));
         }
 
         /**
          * @see JTextPane#setStyledDocument(StyledDocument)
          */
-        default S setStyledDocument(final StyledDocument arg0) {
-            return setup(result -> result.setStyledDocument(arg0));
+        default S setStyledDocument(final StyledDocument doc) {
+            return setup(result -> result.setStyledDocument(doc));
         }
     }
 }

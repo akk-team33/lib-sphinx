@@ -4,7 +4,6 @@ import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.LayoutManager;
-import java.awt.Window;
 import java.util.function.Supplier;
 import javax.swing.JLayeredPane;
 import javax.swing.JWindow;
@@ -60,43 +59,43 @@ public final class JWindows {
         /**
          * @see JWindow#remove(Component)
          */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final Component comp) {
+            return setup(result -> result.remove(comp));
         }
 
         /**
          * @see JWindow#setContentPane(Container)
          */
-        default S setContentPane(final Container arg0) {
-            return setup(result -> result.setContentPane(arg0));
+        default S setContentPane(final Container contentPane) {
+            return setup(result -> result.setContentPane(contentPane));
         }
 
         /**
          * @see JWindow#setGlassPane(Component)
          */
-        default S setGlassPane(final Component arg0) {
-            return setup(result -> result.setGlassPane(arg0));
+        default S setGlassPane(final Component glassPane) {
+            return setup(result -> result.setGlassPane(glassPane));
         }
 
         /**
          * @see JWindow#setLayeredPane(JLayeredPane)
          */
-        default S setLayeredPane(final JLayeredPane arg0) {
-            return setup(result -> result.setLayeredPane(arg0));
+        default S setLayeredPane(final JLayeredPane layeredPane) {
+            return setup(result -> result.setLayeredPane(layeredPane));
         }
 
         /**
          * @see JWindow#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
+        default S setLayout(final LayoutManager manager) {
+            return setup(result -> result.setLayout(manager));
         }
 
         /**
          * @see JWindow#setTransferHandler(TransferHandler)
          */
-        default S setTransferHandler(final TransferHandler arg0) {
-            return setup(result -> result.setTransferHandler(arg0));
+        default S setTransferHandler(final TransferHandler newHandler) {
+            return setup(result -> result.setTransferHandler(newHandler));
         }
     }
 }

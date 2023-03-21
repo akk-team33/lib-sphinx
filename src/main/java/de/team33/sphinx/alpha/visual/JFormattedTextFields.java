@@ -56,29 +56,29 @@ public final class JFormattedTextFields {
         /**
          * @see JFormattedTextField#setDocument(Document)
          */
-        default S setDocument(final Document arg0) {
-            return setup(result -> result.setDocument(arg0));
+        default S setDocument(final Document doc) {
+            return setup(result -> result.setDocument(doc));
         }
 
         /**
          * @see JFormattedTextField#setFocusLostBehavior(int)
          */
-        default S setFocusLostBehavior(final int arg0) {
-            return setup(result -> result.setFocusLostBehavior(arg0));
+        default S setFocusLostBehavior(final int behavior) {
+            return setup(result -> result.setFocusLostBehavior(behavior));
         }
 
         /**
          * @see JFormattedTextField#setFormatterFactory(AbstractFormatterFactory)
          */
-        default S setFormatterFactory(final AbstractFormatterFactory arg0) {
-            return setup(result -> result.setFormatterFactory(arg0));
+        default S setFormatterFactory(final AbstractFormatterFactory tf) {
+            return setup(result -> result.setFormatterFactory(tf));
         }
 
         /**
          * @see JFormattedTextField#setValue(Object)
          */
-        default S setValue(final Object arg0) {
-            return setup(result -> result.setValue(arg0));
+        default S setValue(final Object value) {
+            return setup(result -> result.setValue(value));
         }
     }
 }

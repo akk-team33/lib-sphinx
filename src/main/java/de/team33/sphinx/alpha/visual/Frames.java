@@ -61,85 +61,85 @@ public final class Frames {
         /**
          * @see Frame#remove(MenuComponent)
          */
-        default S remove(final MenuComponent arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final MenuComponent m) {
+            return setup(result -> result.remove(m));
         }
 
         /**
          * @see Frame#setBackground(Color)
          */
-        default S setBackground(final Color arg0) {
-            return setup(result -> result.setBackground(arg0));
+        default S setBackground(final Color bgColor) {
+            return setup(result -> result.setBackground(bgColor));
         }
 
         /**
          * @see Frame#setExtendedState(int)
          */
-        default S setExtendedState(final int arg0) {
-            return setup(result -> result.setExtendedState(arg0));
+        default S setExtendedState(final int state) {
+            return setup(result -> result.setExtendedState(state));
         }
 
         /**
          * @see Frame#setIconImage(Image)
          */
-        default S setIconImage(final Image arg0) {
-            return setup(result -> result.setIconImage(arg0));
+        default S setIconImage(final Image image) {
+            return setup(result -> result.setIconImage(image));
         }
 
         /**
          * @see Frame#setMaximizedBounds(Rectangle)
          */
-        default S setMaximizedBounds(final Rectangle arg0) {
-            return setup(result -> result.setMaximizedBounds(arg0));
+        default S setMaximizedBounds(final Rectangle bounds) {
+            return setup(result -> result.setMaximizedBounds(bounds));
         }
 
         /**
          * @see Frame#setMenuBar(MenuBar)
          */
-        default S setMenuBar(final MenuBar arg0) {
-            return setup(result -> result.setMenuBar(arg0));
+        default S setMenuBar(final MenuBar mb) {
+            return setup(result -> result.setMenuBar(mb));
         }
 
         /**
          * @see Frame#setOpacity(float)
          */
-        default S setOpacity(final float arg0) {
-            return setup(result -> result.setOpacity(arg0));
+        default S setOpacity(final float opacity) {
+            return setup(result -> result.setOpacity(opacity));
         }
 
         /**
          * @see Frame#setResizable(boolean)
          */
-        default S setResizable(final boolean arg0) {
-            return setup(result -> result.setResizable(arg0));
+        default S setResizable(final boolean resizable) {
+            return setup(result -> result.setResizable(resizable));
         }
 
         /**
          * @see Frame#setShape(Shape)
          */
-        default S setShape(final Shape arg0) {
-            return setup(result -> result.setShape(arg0));
+        default S setShape(final Shape shape) {
+            return setup(result -> result.setShape(shape));
         }
 
         /**
          * @see Frame#setState(int)
          */
-        default S setState(final int arg0) {
-            return setup(result -> result.setState(arg0));
+        default S setState(final int state) {
+            return setup(result -> result.setState(state));
         }
 
         /**
          * @see Frame#setTitle(String)
          */
-        default S setTitle(final String arg0) {
-            return setup(result -> result.setTitle(arg0));
+        default S setTitle(final String title) {
+            return setup(result -> result.setTitle(title));
         }
 
         /**
          * @see Frame#setUndecorated(boolean)
          */
-        default S setUndecorated(final boolean arg0) {
-            return setup(result -> result.setUndecorated(arg0));
+        default S setUndecorated(final boolean undecorated) {
+            return setup(result -> result.setUndecorated(undecorated));
         }
     }
 }

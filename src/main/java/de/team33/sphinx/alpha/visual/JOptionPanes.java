@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.Icon;
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.OptionPaneUI;
 
@@ -57,85 +56,85 @@ public final class JOptionPanes {
         /**
          * @see JOptionPane#setIcon(Icon)
          */
-        default S setIcon(final Icon arg0) {
-            return setup(result -> result.setIcon(arg0));
+        default S setIcon(final Icon newIcon) {
+            return setup(result -> result.setIcon(newIcon));
         }
 
         /**
          * @see JOptionPane#setInitialSelectionValue(Object)
          */
-        default S setInitialSelectionValue(final Object arg0) {
-            return setup(result -> result.setInitialSelectionValue(arg0));
+        default S setInitialSelectionValue(final Object newValue) {
+            return setup(result -> result.setInitialSelectionValue(newValue));
         }
 
         /**
          * @see JOptionPane#setInitialValue(Object)
          */
-        default S setInitialValue(final Object arg0) {
-            return setup(result -> result.setInitialValue(arg0));
+        default S setInitialValue(final Object newInitialValue) {
+            return setup(result -> result.setInitialValue(newInitialValue));
         }
 
         /**
          * @see JOptionPane#setInputValue(Object)
          */
-        default S setInputValue(final Object arg0) {
-            return setup(result -> result.setInputValue(arg0));
+        default S setInputValue(final Object newValue) {
+            return setup(result -> result.setInputValue(newValue));
         }
 
         /**
          * @see JOptionPane#setMessage(Object)
          */
-        default S setMessage(final Object arg0) {
-            return setup(result -> result.setMessage(arg0));
+        default S setMessage(final Object newMessage) {
+            return setup(result -> result.setMessage(newMessage));
         }
 
         /**
          * @see JOptionPane#setMessageType(int)
          */
-        default S setMessageType(final int arg0) {
-            return setup(result -> result.setMessageType(arg0));
+        default S setMessageType(final int newType) {
+            return setup(result -> result.setMessageType(newType));
         }
 
         /**
          * @see JOptionPane#setOptionType(int)
          */
-        default S setOptionType(final int arg0) {
-            return setup(result -> result.setOptionType(arg0));
+        default S setOptionType(final int newType) {
+            return setup(result -> result.setOptionType(newType));
         }
 
         /**
          * @see JOptionPane#setOptions(Object[])
          */
-        default S setOptions(final java.lang.Object[] arg0) {
-            return setup(result -> result.setOptions(arg0));
+        default S setOptions(final java.lang.Object[] newOptions) {
+            return setup(result -> result.setOptions(newOptions));
         }
 
         /**
          * @see JOptionPane#setSelectionValues(Object[])
          */
-        default S setSelectionValues(final java.lang.Object[] arg0) {
-            return setup(result -> result.setSelectionValues(arg0));
+        default S setSelectionValues(final java.lang.Object[] newValues) {
+            return setup(result -> result.setSelectionValues(newValues));
         }
 
         /**
          * @see JOptionPane#setUI(OptionPaneUI)
          */
-        default S setUI(final OptionPaneUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final OptionPaneUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JOptionPane#setValue(Object)
          */
-        default S setValue(final Object arg0) {
-            return setup(result -> result.setValue(arg0));
+        default S setValue(final Object newValue) {
+            return setup(result -> result.setValue(newValue));
         }
 
         /**
          * @see JOptionPane#setWantsInput(boolean)
          */
-        default S setWantsInput(final boolean arg0) {
-            return setup(result -> result.setWantsInput(arg0));
+        default S setWantsInput(final boolean newValue) {
+            return setup(result -> result.setWantsInput(newValue));
         }
     }
 }

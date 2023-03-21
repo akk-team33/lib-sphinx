@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.BoundedRangeModel;
-import javax.swing.JComponent;
 import javax.swing.JScrollBar;
 import javax.swing.plaf.ScrollBarUI;
 
@@ -57,85 +56,85 @@ public final class JScrollBars {
         /**
          * @see JScrollBar#setBlockIncrement(int)
          */
-        default S setBlockIncrement(final int arg0) {
-            return setup(result -> result.setBlockIncrement(arg0));
+        default S setBlockIncrement(final int blockIncrement) {
+            return setup(result -> result.setBlockIncrement(blockIncrement));
         }
 
         /**
          * @see JScrollBar#setEnabled(boolean)
          */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
+        default S setEnabled(final boolean x) {
+            return setup(result -> result.setEnabled(x));
         }
 
         /**
          * @see JScrollBar#setMaximum(int)
          */
-        default S setMaximum(final int arg0) {
-            return setup(result -> result.setMaximum(arg0));
+        default S setMaximum(final int maximum) {
+            return setup(result -> result.setMaximum(maximum));
         }
 
         /**
          * @see JScrollBar#setMinimum(int)
          */
-        default S setMinimum(final int arg0) {
-            return setup(result -> result.setMinimum(arg0));
+        default S setMinimum(final int minimum) {
+            return setup(result -> result.setMinimum(minimum));
         }
 
         /**
          * @see JScrollBar#setModel(BoundedRangeModel)
          */
-        default S setModel(final BoundedRangeModel arg0) {
-            return setup(result -> result.setModel(arg0));
+        default S setModel(final BoundedRangeModel newModel) {
+            return setup(result -> result.setModel(newModel));
         }
 
         /**
          * @see JScrollBar#setOrientation(int)
          */
-        default S setOrientation(final int arg0) {
-            return setup(result -> result.setOrientation(arg0));
+        default S setOrientation(final int orientation) {
+            return setup(result -> result.setOrientation(orientation));
         }
 
         /**
          * @see JScrollBar#setUI(ScrollBarUI)
          */
-        default S setUI(final ScrollBarUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final ScrollBarUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JScrollBar#setUnitIncrement(int)
          */
-        default S setUnitIncrement(final int arg0) {
-            return setup(result -> result.setUnitIncrement(arg0));
+        default S setUnitIncrement(final int unitIncrement) {
+            return setup(result -> result.setUnitIncrement(unitIncrement));
         }
 
         /**
          * @see JScrollBar#setValue(int)
          */
-        default S setValue(final int arg0) {
-            return setup(result -> result.setValue(arg0));
+        default S setValue(final int value) {
+            return setup(result -> result.setValue(value));
         }
 
         /**
          * @see JScrollBar#setValueIsAdjusting(boolean)
          */
-        default S setValueIsAdjusting(final boolean arg0) {
-            return setup(result -> result.setValueIsAdjusting(arg0));
+        default S setValueIsAdjusting(final boolean b) {
+            return setup(result -> result.setValueIsAdjusting(b));
         }
 
         /**
          * @see JScrollBar#setValues(int, int, int, int)
          */
-        default S setValues(final int arg0, final int arg1, final int arg2, final int arg3) {
-            return setup(result -> result.setValues(arg0, arg1, arg2, arg3));
+        default S setValues(final int newValue, final int newExtent, final int newMin, final int newMax) {
+            return setup(result -> result.setValues(newValue, newExtent, newMin, newMax));
         }
 
         /**
          * @see JScrollBar#setVisibleAmount(int)
          */
-        default S setVisibleAmount(final int arg0) {
-            return setup(result -> result.setVisibleAmount(arg0));
+        default S setVisibleAmount(final int extent) {
+            return setup(result -> result.setVisibleAmount(extent));
         }
     }
 }

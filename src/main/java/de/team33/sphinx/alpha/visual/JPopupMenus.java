@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.function.Supplier;
 import javax.swing.Action;
-import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SingleSelectionModel;
@@ -61,22 +60,22 @@ public final class JPopupMenus {
         /**
          * @see JPopupMenu#add(Action)
          */
-        default S add(final Action arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final Action a) {
+            return setup(result -> result.add(a));
         }
 
         /**
          * @see JPopupMenu#add(JMenuItem)
          */
-        default S add(final JMenuItem arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final JMenuItem menuItem) {
+            return setup(result -> result.add(menuItem));
         }
 
         /**
          * @see JPopupMenu#add(String)
          */
-        default S add(final String arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final String s) {
+            return setup(result -> result.add(s));
         }
 
         /**
@@ -89,85 +88,85 @@ public final class JPopupMenus {
         /**
          * @see JPopupMenu#remove(int)
          */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final int pos) {
+            return setup(result -> result.remove(pos));
         }
 
         /**
          * @see JPopupMenu#setBorderPainted(boolean)
          */
-        default S setBorderPainted(final boolean arg0) {
-            return setup(result -> result.setBorderPainted(arg0));
+        default S setBorderPainted(final boolean b) {
+            return setup(result -> result.setBorderPainted(b));
         }
 
         /**
          * @see JPopupMenu#setInvoker(Component)
          */
-        default S setInvoker(final Component arg0) {
-            return setup(result -> result.setInvoker(arg0));
+        default S setInvoker(final Component invoker) {
+            return setup(result -> result.setInvoker(invoker));
         }
 
         /**
          * @see JPopupMenu#setLabel(String)
          */
-        default S setLabel(final String arg0) {
-            return setup(result -> result.setLabel(arg0));
+        default S setLabel(final String label) {
+            return setup(result -> result.setLabel(label));
         }
 
         /**
          * @see JPopupMenu#setLightWeightPopupEnabled(boolean)
          */
-        default S setLightWeightPopupEnabled(final boolean arg0) {
-            return setup(result -> result.setLightWeightPopupEnabled(arg0));
+        default S setLightWeightPopupEnabled(final boolean aFlag) {
+            return setup(result -> result.setLightWeightPopupEnabled(aFlag));
         }
 
         /**
          * @see JPopupMenu#setLocation(int, int)
          */
-        default S setLocation(final int arg0, final int arg1) {
-            return setup(result -> result.setLocation(arg0, arg1));
+        default S setLocation(final int x, final int y) {
+            return setup(result -> result.setLocation(x, y));
         }
 
         /**
          * @see JPopupMenu#setPopupSize(Dimension)
          */
-        default S setPopupSize(final Dimension arg0) {
-            return setup(result -> result.setPopupSize(arg0));
+        default S setPopupSize(final Dimension d) {
+            return setup(result -> result.setPopupSize(d));
         }
 
         /**
          * @see JPopupMenu#setPopupSize(int, int)
          */
-        default S setPopupSize(final int arg0, final int arg1) {
-            return setup(result -> result.setPopupSize(arg0, arg1));
+        default S setPopupSize(final int width, final int height) {
+            return setup(result -> result.setPopupSize(width, height));
         }
 
         /**
          * @see JPopupMenu#setSelected(Component)
          */
-        default S setSelected(final Component arg0) {
-            return setup(result -> result.setSelected(arg0));
+        default S setSelected(final Component sel) {
+            return setup(result -> result.setSelected(sel));
         }
 
         /**
          * @see JPopupMenu#setSelectionModel(SingleSelectionModel)
          */
-        default S setSelectionModel(final SingleSelectionModel arg0) {
-            return setup(result -> result.setSelectionModel(arg0));
+        default S setSelectionModel(final SingleSelectionModel model) {
+            return setup(result -> result.setSelectionModel(model));
         }
 
         /**
          * @see JPopupMenu#setUI(PopupMenuUI)
          */
-        default S setUI(final PopupMenuUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final PopupMenuUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JPopupMenu#setVisible(boolean)
          */
-        default S setVisible(final boolean arg0) {
-            return setup(result -> result.setVisible(arg0));
+        default S setVisible(final boolean b) {
+            return setup(result -> result.setVisible(b));
         }
     }
 }

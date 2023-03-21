@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.Dialog;
 import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.JDialog;
@@ -61,57 +60,57 @@ public final class JDialogs {
         /**
          * @see JDialog#remove(Component)
          */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final Component comp) {
+            return setup(result -> result.remove(comp));
         }
 
         /**
          * @see JDialog#setContentPane(Container)
          */
-        default S setContentPane(final Container arg0) {
-            return setup(result -> result.setContentPane(arg0));
+        default S setContentPane(final Container contentPane) {
+            return setup(result -> result.setContentPane(contentPane));
         }
 
         /**
          * @see JDialog#setDefaultCloseOperation(int)
          */
-        default S setDefaultCloseOperation(final int arg0) {
-            return setup(result -> result.setDefaultCloseOperation(arg0));
+        default S setDefaultCloseOperation(final int operation) {
+            return setup(result -> result.setDefaultCloseOperation(operation));
         }
 
         /**
          * @see JDialog#setGlassPane(Component)
          */
-        default S setGlassPane(final Component arg0) {
-            return setup(result -> result.setGlassPane(arg0));
+        default S setGlassPane(final Component glassPane) {
+            return setup(result -> result.setGlassPane(glassPane));
         }
 
         /**
          * @see JDialog#setJMenuBar(JMenuBar)
          */
-        default S setJMenuBar(final JMenuBar arg0) {
-            return setup(result -> result.setJMenuBar(arg0));
+        default S setJMenuBar(final JMenuBar menu) {
+            return setup(result -> result.setJMenuBar(menu));
         }
 
         /**
          * @see JDialog#setLayeredPane(JLayeredPane)
          */
-        default S setLayeredPane(final JLayeredPane arg0) {
-            return setup(result -> result.setLayeredPane(arg0));
+        default S setLayeredPane(final JLayeredPane layeredPane) {
+            return setup(result -> result.setLayeredPane(layeredPane));
         }
 
         /**
          * @see JDialog#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
+        default S setLayout(final LayoutManager manager) {
+            return setup(result -> result.setLayout(manager));
         }
 
         /**
          * @see JDialog#setTransferHandler(TransferHandler)
          */
-        default S setTransferHandler(final TransferHandler arg0) {
-            return setup(result -> result.setTransferHandler(arg0));
+        default S setTransferHandler(final TransferHandler newHandler) {
+            return setup(result -> result.setTransferHandler(newHandler));
         }
     }
 }

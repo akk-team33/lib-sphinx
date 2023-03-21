@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 
 /**
@@ -55,8 +54,8 @@ public final class JButtons {
         /**
          * @see JButton#setDefaultCapable(boolean)
          */
-        default S setDefaultCapable(final boolean arg0) {
-            return setup(result -> result.setDefaultCapable(arg0));
+        default S setDefaultCapable(final boolean defaultCapable) {
+            return setup(result -> result.setDefaultCapable(defaultCapable));
         }
     }
 }

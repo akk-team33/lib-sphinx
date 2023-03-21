@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JMenuItem;
 
 /**
  * Utility class to handle {@link JCheckBoxMenuItem}s.
@@ -55,8 +54,8 @@ public final class JCheckBoxMenuItems {
         /**
          * @see JCheckBoxMenuItem#setState(boolean)
          */
-        default S setState(final boolean arg0) {
-            return setup(result -> result.setState(arg0));
+        default S setState(final boolean b) {
+            return setup(result -> result.setState(b));
         }
     }
 }

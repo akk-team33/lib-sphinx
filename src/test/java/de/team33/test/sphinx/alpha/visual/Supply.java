@@ -9,8 +9,8 @@ import java.util.Random;
 public class Supply extends Random implements Generator {
 
     @Override
-    public final BigInteger nextBits(final int numBits) {
-        return new BigInteger(numBits, this);
+    public final BigInteger nextBits(final int i) {
+        return new BigInteger(i, this);
     }
 
     public final Point nextPoint() {

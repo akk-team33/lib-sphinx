@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.util.Dictionary;
 import java.util.function.Supplier;
 import javax.swing.BoundedRangeModel;
-import javax.swing.JComponent;
 import javax.swing.JSlider;
 import javax.swing.plaf.SliderUI;
 
@@ -59,120 +58,120 @@ public final class JSliders {
         /**
          * @see JSlider#setExtent(int)
          */
-        default S setExtent(final int arg0) {
-            return setup(result -> result.setExtent(arg0));
+        default S setExtent(final int extent) {
+            return setup(result -> result.setExtent(extent));
         }
 
         /**
          * @see JSlider#setFont(Font)
          */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
+        default S setFont(final Font font) {
+            return setup(result -> result.setFont(font));
         }
 
         /**
          * @see JSlider#setInverted(boolean)
          */
-        default S setInverted(final boolean arg0) {
-            return setup(result -> result.setInverted(arg0));
+        default S setInverted(final boolean b) {
+            return setup(result -> result.setInverted(b));
         }
 
         /**
          * @see JSlider#setLabelTable(Dictionary)
          */
-        default S setLabelTable(final Dictionary<?, ?> arg0) {
-            return setup(result -> result.setLabelTable(arg0));
+        default S setLabelTable(final Dictionary<?, ?> labels) {
+            return setup(result -> result.setLabelTable(labels));
         }
 
         /**
          * @see JSlider#setMajorTickSpacing(int)
          */
-        default S setMajorTickSpacing(final int arg0) {
-            return setup(result -> result.setMajorTickSpacing(arg0));
+        default S setMajorTickSpacing(final int n) {
+            return setup(result -> result.setMajorTickSpacing(n));
         }
 
         /**
          * @see JSlider#setMaximum(int)
          */
-        default S setMaximum(final int arg0) {
-            return setup(result -> result.setMaximum(arg0));
+        default S setMaximum(final int maximum) {
+            return setup(result -> result.setMaximum(maximum));
         }
 
         /**
          * @see JSlider#setMinimum(int)
          */
-        default S setMinimum(final int arg0) {
-            return setup(result -> result.setMinimum(arg0));
+        default S setMinimum(final int minimum) {
+            return setup(result -> result.setMinimum(minimum));
         }
 
         /**
          * @see JSlider#setMinorTickSpacing(int)
          */
-        default S setMinorTickSpacing(final int arg0) {
-            return setup(result -> result.setMinorTickSpacing(arg0));
+        default S setMinorTickSpacing(final int n) {
+            return setup(result -> result.setMinorTickSpacing(n));
         }
 
         /**
          * @see JSlider#setModel(BoundedRangeModel)
          */
-        default S setModel(final BoundedRangeModel arg0) {
-            return setup(result -> result.setModel(arg0));
+        default S setModel(final BoundedRangeModel newModel) {
+            return setup(result -> result.setModel(newModel));
         }
 
         /**
          * @see JSlider#setOrientation(int)
          */
-        default S setOrientation(final int arg0) {
-            return setup(result -> result.setOrientation(arg0));
+        default S setOrientation(final int orientation) {
+            return setup(result -> result.setOrientation(orientation));
         }
 
         /**
          * @see JSlider#setPaintLabels(boolean)
          */
-        default S setPaintLabels(final boolean arg0) {
-            return setup(result -> result.setPaintLabels(arg0));
+        default S setPaintLabels(final boolean b) {
+            return setup(result -> result.setPaintLabels(b));
         }
 
         /**
          * @see JSlider#setPaintTicks(boolean)
          */
-        default S setPaintTicks(final boolean arg0) {
-            return setup(result -> result.setPaintTicks(arg0));
+        default S setPaintTicks(final boolean b) {
+            return setup(result -> result.setPaintTicks(b));
         }
 
         /**
          * @see JSlider#setPaintTrack(boolean)
          */
-        default S setPaintTrack(final boolean arg0) {
-            return setup(result -> result.setPaintTrack(arg0));
+        default S setPaintTrack(final boolean b) {
+            return setup(result -> result.setPaintTrack(b));
         }
 
         /**
          * @see JSlider#setSnapToTicks(boolean)
          */
-        default S setSnapToTicks(final boolean arg0) {
-            return setup(result -> result.setSnapToTicks(arg0));
+        default S setSnapToTicks(final boolean b) {
+            return setup(result -> result.setSnapToTicks(b));
         }
 
         /**
          * @see JSlider#setUI(SliderUI)
          */
-        default S setUI(final SliderUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final SliderUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JSlider#setValue(int)
          */
-        default S setValue(final int arg0) {
-            return setup(result -> result.setValue(arg0));
+        default S setValue(final int n) {
+            return setup(result -> result.setValue(n));
         }
 
         /**
          * @see JSlider#setValueIsAdjusting(boolean)
          */
-        default S setValueIsAdjusting(final boolean arg0) {
-            return setup(result -> result.setValueIsAdjusting(arg0));
+        default S setValueIsAdjusting(final boolean b) {
+            return setup(result -> result.setValueIsAdjusting(b));
         }
     }
 }

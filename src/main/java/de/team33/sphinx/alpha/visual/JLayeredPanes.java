@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.util.function.Supplier;
-import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
 
 /**
@@ -56,8 +55,8 @@ public final class JLayeredPanes {
         /**
          * @see JLayeredPane#remove(int)
          */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final int index) {
+            return setup(result -> result.remove(index));
         }
 
         /**
@@ -70,22 +69,22 @@ public final class JLayeredPanes {
         /**
          * @see JLayeredPane#setLayer(Component, int)
          */
-        default S setLayer(final Component arg0, final int arg1) {
-            return setup(result -> result.setLayer(arg0, arg1));
+        default S setLayer(final Component c, final int layer) {
+            return setup(result -> result.setLayer(c, layer));
         }
 
         /**
          * @see JLayeredPane#setLayer(Component, int, int)
          */
-        default S setLayer(final Component arg0, final int arg1, final int arg2) {
-            return setup(result -> result.setLayer(arg0, arg1, arg2));
+        default S setLayer(final Component c, final int layer, final int position) {
+            return setup(result -> result.setLayer(c, layer, position));
         }
 
         /**
          * @see JLayeredPane#setPosition(Component, int)
          */
-        default S setPosition(final Component arg0, final int arg1) {
-            return setup(result -> result.setPosition(arg0, arg1));
+        default S setPosition(final Component c, final int position) {
+            return setup(result -> result.setPosition(c, position));
         }
     }
 }

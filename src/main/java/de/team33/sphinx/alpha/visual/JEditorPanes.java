@@ -58,43 +58,43 @@ public final class JEditorPanes {
         /**
          * @see JEditorPane#setContentType(String)
          */
-        default S setContentType(final String arg0) {
-            return setup(result -> result.setContentType(arg0));
+        default S setContentType(final String type) {
+            return setup(result -> result.setContentType(type));
         }
 
         /**
          * @see JEditorPane#setEditorKit(EditorKit)
          */
-        default S setEditorKit(final EditorKit arg0) {
-            return setup(result -> result.setEditorKit(arg0));
+        default S setEditorKit(final EditorKit kit) {
+            return setup(result -> result.setEditorKit(kit));
         }
 
         /**
          * @see JEditorPane#setEditorKitForContentType(String, EditorKit)
          */
-        default S setEditorKitForContentType(final String arg0, final EditorKit arg1) {
-            return setup(result -> result.setEditorKitForContentType(arg0, arg1));
+        default S setEditorKitForContentType(final String type, final EditorKit k) {
+            return setup(result -> result.setEditorKitForContentType(type, k));
         }
 
         /**
          * @see JEditorPane#setPage(String)
          */
-        default S setPage(final String arg0) {
-            return setup(Conversion.consumer(result -> result.setPage(arg0)));
+        default S setPage(final String url) {
+            return setup(Conversion.consumer(result -> result.setPage(url)));
         }
 
         /**
          * @see JEditorPane#setPage(URL)
          */
-        default S setPage(final URL arg0) {
-            return setup(Conversion.consumer(result -> result.setPage(arg0)));
+        default S setPage(final URL page) {
+            return setup(Conversion.consumer(result -> result.setPage(page)));
         }
 
         /**
          * @see JEditorPane#setText(String)
          */
-        default S setText(final String arg0) {
-            return setup(result -> result.setText(arg0));
+        default S setText(final String t) {
+            return setup(result -> result.setText(t));
         }
     }
 }

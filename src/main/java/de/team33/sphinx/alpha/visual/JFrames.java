@@ -62,64 +62,64 @@ public final class JFrames {
         /**
          * @see JFrame#remove(Component)
          */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final Component comp) {
+            return setup(result -> result.remove(comp));
         }
 
         /**
          * @see JFrame#setContentPane(Container)
          */
-        default S setContentPane(final Container arg0) {
-            return setup(result -> result.setContentPane(arg0));
+        default S setContentPane(final Container contentPane) {
+            return setup(result -> result.setContentPane(contentPane));
         }
 
         /**
          * @see JFrame#setDefaultCloseOperation(int)
          */
-        default S setDefaultCloseOperation(final int arg0) {
-            return setup(result -> result.setDefaultCloseOperation(arg0));
+        default S setDefaultCloseOperation(final int operation) {
+            return setup(result -> result.setDefaultCloseOperation(operation));
         }
 
         /**
          * @see JFrame#setGlassPane(Component)
          */
-        default S setGlassPane(final Component arg0) {
-            return setup(result -> result.setGlassPane(arg0));
+        default S setGlassPane(final Component glassPane) {
+            return setup(result -> result.setGlassPane(glassPane));
         }
 
         /**
          * @see JFrame#setIconImage(Image)
          */
-        default S setIconImage(final Image arg0) {
-            return setup(result -> result.setIconImage(arg0));
+        default S setIconImage(final Image image) {
+            return setup(result -> result.setIconImage(image));
         }
 
         /**
          * @see JFrame#setJMenuBar(JMenuBar)
          */
-        default S setJMenuBar(final JMenuBar arg0) {
-            return setup(result -> result.setJMenuBar(arg0));
+        default S setJMenuBar(final JMenuBar menubar) {
+            return setup(result -> result.setJMenuBar(menubar));
         }
 
         /**
          * @see JFrame#setLayeredPane(JLayeredPane)
          */
-        default S setLayeredPane(final JLayeredPane arg0) {
-            return setup(result -> result.setLayeredPane(arg0));
+        default S setLayeredPane(final JLayeredPane layeredPane) {
+            return setup(result -> result.setLayeredPane(layeredPane));
         }
 
         /**
          * @see JFrame#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
+        default S setLayout(final LayoutManager manager) {
+            return setup(result -> result.setLayout(manager));
         }
 
         /**
          * @see JFrame#setTransferHandler(TransferHandler)
          */
-        default S setTransferHandler(final TransferHandler arg0) {
-            return setup(result -> result.setTransferHandler(arg0));
+        default S setTransferHandler(final TransferHandler newHandler) {
+            return setup(result -> result.setTransferHandler(newHandler));
         }
     }
 }

@@ -60,36 +60,36 @@ public final class JMenus {
         /**
          * @see JMenu#add(Action)
          */
-        default S add(final Action arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final Action a) {
+            return setup(result -> result.add(a));
         }
 
         /**
          * @see JMenu#add(Component)
          */
-        default S add(final Component arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final Component c) {
+            return setup(result -> result.add(c));
         }
 
         /**
          * @see JMenu#add(Component, int)
          */
-        default S add(final Component arg0, final int arg1) {
-            return setup(result -> result.add(arg0, arg1));
+        default S add(final Component c, final int index) {
+            return setup(result -> result.add(c, index));
         }
 
         /**
          * @see JMenu#add(JMenuItem)
          */
-        default S add(final JMenuItem arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final JMenuItem menuItem) {
+            return setup(result -> result.add(menuItem));
         }
 
         /**
          * @see JMenu#add(String)
          */
-        default S add(final String arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final String s) {
+            return setup(result -> result.add(s));
         }
 
         /**
@@ -102,22 +102,22 @@ public final class JMenus {
         /**
          * @see JMenu#remove(Component)
          */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final Component c) {
+            return setup(result -> result.remove(c));
         }
 
         /**
          * @see JMenu#remove(JMenuItem)
          */
-        default S remove(final JMenuItem arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final JMenuItem item) {
+            return setup(result -> result.remove(item));
         }
 
         /**
          * @see JMenu#remove(int)
          */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final int pos) {
+            return setup(result -> result.remove(pos));
         }
 
         /**
@@ -130,50 +130,50 @@ public final class JMenus {
         /**
          * @see JMenu#setAccelerator(KeyStroke)
          */
-        default S setAccelerator(final KeyStroke arg0) {
-            return setup(result -> result.setAccelerator(arg0));
+        default S setAccelerator(final KeyStroke keyStroke) {
+            return setup(result -> result.setAccelerator(keyStroke));
         }
 
         /**
          * @see JMenu#setComponentOrientation(ComponentOrientation)
          */
-        default S setComponentOrientation(final ComponentOrientation arg0) {
-            return setup(result -> result.setComponentOrientation(arg0));
+        default S setComponentOrientation(final ComponentOrientation o) {
+            return setup(result -> result.setComponentOrientation(o));
         }
 
         /**
          * @see JMenu#setDelay(int)
          */
-        default S setDelay(final int arg0) {
-            return setup(result -> result.setDelay(arg0));
+        default S setDelay(final int d) {
+            return setup(result -> result.setDelay(d));
         }
 
         /**
          * @see JMenu#setMenuLocation(int, int)
          */
-        default S setMenuLocation(final int arg0, final int arg1) {
-            return setup(result -> result.setMenuLocation(arg0, arg1));
+        default S setMenuLocation(final int x, final int y) {
+            return setup(result -> result.setMenuLocation(x, y));
         }
 
         /**
          * @see JMenu#setModel(ButtonModel)
          */
-        default S setModel(final ButtonModel arg0) {
-            return setup(result -> result.setModel(arg0));
+        default S setModel(final ButtonModel newModel) {
+            return setup(result -> result.setModel(newModel));
         }
 
         /**
          * @see JMenu#setPopupMenuVisible(boolean)
          */
-        default S setPopupMenuVisible(final boolean arg0) {
-            return setup(result -> result.setPopupMenuVisible(arg0));
+        default S setPopupMenuVisible(final boolean b) {
+            return setup(result -> result.setPopupMenuVisible(b));
         }
 
         /**
          * @see JMenu#setSelected(boolean)
          */
-        default S setSelected(final boolean arg0) {
-            return setup(result -> result.setSelected(arg0));
+        default S setSelected(final boolean b) {
+            return setup(result -> result.setSelected(b));
         }
     }
 }

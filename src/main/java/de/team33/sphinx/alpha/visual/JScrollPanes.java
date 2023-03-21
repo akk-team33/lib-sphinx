@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.LayoutManager;
 import java.util.function.Supplier;
-import javax.swing.JComponent;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
@@ -62,113 +61,113 @@ public final class JScrollPanes {
         /**
          * @see JScrollPane#setColumnHeader(JViewport)
          */
-        default S setColumnHeader(final JViewport arg0) {
-            return setup(result -> result.setColumnHeader(arg0));
+        default S setColumnHeader(final JViewport columnHeader) {
+            return setup(result -> result.setColumnHeader(columnHeader));
         }
 
         /**
          * @see JScrollPane#setColumnHeaderView(Component)
          */
-        default S setColumnHeaderView(final Component arg0) {
-            return setup(result -> result.setColumnHeaderView(arg0));
+        default S setColumnHeaderView(final Component view) {
+            return setup(result -> result.setColumnHeaderView(view));
         }
 
         /**
          * @see JScrollPane#setComponentOrientation(ComponentOrientation)
          */
-        default S setComponentOrientation(final ComponentOrientation arg0) {
-            return setup(result -> result.setComponentOrientation(arg0));
+        default S setComponentOrientation(final ComponentOrientation co) {
+            return setup(result -> result.setComponentOrientation(co));
         }
 
         /**
          * @see JScrollPane#setCorner(String, Component)
          */
-        default S setCorner(final String arg0, final Component arg1) {
-            return setup(result -> result.setCorner(arg0, arg1));
+        default S setCorner(final String key, final Component corner) {
+            return setup(result -> result.setCorner(key, corner));
         }
 
         /**
          * @see JScrollPane#setHorizontalScrollBar(JScrollBar)
          */
-        default S setHorizontalScrollBar(final JScrollBar arg0) {
-            return setup(result -> result.setHorizontalScrollBar(arg0));
+        default S setHorizontalScrollBar(final JScrollBar horizontalScrollBar) {
+            return setup(result -> result.setHorizontalScrollBar(horizontalScrollBar));
         }
 
         /**
          * @see JScrollPane#setHorizontalScrollBarPolicy(int)
          */
-        default S setHorizontalScrollBarPolicy(final int arg0) {
-            return setup(result -> result.setHorizontalScrollBarPolicy(arg0));
+        default S setHorizontalScrollBarPolicy(final int policy) {
+            return setup(result -> result.setHorizontalScrollBarPolicy(policy));
         }
 
         /**
          * @see JScrollPane#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
+        default S setLayout(final LayoutManager layout) {
+            return setup(result -> result.setLayout(layout));
         }
 
         /**
          * @see JScrollPane#setRowHeader(JViewport)
          */
-        default S setRowHeader(final JViewport arg0) {
-            return setup(result -> result.setRowHeader(arg0));
+        default S setRowHeader(final JViewport rowHeader) {
+            return setup(result -> result.setRowHeader(rowHeader));
         }
 
         /**
          * @see JScrollPane#setRowHeaderView(Component)
          */
-        default S setRowHeaderView(final Component arg0) {
-            return setup(result -> result.setRowHeaderView(arg0));
+        default S setRowHeaderView(final Component view) {
+            return setup(result -> result.setRowHeaderView(view));
         }
 
         /**
          * @see JScrollPane#setUI(ScrollPaneUI)
          */
-        default S setUI(final ScrollPaneUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final ScrollPaneUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JScrollPane#setVerticalScrollBar(JScrollBar)
          */
-        default S setVerticalScrollBar(final JScrollBar arg0) {
-            return setup(result -> result.setVerticalScrollBar(arg0));
+        default S setVerticalScrollBar(final JScrollBar verticalScrollBar) {
+            return setup(result -> result.setVerticalScrollBar(verticalScrollBar));
         }
 
         /**
          * @see JScrollPane#setVerticalScrollBarPolicy(int)
          */
-        default S setVerticalScrollBarPolicy(final int arg0) {
-            return setup(result -> result.setVerticalScrollBarPolicy(arg0));
+        default S setVerticalScrollBarPolicy(final int policy) {
+            return setup(result -> result.setVerticalScrollBarPolicy(policy));
         }
 
         /**
          * @see JScrollPane#setViewport(JViewport)
          */
-        default S setViewport(final JViewport arg0) {
-            return setup(result -> result.setViewport(arg0));
+        default S setViewport(final JViewport viewport) {
+            return setup(result -> result.setViewport(viewport));
         }
 
         /**
          * @see JScrollPane#setViewportBorder(Border)
          */
-        default S setViewportBorder(final Border arg0) {
-            return setup(result -> result.setViewportBorder(arg0));
+        default S setViewportBorder(final Border viewportBorder) {
+            return setup(result -> result.setViewportBorder(viewportBorder));
         }
 
         /**
          * @see JScrollPane#setViewportView(Component)
          */
-        default S setViewportView(final Component arg0) {
-            return setup(result -> result.setViewportView(arg0));
+        default S setViewportView(final Component view) {
+            return setup(result -> result.setViewportView(view));
         }
 
         /**
          * @see JScrollPane#setWheelScrollingEnabled(boolean)
          */
-        default S setWheelScrollingEnabled(final boolean arg0) {
-            return setup(result -> result.setWheelScrollingEnabled(arg0));
+        default S setWheelScrollingEnabled(final boolean handleWheel) {
+            return setup(result -> result.setWheelScrollingEnabled(handleWheel));
         }
     }
 }

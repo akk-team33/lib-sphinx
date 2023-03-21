@@ -70,176 +70,176 @@ public final class Components {
         /**
          * @see Component#add(PopupMenu)
          */
-        default S add(final PopupMenu arg0) {
-            return setup(result -> result.add(arg0));
+        default S add(final PopupMenu popup) {
+            return setup(result -> result.add(popup));
         }
 
         /**
          * @see Component#remove(MenuComponent)
          */
-        default S remove(final MenuComponent arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final MenuComponent popup) {
+            return setup(result -> result.remove(popup));
         }
 
         /**
          * @see Component#setBackground(Color)
          */
-        default S setBackground(final Color arg0) {
-            return setup(result -> result.setBackground(arg0));
+        default S setBackground(final Color c) {
+            return setup(result -> result.setBackground(c));
         }
 
         /**
          * @see Component#setBounds(Rectangle)
          */
-        default S setBounds(final Rectangle arg0) {
-            return setup(result -> result.setBounds(arg0));
+        default S setBounds(final Rectangle r) {
+            return setup(result -> result.setBounds(r));
         }
 
         /**
          * @see Component#setBounds(int, int, int, int)
          */
-        default S setBounds(final int arg0, final int arg1, final int arg2, final int arg3) {
-            return setup(result -> result.setBounds(arg0, arg1, arg2, arg3));
+        default S setBounds(final int x, final int y, final int width, final int height) {
+            return setup(result -> result.setBounds(x, y, width, height));
         }
 
         /**
          * @see Component#setComponentOrientation(ComponentOrientation)
          */
-        default S setComponentOrientation(final ComponentOrientation arg0) {
-            return setup(result -> result.setComponentOrientation(arg0));
+        default S setComponentOrientation(final ComponentOrientation o) {
+            return setup(result -> result.setComponentOrientation(o));
         }
 
         /**
          * @see Component#setCursor(Cursor)
          */
-        default S setCursor(final Cursor arg0) {
-            return setup(result -> result.setCursor(arg0));
+        default S setCursor(final Cursor cursor) {
+            return setup(result -> result.setCursor(cursor));
         }
 
         /**
          * @see Component#setDropTarget(DropTarget)
          */
-        default S setDropTarget(final DropTarget arg0) {
-            return setup(result -> result.setDropTarget(arg0));
+        default S setDropTarget(final DropTarget dt) {
+            return setup(result -> result.setDropTarget(dt));
         }
 
         /**
          * @see Component#setEnabled(boolean)
          */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
+        default S setEnabled(final boolean b) {
+            return setup(result -> result.setEnabled(b));
         }
 
         /**
          * @see Component#setFocusTraversalKeys(int, Set)
          */
-        default S setFocusTraversalKeys(final int arg0, final Set<? extends java.awt.AWTKeyStroke> arg1) {
-            return setup(result -> result.setFocusTraversalKeys(arg0, arg1));
+        default S setFocusTraversalKeys(final int id, final Set<? extends java.awt.AWTKeyStroke> keystrokes) {
+            return setup(result -> result.setFocusTraversalKeys(id, keystrokes));
         }
 
         /**
          * @see Component#setFocusTraversalKeysEnabled(boolean)
          */
-        default S setFocusTraversalKeysEnabled(final boolean arg0) {
-            return setup(result -> result.setFocusTraversalKeysEnabled(arg0));
+        default S setFocusTraversalKeysEnabled(final boolean focusTraversalKeysEnabled) {
+            return setup(result -> result.setFocusTraversalKeysEnabled(focusTraversalKeysEnabled));
         }
 
         /**
          * @see Component#setFocusable(boolean)
          */
-        default S setFocusable(final boolean arg0) {
-            return setup(result -> result.setFocusable(arg0));
+        default S setFocusable(final boolean focusable) {
+            return setup(result -> result.setFocusable(focusable));
         }
 
         /**
          * @see Component#setFont(Font)
          */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
+        default S setFont(final Font f) {
+            return setup(result -> result.setFont(f));
         }
 
         /**
          * @see Component#setForeground(Color)
          */
-        default S setForeground(final Color arg0) {
-            return setup(result -> result.setForeground(arg0));
+        default S setForeground(final Color c) {
+            return setup(result -> result.setForeground(c));
         }
 
         /**
          * @see Component#setIgnoreRepaint(boolean)
          */
-        default S setIgnoreRepaint(final boolean arg0) {
-            return setup(result -> result.setIgnoreRepaint(arg0));
+        default S setIgnoreRepaint(final boolean ignoreRepaint) {
+            return setup(result -> result.setIgnoreRepaint(ignoreRepaint));
         }
 
         /**
          * @see Component#setLocale(Locale)
          */
-        default S setLocale(final Locale arg0) {
-            return setup(result -> result.setLocale(arg0));
+        default S setLocale(final Locale l) {
+            return setup(result -> result.setLocale(l));
         }
 
         /**
          * @see Component#setLocation(Point)
          */
-        default S setLocation(final Point arg0) {
-            return setup(result -> result.setLocation(arg0));
+        default S setLocation(final Point p) {
+            return setup(result -> result.setLocation(p));
         }
 
         /**
          * @see Component#setLocation(int, int)
          */
-        default S setLocation(final int arg0, final int arg1) {
-            return setup(result -> result.setLocation(arg0, arg1));
+        default S setLocation(final int x, final int y) {
+            return setup(result -> result.setLocation(x, y));
         }
 
         /**
          * @see Component#setMaximumSize(Dimension)
          */
-        default S setMaximumSize(final Dimension arg0) {
-            return setup(result -> result.setMaximumSize(arg0));
+        default S setMaximumSize(final Dimension maximumSize) {
+            return setup(result -> result.setMaximumSize(maximumSize));
         }
 
         /**
          * @see Component#setMinimumSize(Dimension)
          */
-        default S setMinimumSize(final Dimension arg0) {
-            return setup(result -> result.setMinimumSize(arg0));
+        default S setMinimumSize(final Dimension minimumSize) {
+            return setup(result -> result.setMinimumSize(minimumSize));
         }
 
         /**
          * @see Component#setName(String)
          */
-        default S setName(final String arg0) {
-            return setup(result -> result.setName(arg0));
+        default S setName(final String name) {
+            return setup(result -> result.setName(name));
         }
 
         /**
          * @see Component#setPreferredSize(Dimension)
          */
-        default S setPreferredSize(final Dimension arg0) {
-            return setup(result -> result.setPreferredSize(arg0));
+        default S setPreferredSize(final Dimension preferredSize) {
+            return setup(result -> result.setPreferredSize(preferredSize));
         }
 
         /**
          * @see Component#setSize(Dimension)
          */
-        default S setSize(final Dimension arg0) {
-            return setup(result -> result.setSize(arg0));
+        default S setSize(final Dimension d) {
+            return setup(result -> result.setSize(d));
         }
 
         /**
          * @see Component#setSize(int, int)
          */
-        default S setSize(final int arg0, final int arg1) {
-            return setup(result -> result.setSize(arg0, arg1));
+        default S setSize(final int width, final int height) {
+            return setup(result -> result.setSize(width, height));
         }
 
         /**
          * @see Component#setVisible(boolean)
          */
-        default S setVisible(final boolean arg0) {
-            return setup(result -> result.setVisible(arg0));
+        default S setVisible(final boolean b) {
+            return setup(result -> result.setVisible(b));
         }
     }
 }

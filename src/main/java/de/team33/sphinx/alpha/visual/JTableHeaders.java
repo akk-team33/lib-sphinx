@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.plaf.TableHeaderUI;
 import javax.swing.table.JTableHeader;
@@ -60,71 +59,71 @@ public final class JTableHeaders {
         /**
          * @see JTableHeader#setColumnModel(TableColumnModel)
          */
-        default S setColumnModel(final TableColumnModel arg0) {
-            return setup(result -> result.setColumnModel(arg0));
+        default S setColumnModel(final TableColumnModel columnModel) {
+            return setup(result -> result.setColumnModel(columnModel));
         }
 
         /**
          * @see JTableHeader#setDefaultRenderer(TableCellRenderer)
          */
-        default S setDefaultRenderer(final TableCellRenderer arg0) {
-            return setup(result -> result.setDefaultRenderer(arg0));
+        default S setDefaultRenderer(final TableCellRenderer defaultRenderer) {
+            return setup(result -> result.setDefaultRenderer(defaultRenderer));
         }
 
         /**
          * @see JTableHeader#setDraggedColumn(TableColumn)
          */
-        default S setDraggedColumn(final TableColumn arg0) {
-            return setup(result -> result.setDraggedColumn(arg0));
+        default S setDraggedColumn(final TableColumn aColumn) {
+            return setup(result -> result.setDraggedColumn(aColumn));
         }
 
         /**
          * @see JTableHeader#setDraggedDistance(int)
          */
-        default S setDraggedDistance(final int arg0) {
-            return setup(result -> result.setDraggedDistance(arg0));
+        default S setDraggedDistance(final int distance) {
+            return setup(result -> result.setDraggedDistance(distance));
         }
 
         /**
          * @see JTableHeader#setReorderingAllowed(boolean)
          */
-        default S setReorderingAllowed(final boolean arg0) {
-            return setup(result -> result.setReorderingAllowed(arg0));
+        default S setReorderingAllowed(final boolean reorderingAllowed) {
+            return setup(result -> result.setReorderingAllowed(reorderingAllowed));
         }
 
         /**
          * @see JTableHeader#setResizingAllowed(boolean)
          */
-        default S setResizingAllowed(final boolean arg0) {
-            return setup(result -> result.setResizingAllowed(arg0));
+        default S setResizingAllowed(final boolean resizingAllowed) {
+            return setup(result -> result.setResizingAllowed(resizingAllowed));
         }
 
         /**
          * @see JTableHeader#setResizingColumn(TableColumn)
          */
-        default S setResizingColumn(final TableColumn arg0) {
-            return setup(result -> result.setResizingColumn(arg0));
+        default S setResizingColumn(final TableColumn aColumn) {
+            return setup(result -> result.setResizingColumn(aColumn));
         }
 
         /**
          * @see JTableHeader#setTable(JTable)
          */
-        default S setTable(final JTable arg0) {
-            return setup(result -> result.setTable(arg0));
+        default S setTable(final JTable table) {
+            return setup(result -> result.setTable(table));
         }
 
         /**
          * @see JTableHeader#setUI(TableHeaderUI)
          */
-        default S setUI(final TableHeaderUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final TableHeaderUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JTableHeader#setUpdateTableInRealTime(boolean)
          */
-        default S setUpdateTableInRealTime(final boolean arg0) {
-            return setup(result -> result.setUpdateTableInRealTime(arg0));
+        default S setUpdateTableInRealTime(final boolean flag) {
+            return setup(result -> result.setUpdateTableInRealTime(flag));
         }
     }
 }

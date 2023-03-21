@@ -59,71 +59,71 @@ public final class JColorChoosers {
         /**
          * @see JColorChooser#addChooserPanel(AbstractColorChooserPanel)
          */
-        default S addChooserPanel(final AbstractColorChooserPanel arg0) {
-            return setup(result -> result.addChooserPanel(arg0));
+        default S addChooserPanel(final AbstractColorChooserPanel panel) {
+            return setup(result -> result.addChooserPanel(panel));
         }
 
         /**
          * @see JColorChooser#removeChooserPanel(AbstractColorChooserPanel)
          */
-        default S removeChooserPanel(final AbstractColorChooserPanel arg0) {
-            return setup(result -> result.removeChooserPanel(arg0));
+        default S removeChooserPanel(final AbstractColorChooserPanel panel) {
+            return setup(result -> result.removeChooserPanel(panel));
         }
 
         /**
          * @see JColorChooser#setChooserPanels(AbstractColorChooserPanel[])
          */
-        default S setChooserPanels(final javax.swing.colorchooser.AbstractColorChooserPanel[] arg0) {
-            return setup(result -> result.setChooserPanels(arg0));
+        default S setChooserPanels(final javax.swing.colorchooser.AbstractColorChooserPanel[] panels) {
+            return setup(result -> result.setChooserPanels(panels));
         }
 
         /**
          * @see JColorChooser#setColor(Color)
          */
-        default S setColor(final Color arg0) {
-            return setup(result -> result.setColor(arg0));
+        default S setColor(final Color color) {
+            return setup(result -> result.setColor(color));
         }
 
         /**
          * @see JColorChooser#setColor(int)
          */
-        default S setColor(final int arg0) {
-            return setup(result -> result.setColor(arg0));
+        default S setColor(final int c) {
+            return setup(result -> result.setColor(c));
         }
 
         /**
          * @see JColorChooser#setColor(int, int, int)
          */
-        default S setColor(final int arg0, final int arg1, final int arg2) {
-            return setup(result -> result.setColor(arg0, arg1, arg2));
+        default S setColor(final int r, final int g, final int b) {
+            return setup(result -> result.setColor(r, g, b));
         }
 
         /**
          * @see JColorChooser#setDragEnabled(boolean)
          */
-        default S setDragEnabled(final boolean arg0) {
-            return setup(result -> result.setDragEnabled(arg0));
+        default S setDragEnabled(final boolean b) {
+            return setup(result -> result.setDragEnabled(b));
         }
 
         /**
          * @see JColorChooser#setPreviewPanel(JComponent)
          */
-        default S setPreviewPanel(final JComponent arg0) {
-            return setup(result -> result.setPreviewPanel(arg0));
+        default S setPreviewPanel(final JComponent preview) {
+            return setup(result -> result.setPreviewPanel(preview));
         }
 
         /**
          * @see JColorChooser#setSelectionModel(ColorSelectionModel)
          */
-        default S setSelectionModel(final ColorSelectionModel arg0) {
-            return setup(result -> result.setSelectionModel(arg0));
+        default S setSelectionModel(final ColorSelectionModel newModel) {
+            return setup(result -> result.setSelectionModel(newModel));
         }
 
         /**
          * @see JColorChooser#setUI(ColorChooserUI)
          */
-        default S setUI(final ColorChooserUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final ColorChooserUI ui) {
+            return setup(result -> result.setUI(ui));
         }
     }
 }

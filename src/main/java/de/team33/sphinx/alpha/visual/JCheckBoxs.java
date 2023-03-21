@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.JCheckBox;
-import javax.swing.JToggleButton;
 
 /**
  * Utility class to handle {@link JCheckBox}s.
@@ -55,8 +54,8 @@ public final class JCheckBoxs {
         /**
          * @see JCheckBox#setBorderPaintedFlat(boolean)
          */
-        default S setBorderPaintedFlat(final boolean arg0) {
-            return setup(result -> result.setBorderPaintedFlat(arg0));
+        default S setBorderPaintedFlat(final boolean b) {
+            return setup(result -> result.setBorderPaintedFlat(b));
         }
     }
 }

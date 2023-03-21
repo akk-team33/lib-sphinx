@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.BoundedRangeModel;
-import javax.swing.JComponent;
 import javax.swing.JProgressBar;
 import javax.swing.plaf.ProgressBarUI;
 
@@ -57,71 +56,71 @@ public final class JProgressBars {
         /**
          * @see JProgressBar#setBorderPainted(boolean)
          */
-        default S setBorderPainted(final boolean arg0) {
-            return setup(result -> result.setBorderPainted(arg0));
+        default S setBorderPainted(final boolean b) {
+            return setup(result -> result.setBorderPainted(b));
         }
 
         /**
          * @see JProgressBar#setIndeterminate(boolean)
          */
-        default S setIndeterminate(final boolean arg0) {
-            return setup(result -> result.setIndeterminate(arg0));
+        default S setIndeterminate(final boolean newValue) {
+            return setup(result -> result.setIndeterminate(newValue));
         }
 
         /**
          * @see JProgressBar#setMaximum(int)
          */
-        default S setMaximum(final int arg0) {
-            return setup(result -> result.setMaximum(arg0));
+        default S setMaximum(final int n) {
+            return setup(result -> result.setMaximum(n));
         }
 
         /**
          * @see JProgressBar#setMinimum(int)
          */
-        default S setMinimum(final int arg0) {
-            return setup(result -> result.setMinimum(arg0));
+        default S setMinimum(final int n) {
+            return setup(result -> result.setMinimum(n));
         }
 
         /**
          * @see JProgressBar#setModel(BoundedRangeModel)
          */
-        default S setModel(final BoundedRangeModel arg0) {
-            return setup(result -> result.setModel(arg0));
+        default S setModel(final BoundedRangeModel newModel) {
+            return setup(result -> result.setModel(newModel));
         }
 
         /**
          * @see JProgressBar#setOrientation(int)
          */
-        default S setOrientation(final int arg0) {
-            return setup(result -> result.setOrientation(arg0));
+        default S setOrientation(final int newOrientation) {
+            return setup(result -> result.setOrientation(newOrientation));
         }
 
         /**
          * @see JProgressBar#setString(String)
          */
-        default S setString(final String arg0) {
-            return setup(result -> result.setString(arg0));
+        default S setString(final String s) {
+            return setup(result -> result.setString(s));
         }
 
         /**
          * @see JProgressBar#setStringPainted(boolean)
          */
-        default S setStringPainted(final boolean arg0) {
-            return setup(result -> result.setStringPainted(arg0));
+        default S setStringPainted(final boolean b) {
+            return setup(result -> result.setStringPainted(b));
         }
 
         /**
          * @see JProgressBar#setUI(ProgressBarUI)
          */
-        default S setUI(final ProgressBarUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final ProgressBarUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JProgressBar#setValue(int)
          */
-        default S setValue(final int arg0) {
-            return setup(result -> result.setValue(arg0));
+        default S setValue(final int n) {
+            return setup(result -> result.setValue(n));
         }
     }
 }

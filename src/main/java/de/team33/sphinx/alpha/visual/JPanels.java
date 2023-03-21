@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.plaf.PanelUI;
 
@@ -56,8 +55,8 @@ public final class JPanels {
         /**
          * @see JPanel#setUI(PanelUI)
          */
-        default S setUI(final PanelUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final PanelUI ui) {
+            return setup(result -> result.setUI(ui));
         }
     }
 }

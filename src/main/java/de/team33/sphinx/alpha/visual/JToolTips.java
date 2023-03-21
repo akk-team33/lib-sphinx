@@ -55,15 +55,15 @@ public final class JToolTips {
         /**
          * @see JToolTip#setComponent(JComponent)
          */
-        default S setComponent(final JComponent arg0) {
-            return setup(result -> result.setComponent(arg0));
+        default S setComponent(final JComponent c) {
+            return setup(result -> result.setComponent(c));
         }
 
         /**
          * @see JToolTip#setTipText(String)
          */
-        default S setTipText(final String arg0) {
-            return setup(result -> result.setTipText(arg0));
+        default S setTipText(final String tipText) {
+            return setup(result -> result.setTipText(tipText));
         }
     }
 }

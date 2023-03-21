@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Dimension;
@@ -59,155 +58,155 @@ public final class Windows {
         /**
          * @see Window#setAlwaysOnTop(boolean)
          */
-        default S setAlwaysOnTop(final boolean arg0) {
-            return setup(result -> result.setAlwaysOnTop(arg0));
+        default S setAlwaysOnTop(final boolean alwaysOnTop) {
+            return setup(result -> result.setAlwaysOnTop(alwaysOnTop));
         }
 
         /**
          * @see Window#setAutoRequestFocus(boolean)
          */
-        default S setAutoRequestFocus(final boolean arg0) {
-            return setup(result -> result.setAutoRequestFocus(arg0));
+        default S setAutoRequestFocus(final boolean autoRequestFocus) {
+            return setup(result -> result.setAutoRequestFocus(autoRequestFocus));
         }
 
         /**
          * @see Window#setBackground(Color)
          */
-        default S setBackground(final Color arg0) {
-            return setup(result -> result.setBackground(arg0));
+        default S setBackground(final Color bgColor) {
+            return setup(result -> result.setBackground(bgColor));
         }
 
         /**
          * @see Window#setBounds(Rectangle)
          */
-        default S setBounds(final Rectangle arg0) {
-            return setup(result -> result.setBounds(arg0));
+        default S setBounds(final Rectangle r) {
+            return setup(result -> result.setBounds(r));
         }
 
         /**
          * @see Window#setBounds(int, int, int, int)
          */
-        default S setBounds(final int arg0, final int arg1, final int arg2, final int arg3) {
-            return setup(result -> result.setBounds(arg0, arg1, arg2, arg3));
+        default S setBounds(final int x, final int y, final int width, final int height) {
+            return setup(result -> result.setBounds(x, y, width, height));
         }
 
         /**
          * @see Window#setCursor(Cursor)
          */
-        default S setCursor(final Cursor arg0) {
-            return setup(result -> result.setCursor(arg0));
+        default S setCursor(final Cursor cursor) {
+            return setup(result -> result.setCursor(cursor));
         }
 
         /**
          * @see Window#setFocusCycleRoot(boolean)
          */
-        default S setFocusCycleRoot(final boolean arg0) {
-            return setup(result -> result.setFocusCycleRoot(arg0));
+        default S setFocusCycleRoot(final boolean focusCycleRoot) {
+            return setup(result -> result.setFocusCycleRoot(focusCycleRoot));
         }
 
         /**
          * @see Window#setFocusableWindowState(boolean)
          */
-        default S setFocusableWindowState(final boolean arg0) {
-            return setup(result -> result.setFocusableWindowState(arg0));
+        default S setFocusableWindowState(final boolean focusableWindowState) {
+            return setup(result -> result.setFocusableWindowState(focusableWindowState));
         }
 
         /**
          * @see Window#setIconImage(Image)
          */
-        default S setIconImage(final Image arg0) {
-            return setup(result -> result.setIconImage(arg0));
+        default S setIconImage(final Image image) {
+            return setup(result -> result.setIconImage(image));
         }
 
         /**
          * @see Window#setIconImages(List)
          */
-        default S setIconImages(final List<? extends java.awt.Image> arg0) {
-            return setup(result -> result.setIconImages(arg0));
+        default S setIconImages(final List<? extends java.awt.Image> icons) {
+            return setup(result -> result.setIconImages(icons));
         }
 
         /**
          * @see Window#setLocation(Point)
          */
-        default S setLocation(final Point arg0) {
-            return setup(result -> result.setLocation(arg0));
+        default S setLocation(final Point p) {
+            return setup(result -> result.setLocation(p));
         }
 
         /**
          * @see Window#setLocation(int, int)
          */
-        default S setLocation(final int arg0, final int arg1) {
-            return setup(result -> result.setLocation(arg0, arg1));
+        default S setLocation(final int x, final int y) {
+            return setup(result -> result.setLocation(x, y));
         }
 
         /**
          * @see Window#setLocationByPlatform(boolean)
          */
-        default S setLocationByPlatform(final boolean arg0) {
-            return setup(result -> result.setLocationByPlatform(arg0));
+        default S setLocationByPlatform(final boolean locationByPlatform) {
+            return setup(result -> result.setLocationByPlatform(locationByPlatform));
         }
 
         /**
          * @see Window#setLocationRelativeTo(Component)
          */
-        default S setLocationRelativeTo(final Component arg0) {
-            return setup(result -> result.setLocationRelativeTo(arg0));
+        default S setLocationRelativeTo(final Component c) {
+            return setup(result -> result.setLocationRelativeTo(c));
         }
 
         /**
          * @see Window#setMinimumSize(Dimension)
          */
-        default S setMinimumSize(final Dimension arg0) {
-            return setup(result -> result.setMinimumSize(arg0));
+        default S setMinimumSize(final Dimension minimumSize) {
+            return setup(result -> result.setMinimumSize(minimumSize));
         }
 
         /**
          * @see Window#setModalExclusionType(ModalExclusionType)
          */
-        default S setModalExclusionType(final ModalExclusionType arg0) {
-            return setup(result -> result.setModalExclusionType(arg0));
+        default S setModalExclusionType(final ModalExclusionType exclusionType) {
+            return setup(result -> result.setModalExclusionType(exclusionType));
         }
 
         /**
          * @see Window#setOpacity(float)
          */
-        default S setOpacity(final float arg0) {
-            return setup(result -> result.setOpacity(arg0));
+        default S setOpacity(final float opacity) {
+            return setup(result -> result.setOpacity(opacity));
         }
 
         /**
          * @see Window#setShape(Shape)
          */
-        default S setShape(final Shape arg0) {
-            return setup(result -> result.setShape(arg0));
+        default S setShape(final Shape shape) {
+            return setup(result -> result.setShape(shape));
         }
 
         /**
          * @see Window#setSize(Dimension)
          */
-        default S setSize(final Dimension arg0) {
-            return setup(result -> result.setSize(arg0));
+        default S setSize(final Dimension d) {
+            return setup(result -> result.setSize(d));
         }
 
         /**
          * @see Window#setSize(int, int)
          */
-        default S setSize(final int arg0, final int arg1) {
-            return setup(result -> result.setSize(arg0, arg1));
+        default S setSize(final int width, final int height) {
+            return setup(result -> result.setSize(width, height));
         }
 
         /**
          * @see Window#setType(Type)
          */
-        default S setType(final Type arg0) {
-            return setup(result -> result.setType(arg0));
+        default S setType(final Type type) {
+            return setup(result -> result.setType(type));
         }
 
         /**
          * @see Window#setVisible(boolean)
          */
-        default S setVisible(final boolean arg0) {
-            return setup(result -> result.setVisible(arg0));
+        default S setVisible(final boolean b) {
+            return setup(result -> result.setVisible(b));
         }
     }
 }

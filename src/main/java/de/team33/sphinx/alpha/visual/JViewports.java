@@ -59,57 +59,57 @@ public final class JViewports {
         /**
          * @see JViewport#remove(Component)
          */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
+        default S remove(final Component child) {
+            return setup(result -> result.remove(child));
         }
 
         /**
          * @see JViewport#setBorder(Border)
          */
-        default S setBorder(final Border arg0) {
-            return setup(result -> result.setBorder(arg0));
+        default S setBorder(final Border border) {
+            return setup(result -> result.setBorder(border));
         }
 
         /**
          * @see JViewport#setExtentSize(Dimension)
          */
-        default S setExtentSize(final Dimension arg0) {
-            return setup(result -> result.setExtentSize(arg0));
+        default S setExtentSize(final Dimension newExtent) {
+            return setup(result -> result.setExtentSize(newExtent));
         }
 
         /**
          * @see JViewport#setScrollMode(int)
          */
-        default S setScrollMode(final int arg0) {
-            return setup(result -> result.setScrollMode(arg0));
+        default S setScrollMode(final int mode) {
+            return setup(result -> result.setScrollMode(mode));
         }
 
         /**
          * @see JViewport#setUI(ViewportUI)
          */
-        default S setUI(final ViewportUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final ViewportUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JViewport#setView(Component)
          */
-        default S setView(final Component arg0) {
-            return setup(result -> result.setView(arg0));
+        default S setView(final Component view) {
+            return setup(result -> result.setView(view));
         }
 
         /**
          * @see JViewport#setViewPosition(Point)
          */
-        default S setViewPosition(final Point arg0) {
-            return setup(result -> result.setViewPosition(arg0));
+        default S setViewPosition(final Point p) {
+            return setup(result -> result.setViewPosition(p));
         }
 
         /**
          * @see JViewport#setViewSize(Dimension)
          */
-        default S setViewSize(final Dimension arg0) {
-            return setup(result -> result.setViewSize(arg0));
+        default S setViewSize(final Dimension newSize) {
+            return setup(result -> result.setViewSize(newSize));
         }
     }
 }

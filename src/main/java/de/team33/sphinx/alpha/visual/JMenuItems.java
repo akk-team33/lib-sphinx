@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
@@ -58,36 +57,36 @@ public final class JMenuItems {
         /**
          * @see JMenuItem#setAccelerator(KeyStroke)
          */
-        default S setAccelerator(final KeyStroke arg0) {
-            return setup(result -> result.setAccelerator(arg0));
+        default S setAccelerator(final KeyStroke keyStroke) {
+            return setup(result -> result.setAccelerator(keyStroke));
         }
 
         /**
          * @see JMenuItem#setArmed(boolean)
          */
-        default S setArmed(final boolean arg0) {
-            return setup(result -> result.setArmed(arg0));
+        default S setArmed(final boolean b) {
+            return setup(result -> result.setArmed(b));
         }
 
         /**
          * @see JMenuItem#setEnabled(boolean)
          */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
+        default S setEnabled(final boolean b) {
+            return setup(result -> result.setEnabled(b));
         }
 
         /**
          * @see JMenuItem#setModel(ButtonModel)
          */
-        default S setModel(final ButtonModel arg0) {
-            return setup(result -> result.setModel(arg0));
+        default S setModel(final ButtonModel newModel) {
+            return setup(result -> result.setModel(newModel));
         }
 
         /**
          * @see JMenuItem#setUI(MenuItemUI)
          */
-        default S setUI(final MenuItemUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final MenuItemUI ui) {
+            return setup(result -> result.setUI(ui));
         }
     }
 }

@@ -322,8 +322,8 @@ public final class Listeners {
     public static InputMethodListener inputMethodTextChanged(final Consumer<? super InputMethodEvent> reaction) {
         return new InputMethodAdapter() {
             @Override
-            public void inputMethodTextChanged(final InputMethodEvent e) {
-                reaction.accept(e);
+            public void inputMethodTextChanged(final InputMethodEvent event) {
+                reaction.accept(event);
             }
         };
     }
@@ -337,8 +337,8 @@ public final class Listeners {
     public static InputMethodListener caretPositionChanged(final Consumer<? super InputMethodEvent> reaction) {
         return new InputMethodAdapter() {
             @Override
-            public void caretPositionChanged(final InputMethodEvent e) {
-                reaction.accept(e);
+            public void caretPositionChanged(final InputMethodEvent event) {
+                reaction.accept(event);
             }
         };
     }
@@ -392,8 +392,8 @@ public final class Listeners {
     public static AncestorListener ancestorMoved(final Consumer<? super AncestorEvent> reaction) {
         return new AncestorAdapter() {
             @Override
-            public void ancestorMoved(final AncestorEvent e) {
-                reaction.accept(e);
+            public void ancestorMoved(final AncestorEvent event) {
+                reaction.accept(event);
             }
         };
     }
@@ -407,8 +407,8 @@ public final class Listeners {
     public static AncestorListener ancestorAdded(final Consumer<? super AncestorEvent> reaction) {
         return new AncestorAdapter() {
             @Override
-            public void ancestorAdded(final AncestorEvent e) {
-                reaction.accept(e);
+            public void ancestorAdded(final AncestorEvent event) {
+                reaction.accept(event);
             }
         };
     }
@@ -422,8 +422,8 @@ public final class Listeners {
     public static AncestorListener ancestorRemoved(final Consumer<? super AncestorEvent> reaction) {
         return new AncestorAdapter() {
             @Override
-            public void ancestorRemoved(final AncestorEvent e) {
-                reaction.accept(e);
+            public void ancestorRemoved(final AncestorEvent event) {
+                reaction.accept(event);
             }
         };
     }
@@ -777,8 +777,8 @@ public final class Listeners {
     public static TreeExpansionListener treeExpanded(final Consumer<? super TreeExpansionEvent> reaction) {
         return new TreeExpansionAdapter() {
             @Override
-            public void treeExpanded(final TreeExpansionEvent e) {
-                reaction.accept(e);
+            public void treeExpanded(final TreeExpansionEvent event) {
+                reaction.accept(event);
             }
         };
     }
@@ -792,8 +792,8 @@ public final class Listeners {
     public static TreeExpansionListener treeCollapsed(final Consumer<? super TreeExpansionEvent> reaction) {
         return new TreeExpansionAdapter() {
             @Override
-            public void treeCollapsed(final TreeExpansionEvent e) {
-                reaction.accept(e);
+            public void treeCollapsed(final TreeExpansionEvent event) {
+                reaction.accept(event);
             }
         };
     }
@@ -807,8 +807,8 @@ public final class Listeners {
     public static TreeWillExpandListener treeWillExpand(final Consumer<? super TreeExpansionEvent> reaction) {
         return new TreeWillExpandAdapter() {
             @Override
-            public void treeWillExpand(final TreeExpansionEvent e) {
-                reaction.accept(e);
+            public void treeWillExpand(final TreeExpansionEvent event) {
+                reaction.accept(event);
             }
         };
     }
@@ -822,8 +822,8 @@ public final class Listeners {
     public static TreeWillExpandListener treeWillCollapse(final Consumer<? super TreeExpansionEvent> reaction) {
         return new TreeWillExpandAdapter() {
             @Override
-            public void treeWillCollapse(final TreeExpansionEvent e) {
-                reaction.accept(e);
+            public void treeWillCollapse(final TreeExpansionEvent event) {
+                reaction.accept(event);
             }
         };
     }

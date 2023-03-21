@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 /**
  * Utility class to handle {@link JPasswordField}s.
@@ -55,8 +54,8 @@ public final class JPasswordFields {
         /**
          * @see JPasswordField#setEchoChar(char)
          */
-        default S setEchoChar(final char arg0) {
-            return setup(result -> result.setEchoChar(arg0));
+        default S setEchoChar(final char c) {
+            return setup(result -> result.setEchoChar(c));
         }
     }
 }
