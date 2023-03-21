@@ -1,8 +1,10 @@
 package de.team33.sphinx.alpha.option;
 
 import java.awt.*;
+import java.util.function.Supplier;
 import java.util.prefs.Preferences;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class BackedBounds {
 
     private static final String X = "x";
@@ -29,6 +31,15 @@ public class BackedBounds {
         backing.putInt(Y, point.y);
     }
 
+    public final void setLocationIfNormal(final Point point) {
+        setLocationIfNormal(() -> point);
+    }
+
+    public final void setLocationIfNormal(final Supplier<? extends Point> point) {
+        if (0 == getState())
+            setLocation(point.get());
+    }
+
     public final Dimension getSize() {
         return new Dimension(backing.getInt(WIDTH, fallback.width),
                              backing.getInt(HEIGHT, fallback.height));
@@ -39,6 +50,15 @@ public class BackedBounds {
         backing.putInt(HEIGHT, size.height);
     }
 
+    public final void setSizeIfNormal(final Dimension size) {
+        setSizeIfNormal(() -> size);
+    }
+
+    public final void setSizeIfNormal(final Supplier<? extends Dimension> size) {
+        if (0 == getState())
+            setSize(size.get());
+    }
+
     public final Rectangle getBounds() {
         return new Rectangle(getLocation(), getSize());
     }
@@ -46,6 +66,15 @@ public class BackedBounds {
     public final void setBounds(final Rectangle bounds) {
         setLocation(bounds.getLocation());
         setSize(bounds.getSize());
+    }
+
+    public final void setBoundsIfNormal(final Rectangle bounds) {
+        setBoundsIfNormal(() -> bounds);
+    }
+
+    public final void setBoundsIfNormal(final Supplier<? extends Rectangle> bounds) {
+        if (0 == getState())
+            setBounds(bounds.get());
     }
 
     public final int getState() {

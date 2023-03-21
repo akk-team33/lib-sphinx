@@ -27,7 +27,7 @@ public interface Event<C, M> {
      */
     Event<Component, PropertyChangeEvent> PROPERTY_CHANGE =
             new EventAgent<>((Component c, PropertyChangeListener l) -> c.addPropertyChangeListener(l),
-                             Listeners::propertyChange).event();
+                             Listeners::propertyChange)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -36,7 +36,7 @@ public interface Event<C, M> {
      * @see Component#addComponentListener(ComponentListener)
      */
     Event<Component, ComponentEvent> COMPONENT_RESIZED =
-            new EventAgent<>(Component::addComponentListener, Listeners::componentResized).event();
+            new EventAgent<>(Component::addComponentListener, Listeners::componentResized)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -45,7 +45,7 @@ public interface Event<C, M> {
      * @see Component#addComponentListener(ComponentListener)
      */
     Event<Component, ComponentEvent> COMPONENT_MOVED =
-            new EventAgent<>(Component::addComponentListener, Listeners::componentMoved).event();
+            new EventAgent<>(Component::addComponentListener, Listeners::componentMoved)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -54,7 +54,7 @@ public interface Event<C, M> {
      * @see Component#addComponentListener(ComponentListener)
      */
     Event<Component, ComponentEvent> COMPONENT_SHOWN =
-            new EventAgent<>(Component::addComponentListener, Listeners::componentShown).event();
+            new EventAgent<>(Component::addComponentListener, Listeners::componentShown)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -63,7 +63,7 @@ public interface Event<C, M> {
      * @see Component#addComponentListener(ComponentListener)
      */
     Event<Component, ComponentEvent> COMPONENT_HIDDEN =
-            new EventAgent<>(Component::addComponentListener, Listeners::componentHidden).event();
+            new EventAgent<>(Component::addComponentListener, Listeners::componentHidden)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -72,7 +72,7 @@ public interface Event<C, M> {
      * @see Component#addFocusListener(FocusListener)
      */
     Event<Component, FocusEvent> FOCUS_GAINED =
-            new EventAgent<>(Component::addFocusListener, Listeners::focusGained).event();
+            new EventAgent<>(Component::addFocusListener, Listeners::focusGained)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -81,7 +81,7 @@ public interface Event<C, M> {
      * @see Component#addFocusListener(FocusListener)
      */
     Event<Component, FocusEvent> FOCUS_LOST =
-            new EventAgent<>(Component::addFocusListener, Listeners::focusLost).event();
+            new EventAgent<>(Component::addFocusListener, Listeners::focusLost)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -90,7 +90,7 @@ public interface Event<C, M> {
      * @see Component#addHierarchyListener(HierarchyListener)
      */
     Event<Component, HierarchyEvent> HIERARCHY_CHANGED =
-            new EventAgent<>(Component::addHierarchyListener, Listeners::hierarchyChanged).event();
+            new EventAgent<>(Component::addHierarchyListener, Listeners::hierarchyChanged)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -99,7 +99,7 @@ public interface Event<C, M> {
      * @see Component#addHierarchyBoundsListener(HierarchyBoundsListener)
      */
     Event<Component, HierarchyEvent> ANCESTOR_BOUNDS_MOVED =
-            new EventAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsMoved).event();
+            new EventAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsMoved)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -108,7 +108,7 @@ public interface Event<C, M> {
      * @see Component#addHierarchyBoundsListener(HierarchyBoundsListener)
      */
     Event<Component, HierarchyEvent> ANCESTOR_BOUNDS_RESIZED =
-            new EventAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsResized).event();
+            new EventAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsResized)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -117,7 +117,7 @@ public interface Event<C, M> {
      * @see Component#addKeyListener(KeyListener)
      */
     Event<Component, KeyEvent> KEY_TYPED =
-            new EventAgent<>(Component::addKeyListener, Listeners::keyTyped).event();
+            new EventAgent<>(Component::addKeyListener, Listeners::keyTyped)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -126,7 +126,7 @@ public interface Event<C, M> {
      * @see Component#addKeyListener(KeyListener)
      */
     Event<Component, KeyEvent> KEY_PRESSED =
-            new EventAgent<>(Component::addKeyListener, Listeners::keyPressed).event();
+            new EventAgent<>(Component::addKeyListener, Listeners::keyPressed)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -135,7 +135,7 @@ public interface Event<C, M> {
      * @see Component#addKeyListener(KeyListener)
      */
     Event<Component, KeyEvent> KEY_RELEASED =
-            new EventAgent<>(Component::addKeyListener, Listeners::keyReleased).event();
+            new EventAgent<>(Component::addKeyListener, Listeners::keyReleased)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -144,7 +144,7 @@ public interface Event<C, M> {
      * @see Component#addMouseListener(MouseListener)
      */
     Event<Component, MouseEvent> MOUSE_PRESSED =
-            new EventAgent<>(Component::addMouseListener, Listeners::mousePressed).event();
+            new EventAgent<>(Component::addMouseListener, Listeners::mousePressed)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -153,7 +153,7 @@ public interface Event<C, M> {
      * @see Component#addMouseListener(MouseListener)
      */
     Event<Component, MouseEvent> MOUSE_RELEASED =
-            new EventAgent<>(Component::addMouseListener, Listeners::mouseReleased).event();
+            new EventAgent<>(Component::addMouseListener, Listeners::mouseReleased)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -162,7 +162,7 @@ public interface Event<C, M> {
      * @see Component#addMouseListener(MouseListener)
      */
     Event<Component, MouseEvent> MOUSE_CLICKED =
-            new EventAgent<>(Component::addMouseListener, Listeners::mouseClicked).event();
+            new EventAgent<>(Component::addMouseListener, Listeners::mouseClicked)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -171,7 +171,7 @@ public interface Event<C, M> {
      * @see Component#addMouseListener(MouseListener)
      */
     Event<Component, MouseEvent> MOUSE_EXITED =
-            new EventAgent<>(Component::addMouseListener, Listeners::mouseExited).event();
+            new EventAgent<>(Component::addMouseListener, Listeners::mouseExited)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -180,7 +180,7 @@ public interface Event<C, M> {
      * @see Component#addMouseListener(MouseListener)
      */
     Event<Component, MouseEvent> MOUSE_ENTERED =
-            new EventAgent<>(Component::addMouseListener, Listeners::mouseEntered).event();
+            new EventAgent<>(Component::addMouseListener, Listeners::mouseEntered)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -189,7 +189,7 @@ public interface Event<C, M> {
      * @see Component#addMouseMotionListener(MouseMotionListener)
      */
     Event<Component, MouseEvent> MOUSE_MOVED =
-            new EventAgent<>(Component::addMouseMotionListener, Listeners::mouseMoved).event();
+            new EventAgent<>(Component::addMouseMotionListener, Listeners::mouseMoved)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -198,7 +198,7 @@ public interface Event<C, M> {
      * @see Component#addMouseMotionListener(MouseMotionListener)
      */
     Event<Component, MouseEvent> MOUSE_DRAGGED =
-            new EventAgent<>(Component::addMouseMotionListener, Listeners::mouseDragged).event();
+            new EventAgent<>(Component::addMouseMotionListener, Listeners::mouseDragged)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -207,7 +207,7 @@ public interface Event<C, M> {
      * @see Component#addMouseWheelListener(MouseWheelListener)
      */
     Event<Component, MouseWheelEvent> MOUSE_WHEEL_MOVED =
-            new EventAgent<>(Component::addMouseWheelListener, Listeners::mouseWheelMoved).event();
+            new EventAgent<>(Component::addMouseWheelListener, Listeners::mouseWheelMoved)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -216,7 +216,7 @@ public interface Event<C, M> {
      * @see Component#addInputMethodListener(InputMethodListener)
      */
     Event<Component, InputMethodEvent> INPUT_METHOD_TEXT_CHANGED =
-            new EventAgent<>(Component::addInputMethodListener, Listeners::inputMethodTextChanged).event();
+            new EventAgent<>(Component::addInputMethodListener, Listeners::inputMethodTextChanged)::add;
 
     /**
      * Represents an event that can occur on {@link Component}s.
@@ -225,7 +225,7 @@ public interface Event<C, M> {
      * @see Component#addInputMethodListener(InputMethodListener)
      */
     Event<Component, InputMethodEvent> CARET_POSITION_CHANGED =
-            new EventAgent<>(Component::addInputMethodListener, Listeners::caretPositionChanged).event();
+            new EventAgent<>(Component::addInputMethodListener, Listeners::caretPositionChanged)::add;
 
     /**
      * Represents an event that can occur on {@link Container}s.
@@ -234,7 +234,7 @@ public interface Event<C, M> {
      * @see Container#addContainerListener(ContainerListener)
      */
     Event<Container, ContainerEvent> COMPONENT_ADDED =
-            new EventAgent<>(Container::addContainerListener, Listeners::componentAdded).event();
+            new EventAgent<>(Container::addContainerListener, Listeners::componentAdded)::add;
 
     /**
      * Represents an event that can occur on {@link Container}s.
@@ -243,7 +243,7 @@ public interface Event<C, M> {
      * @see Container#addContainerListener(ContainerListener)
      */
     Event<Container, ContainerEvent> COMPONENT_REMOVED =
-            new EventAgent<>(Container::addContainerListener, Listeners::componentRemoved).event();
+            new EventAgent<>(Container::addContainerListener, Listeners::componentRemoved)::add;
 
     /**
      * Represents an event that can occur on {@link JComponent}s.
@@ -252,7 +252,7 @@ public interface Event<C, M> {
      * @see JComponent#addVetoableChangeListener(VetoableChangeListener)
      */
     Event<JComponent, PropertyChangeEvent> VETOABLE_CHANGE =
-            new EventAgent<>(JComponent::addVetoableChangeListener, Listeners::vetoableChange).event();
+            new EventAgent<>(JComponent::addVetoableChangeListener, Listeners::vetoableChange)::add;
 
     /**
      * Represents an event that can occur on {@link JComponent}s.
@@ -261,7 +261,7 @@ public interface Event<C, M> {
      * @see JComponent#addAncestorListener(AncestorListener)
      */
     Event<JComponent, AncestorEvent> ANCESTOR_ADDED =
-            new EventAgent<>(JComponent::addAncestorListener, Listeners::ancestorAdded).event();
+            new EventAgent<>(JComponent::addAncestorListener, Listeners::ancestorAdded)::add;
 
     /**
      * Represents an event that can occur on {@link JComponent}s.
@@ -270,7 +270,7 @@ public interface Event<C, M> {
      * @see JComponent#addAncestorListener(AncestorListener)
      */
     Event<JComponent, AncestorEvent> ANCESTOR_REMOVED =
-            new EventAgent<>(JComponent::addAncestorListener, Listeners::ancestorRemoved).event();
+            new EventAgent<>(JComponent::addAncestorListener, Listeners::ancestorRemoved)::add;
 
     /**
      * Represents an event that can occur on {@link JComponent}s.
@@ -279,7 +279,7 @@ public interface Event<C, M> {
      * @see JComponent#addAncestorListener(AncestorListener)
      */
     Event<JComponent, AncestorEvent> ANCESTOR_MOVED =
-            new EventAgent<>(JComponent::addAncestorListener, Listeners::ancestorMoved).event();
+            new EventAgent<>(JComponent::addAncestorListener, Listeners::ancestorMoved)::add;
 
     /**
      * Represents an event that can occur on {@link JTextComponent}s.
@@ -288,7 +288,7 @@ public interface Event<C, M> {
      * @see JTextComponent#addCaretListener(CaretListener)
      */
     Event<JTextComponent, CaretEvent> CARET_UPDATE =
-            new EventAgent<>(JTextComponent::addCaretListener, Listeners::caretUpdate).event();
+            new EventAgent<>(JTextComponent::addCaretListener, Listeners::caretUpdate)::add;
 
     /**
      * Represents an event that can occur on {@link JProgressBar}s.
@@ -297,7 +297,7 @@ public interface Event<C, M> {
      * @see JProgressBar#addChangeListener(ChangeListener)
      */
     Event<JProgressBar, ChangeEvent> JPB_STATE_CHANGED =
-            new EventAgent<>(JProgressBar::addChangeListener, Listeners::stateChanged).event();
+            new EventAgent<>(JProgressBar::addChangeListener, Listeners::stateChanged)::add;
 
     /**
      * Represents an event that can occur on {@link JTabbedPane}s.
@@ -306,7 +306,7 @@ public interface Event<C, M> {
      * @see JTabbedPane#addChangeListener(ChangeListener)
      */
     Event<JTabbedPane, ChangeEvent> JTP_STATE_CHANGED =
-            new EventAgent<>(JTabbedPane::addChangeListener, Listeners::stateChanged).event();
+            new EventAgent<>(JTabbedPane::addChangeListener, Listeners::stateChanged)::add;
 
     /**
      * Represents an event that can occur on {@link JTextField}s.
@@ -315,7 +315,7 @@ public interface Event<C, M> {
      * @see JTextField#addActionListener(ActionListener)
      */
     Event<JTextField, ActionEvent> JTF_ACTION_PERFORMED =
-            new EventAgent<>(JTextField::addActionListener, Listeners::actionPerformed).event();
+            new EventAgent<>(JTextField::addActionListener, Listeners::actionPerformed)::add;
 
     /**
      * Represents an event that can occur on {@link JPopupMenu}s.
@@ -324,7 +324,7 @@ public interface Event<C, M> {
      * @see JPopupMenu#addPopupMenuListener(PopupMenuListener)
      */
     Event<JPopupMenu, PopupMenuEvent> POPUP_MENU_WILL_BECOME_VISIBLE =
-            new EventAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuWillBecomeVisible).event();
+            new EventAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuWillBecomeVisible)::add;
 
     /**
      * Represents an event that can occur on {@link JPopupMenu}s.
@@ -333,7 +333,7 @@ public interface Event<C, M> {
      * @see JPopupMenu#addPopupMenuListener(PopupMenuListener)
      */
     Event<JPopupMenu, PopupMenuEvent> POPUP_MENU_WILL_BECOME_INVISIBLE =
-            new EventAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuWillBecomeInvisible).event();
+            new EventAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuWillBecomeInvisible)::add;
 
     /**
      * Represents an event that can occur on {@link JPopupMenu}s.
@@ -342,7 +342,7 @@ public interface Event<C, M> {
      * @see JPopupMenu#addPopupMenuListener(PopupMenuListener)
      */
     Event<JPopupMenu, PopupMenuEvent> POPUP_MENU_CANCELED =
-            new EventAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuCanceled).event();
+            new EventAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuCanceled)::add;
 
     /**
      * Represents an event that can occur on {@link JPopupMenu}s.
@@ -351,7 +351,7 @@ public interface Event<C, M> {
      * @see JPopupMenu#addMenuKeyListener(MenuKeyListener)
      */
     Event<JPopupMenu, MenuKeyEvent> MENU_KEY_PRESSED =
-            new EventAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyPressed).event();
+            new EventAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyPressed)::add;
 
     /**
      * Represents an event that can occur on {@link JPopupMenu}s.
@@ -360,7 +360,7 @@ public interface Event<C, M> {
      * @see JPopupMenu#addMenuKeyListener(MenuKeyListener)
      */
     Event<JPopupMenu, MenuKeyEvent> MENU_KEY_RELEASED =
-            new EventAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyReleased).event();
+            new EventAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyReleased)::add;
 
     /**
      * Represents an event that can occur on {@link JPopupMenu}s.
@@ -369,7 +369,7 @@ public interface Event<C, M> {
      * @see JPopupMenu#addMenuKeyListener(MenuKeyListener)
      */
     Event<JPopupMenu, MenuKeyEvent> MENU_KEY_TYPED =
-            new EventAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyTyped).event();
+            new EventAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyTyped)::add;
 
     /**
      * Represents an event that can occur on {@link Window}s.
@@ -378,7 +378,7 @@ public interface Event<C, M> {
      * @see Window#addWindowStateListener(WindowStateListener)
      */
     Event<Window, WindowEvent> WINDOW_STATE_CHANGED =
-            new EventAgent<>(Window::addWindowStateListener, Listeners::windowStateChanged).event();
+            new EventAgent<>(Window::addWindowStateListener, Listeners::windowStateChanged)::add;
 
     /**
      * Represents an event that can occur on {@link Window}s.
@@ -387,7 +387,7 @@ public interface Event<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Event<Window, WindowEvent> WINDOW_OPENED =
-            new EventAgent<>(Window::addWindowListener, Listeners::windowOpened).event();
+            new EventAgent<>(Window::addWindowListener, Listeners::windowOpened)::add;
 
     /**
      * Represents an event that can occur on {@link Window}s.
@@ -396,7 +396,7 @@ public interface Event<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Event<Window, WindowEvent> WINDOW_CLOSING =
-            new EventAgent<>(Window::addWindowListener, Listeners::windowClosing).event();
+            new EventAgent<>(Window::addWindowListener, Listeners::windowClosing)::add;
 
     /**
      * Represents an event that can occur on {@link Window}s.
@@ -405,7 +405,7 @@ public interface Event<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Event<Window, WindowEvent> WINDOW_CLOSED =
-            new EventAgent<>(Window::addWindowListener, Listeners::windowClosed).event();
+            new EventAgent<>(Window::addWindowListener, Listeners::windowClosed)::add;
 
     /**
      * Represents an event that can occur on {@link Window}s.
@@ -414,7 +414,7 @@ public interface Event<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Event<Window, WindowEvent> WINDOW_ICONIFIED =
-            new EventAgent<>(Window::addWindowListener, Listeners::windowIconified).event();
+            new EventAgent<>(Window::addWindowListener, Listeners::windowIconified)::add;
 
     /**
      * Represents an event that can occur on {@link Window}s.
@@ -423,7 +423,7 @@ public interface Event<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Event<Window, WindowEvent> WINDOW_DEICONIFIED =
-            new EventAgent<>(Window::addWindowListener, Listeners::windowDeiconified).event();
+            new EventAgent<>(Window::addWindowListener, Listeners::windowDeiconified)::add;
 
     /**
      * Represents an event that can occur on {@link Window}s.
@@ -432,7 +432,7 @@ public interface Event<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Event<Window, WindowEvent> WINDOW_ACTIVATED =
-            new EventAgent<>(Window::addWindowListener, Listeners::windowActivated).event();
+            new EventAgent<>(Window::addWindowListener, Listeners::windowActivated)::add;
 
     /**
      * Represents an event that can occur on {@link Window}s.
@@ -441,7 +441,7 @@ public interface Event<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Event<Window, WindowEvent> WINDOW_DEACTIVATED =
-            new EventAgent<>(Window::addWindowListener, Listeners::windowDeactivated).event();
+            new EventAgent<>(Window::addWindowListener, Listeners::windowDeactivated)::add;
 
     /**
      * Represents an event that can occur on {@link Window}s.
@@ -450,7 +450,7 @@ public interface Event<C, M> {
      * @see Window#addWindowFocusListener(WindowFocusListener)
      */
     Event<Window, WindowEvent> WINDOW_GAINED_FOCUS =
-            new EventAgent<>(Window::addWindowFocusListener, Listeners::windowGainedFocus).event();
+            new EventAgent<>(Window::addWindowFocusListener, Listeners::windowGainedFocus)::add;
 
     /**
      * Represents an event that can occur on {@link Window}s.
@@ -459,7 +459,7 @@ public interface Event<C, M> {
      * @see Window#addWindowFocusListener(WindowFocusListener)
      */
     Event<Window, WindowEvent> WINDOW_LOST_FOCUS =
-            new EventAgent<>(Window::addWindowFocusListener, Listeners::windowLostFocus).event();
+            new EventAgent<>(Window::addWindowFocusListener, Listeners::windowLostFocus)::add;
 
     /**
      * Represents an event that can occur on {@link AbstractButton}s.
@@ -468,7 +468,7 @@ public interface Event<C, M> {
      * @see AbstractButton#addItemListener(ItemListener)
      */
     Event<AbstractButton, ItemEvent> ITEM_STATE_CHANGED =
-            new EventAgent<>(AbstractButton::addItemListener, Listeners::itemStateChanged).event();
+            new EventAgent<>(AbstractButton::addItemListener, Listeners::itemStateChanged)::add;
 
     /**
      * Represents an event that can occur on {@link AbstractButton}s.
@@ -477,7 +477,7 @@ public interface Event<C, M> {
      * @see AbstractButton#addActionListener(ActionListener)
      */
     Event<AbstractButton, ActionEvent> ACTION_PERFORMED =
-            new EventAgent<>(AbstractButton::addActionListener, Listeners::actionPerformed).event();
+            new EventAgent<>(AbstractButton::addActionListener, Listeners::actionPerformed)::add;
 
     /**
      * Represents an event that can occur on {@link AbstractButton}s.
@@ -486,7 +486,7 @@ public interface Event<C, M> {
      * @see AbstractButton#addChangeListener(ChangeListener)
      */
     Event<AbstractButton, ChangeEvent> STATE_CHANGED =
-            new EventAgent<>(AbstractButton::addChangeListener, Listeners::stateChanged).event();
+            new EventAgent<>(AbstractButton::addChangeListener, Listeners::stateChanged)::add;
 
     /**
      * Represents an event that can occur on {@link JMenuItem}s.
@@ -495,7 +495,7 @@ public interface Event<C, M> {
      * @see JMenuItem#addMenuDragMouseListener(MenuDragMouseListener)
      */
     Event<JMenuItem, MenuDragMouseEvent> MENU_DRAG_MOUSE_ENTERED =
-            new EventAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseEntered).event();
+            new EventAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseEntered)::add;
 
     /**
      * Represents an event that can occur on {@link JMenuItem}s.
@@ -504,7 +504,7 @@ public interface Event<C, M> {
      * @see JMenuItem#addMenuDragMouseListener(MenuDragMouseListener)
      */
     Event<JMenuItem, MenuDragMouseEvent> MENU_DRAG_MOUSE_EXITED =
-            new EventAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseExited).event();
+            new EventAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseExited)::add;
 
     /**
      * Represents an event that can occur on {@link JMenuItem}s.
@@ -513,7 +513,7 @@ public interface Event<C, M> {
      * @see JMenuItem#addMenuDragMouseListener(MenuDragMouseListener)
      */
     Event<JMenuItem, MenuDragMouseEvent> MENU_DRAG_MOUSE_DRAGGED =
-            new EventAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseDragged).event();
+            new EventAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseDragged)::add;
 
     /**
      * Represents an event that can occur on {@link JMenuItem}s.
@@ -522,7 +522,7 @@ public interface Event<C, M> {
      * @see JMenuItem#addMenuDragMouseListener(MenuDragMouseListener)
      */
     Event<JMenuItem, MenuDragMouseEvent> MENU_DRAG_MOUSE_RELEASED =
-            new EventAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseReleased).event();
+            new EventAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseReleased)::add;
 
     /**
      * Represents an event that can occur on {@link JMenuItem}s.
@@ -531,7 +531,7 @@ public interface Event<C, M> {
      * @see JMenuItem#addMenuKeyListener(MenuKeyListener)
      */
     Event<JMenuItem, MenuKeyEvent> MENU_ITEM_KEY_PRESSED =
-            new EventAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyPressed).event();
+            new EventAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyPressed)::add;
 
     /**
      * Represents an event that can occur on {@link JMenuItem}s.
@@ -540,7 +540,7 @@ public interface Event<C, M> {
      * @see JMenuItem#addMenuKeyListener(MenuKeyListener)
      */
     Event<JMenuItem, MenuKeyEvent> MENU_ITEM_KEY_RELEASED =
-            new EventAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyReleased).event();
+            new EventAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyReleased)::add;
 
     /**
      * Represents an event that can occur on {@link JMenuItem}s.
@@ -549,7 +549,7 @@ public interface Event<C, M> {
      * @see JMenuItem#addMenuKeyListener(MenuKeyListener)
      */
     Event<JMenuItem, MenuKeyEvent> MENU_ITEM_KEY_TYPED =
-            new EventAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyTyped).event();
+            new EventAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyTyped)::add;
 
     /**
      * Represents an event that can occur on {@link JSlider}s.
@@ -558,7 +558,7 @@ public interface Event<C, M> {
      * @see JSlider#addChangeListener(ChangeListener)
      */
     Event<JSlider, ChangeEvent> JSL_STATE_CHANGED =
-            new EventAgent<>(JSlider::addChangeListener, Listeners::stateChanged).event();
+            new EventAgent<>(JSlider::addChangeListener, Listeners::stateChanged)::add;
 
     /**
      * Represents an event that can occur on {@link JComboBox}s.
@@ -568,7 +568,7 @@ public interface Event<C, M> {
      */
     Event<JComboBox<?>, ItemEvent> JCB_ITEM_STATE_CHANGED =
             new EventAgent<>((JComboBox<?> c, ItemListener l) -> c.addItemListener(l),
-                             Listeners::itemStateChanged).event();
+                             Listeners::itemStateChanged)::add;
 
     /**
      * Represents an event that can occur on {@link JComboBox}s.
@@ -578,7 +578,7 @@ public interface Event<C, M> {
      */
     Event<JComboBox<?>, ActionEvent> JCB_ACTION_PERFORMED =
             new EventAgent<>((JComboBox<?> c, ActionListener l) -> c.addActionListener(l),
-                             Listeners::actionPerformed).event();
+                             Listeners::actionPerformed)::add;
 
     /**
      * Represents an event that can occur on {@link JComboBox}s.
@@ -588,7 +588,7 @@ public interface Event<C, M> {
      */
     Event<JComboBox<?>, PopupMenuEvent> JCB_POPUP_WILL_BECOME_VISIBLE =
             new EventAgent<>((JComboBox<?> c, PopupMenuListener l) -> c.addPopupMenuListener(l),
-                             Listeners::popupMenuWillBecomeVisible).event();
+                             Listeners::popupMenuWillBecomeVisible)::add;
 
     /**
      * Represents an event that can occur on {@link JComboBox}s.
@@ -598,7 +598,7 @@ public interface Event<C, M> {
      */
     Event<JComboBox<?>, PopupMenuEvent> JCB_POPUP_WILL_BECOME_INVISIBLE =
             new EventAgent<>((JComboBox<?> c, PopupMenuListener l) -> c.addPopupMenuListener(l),
-                             Listeners::popupMenuWillBecomeInvisible).event();
+                             Listeners::popupMenuWillBecomeInvisible)::add;
 
     /**
      * Represents an event that can occur on {@link JComboBox}s.
@@ -608,7 +608,7 @@ public interface Event<C, M> {
      */
     Event<JComboBox<?>, PopupMenuEvent> JCB_POPUP_CANCELED =
             new EventAgent<>((JComboBox<?> c, PopupMenuListener l) -> c.addPopupMenuListener(l),
-                             Listeners::popupMenuCanceled).event();
+                             Listeners::popupMenuCanceled)::add;
 
     /**
      * Represents an event that can occur on {@link JTree}s.
@@ -617,7 +617,7 @@ public interface Event<C, M> {
      * @see JTree#addTreeExpansionListener(TreeExpansionListener)
      */
     Event<JTree, TreeExpansionEvent> TREE_EXPANDED =
-            new EventAgent<>(JTree::addTreeExpansionListener, Listeners::treeExpanded).event();
+            new EventAgent<>(JTree::addTreeExpansionListener, Listeners::treeExpanded)::add;
 
     /**
      * Represents an event that can occur on {@link JTree}s.
@@ -626,7 +626,7 @@ public interface Event<C, M> {
      * @see JTree#addTreeExpansionListener(TreeExpansionListener)
      */
     Event<JTree, TreeExpansionEvent> TREE_COLLAPSED =
-            new EventAgent<>(JTree::addTreeExpansionListener, Listeners::treeCollapsed).event();
+            new EventAgent<>(JTree::addTreeExpansionListener, Listeners::treeCollapsed)::add;
 
     /**
      * Represents an event that can occur on {@link JTree}s.
@@ -635,7 +635,7 @@ public interface Event<C, M> {
      * @see JTree#addTreeWillExpandListener(TreeWillExpandListener)
      */
     Event<JTree, TreeExpansionEvent> TREE_WILL_EXPAND =
-            new EventAgent<>(JTree::addTreeWillExpandListener, Listeners::treeWillExpand).event();
+            new EventAgent<>(JTree::addTreeWillExpandListener, Listeners::treeWillExpand)::add;
 
     /**
      * Represents an event that can occur on {@link JTree}s.
@@ -644,7 +644,7 @@ public interface Event<C, M> {
      * @see JTree#addTreeWillExpandListener(TreeWillExpandListener)
      */
     Event<JTree, TreeExpansionEvent> TREE_WILL_COLLAPSE =
-            new EventAgent<>(JTree::addTreeWillExpandListener, Listeners::treeWillCollapse).event();
+            new EventAgent<>(JTree::addTreeWillExpandListener, Listeners::treeWillCollapse)::add;
 
     /**
      * Represents an event that can occur on {@link JTree}s.
@@ -653,7 +653,7 @@ public interface Event<C, M> {
      * @see JTree#addTreeSelectionListener(TreeSelectionListener)
      */
     Event<JTree, TreeSelectionEvent> TREE_VALUE_CHANGED =
-            new EventAgent<>(JTree::addTreeSelectionListener, Listeners::treeValueChanged).event();
+            new EventAgent<>(JTree::addTreeSelectionListener, Listeners::treeValueChanged)::add;
 
     /**
      * Represents an event that can occur on {@link JSpinner}s.
@@ -662,7 +662,7 @@ public interface Event<C, M> {
      * @see JSpinner#addChangeListener(ChangeListener)
      */
     Event<JSpinner, ChangeEvent> JSP_STATE_CHANGED =
-            new EventAgent<>(JSpinner::addChangeListener, Listeners::stateChanged).event();
+            new EventAgent<>(JSpinner::addChangeListener, Listeners::stateChanged)::add;
 
     /**
      * Represents an event that can occur on {@link JScrollBar}s.
@@ -671,7 +671,7 @@ public interface Event<C, M> {
      * @see JScrollBar#addAdjustmentListener(AdjustmentListener)
      */
     Event<JScrollBar, AdjustmentEvent> ADJUSTMENT_VALUE_CHANGED =
-            new EventAgent<>(JScrollBar::addAdjustmentListener, Listeners::adjustmentValueChanged).event();
+            new EventAgent<>(JScrollBar::addAdjustmentListener, Listeners::adjustmentValueChanged)::add;
 
     /**
      * Represents an event that can occur on {@link JList}s.
@@ -681,7 +681,7 @@ public interface Event<C, M> {
      */
     Event<JList<?>, ListSelectionEvent> LIST_VALUE_CHANGED =
             new EventAgent<>((JList<?> c, ListSelectionListener l) -> c.addListSelectionListener(l),
-                             Listeners::listValueChanged).event();
+                             Listeners::listValueChanged)::add;
 
     /**
      * Represents an event that can occur on {@link JInternalFrame}s.
@@ -690,7 +690,7 @@ public interface Event<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Event<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_OPENED =
-            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameOpened).event();
+            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameOpened)::add;
 
     /**
      * Represents an event that can occur on {@link JInternalFrame}s.
@@ -699,7 +699,7 @@ public interface Event<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Event<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_CLOSING =
-            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameClosing).event();
+            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameClosing)::add;
 
     /**
      * Represents an event that can occur on {@link JInternalFrame}s.
@@ -708,7 +708,7 @@ public interface Event<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Event<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_CLOSED =
-            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameClosed).event();
+            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameClosed)::add;
 
     /**
      * Represents an event that can occur on {@link JInternalFrame}s.
@@ -717,7 +717,7 @@ public interface Event<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Event<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_ICONIFIED =
-            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameIconified).event();
+            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameIconified)::add;
 
     /**
      * Represents an event that can occur on {@link JInternalFrame}s.
@@ -726,7 +726,7 @@ public interface Event<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Event<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_DEICONIFIED =
-            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameDeiconified).event();
+            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameDeiconified)::add;
 
     /**
      * Represents an event that can occur on {@link JInternalFrame}s.
@@ -735,7 +735,7 @@ public interface Event<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Event<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_ACTIVATED =
-            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameActivated).event();
+            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameActivated)::add;
 
     /**
      * Represents an event that can occur on {@link JInternalFrame}s.
@@ -744,7 +744,7 @@ public interface Event<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Event<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_DEACTIVATED =
-            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameDeactivated).event();
+            new EventAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameDeactivated)::add;
 
     /**
      * Represents an event that can occur on {@link JEditorPane}s.
@@ -753,7 +753,7 @@ public interface Event<C, M> {
      * @see JEditorPane#addHyperlinkListener(HyperlinkListener)
      */
     Event<JEditorPane, HyperlinkEvent> HYPERLINK_UPDATE =
-            new EventAgent<>(JEditorPane::addHyperlinkListener, Listeners::hyperlinkUpdate).event();
+            new EventAgent<>(JEditorPane::addHyperlinkListener, Listeners::hyperlinkUpdate)::add;
 
     /**
      * Represents an event that can occur on {@link JViewport}s.
@@ -762,7 +762,7 @@ public interface Event<C, M> {
      * @see JViewport#addChangeListener(ChangeListener)
      */
     Event<JViewport, ChangeEvent> JVP_STATE_CHANGED =
-            new EventAgent<>(JViewport::addChangeListener, Listeners::stateChanged).event();
+            new EventAgent<>(JViewport::addChangeListener, Listeners::stateChanged)::add;
 
     /**
      * Represents an event that can occur on {@link JFileChooser}s.
@@ -771,7 +771,7 @@ public interface Event<C, M> {
      * @see JFileChooser#addActionListener(ActionListener)
      */
     Event<JFileChooser, ActionEvent> JFC_ACTION_PERFORMED =
-            new EventAgent<>(JFileChooser::addActionListener, Listeners::actionPerformed).event();
+            new EventAgent<>(JFileChooser::addActionListener, Listeners::actionPerformed)::add;
 
     /**
      * Represents an event that can occur on {@link JMenu}s.
@@ -780,7 +780,7 @@ public interface Event<C, M> {
      * @see JMenu#addMenuListener(MenuListener)
      */
     Event<JMenu, MenuEvent> MENU_SELECTED =
-            new EventAgent<>(JMenu::addMenuListener, Listeners::menuSelected).event();
+            new EventAgent<>(JMenu::addMenuListener, Listeners::menuSelected)::add;
 
     /**
      * Represents an event that can occur on {@link JMenu}s.
@@ -789,7 +789,7 @@ public interface Event<C, M> {
      * @see JMenu#addMenuListener(MenuListener)
      */
     Event<JMenu, MenuEvent> MENU_DESELECTED =
-            new EventAgent<>(JMenu::addMenuListener, Listeners::menuDeselected).event();
+            new EventAgent<>(JMenu::addMenuListener, Listeners::menuDeselected)::add;
 
     /**
      * Represents an event that can occur on {@link JMenu}s.
@@ -798,11 +798,11 @@ public interface Event<C, M> {
      * @see JMenu#addMenuListener(MenuListener)
      */
     Event<JMenu, MenuEvent> MENU_CANCELED =
-            new EventAgent<>(JMenu::addMenuListener, Listeners::menuCanceled).event();
+            new EventAgent<>(JMenu::addMenuListener, Listeners::menuCanceled)::add;
 
     static Event<Component, PropertyChangeEvent> propertyChange(final String propertyName) {
         return new EventAgent<>((Component c, PropertyChangeListener l) -> c.addPropertyChangeListener(propertyName, l),
-                                Listeners::propertyChange).event();
+                                Listeners::propertyChange)::add;
     }
 
     /**

@@ -6,15 +6,16 @@ import java.util.function.Function;
 
 class EventAgent<C, L, M> {
 
-    private final BiConsumer<C, L> addition;
-    private final Function<Consumer<M>, L> mapping;
+    private final BiConsumer<? super C, ? super L> addition;
+    private final Function<? super Consumer<M>, ? extends L> mapping;
 
-    EventAgent(final BiConsumer<C, L> addition, final Function<Consumer<M>, L> mapping) {
+    EventAgent(final BiConsumer<? super C, ? super L> addition,
+               final Function<? super Consumer<M>, ? extends L> mapping) {
         this.addition = addition;
         this.mapping = mapping;
     }
 
-    final Event<C, M> event() {
-        return (component, reaction) -> addition.accept(component, mapping.apply(reaction));
+    final void add(final C component, final Consumer<M> reaction) {
+        addition.accept(component, mapping.apply(reaction));
     }
 }
