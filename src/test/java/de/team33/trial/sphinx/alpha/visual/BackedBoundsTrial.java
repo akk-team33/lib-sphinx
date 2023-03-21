@@ -4,8 +4,10 @@ import de.team33.sphinx.alpha.activity.Event;
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.visual.JFrames;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import java.awt.Rectangle;
 import java.util.prefs.Preferences;
 
 
@@ -23,22 +25,23 @@ final class BackedBoundsTrial {
         final BackedBounds bounds = new BackedBounds(prefs, INITIAL_BOUNDS);
         this.frame = JFrames.builder()
                             .setTitle(BackedBoundsTrial.class.getCanonicalName())
+                            .setup(bounds::setupFrame)
 
-                            .setLocation(bounds.getLocation())
-                            .setSize(bounds.getSize())
-                            .setBounds(bounds.getBounds())
-                            .setExtendedState(bounds.getState())
-
+//                            .setLocation(bounds.getLocation())
+//                            .setSize(bounds.getSize())
+//                            .setBounds(bounds.getBounds())
+//                            .setExtendedState(bounds.getState())
+//
                             .on(Event.COMPONENT_MOVED, System.out::println)
-                            .on(Event.COMPONENT_MOVED, e -> bounds.setLocation(e.getComponent().getLocation()))
-                            .on(Event.COMPONENT_MOVED, e -> bounds.setBounds(e.getComponent().getBounds()))
-
+//                            .on(Event.COMPONENT_MOVED, e -> bounds.setLocation(e.getComponent().getLocation()))
+//                            .on(Event.COMPONENT_MOVED, e -> bounds.setBounds(e.getComponent().getBounds()))
+//
                             .on(Event.COMPONENT_RESIZED, System.out::println)
-                            .on(Event.COMPONENT_RESIZED, e -> bounds.setSize(e.getComponent().getSize()))
-                            .on(Event.COMPONENT_RESIZED, e -> bounds.setBounds(e.getComponent().getBounds()))
-
+//                            .on(Event.COMPONENT_RESIZED, e -> bounds.setSize(e.getComponent().getSize()))
+//                            .on(Event.COMPONENT_RESIZED, e -> bounds.setBounds(e.getComponent().getBounds()))
+//
                             .on(Event.WINDOW_STATE_CHANGED, System.out::println)
-                            .on(Event.WINDOW_STATE_CHANGED, e -> bounds.setState(e.getNewState()))
+//                            .on(Event.WINDOW_STATE_CHANGED, e -> bounds.setState(e.getNewState()))
 
                             .setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE)
                             .build();

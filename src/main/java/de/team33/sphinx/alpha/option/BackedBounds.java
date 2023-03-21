@@ -1,5 +1,7 @@
 package de.team33.sphinx.alpha.option;
 
+import de.team33.sphinx.alpha.activity.Event;
+
 import java.awt.*;
 import java.util.function.Supplier;
 import java.util.prefs.Preferences;
@@ -83,5 +85,21 @@ public class BackedBounds {
 
     public final void setState(final int state) {
         backing.putInt(STATE, state);
+    }
+
+    public final void setupFrame(final Frame frame) {
+        frame.setExtendedState(getState());
+        setupWindow(frame);
+    }
+
+    public final void setupWindow(final Window window) {
+        setupComponent(window);
+        Event.WINDOW_STATE_CHANGED.add(window, e -> setState(e.getNewState()));
+    }
+
+    public final void setupComponent(final Component component) {
+        component.setBounds(getBounds());
+        Event.COMPONENT_MOVED.add(component, e -> setLocationIfNormal(e.getComponent().getLocation()));
+        Event.COMPONENT_RESIZED.add(component, e -> setSizeIfNormal(e.getComponent().getSize()));
     }
 }
