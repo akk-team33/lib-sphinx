@@ -54,6 +54,7 @@ public final class JFileChoosers {
      * @param <T> The final type of the target instance, at least {@link JFileChooser}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JFileChooser, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**

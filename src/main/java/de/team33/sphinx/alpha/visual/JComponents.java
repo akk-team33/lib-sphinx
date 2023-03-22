@@ -52,6 +52,7 @@ public final class JComponents {
      * @param <T> The final type of the target instance, at least {@link JComponent}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JComponent, S extends Setup<T, S>> extends Containers.Setup<T, S> {
 
         /**

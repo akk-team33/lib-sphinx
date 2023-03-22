@@ -49,6 +49,8 @@ public final class JCheckBoxMenuItems {
      * @param <T> The final type of the target instance, at least {@link JCheckBoxMenuItem}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
     public interface Setup<T extends JCheckBoxMenuItem, S extends Setup<T, S>> extends JMenuItems.Setup<T, S> {
 
         /**

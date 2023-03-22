@@ -54,6 +54,7 @@ public final class JWindows {
      * @param <T> The final type of the target instance, at least {@link JWindow}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JWindow, S extends Setup<T, S>> extends Windows.Setup<T, S> {
 
         /**

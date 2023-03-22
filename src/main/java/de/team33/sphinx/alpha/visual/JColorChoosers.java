@@ -54,6 +54,8 @@ public final class JColorChoosers {
      * @param <T> The final type of the target instance, at least {@link JColorChooser}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
     public interface Setup<T extends JColorChooser, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**

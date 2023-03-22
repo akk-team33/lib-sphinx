@@ -45,6 +45,8 @@ public final class Dialogs {
      * @param <T> The final type of the target instance, at least {@link Dialog}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
     public interface Setup<T extends Dialog, S extends Setup<T, S>> extends Windows.Setup<T, S> {
 
         /**

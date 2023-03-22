@@ -51,6 +51,7 @@ public final class JFormattedTextFields {
      * @param <T> The final type of the target instance, at least {@link JFormattedTextField}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JFormattedTextField, S extends Setup<T, S>> extends JTextFields.Setup<T, S> {
 
         /**

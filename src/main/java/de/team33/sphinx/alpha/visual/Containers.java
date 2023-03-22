@@ -54,6 +54,8 @@ public final class Containers {
      * @param <T> The final type of the target instance, at least {@link Container}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
     public interface Setup<T extends Container, S extends Setup<T, S>> extends Components.Setup<T, S> {
 
         /**

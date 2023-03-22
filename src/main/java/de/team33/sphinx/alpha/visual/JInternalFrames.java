@@ -60,6 +60,7 @@ public final class JInternalFrames {
      * @param <T> The final type of the target instance, at least {@link JInternalFrame}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JInternalFrame, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**

@@ -50,6 +50,7 @@ public final class JToggleButtons {
      * @param <T> The final type of the target instance, at least {@link JToggleButton}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JToggleButton, S extends Setup<T, S>> extends AbstractButtons.Setup<T, S> {
     }
 }

@@ -52,6 +52,7 @@ public final class JMenuItems {
      * @param <T> The final type of the target instance, at least {@link JMenuItem}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JMenuItem, S extends Setup<T, S>> extends AbstractButtons.Setup<T, S> {
 
         /**

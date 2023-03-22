@@ -57,6 +57,7 @@ public final class JFrames {
      * @param <T> The final type of the target instance, at least {@link JFrame}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JFrame, S extends Setup<T, S>> extends Frames.Setup<T, S> {
 
         /**

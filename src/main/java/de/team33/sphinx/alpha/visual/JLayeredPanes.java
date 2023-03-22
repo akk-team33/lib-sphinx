@@ -50,6 +50,7 @@ public final class JLayeredPanes {
      * @param <T> The final type of the target instance, at least {@link JLayeredPane}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JLayeredPane, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**

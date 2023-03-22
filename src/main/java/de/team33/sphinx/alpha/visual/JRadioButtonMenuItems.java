@@ -50,6 +50,7 @@ public final class JRadioButtonMenuItems {
      * @param <T> The final type of the target instance, at least {@link JRadioButtonMenuItem}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JRadioButtonMenuItem, S extends Setup<T, S>> extends JMenuItems.Setup<T, S> {
     }
 }

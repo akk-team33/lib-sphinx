@@ -49,6 +49,8 @@ public final class JCheckBoxs {
      * @param <T> The final type of the target instance, at least {@link JCheckBox}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
     public interface Setup<T extends JCheckBox, S extends Setup<T, S>> extends JToggleButtons.Setup<T, S> {
 
         /**

@@ -50,6 +50,7 @@ public final class JRadioButtons {
      * @param <T> The final type of the target instance, at least {@link JRadioButton}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JRadioButton, S extends Setup<T, S>> extends JToggleButtons.Setup<T, S> {
     }
 }

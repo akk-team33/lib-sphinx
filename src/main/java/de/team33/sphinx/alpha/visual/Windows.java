@@ -53,6 +53,7 @@ public final class Windows {
      * @param <T> The final type of the target instance, at least {@link Window}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends Window, S extends Setup<T, S>> extends Containers.Setup<T, S> {
 
         /**

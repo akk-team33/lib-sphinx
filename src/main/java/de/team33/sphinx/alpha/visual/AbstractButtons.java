@@ -48,6 +48,8 @@ public final class AbstractButtons {
      * @param <T> The final type of the target instance, at least {@link AbstractButton}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
     public interface Setup<T extends AbstractButton, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**

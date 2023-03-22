@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 /**
  * Utility class to handle {@link Frame}s.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings("ALL")
 public final class Frames {
 
     private Frames() {
@@ -56,6 +56,7 @@ public final class Frames {
      * @param <T> The final type of the target instance, at least {@link Frame}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends Frame, S extends Setup<T, S>> extends Windows.Setup<T, S> {
 
         /**

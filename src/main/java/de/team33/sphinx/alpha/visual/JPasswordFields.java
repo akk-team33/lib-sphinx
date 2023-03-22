@@ -49,6 +49,7 @@ public final class JPasswordFields {
      * @param <T> The final type of the target instance, at least {@link JPasswordField}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JPasswordField, S extends Setup<T, S>> extends JTextFields.Setup<T, S> {
 
         /**

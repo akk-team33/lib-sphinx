@@ -54,6 +54,7 @@ public final class JToolBars {
      * @param <T> The final type of the target instance, at least {@link JToolBar}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JToolBar, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**

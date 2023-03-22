@@ -53,6 +53,7 @@ public final class JSliders {
      * @param <T> The final type of the target instance, at least {@link JSlider}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JSlider, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**

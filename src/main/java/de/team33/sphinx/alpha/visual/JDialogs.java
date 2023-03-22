@@ -55,6 +55,7 @@ public final class JDialogs {
      * @param <T> The final type of the target instance, at least {@link JDialog}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JDialog, S extends Setup<T, S>> extends Dialogs.Setup<T, S> {
 
         /**

@@ -55,6 +55,7 @@ public final class JPopupMenus {
      * @param <T> The final type of the target instance, at least {@link JPopupMenu}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JPopupMenu, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**

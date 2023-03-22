@@ -54,6 +54,7 @@ public final class JTextPanes {
      * @param <T> The final type of the target instance, at least {@link JTextPane}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JTextPane, S extends Setup<T, S>> extends JEditorPanes.Setup<T, S> {
 
         /**

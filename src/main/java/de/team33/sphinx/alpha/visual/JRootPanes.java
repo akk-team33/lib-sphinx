@@ -55,6 +55,7 @@ public final class JRootPanes {
      * @param <T> The final type of the target instance, at least {@link JRootPane}.
      * @param <S> The final type of the Setup implementation.
      */
+    @FunctionalInterface
     public interface Setup<T extends JRootPane, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**

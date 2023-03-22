@@ -16,6 +16,7 @@ import java.util.function.Consumer;
  * @param <C> The component type in whose context the activity or event takes place.
  * @param <M> The message type being transferred in the context of the activity or event.
  */
+@FunctionalInterface
 @SuppressWarnings("unused")
 public interface Event<C, M> {
 

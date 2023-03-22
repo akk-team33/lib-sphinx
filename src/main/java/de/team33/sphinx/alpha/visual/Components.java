@@ -57,6 +57,8 @@ public final class Components {
      * @param <T> The final type of the target instance, at least {@link Component}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
     public interface Setup<T extends Component, S extends Setup<T, S>>
             extends de.team33.patterns.building.elara.Setup<T, S> {
 
