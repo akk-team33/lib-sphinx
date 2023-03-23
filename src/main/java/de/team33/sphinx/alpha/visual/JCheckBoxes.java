@@ -8,9 +8,9 @@ import javax.swing.JCheckBox;
  * Utility class to handle {@link JCheckBox}s.
  */
 @SuppressWarnings("unused")
-public final class JCheckBoxs {
+public final class JCheckBoxes {
 
-    private JCheckBoxs() {
+    private JCheckBoxes() {
     }
 
     /**
