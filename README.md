@@ -8,7 +8,6 @@
 
 ## maven dependency
 
-    <!-- not yet available -->
     <dependency>
       <groupId>de.team33.sphinx</groupId>
       <artifactId>sphinx-alpha</artifactId>
