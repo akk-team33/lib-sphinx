@@ -9,7 +9,7 @@
 
     <name>Team33 Sphinx Alpha</name>
     <description>Extensions to the java swing library - edition "alpha"</description>
-    <url>https://github.com/akk-team33/lib-sphinx</url>
+    <url>http://team33.de/dev/sphinx</url>
 
     <licenses>
         <license>
@@ -152,6 +152,7 @@
                 <configuration>
                     <show>protected</show>
                     <bottom><![CDATA[Copyright &copy; ${copyright.year} Andreas Kluge-Kaindl, Bremen (de). All rights reserved.]]></bottom>
+                    <detectLinks>true</detectLinks>
                 </configuration>
                 <executions>
                     <execution>
