@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 /**
  * Utility class to handle {@link JComboBox}es.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "InterfaceWithOnlyOneDirectInheritor"})
 public final class JComboBoxes {
 
     private JComboBoxes() {
