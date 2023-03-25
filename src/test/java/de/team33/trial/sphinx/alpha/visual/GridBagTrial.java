@@ -11,6 +11,12 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.util.prefs.Preferences;
 
+import static de.team33.sphinx.alpha.option.GridBag.Anchor.BASELINE;
+import static de.team33.sphinx.alpha.option.GridBag.Constraints.template;
+import static de.team33.sphinx.alpha.option.GridBag.Fill.BOTH;
+import static de.team33.sphinx.alpha.option.GridBag.Fill.NONE;
+import static de.team33.sphinx.alpha.option.GridBag.insets;
+
 
 class GridBagTrial {
 
@@ -18,10 +24,7 @@ class GridBagTrial {
     private static final Preferences PREFERENCES = Preferences.userRoot().node(APP_NODE);
     private static final String WIN_NODE = GridBagTrial.class.getSimpleName();
     private static final Rectangle SIZE0 = new Rectangle(0, 0, 640, 480);
-    private static final GridBag.Constraints.Template GBC_TEMPLATE =
-            GridBag.Constraints.builder()
-                               .setFill(1)
-                               .template();
+    private static final GridBag.Constraints.Template GBC_TEMPLATE = template(BASELINE, BOTH, insets(2), 4);
     private static final GridBagConstraints GBC_VERT_0 = GBC_TEMPLATE.vertical(0);
     private static final GridBagConstraints GBC_VERT_1 = GBC_TEMPLATE.vertical(1);
     private static final GridBagConstraints GBC_VERT_2 = GBC_TEMPLATE.vertical(2);
