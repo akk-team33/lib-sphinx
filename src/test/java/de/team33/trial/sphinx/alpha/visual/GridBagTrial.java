@@ -1,6 +1,9 @@
 package de.team33.trial.sphinx.alpha.visual;
 
 import de.team33.sphinx.alpha.option.BackedBounds;
+import de.team33.sphinx.alpha.option.GBCTColumn;
+import de.team33.sphinx.alpha.option.GBCTRow;
+import de.team33.sphinx.alpha.option.GBCTemplate;
 import de.team33.sphinx.alpha.option.GridBag;
 import de.team33.sphinx.alpha.visual.JFrames;
 import de.team33.sphinx.alpha.visual.JLabels;
@@ -12,9 +15,8 @@ import java.awt.*;
 import java.util.prefs.Preferences;
 
 import static de.team33.sphinx.alpha.option.GridBag.Anchor.BASELINE;
-import static de.team33.sphinx.alpha.option.GridBag.Constraints.template;
+import static de.team33.sphinx.alpha.option.GridBag.Constraints_.template;
 import static de.team33.sphinx.alpha.option.GridBag.Fill.BOTH;
-import static de.team33.sphinx.alpha.option.GridBag.Fill.NONE;
 import static de.team33.sphinx.alpha.option.GridBag.insets;
 
 
@@ -24,17 +26,21 @@ class GridBagTrial {
     private static final Preferences PREFERENCES = Preferences.userRoot().node(APP_NODE);
     private static final String WIN_NODE = GridBagTrial.class.getSimpleName();
     private static final Rectangle SIZE0 = new Rectangle(0, 0, 640, 480);
-    private static final GridBag.Constraints.Template GBC_TEMPLATE = template(BASELINE, BOTH, insets(2), 4);
-    private static final GridBagConstraints GBC_VERT_0 = GBC_TEMPLATE.vertical(0);
-    private static final GridBagConstraints GBC_VERT_1 = GBC_TEMPLATE.vertical(1);
-    private static final GridBagConstraints GBC_VERT_2 = GBC_TEMPLATE.vertical(2);
-    private static final GridBagConstraints GBC_VERT_3 = GBC_TEMPLATE.vertical(3);
-    private static final GridBagConstraints GBC_BOTTOM = GBC_TEMPLATE.vertical(4, 1.0);
-    private static final GridBagConstraints GBC_STATUS = GBC_TEMPLATE.vertical(5);
-    private static final GridBagConstraints GBC_HOR_0 = GBC_TEMPLATE.horizontal(0);
-    private static final GridBagConstraints GBC_HOR_1 = GBC_TEMPLATE.horizontal(1, 0.2);
-    private static final GridBagConstraints GBC_HOR_2 = GBC_TEMPLATE.horizontal(2, 0.8);
-    private static final GridBagConstraints GBC_HOR_3 = GBC_TEMPLATE.horizontal(3);
+
+    private static final GBCTemplate GBC_TEMPLATE = new GBCTemplate(BASELINE, BOTH, insets(4), 4).setColumns();
+    private static final GBCTColumn GBCT_COLUMN = GBC_TEMPLATE.column(0);
+    private static final GBCTRow GBCT_ROW = GBC_TEMPLATE.row(0);
+
+    private static final GridBagConstraints GBC_VERT_0 = GBCT_COLUMN.get(0);
+    private static final GridBagConstraints GBC_VERT_1 = GBCT_COLUMN.get(1);
+    private static final GridBagConstraints GBC_VERT_2 = GBCT_COLUMN.get(2);
+    private static final GridBagConstraints GBC_VERT_3 = GBCT_COLUMN.get(3);
+    private static final GridBagConstraints GBC_BOTTOM = GBCT_COLUMN.get(4, 1.0);
+    private static final GridBagConstraints GBC_STATUS = GBCT_COLUMN.get(5);
+    private static final GridBagConstraints GBC_HOR_0 = GBCT_ROW.get(0);
+    private static final GridBagConstraints GBC_HOR_1 = GBCT_ROW.get(1, 0.2);
+    private static final GridBagConstraints GBC_HOR_2 = GBCT_ROW.get(2, 0.8);
+    private static final GridBagConstraints GBC_HOR_3 = GBCT_ROW.get(3);
 
 
     private final JFrame frame;

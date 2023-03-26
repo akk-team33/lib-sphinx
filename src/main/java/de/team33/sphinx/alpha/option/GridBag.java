@@ -38,10 +38,16 @@ public class GridBag {
         return new Insets(top, left, bottom, right);
     }
 
+    public static Constraints constraints() {
+        return new Constraints();
+    }
+
+    public static class Constraints {}
+
     /**
      * Utility class to handle {@link GridBagConstraints}.
      */
-    public static class Constraints {
+    public static class Constraints_ {
 
         /**
          * Returns a default {@link Template}.
@@ -163,6 +169,46 @@ public class GridBag {
              */
             default S setIPadY(final int iPadY) {
                 return setup(gbc -> gbc.ipady = iPadY);
+            }
+
+            /**
+             * @see GridBagConstraints#ipadx
+             * @see GridBagConstraints#ipady
+             */
+            default S setIPadXY(final int iPadXY) {
+                return this.setIPadX(iPadXY)
+                           .setIPadY(iPadXY);
+            }
+
+            default S setRows(final int gridHeight, final double weightY) {
+                return this.setGridHeight(gridHeight)
+                           .setWeightY(weightY);
+            }
+
+            default S setRows(final int gridHeight, final double weightY, final int iPadY) {
+                return this.setRows(gridHeight, weightY)
+                           .setIPadY(iPadY);
+            }
+
+            default S setColumns(final int gridWidth, final double weightX) {
+                return this.setGridWidth(gridWidth)
+                           .setWeightX(weightX);
+            }
+
+            default S setColumns(final int gridWidth, final double weightX, final int iPadX) {
+                return this.setColumns(gridWidth, weightX)
+                           .setIPadX(iPadX);
+            }
+
+            default S setAreal(final Anchor anchor, final Fill fill, final Insets insets) {
+                return this.setAnchor(anchor)
+                           .setFill(fill)
+                           .setInsets(insets);
+            }
+
+            default S setAreal(final Anchor anchor, final Fill fill, final Insets insets, int iPadXY) {
+                return this.setAreal(anchor, fill, insets)
+                           .setIPadXY(iPadXY);
             }
         }
 
