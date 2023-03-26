@@ -1,9 +1,6 @@
 package de.team33.trial.sphinx.alpha.visual;
 
 import de.team33.sphinx.alpha.option.BackedBounds;
-import de.team33.sphinx.alpha.option.GBCTColumn;
-import de.team33.sphinx.alpha.option.GBCTRow;
-import de.team33.sphinx.alpha.option.GBCTemplate;
 import de.team33.sphinx.alpha.option.GridBag;
 import de.team33.sphinx.alpha.visual.JFrames;
 import de.team33.sphinx.alpha.visual.JLabels;
@@ -15,7 +12,7 @@ import java.awt.*;
 import java.util.prefs.Preferences;
 
 import static de.team33.sphinx.alpha.option.GridBag.Anchor.BASELINE;
-import static de.team33.sphinx.alpha.option.GridBag.Constraints_.template;
+import static de.team33.sphinx.alpha.option.GridBag.Constraints.builder;
 import static de.team33.sphinx.alpha.option.GridBag.Fill.BOTH;
 import static de.team33.sphinx.alpha.option.GridBag.insets;
 
@@ -27,20 +24,31 @@ class GridBagTrial {
     private static final String WIN_NODE = GridBagTrial.class.getSimpleName();
     private static final Rectangle SIZE0 = new Rectangle(0, 0, 640, 480);
 
-    private static final GBCTemplate GBC_TEMPLATE = new GBCTemplate(BASELINE, BOTH, insets(4), 4).setColumns();
-    private static final GBCTColumn GBCT_COLUMN = GBC_TEMPLATE.column(0);
-    private static final GBCTRow GBCT_ROW = GBC_TEMPLATE.row(0);
+    private static final GridBag.Constraints.Template TEMPLATE = builder().setWeightXY(0.0)
+                                                                          .setAnchor(BASELINE)
+                                                                          .setFill(BOTH)
+                                                                          .setInsets(insets(4))
+                                                                          .setIPadXY(4)
+                                                                          .template();
+    private static final GridBag.Constraints.Template V_TEMPLATE = TEMPLATE.builder()
+                                                                           .setGridX(0)
+                                                                           .setWeightX(1.0)
+                                                                           .template();
+    private static final GridBag.Constraints.Template H_TEMPLATE = TEMPLATE.builder()
+                                                                           .setGridY(0)
+                                                                           .setWeightY(1.0)
+                                                                           .template();
 
-    private static final GridBagConstraints GBC_VERT_0 = GBCT_COLUMN.get(0);
-    private static final GridBagConstraints GBC_VERT_1 = GBCT_COLUMN.get(1);
-    private static final GridBagConstraints GBC_VERT_2 = GBCT_COLUMN.get(2);
-    private static final GridBagConstraints GBC_VERT_3 = GBCT_COLUMN.get(3);
-    private static final GridBagConstraints GBC_BOTTOM = GBCT_COLUMN.get(4, 1.0);
-    private static final GridBagConstraints GBC_STATUS = GBCT_COLUMN.get(5);
-    private static final GridBagConstraints GBC_HOR_0 = GBCT_ROW.get(0);
-    private static final GridBagConstraints GBC_HOR_1 = GBCT_ROW.get(1, 0.2);
-    private static final GridBagConstraints GBC_HOR_2 = GBCT_ROW.get(2, 0.8);
-    private static final GridBagConstraints GBC_HOR_3 = GBCT_ROW.get(3);
+    private static final GridBagConstraints GBC_VERT_0 = V_TEMPLATE.getY(0);
+    private static final GridBagConstraints GBC_VERT_1 = V_TEMPLATE.getY(1);
+    private static final GridBagConstraints GBC_VERT_2 = V_TEMPLATE.getY(2);
+    private static final GridBagConstraints GBC_VERT_3 = V_TEMPLATE.getY(3);
+    private static final GridBagConstraints GBC_BOTTOM = V_TEMPLATE.getY(4, 1.0);
+    private static final GridBagConstraints GBC_STATUS = V_TEMPLATE.getY(5);
+    private static final GridBagConstraints GBC_HOR_0 = H_TEMPLATE.getX(0);
+    private static final GridBagConstraints GBC_HOR_1 = H_TEMPLATE.getX(1, 0.2);
+    private static final GridBagConstraints GBC_HOR_2 = H_TEMPLATE.getX(2, 0.8);
+    private static final GridBagConstraints GBC_HOR_3 = H_TEMPLATE.getX(3);
 
 
     private final JFrame frame;
