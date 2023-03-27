@@ -2,6 +2,10 @@
 
     Extensions to the java swing library - edition "alpha"
 
+## Home
+
+http://www.team33.de/dev/sphinx/
+
 ## Requires
 
     Java 8 or later
@@ -14,3 +18,12 @@
       <version>1.0.0</version>
     </dependency>
 
+## Change Log
+
+### 1.0.1
+
+* Added options to handle GridBagConstraints
+
+### 1.0.0
+
+* first public release
