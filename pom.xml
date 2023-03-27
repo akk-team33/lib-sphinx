@@ -4,7 +4,7 @@
 
     <groupId>de.team33.sphinx</groupId>
     <artifactId>sphinx-alpha</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>Team33 Sphinx Alpha</name>
