@@ -1,19 +1,27 @@
 package de.team33.trial.sphinx.alpha.visual;
 
-import de.team33.sphinx.alpha.activity.Event;
 import de.team33.sphinx.alpha.option.BackedBounds;
-import de.team33.sphinx.alpha.visual.JFrames;
-import de.team33.sphinx.alpha.visual.JTables;
+import de.team33.sphinx.alpha.visual.*;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import javax.swing.event.TableColumnModelListener;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 import java.awt.*;
-import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.prefs.Preferences;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 class JTablesTrial {
@@ -24,38 +32,69 @@ class JTablesTrial {
     private static final Rectangle SIZE0 = new Rectangle(0, 0, 640, 480);
 
     private final JFrame frame;
+    private final List<File> files;
 
     public JTablesTrial(final String[] args) {
+        try (final Stream<Path> stream = Files.list(Paths.get(".").normalize())) {
+            this.files = stream.map(Path::toFile)
+                               .collect(Collectors.toList());
+        } catch (final IOException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
         final Preferences preferences = PREFERENCES.node(WIN_NODE);
         this.frame = JFrames.builder()
                             .setTitle(JTablesTrial.class.getCanonicalName())
                             .setup(new BackedBounds(preferences, SIZE0)::setupFrame)
                             .setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE)
-                            .add(jTable())
+                            .add(jScrollPane())
                             .setVisible(true)
                             .build();
+    }
+
+    private JScrollPane jScrollPane() {
+        JScrollPane pane = new JScrollPane(jTable());
+        //pane.setColumnHeader(JViewports.builder().build());
+        //pane.getViewport().setBackground(Color.WHITE);
+        pane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        return JScrollPanes.builder()
+                           .setViewport(JViewports.builder()
+                                                  .setView(jTable())
+                                                  .setBackground(Color.WHITE)
+                                                  .build())
+                           .build();
     }
 
     private JTable jTable() {
         return JTables.builder()
                       .setModel(new TrialModel())
                       //.setColumnModel(new TrialColumnModel())
-                      .addColumn(new TableColumn(0))
-                      .addColumn(new TableColumn(1))
-                      .addColumn(new TableColumn(2))
-                      .addColumn(new TableColumn(3))
+                      .setFocusable(false)
+                      .setAutoResizeMode(2)
+                      .setRowHeight(19)
+                      .setShowGrid(false)
+                      .setRowSelectionAllowed(false)
+                      .setColumnSelectionAllowed(false)
+                      .addColumn(new TableColumn(0, 30))
+                      .addColumn(new TableColumn(1, 15))
+                      .addColumn(new TableColumn(2, 45))
                       .build();
+    }
+
+    private TableCellRenderer newCellRenderer() {
+        return new DefaultTableCellRenderer() {
+
+        };
     }
 
     public static void main(final String[] args) {
         SwingUtilities.invokeLater(() -> new JTablesTrial(args));
     }
 
-    private class TrialModel extends AbstractTableModel {
+    private class TrialModel implements TableModel {
 
         @Override
         public int getRowCount() {
-            return 10;
+            return files.size();
         }
 
         @Override
@@ -64,13 +103,38 @@ class JTablesTrial {
         }
 
         @Override
-        public Object getValueAt(final int rowIndex, final int columnIndex) {
-            return String.format("Cell @ (%d, %d)", rowIndex, columnIndex);
+        public String getColumnName(int columnIndex) {
+            return "Column " + columnIndex;
         }
 
         @Override
-        public String getColumnName(final int column) {
-            return "Column " + column;
+        public Class<?> getColumnClass(int columnIndex) {
+            return File.class;
+        }
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return false;
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            return files.get(rowIndex);
+        }
+
+        @Override
+        public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+            throw new UnsupportedOperationException("not yet implemented");
+        }
+
+        @Override
+        public void addTableModelListener(TableModelListener l) {
+
+        }
+
+        @Override
+        public void removeTableModelListener(TableModelListener l) {
+
         }
     }
 
