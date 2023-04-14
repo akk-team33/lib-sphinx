@@ -19,7 +19,7 @@ public final class JSpinners {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JSpinner}.
      */
-    public static Builder<JSpinner, ?> builder() {
+    public static Builder<JSpinner> builder() {
         return new Builder<>(JSpinner::new, Builder.class);
     }
 
@@ -28,7 +28,7 @@ public final class JSpinners {
      * 
      * @param <T> The final type of the target instances, at least {@link JSpinner}.
      */
-    public static <T extends JSpinner> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JSpinner> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -36,12 +36,12 @@ public final class JSpinners {
      * Builder implementation to build target instances of {@link JSpinner}.
      * 
      * @param <T> The final type of the target instances, at least {@link JSpinner}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JSpinner, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JSpinner>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -52,35 +52,36 @@ public final class JSpinners {
      * @param <T> The final type of the target instance, at least {@link JSpinner}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JSpinner, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
          * @see JSpinner#setEditor(JComponent)
          */
-        default S setEditor(final JComponent editor) {
-            return setup(result -> result.setEditor(editor));
+        default S setEditor(final JComponent arg0) {
+            return setup(result -> result.setEditor(arg0));
         }
 
         /**
          * @see JSpinner#setModel(SpinnerModel)
          */
-        default S setModel(final SpinnerModel model) {
-            return setup(result -> result.setModel(model));
+        default S setModel(final SpinnerModel arg0) {
+            return setup(result -> result.setModel(arg0));
         }
 
         /**
          * @see JSpinner#setUI(SpinnerUI)
          */
-        default S setUI(final SpinnerUI ui) {
-            return setup(result -> result.setUI(ui));
+        default S setUI(final SpinnerUI arg0) {
+            return setup(result -> result.setUI(arg0));
         }
 
         /**
          * @see JSpinner#setValue(Object)
          */
-        default S setValue(final Object value) {
-            return setup(result -> result.setValue(value));
+        default S setValue(final Object arg0) {
+            return setup(result -> result.setValue(arg0));
         }
     }
 }

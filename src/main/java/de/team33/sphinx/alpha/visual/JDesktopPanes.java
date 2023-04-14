@@ -20,7 +20,7 @@ public final class JDesktopPanes {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JDesktopPane}.
      */
-    public static Builder<JDesktopPane, ?> builder() {
+    public static Builder<JDesktopPane> builder() {
         return new Builder<>(JDesktopPane::new, Builder.class);
     }
 
@@ -29,7 +29,7 @@ public final class JDesktopPanes {
      * 
      * @param <T> The final type of the target instances, at least {@link JDesktopPane}.
      */
-    public static <T extends JDesktopPane> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JDesktopPane> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -37,12 +37,12 @@ public final class JDesktopPanes {
      * Builder implementation to build target instances of {@link JDesktopPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JDesktopPane}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JDesktopPane, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JDesktopPane>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -53,21 +53,22 @@ public final class JDesktopPanes {
      * @param <T> The final type of the target instance, at least {@link JDesktopPane}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JDesktopPane, S extends Setup<T, S>> extends JLayeredPanes.Setup<T, S> {
 
         /**
          * @see JDesktopPane#remove(Component)
          */
-        default S remove(final Component comp) {
-            return setup(result -> result.remove(comp));
+        default S remove(final Component arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
          * @see JDesktopPane#remove(int)
          */
-        default S remove(final int index) {
-            return setup(result -> result.remove(index));
+        default S remove(final int arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
@@ -80,36 +81,36 @@ public final class JDesktopPanes {
         /**
          * @see JDesktopPane#setComponentZOrder(Component, int)
          */
-        default S setComponentZOrder(final Component comp, final int index) {
-            return setup(result -> result.setComponentZOrder(comp, index));
+        default S setComponentZOrder(final Component arg0, final int arg1) {
+            return setup(result -> result.setComponentZOrder(arg0, arg1));
         }
 
         /**
          * @see JDesktopPane#setDesktopManager(DesktopManager)
          */
-        default S setDesktopManager(final DesktopManager d) {
-            return setup(result -> result.setDesktopManager(d));
+        default S setDesktopManager(final DesktopManager arg0) {
+            return setup(result -> result.setDesktopManager(arg0));
         }
 
         /**
          * @see JDesktopPane#setDragMode(int)
          */
-        default S setDragMode(final int dragMode) {
-            return setup(result -> result.setDragMode(dragMode));
+        default S setDragMode(final int arg0) {
+            return setup(result -> result.setDragMode(arg0));
         }
 
         /**
          * @see JDesktopPane#setSelectedFrame(JInternalFrame)
          */
-        default S setSelectedFrame(final JInternalFrame f) {
-            return setup(result -> result.setSelectedFrame(f));
+        default S setSelectedFrame(final JInternalFrame arg0) {
+            return setup(result -> result.setSelectedFrame(arg0));
         }
 
         /**
          * @see JDesktopPane#setUI(DesktopPaneUI)
          */
-        default S setUI(final DesktopPaneUI ui) {
-            return setup(result -> result.setUI(ui));
+        default S setUI(final DesktopPaneUI arg0) {
+            return setup(result -> result.setUI(arg0));
         }
     }
 }

@@ -16,7 +16,7 @@ public final class JCheckBoxMenuItems {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JCheckBoxMenuItem}.
      */
-    public static Builder<JCheckBoxMenuItem, ?> builder() {
+    public static Builder<JCheckBoxMenuItem> builder() {
         return new Builder<>(JCheckBoxMenuItem::new, Builder.class);
     }
 
@@ -25,7 +25,7 @@ public final class JCheckBoxMenuItems {
      * 
      * @param <T> The final type of the target instances, at least {@link JCheckBoxMenuItem}.
      */
-    public static <T extends JCheckBoxMenuItem> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JCheckBoxMenuItem> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -33,12 +33,12 @@ public final class JCheckBoxMenuItems {
      * Builder implementation to build target instances of {@link JCheckBoxMenuItem}.
      * 
      * @param <T> The final type of the target instances, at least {@link JCheckBoxMenuItem}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JCheckBoxMenuItem, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JCheckBoxMenuItem>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -56,8 +56,8 @@ public final class JCheckBoxMenuItems {
         /**
          * @see JCheckBoxMenuItem#setState(boolean)
          */
-        default S setState(final boolean b) {
-            return setup(result -> result.setState(b));
+        default S setState(final boolean arg0) {
+            return setup(result -> result.setState(arg0));
         }
     }
 }

@@ -18,7 +18,7 @@ public final class JScrollBars {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JScrollBar}.
      */
-    public static Builder<JScrollBar, ?> builder() {
+    public static Builder<JScrollBar> builder() {
         return new Builder<>(JScrollBar::new, Builder.class);
     }
 
@@ -27,7 +27,7 @@ public final class JScrollBars {
      * 
      * @param <T> The final type of the target instances, at least {@link JScrollBar}.
      */
-    public static <T extends JScrollBar> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JScrollBar> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -35,12 +35,12 @@ public final class JScrollBars {
      * Builder implementation to build target instances of {@link JScrollBar}.
      * 
      * @param <T> The final type of the target instances, at least {@link JScrollBar}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JScrollBar, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JScrollBar>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -51,91 +51,92 @@ public final class JScrollBars {
      * @param <T> The final type of the target instance, at least {@link JScrollBar}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JScrollBar, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
          * @see JScrollBar#setBlockIncrement(int)
          */
-        default S setBlockIncrement(final int blockIncrement) {
-            return setup(result -> result.setBlockIncrement(blockIncrement));
+        default S setBlockIncrement(final int arg0) {
+            return setup(result -> result.setBlockIncrement(arg0));
         }
 
         /**
          * @see JScrollBar#setEnabled(boolean)
          */
-        default S setEnabled(final boolean x) {
-            return setup(result -> result.setEnabled(x));
+        default S setEnabled(final boolean arg0) {
+            return setup(result -> result.setEnabled(arg0));
         }
 
         /**
          * @see JScrollBar#setMaximum(int)
          */
-        default S setMaximum(final int maximum) {
-            return setup(result -> result.setMaximum(maximum));
+        default S setMaximum(final int arg0) {
+            return setup(result -> result.setMaximum(arg0));
         }
 
         /**
          * @see JScrollBar#setMinimum(int)
          */
-        default S setMinimum(final int minimum) {
-            return setup(result -> result.setMinimum(minimum));
+        default S setMinimum(final int arg0) {
+            return setup(result -> result.setMinimum(arg0));
         }
 
         /**
          * @see JScrollBar#setModel(BoundedRangeModel)
          */
-        default S setModel(final BoundedRangeModel newModel) {
-            return setup(result -> result.setModel(newModel));
+        default S setModel(final BoundedRangeModel arg0) {
+            return setup(result -> result.setModel(arg0));
         }
 
         /**
          * @see JScrollBar#setOrientation(int)
          */
-        default S setOrientation(final int orientation) {
-            return setup(result -> result.setOrientation(orientation));
+        default S setOrientation(final int arg0) {
+            return setup(result -> result.setOrientation(arg0));
         }
 
         /**
          * @see JScrollBar#setUI(ScrollBarUI)
          */
-        default S setUI(final ScrollBarUI ui) {
-            return setup(result -> result.setUI(ui));
+        default S setUI(final ScrollBarUI arg0) {
+            return setup(result -> result.setUI(arg0));
         }
 
         /**
          * @see JScrollBar#setUnitIncrement(int)
          */
-        default S setUnitIncrement(final int unitIncrement) {
-            return setup(result -> result.setUnitIncrement(unitIncrement));
+        default S setUnitIncrement(final int arg0) {
+            return setup(result -> result.setUnitIncrement(arg0));
         }
 
         /**
          * @see JScrollBar#setValue(int)
          */
-        default S setValue(final int value) {
-            return setup(result -> result.setValue(value));
+        default S setValue(final int arg0) {
+            return setup(result -> result.setValue(arg0));
         }
 
         /**
          * @see JScrollBar#setValueIsAdjusting(boolean)
          */
-        default S setValueIsAdjusting(final boolean b) {
-            return setup(result -> result.setValueIsAdjusting(b));
+        default S setValueIsAdjusting(final boolean arg0) {
+            return setup(result -> result.setValueIsAdjusting(arg0));
         }
 
         /**
          * @see JScrollBar#setValues(int, int, int, int)
          */
-        default S setValues(final int newValue, final int newExtent, final int newMin, final int newMax) {
-            return setup(result -> result.setValues(newValue, newExtent, newMin, newMax));
+        default S setValues(final int arg0, final int arg1, final int arg2, final int arg3) {
+            return setup(result -> result.setValues(arg0, arg1, arg2, arg3));
         }
 
         /**
          * @see JScrollBar#setVisibleAmount(int)
          */
-        default S setVisibleAmount(final int extent) {
-            return setup(result -> result.setVisibleAmount(extent));
+        default S setVisibleAmount(final int arg0) {
+            return setup(result -> result.setVisibleAmount(arg0));
         }
     }
 }

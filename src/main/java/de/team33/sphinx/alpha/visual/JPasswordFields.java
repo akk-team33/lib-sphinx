@@ -16,7 +16,7 @@ public final class JPasswordFields {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JPasswordField}.
      */
-    public static Builder<JPasswordField, ?> builder() {
+    public static Builder<JPasswordField> builder() {
         return new Builder<>(JPasswordField::new, Builder.class);
     }
 
@@ -25,7 +25,7 @@ public final class JPasswordFields {
      * 
      * @param <T> The final type of the target instances, at least {@link JPasswordField}.
      */
-    public static <T extends JPasswordField> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JPasswordField> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -33,12 +33,12 @@ public final class JPasswordFields {
      * Builder implementation to build target instances of {@link JPasswordField}.
      * 
      * @param <T> The final type of the target instances, at least {@link JPasswordField}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JPasswordField, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JPasswordField>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -49,14 +49,15 @@ public final class JPasswordFields {
      * @param <T> The final type of the target instance, at least {@link JPasswordField}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JPasswordField, S extends Setup<T, S>> extends JTextFields.Setup<T, S> {
 
         /**
          * @see JPasswordField#setEchoChar(char)
          */
-        default S setEchoChar(final char c) {
-            return setup(result -> result.setEchoChar(c));
+        default S setEchoChar(final char arg0) {
+            return setup(result -> result.setEchoChar(arg0));
         }
     }
 }

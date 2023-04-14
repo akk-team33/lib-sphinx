@@ -28,7 +28,7 @@ public final class JComponents {
      * 
      * @param <T> The final type of the target instances, at least {@link JComponent}.
      */
-    public static <T extends JComponent> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JComponent> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -36,12 +36,12 @@ public final class JComponents {
      * Builder implementation to build target instances of {@link JComponent}.
      * 
      * @param <T> The final type of the target instances, at least {@link JComponent}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JComponent, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JComponent>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -52,182 +52,183 @@ public final class JComponents {
      * @param <T> The final type of the target instance, at least {@link JComponent}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
     @FunctionalInterface
     public interface Setup<T extends JComponent, S extends Setup<T, S>> extends Containers.Setup<T, S> {
 
         /**
          * @see JComponent#setActionMap(ActionMap)
          */
-        default S setActionMap(final ActionMap am) {
-            return setup(result -> result.setActionMap(am));
+        default S setActionMap(final ActionMap arg0) {
+            return setup(result -> result.setActionMap(arg0));
         }
 
         /**
          * @see JComponent#setAlignmentX(float)
          */
-        default S setAlignmentX(final float alignmentX) {
-            return setup(result -> result.setAlignmentX(alignmentX));
+        default S setAlignmentX(final float arg0) {
+            return setup(result -> result.setAlignmentX(arg0));
         }
 
         /**
          * @see JComponent#setAlignmentY(float)
          */
-        default S setAlignmentY(final float alignmentY) {
-            return setup(result -> result.setAlignmentY(alignmentY));
+        default S setAlignmentY(final float arg0) {
+            return setup(result -> result.setAlignmentY(arg0));
         }
 
         /**
          * @see JComponent#setAutoscrolls(boolean)
          */
-        default S setAutoscrolls(final boolean autoscrolls) {
-            return setup(result -> result.setAutoscrolls(autoscrolls));
+        default S setAutoscrolls(final boolean arg0) {
+            return setup(result -> result.setAutoscrolls(arg0));
         }
 
         /**
          * @see JComponent#setBackground(Color)
          */
-        default S setBackground(final Color bg) {
-            return setup(result -> result.setBackground(bg));
+        default S setBackground(final Color arg0) {
+            return setup(result -> result.setBackground(arg0));
         }
 
         /**
          * @see JComponent#setBorder(Border)
          */
-        default S setBorder(final Border border) {
-            return setup(result -> result.setBorder(border));
+        default S setBorder(final Border arg0) {
+            return setup(result -> result.setBorder(arg0));
         }
 
         /**
          * @see JComponent#setComponentPopupMenu(JPopupMenu)
          */
-        default S setComponentPopupMenu(final JPopupMenu popup) {
-            return setup(result -> result.setComponentPopupMenu(popup));
+        default S setComponentPopupMenu(final JPopupMenu arg0) {
+            return setup(result -> result.setComponentPopupMenu(arg0));
         }
 
         /**
          * @see JComponent#setDebugGraphicsOptions(int)
          */
-        default S setDebugGraphicsOptions(final int debugOptions) {
-            return setup(result -> result.setDebugGraphicsOptions(debugOptions));
+        default S setDebugGraphicsOptions(final int arg0) {
+            return setup(result -> result.setDebugGraphicsOptions(arg0));
         }
 
         /**
          * @see JComponent#setDoubleBuffered(boolean)
          */
-        default S setDoubleBuffered(final boolean aFlag) {
-            return setup(result -> result.setDoubleBuffered(aFlag));
+        default S setDoubleBuffered(final boolean arg0) {
+            return setup(result -> result.setDoubleBuffered(arg0));
         }
 
         /**
          * @see JComponent#setEnabled(boolean)
          */
-        default S setEnabled(final boolean enabled) {
-            return setup(result -> result.setEnabled(enabled));
+        default S setEnabled(final boolean arg0) {
+            return setup(result -> result.setEnabled(arg0));
         }
 
         /**
          * @see JComponent#setFocusTraversalKeys(int, Set)
          */
-        default S setFocusTraversalKeys(final int id, final Set<? extends java.awt.AWTKeyStroke> keystrokes) {
-            return setup(result -> result.setFocusTraversalKeys(id, keystrokes));
+        default S setFocusTraversalKeys(final int arg0, final Set<? extends java.awt.AWTKeyStroke> arg1) {
+            return setup(result -> result.setFocusTraversalKeys(arg0, arg1));
         }
 
         /**
          * @see JComponent#setFont(Font)
          */
-        default S setFont(final Font font) {
-            return setup(result -> result.setFont(font));
+        default S setFont(final Font arg0) {
+            return setup(result -> result.setFont(arg0));
         }
 
         /**
          * @see JComponent#setForeground(Color)
          */
-        default S setForeground(final Color fg) {
-            return setup(result -> result.setForeground(fg));
+        default S setForeground(final Color arg0) {
+            return setup(result -> result.setForeground(arg0));
         }
 
         /**
          * @see JComponent#setInheritsPopupMenu(boolean)
          */
-        default S setInheritsPopupMenu(final boolean value) {
-            return setup(result -> result.setInheritsPopupMenu(value));
+        default S setInheritsPopupMenu(final boolean arg0) {
+            return setup(result -> result.setInheritsPopupMenu(arg0));
         }
 
         /**
          * @see JComponent#setInputMap(int, InputMap)
          */
-        default S setInputMap(final int condition, final InputMap map) {
-            return setup(result -> result.setInputMap(condition, map));
+        default S setInputMap(final int arg0, final InputMap arg1) {
+            return setup(result -> result.setInputMap(arg0, arg1));
         }
 
         /**
          * @see JComponent#setInputVerifier(InputVerifier)
          */
-        default S setInputVerifier(final InputVerifier inputVerifier) {
-            return setup(result -> result.setInputVerifier(inputVerifier));
+        default S setInputVerifier(final InputVerifier arg0) {
+            return setup(result -> result.setInputVerifier(arg0));
         }
 
         /**
          * @see JComponent#setMaximumSize(Dimension)
          */
-        default S setMaximumSize(final Dimension maximumSize) {
-            return setup(result -> result.setMaximumSize(maximumSize));
+        default S setMaximumSize(final Dimension arg0) {
+            return setup(result -> result.setMaximumSize(arg0));
         }
 
         /**
          * @see JComponent#setMinimumSize(Dimension)
          */
-        default S setMinimumSize(final Dimension minimumSize) {
-            return setup(result -> result.setMinimumSize(minimumSize));
+        default S setMinimumSize(final Dimension arg0) {
+            return setup(result -> result.setMinimumSize(arg0));
         }
 
         /**
          * @see JComponent#setOpaque(boolean)
          */
-        default S setOpaque(final boolean isOpaque) {
-            return setup(result -> result.setOpaque(isOpaque));
+        default S setOpaque(final boolean arg0) {
+            return setup(result -> result.setOpaque(arg0));
         }
 
         /**
          * @see JComponent#setPreferredSize(Dimension)
          */
-        default S setPreferredSize(final Dimension preferredSize) {
-            return setup(result -> result.setPreferredSize(preferredSize));
+        default S setPreferredSize(final Dimension arg0) {
+            return setup(result -> result.setPreferredSize(arg0));
         }
 
         /**
          * @see JComponent#setRequestFocusEnabled(boolean)
          */
-        default S setRequestFocusEnabled(final boolean requestFocusEnabled) {
-            return setup(result -> result.setRequestFocusEnabled(requestFocusEnabled));
+        default S setRequestFocusEnabled(final boolean arg0) {
+            return setup(result -> result.setRequestFocusEnabled(arg0));
         }
 
         /**
          * @see JComponent#setToolTipText(String)
          */
-        default S setToolTipText(final String text) {
-            return setup(result -> result.setToolTipText(text));
+        default S setToolTipText(final String arg0) {
+            return setup(result -> result.setToolTipText(arg0));
         }
 
         /**
          * @see JComponent#setTransferHandler(TransferHandler)
          */
-        default S setTransferHandler(final TransferHandler newHandler) {
-            return setup(result -> result.setTransferHandler(newHandler));
+        default S setTransferHandler(final TransferHandler arg0) {
+            return setup(result -> result.setTransferHandler(arg0));
         }
 
         /**
          * @see JComponent#setVerifyInputWhenFocusTarget(boolean)
          */
-        default S setVerifyInputWhenFocusTarget(final boolean verifyInputWhenFocusTarget) {
-            return setup(result -> result.setVerifyInputWhenFocusTarget(verifyInputWhenFocusTarget));
+        default S setVerifyInputWhenFocusTarget(final boolean arg0) {
+            return setup(result -> result.setVerifyInputWhenFocusTarget(arg0));
         }
 
         /**
          * @see JComponent#setVisible(boolean)
          */
-        default S setVisible(final boolean aFlag) {
-            return setup(result -> result.setVisible(aFlag));
+        default S setVisible(final boolean arg0) {
+            return setup(result -> result.setVisible(arg0));
         }
     }
 }

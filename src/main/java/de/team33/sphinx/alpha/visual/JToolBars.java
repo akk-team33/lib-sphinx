@@ -21,7 +21,7 @@ public final class JToolBars {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JToolBar}.
      */
-    public static Builder<JToolBar, ?> builder() {
+    public static Builder<JToolBar> builder() {
         return new Builder<>(JToolBar::new, Builder.class);
     }
 
@@ -30,7 +30,7 @@ public final class JToolBars {
      * 
      * @param <T> The final type of the target instances, at least {@link JToolBar}.
      */
-    public static <T extends JToolBar> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JToolBar> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -38,12 +38,12 @@ public final class JToolBars {
      * Builder implementation to build target instances of {@link JToolBar}.
      * 
      * @param <T> The final type of the target instances, at least {@link JToolBar}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JToolBar, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JToolBar>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -54,14 +54,15 @@ public final class JToolBars {
      * @param <T> The final type of the target instance, at least {@link JToolBar}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JToolBar, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
          * @see JToolBar#add(Action)
          */
-        default S add(final Action a) {
-            return setup(result -> result.add(a));
+        default S add(final Action arg0) {
+            return setup(result -> result.add(arg0));
         }
 
         /**
@@ -74,57 +75,57 @@ public final class JToolBars {
         /**
          * @see JToolBar#addSeparator(Dimension)
          */
-        default S addSeparator(final Dimension size) {
-            return setup(result -> result.addSeparator(size));
+        default S addSeparator(final Dimension arg0) {
+            return setup(result -> result.addSeparator(arg0));
         }
 
         /**
          * @see JToolBar#setBorderPainted(boolean)
          */
-        default S setBorderPainted(final boolean b) {
-            return setup(result -> result.setBorderPainted(b));
+        default S setBorderPainted(final boolean arg0) {
+            return setup(result -> result.setBorderPainted(arg0));
         }
 
         /**
          * @see JToolBar#setFloatable(boolean)
          */
-        default S setFloatable(final boolean b) {
-            return setup(result -> result.setFloatable(b));
+        default S setFloatable(final boolean arg0) {
+            return setup(result -> result.setFloatable(arg0));
         }
 
         /**
          * @see JToolBar#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager mgr) {
-            return setup(result -> result.setLayout(mgr));
+        default S setLayout(final LayoutManager arg0) {
+            return setup(result -> result.setLayout(arg0));
         }
 
         /**
          * @see JToolBar#setMargin(Insets)
          */
-        default S setMargin(final Insets m) {
-            return setup(result -> result.setMargin(m));
+        default S setMargin(final Insets arg0) {
+            return setup(result -> result.setMargin(arg0));
         }
 
         /**
          * @see JToolBar#setOrientation(int)
          */
-        default S setOrientation(final int o) {
-            return setup(result -> result.setOrientation(o));
+        default S setOrientation(final int arg0) {
+            return setup(result -> result.setOrientation(arg0));
         }
 
         /**
          * @see JToolBar#setRollover(boolean)
          */
-        default S setRollover(final boolean rollover) {
-            return setup(result -> result.setRollover(rollover));
+        default S setRollover(final boolean arg0) {
+            return setup(result -> result.setRollover(arg0));
         }
 
         /**
          * @see JToolBar#setUI(ToolBarUI)
          */
-        default S setUI(final ToolBarUI ui) {
-            return setup(result -> result.setUI(ui));
+        default S setUI(final ToolBarUI arg0) {
+            return setup(result -> result.setUI(arg0));
         }
     }
 }

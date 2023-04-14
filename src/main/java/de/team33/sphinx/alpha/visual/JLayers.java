@@ -20,21 +20,32 @@ public final class JLayers {
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JLayer}.
+     *
+     * @param <C> The type of the layered component, at least {@link Component}.
      */
-    public static <C extends Component> Builder<C, ?> builder(final Class<C> componentClass) {
-        return new Builder<>(JLayer::new, Builder.class);
+    public static <C extends Component> Builder<C> builder(final C component) {
+        return new Builder<>(() -> new JLayer<>(component), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
+     *
+     * @param <C> The type of the layered component, at least {@link Component}.
+     */
+    public static <C extends Component> Builder<C> builder(final Supplier<JLayer<C>> newTarget) {
+        return new Builder<>(newTarget, Builder.class);
     }
 
     /**
      * Builder implementation to build target instances of {@link JLayer}.
-     * 
-     * @param <C> The final type of the layered component, at least {@link Component}.
-     * @param <B> The final type of the Builder implementation.
+     *
+     * @param <C> The type of the layered component, at least {@link Component}.
      */
-    public static class Builder<C extends Component, B extends Builder<C, B>>
-            extends LateBuilder<JLayer<C>, B> implements Setup<C, B> {
+    public static final class Builder<C extends Component>
+            extends LateBuilder<JLayer<C>, Builder<C>> implements Setup<C, Builder<C>> {
 
-        protected Builder(final Supplier<JLayer<C>> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<JLayer<C>> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -42,10 +53,10 @@ public final class JLayers {
     /**
      * Utility interface to set up a target instance of {@link JLayer}.
      *
-     * @param <C> The final type of the layered component, at least {@link Component}.
+     * @param <C> The type of the layered component, at least {@link Component}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "InterfaceWithOnlyOneDirectInheritor"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<C extends Component, S extends Setup<C, S>>
             extends JComponents.Setup<JLayer<C>, S> {
@@ -53,8 +64,8 @@ public final class JLayers {
         /**
          * @see JLayer#remove(Component)
          */
-        default S remove(final Component comp) {
-            return setup(result -> result.remove(comp));
+        default S remove(final Component arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
@@ -67,43 +78,43 @@ public final class JLayers {
         /**
          * @see JLayer#setBorder(Border)
          */
-        default S setBorder(final Border border) {
-            return setup(result -> result.setBorder(border));
+        default S setBorder(final Border arg0) {
+            return setup(result -> result.setBorder(arg0));
         }
 
         /**
          * @see JLayer#setGlassPane(JPanel)
          */
-        default S setGlassPane(final JPanel glassPane) {
-            return setup(result -> result.setGlassPane(glassPane));
+        default S setGlassPane(final JPanel arg0) {
+            return setup(result -> result.setGlassPane(arg0));
         }
 
         /**
          * @see JLayer#setLayerEventMask(long)
          */
-        default S setLayerEventMask(final long layerEventMask) {
-            return setup(result -> result.setLayerEventMask(layerEventMask));
+        default S setLayerEventMask(final long arg0) {
+            return setup(result -> result.setLayerEventMask(arg0));
         }
 
         /**
          * @see JLayer#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager mgr) {
-            return setup(result -> result.setLayout(mgr));
+        default S setLayout(final LayoutManager arg0) {
+            return setup(result -> result.setLayout(arg0));
         }
 
         /**
          * @see JLayer#setUI(LayerUI)
          */
-        default S setUI(final LayerUI<? super C> ui) {
-            return setup(result -> result.setUI(ui));
+        default S setUI(final LayerUI<? super C> arg0) {
+            return setup(result -> result.setUI(arg0));
         }
 
         /**
          * @see JLayer#setView(Component)
          */
-        default S setView(final C view) {
-            return setup(result -> result.setView(view));
+        default S setView(final C arg0) {
+            return setup(result -> result.setView(arg0));
         }
     }
 }

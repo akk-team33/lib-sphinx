@@ -19,7 +19,7 @@ public final class JTextFields {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JTextField}.
      */
-    public static Builder<JTextField, ?> builder() {
+    public static Builder<JTextField> builder() {
         return new Builder<>(JTextField::new, Builder.class);
     }
 
@@ -28,7 +28,7 @@ public final class JTextFields {
      * 
      * @param <T> The final type of the target instances, at least {@link JTextField}.
      */
-    public static <T extends JTextField> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JTextField> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -36,12 +36,12 @@ public final class JTextFields {
      * Builder implementation to build target instances of {@link JTextField}.
      * 
      * @param <T> The final type of the target instances, at least {@link JTextField}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JTextField, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JTextField>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -52,56 +52,57 @@ public final class JTextFields {
      * @param <T> The final type of the target instance, at least {@link JTextField}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JTextField, S extends Setup<T, S>> extends JTextComponents.Setup<T, S> {
 
         /**
          * @see JTextField#setAction(Action)
          */
-        default S setAction(final Action a) {
-            return setup(result -> result.setAction(a));
+        default S setAction(final Action arg0) {
+            return setup(result -> result.setAction(arg0));
         }
 
         /**
          * @see JTextField#setActionCommand(String)
          */
-        default S setActionCommand(final String command) {
-            return setup(result -> result.setActionCommand(command));
+        default S setActionCommand(final String arg0) {
+            return setup(result -> result.setActionCommand(arg0));
         }
 
         /**
          * @see JTextField#setColumns(int)
          */
-        default S setColumns(final int columns) {
-            return setup(result -> result.setColumns(columns));
+        default S setColumns(final int arg0) {
+            return setup(result -> result.setColumns(arg0));
         }
 
         /**
          * @see JTextField#setDocument(Document)
          */
-        default S setDocument(final Document doc) {
-            return setup(result -> result.setDocument(doc));
+        default S setDocument(final Document arg0) {
+            return setup(result -> result.setDocument(arg0));
         }
 
         /**
          * @see JTextField#setFont(Font)
          */
-        default S setFont(final Font f) {
-            return setup(result -> result.setFont(f));
+        default S setFont(final Font arg0) {
+            return setup(result -> result.setFont(arg0));
         }
 
         /**
          * @see JTextField#setHorizontalAlignment(int)
          */
-        default S setHorizontalAlignment(final int alignment) {
-            return setup(result -> result.setHorizontalAlignment(alignment));
+        default S setHorizontalAlignment(final int arg0) {
+            return setup(result -> result.setHorizontalAlignment(arg0));
         }
 
         /**
          * @see JTextField#setScrollOffset(int)
          */
-        default S setScrollOffset(final int scrollOffset) {
-            return setup(result -> result.setScrollOffset(scrollOffset));
+        default S setScrollOffset(final int arg0) {
+            return setup(result -> result.setScrollOffset(arg0));
         }
     }
 }

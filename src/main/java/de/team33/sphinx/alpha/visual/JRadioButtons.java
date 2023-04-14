@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.JRadioButton;
-import javax.swing.JToggleButton;
 
 /**
  * Utility class to handle {@link JRadioButton}s.
@@ -17,7 +16,7 @@ public final class JRadioButtons {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JRadioButton}.
      */
-    public static Builder<JRadioButton, ?> builder() {
+    public static Builder<JRadioButton> builder() {
         return new Builder<>(JRadioButton::new, Builder.class);
     }
 
@@ -26,7 +25,7 @@ public final class JRadioButtons {
      * 
      * @param <T> The final type of the target instances, at least {@link JRadioButton}.
      */
-    public static <T extends JRadioButton> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JRadioButton> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -34,12 +33,12 @@ public final class JRadioButtons {
      * Builder implementation to build target instances of {@link JRadioButton}.
      * 
      * @param <T> The final type of the target instances, at least {@link JRadioButton}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JRadioButton, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JRadioButton>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -50,6 +49,7 @@ public final class JRadioButtons {
      * @param <T> The final type of the target instance, at least {@link JRadioButton}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JRadioButton, S extends Setup<T, S>> extends JToggleButtons.Setup<T, S> {
     }

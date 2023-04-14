@@ -19,7 +19,7 @@ public final class JLabels {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JLabel}.
      */
-    public static Builder<JLabel, ?> builder() {
+    public static Builder<JLabel> builder() {
         return new Builder<>(JLabel::new, Builder.class);
     }
 
@@ -28,7 +28,7 @@ public final class JLabels {
      * 
      * @param <T> The final type of the target instances, at least {@link JLabel}.
      */
-    public static <T extends JLabel> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JLabel> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -36,12 +36,12 @@ public final class JLabels {
      * Builder implementation to build target instances of {@link JLabel}.
      * 
      * @param <T> The final type of the target instances, at least {@link JLabel}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JLabel, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JLabel>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -52,98 +52,92 @@ public final class JLabels {
      * @param <T> The final type of the target instance, at least {@link JLabel}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JLabel, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
          * @see JLabel#setDisabledIcon(Icon)
          */
-        default S setDisabledIcon(final Icon disabledIcon) {
-            return setup(result -> result.setDisabledIcon(disabledIcon));
-        }
-
-        /**
-         * @see JLabel#setDisplayedMnemonic(char)
-         */
-        default S setDisplayedMnemonic(final char aChar) {
-            return setup(result -> result.setDisplayedMnemonic(aChar));
+        default S setDisabledIcon(final Icon arg0) {
+            return setup(result -> result.setDisabledIcon(arg0));
         }
 
         /**
          * @see JLabel#setDisplayedMnemonic(int)
          */
-        default S setDisplayedMnemonic(final int key) {
-            return setup(result -> result.setDisplayedMnemonic(key));
+        default S setDisplayedMnemonic(final int arg0) {
+            return setup(result -> result.setDisplayedMnemonic(arg0));
         }
 
         /**
          * @see JLabel#setDisplayedMnemonicIndex(int)
          */
-        default S setDisplayedMnemonicIndex(final int index) {
-            return setup(result -> result.setDisplayedMnemonicIndex(index));
+        default S setDisplayedMnemonicIndex(final int arg0) {
+            return setup(result -> result.setDisplayedMnemonicIndex(arg0));
         }
 
         /**
          * @see JLabel#setHorizontalAlignment(int)
          */
-        default S setHorizontalAlignment(final int alignment) {
-            return setup(result -> result.setHorizontalAlignment(alignment));
+        default S setHorizontalAlignment(final int arg0) {
+            return setup(result -> result.setHorizontalAlignment(arg0));
         }
 
         /**
          * @see JLabel#setHorizontalTextPosition(int)
          */
-        default S setHorizontalTextPosition(final int textPosition) {
-            return setup(result -> result.setHorizontalTextPosition(textPosition));
+        default S setHorizontalTextPosition(final int arg0) {
+            return setup(result -> result.setHorizontalTextPosition(arg0));
         }
 
         /**
          * @see JLabel#setIcon(Icon)
          */
-        default S setIcon(final Icon icon) {
-            return setup(result -> result.setIcon(icon));
+        default S setIcon(final Icon arg0) {
+            return setup(result -> result.setIcon(arg0));
         }
 
         /**
          * @see JLabel#setIconTextGap(int)
          */
-        default S setIconTextGap(final int iconTextGap) {
-            return setup(result -> result.setIconTextGap(iconTextGap));
+        default S setIconTextGap(final int arg0) {
+            return setup(result -> result.setIconTextGap(arg0));
         }
 
         /**
          * @see JLabel#setLabelFor(Component)
          */
-        default S setLabelFor(final Component c) {
-            return setup(result -> result.setLabelFor(c));
+        default S setLabelFor(final Component arg0) {
+            return setup(result -> result.setLabelFor(arg0));
         }
 
         /**
          * @see JLabel#setText(String)
          */
-        default S setText(final String text) {
-            return setup(result -> result.setText(text));
+        default S setText(final String arg0) {
+            return setup(result -> result.setText(arg0));
         }
 
         /**
          * @see JLabel#setUI(LabelUI)
          */
-        default S setUI(final LabelUI ui) {
-            return setup(result -> result.setUI(ui));
+        default S setUI(final LabelUI arg0) {
+            return setup(result -> result.setUI(arg0));
         }
 
         /**
          * @see JLabel#setVerticalAlignment(int)
          */
-        default S setVerticalAlignment(final int alignment) {
-            return setup(result -> result.setVerticalAlignment(alignment));
+        default S setVerticalAlignment(final int arg0) {
+            return setup(result -> result.setVerticalAlignment(arg0));
         }
 
         /**
          * @see JLabel#setVerticalTextPosition(int)
          */
-        default S setVerticalTextPosition(final int textPosition) {
-            return setup(result -> result.setVerticalTextPosition(textPosition));
+        default S setVerticalTextPosition(final int arg0) {
+            return setup(result -> result.setVerticalTextPosition(arg0));
         }
     }
 }

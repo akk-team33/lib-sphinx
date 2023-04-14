@@ -22,7 +22,7 @@ public final class JMenus {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JMenu}.
      */
-    public static Builder<JMenu, ?> builder() {
+    public static Builder<JMenu> builder() {
         return new Builder<>(JMenu::new, Builder.class);
     }
 
@@ -31,7 +31,7 @@ public final class JMenus {
      * 
      * @param <T> The final type of the target instances, at least {@link JMenu}.
      */
-    public static <T extends JMenu> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JMenu> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -39,12 +39,12 @@ public final class JMenus {
      * Builder implementation to build target instances of {@link JMenu}.
      * 
      * @param <T> The final type of the target instances, at least {@link JMenu}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JMenu, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JMenu>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -55,42 +55,43 @@ public final class JMenus {
      * @param <T> The final type of the target instance, at least {@link JMenu}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings({"ClassNameSameAsAncestorName", "OverloadedMethodsWithSameNumberOfParameters"})
     @FunctionalInterface
     public interface Setup<T extends JMenu, S extends Setup<T, S>> extends JMenuItems.Setup<T, S> {
 
         /**
          * @see JMenu#add(Action)
          */
-        default S add(final Action a) {
-            return setup(result -> result.add(a));
+        default S add(final Action arg0) {
+            return setup(result -> result.add(arg0));
         }
 
         /**
          * @see JMenu#add(Component)
          */
-        default S add(final Component c) {
-            return setup(result -> result.add(c));
+        default S add(final Component arg0) {
+            return setup(result -> result.add(arg0));
         }
 
         /**
          * @see JMenu#add(Component, int)
          */
-        default S add(final Component c, final int index) {
-            return setup(result -> result.add(c, index));
+        default S add(final Component arg0, final int arg1) {
+            return setup(result -> result.add(arg0, arg1));
         }
 
         /**
          * @see JMenu#add(JMenuItem)
          */
-        default S add(final JMenuItem menuItem) {
-            return setup(result -> result.add(menuItem));
+        default S add(final JMenuItem arg0) {
+            return setup(result -> result.add(arg0));
         }
 
         /**
          * @see JMenu#add(String)
          */
-        default S add(final String s) {
-            return setup(result -> result.add(s));
+        default S add(final String arg0) {
+            return setup(result -> result.add(arg0));
         }
 
         /**
@@ -103,22 +104,22 @@ public final class JMenus {
         /**
          * @see JMenu#remove(Component)
          */
-        default S remove(final Component c) {
-            return setup(result -> result.remove(c));
+        default S remove(final Component arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
          * @see JMenu#remove(JMenuItem)
          */
-        default S remove(final JMenuItem item) {
-            return setup(result -> result.remove(item));
+        default S remove(final JMenuItem arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
          * @see JMenu#remove(int)
          */
-        default S remove(final int pos) {
-            return setup(result -> result.remove(pos));
+        default S remove(final int arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
@@ -131,50 +132,50 @@ public final class JMenus {
         /**
          * @see JMenu#setAccelerator(KeyStroke)
          */
-        default S setAccelerator(final KeyStroke keyStroke) {
-            return setup(result -> result.setAccelerator(keyStroke));
+        default S setAccelerator(final KeyStroke arg0) {
+            return setup(result -> result.setAccelerator(arg0));
         }
 
         /**
          * @see JMenu#setComponentOrientation(ComponentOrientation)
          */
-        default S setComponentOrientation(final ComponentOrientation o) {
-            return setup(result -> result.setComponentOrientation(o));
+        default S setComponentOrientation(final ComponentOrientation arg0) {
+            return setup(result -> result.setComponentOrientation(arg0));
         }
 
         /**
          * @see JMenu#setDelay(int)
          */
-        default S setDelay(final int d) {
-            return setup(result -> result.setDelay(d));
+        default S setDelay(final int arg0) {
+            return setup(result -> result.setDelay(arg0));
         }
 
         /**
          * @see JMenu#setMenuLocation(int, int)
          */
-        default S setMenuLocation(final int x, final int y) {
-            return setup(result -> result.setMenuLocation(x, y));
+        default S setMenuLocation(final int arg0, final int arg1) {
+            return setup(result -> result.setMenuLocation(arg0, arg1));
         }
 
         /**
          * @see JMenu#setModel(ButtonModel)
          */
-        default S setModel(final ButtonModel newModel) {
-            return setup(result -> result.setModel(newModel));
+        default S setModel(final ButtonModel arg0) {
+            return setup(result -> result.setModel(arg0));
         }
 
         /**
          * @see JMenu#setPopupMenuVisible(boolean)
          */
-        default S setPopupMenuVisible(final boolean b) {
-            return setup(result -> result.setPopupMenuVisible(b));
+        default S setPopupMenuVisible(final boolean arg0) {
+            return setup(result -> result.setPopupMenuVisible(arg0));
         }
 
         /**
          * @see JMenu#setSelected(boolean)
          */
-        default S setSelected(final boolean b) {
-            return setup(result -> result.setSelected(b));
+        default S setSelected(final boolean arg0) {
+            return setup(result -> result.setSelected(arg0));
         }
     }
 }

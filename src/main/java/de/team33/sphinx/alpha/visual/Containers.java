@@ -21,7 +21,7 @@ public final class Containers {
     /**
      * Returns a new {@link Builder} for target instances of type {@link Container}.
      */
-    public static Builder<Container, ?> builder() {
+    public static Builder<Container> builder() {
         return new Builder<>(Container::new, Builder.class);
     }
 
@@ -30,7 +30,7 @@ public final class Containers {
      * 
      * @param <T> The final type of the target instances, at least {@link Container}.
      */
-    public static <T extends Container> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends Container> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -38,12 +38,12 @@ public final class Containers {
      * Builder implementation to build target instances of {@link Container}.
      * 
      * @param <T> The final type of the target instances, at least {@link Container}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends Container, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends Container>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -61,50 +61,50 @@ public final class Containers {
         /**
          * @see Container#add(Component)
          */
-        default S add(final Component comp) {
-            return setup(result -> result.add(comp));
+        default S add(final Component arg0) {
+            return setup(result -> result.add(arg0));
         }
 
         /**
          * @see Container#add(Component, Object)
          */
-        default S add(final Component comp, final Object constraints) {
-            return setup(result -> result.add(comp, constraints));
+        default S add(final Component arg0, final Object arg1) {
+            return setup(result -> result.add(arg0, arg1));
         }
 
         /**
          * @see Container#add(Component, Object, int)
          */
-        default S add(final Component comp, final Object constraints, final int index) {
-            return setup(result -> result.add(comp, constraints, index));
+        default S add(final Component arg0, final Object arg1, final int arg2) {
+            return setup(result -> result.add(arg0, arg1, arg2));
         }
 
         /**
          * @see Container#add(Component, int)
          */
-        default S add(final Component comp, final int index) {
-            return setup(result -> result.add(comp, index));
+        default S add(final Component arg0, final int arg1) {
+            return setup(result -> result.add(arg0, arg1));
         }
 
         /**
          * @see Container#add(String, Component)
          */
-        default S add(final String name, final Component comp) {
-            return setup(result -> result.add(name, comp));
+        default S add(final String arg0, final Component arg1) {
+            return setup(result -> result.add(arg0, arg1));
         }
 
         /**
          * @see Container#remove(Component)
          */
-        default S remove(final Component comp) {
-            return setup(result -> result.remove(comp));
+        default S remove(final Component arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
          * @see Container#remove(int)
          */
-        default S remove(final int index) {
-            return setup(result -> result.remove(index));
+        default S remove(final int arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
@@ -117,50 +117,50 @@ public final class Containers {
         /**
          * @see Container#setComponentZOrder(Component, int)
          */
-        default S setComponentZOrder(final Component comp, final int index) {
-            return setup(result -> result.setComponentZOrder(comp, index));
+        default S setComponentZOrder(final Component arg0, final int arg1) {
+            return setup(result -> result.setComponentZOrder(arg0, arg1));
         }
 
         /**
          * @see Container#setFocusCycleRoot(boolean)
          */
-        default S setFocusCycleRoot(final boolean focusCycleRoot) {
-            return setup(result -> result.setFocusCycleRoot(focusCycleRoot));
+        default S setFocusCycleRoot(final boolean arg0) {
+            return setup(result -> result.setFocusCycleRoot(arg0));
         }
 
         /**
          * @see Container#setFocusTraversalKeys(int, Set)
          */
-        default S setFocusTraversalKeys(final int id, final Set<? extends java.awt.AWTKeyStroke> keystrokes) {
-            return setup(result -> result.setFocusTraversalKeys(id, keystrokes));
+        default S setFocusTraversalKeys(final int arg0, final Set<? extends java.awt.AWTKeyStroke> arg1) {
+            return setup(result -> result.setFocusTraversalKeys(arg0, arg1));
         }
 
         /**
          * @see Container#setFocusTraversalPolicy(FocusTraversalPolicy)
          */
-        default S setFocusTraversalPolicy(final FocusTraversalPolicy policy) {
-            return setup(result -> result.setFocusTraversalPolicy(policy));
+        default S setFocusTraversalPolicy(final FocusTraversalPolicy arg0) {
+            return setup(result -> result.setFocusTraversalPolicy(arg0));
         }
 
         /**
          * @see Container#setFocusTraversalPolicyProvider(boolean)
          */
-        default S setFocusTraversalPolicyProvider(final boolean provider) {
-            return setup(result -> result.setFocusTraversalPolicyProvider(provider));
+        default S setFocusTraversalPolicyProvider(final boolean arg0) {
+            return setup(result -> result.setFocusTraversalPolicyProvider(arg0));
         }
 
         /**
          * @see Container#setFont(Font)
          */
-        default S setFont(final Font f) {
-            return setup(result -> result.setFont(f));
+        default S setFont(final Font arg0) {
+            return setup(result -> result.setFont(arg0));
         }
 
         /**
          * @see Container#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager mgr) {
-            return setup(result -> result.setLayout(mgr));
+        default S setLayout(final LayoutManager arg0) {
+            return setup(result -> result.setLayout(arg0));
         }
     }
 }

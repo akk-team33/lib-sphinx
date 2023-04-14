@@ -18,7 +18,7 @@ public final class JFormattedTextFields {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JFormattedTextField}.
      */
-    public static Builder<JFormattedTextField, ?> builder() {
+    public static Builder<JFormattedTextField> builder() {
         return new Builder<>(JFormattedTextField::new, Builder.class);
     }
 
@@ -27,7 +27,7 @@ public final class JFormattedTextFields {
      * 
      * @param <T> The final type of the target instances, at least {@link JFormattedTextField}.
      */
-    public static <T extends JFormattedTextField> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JFormattedTextField> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -35,12 +35,12 @@ public final class JFormattedTextFields {
      * Builder implementation to build target instances of {@link JFormattedTextField}.
      * 
      * @param <T> The final type of the target instances, at least {@link JFormattedTextField}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JFormattedTextField, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JFormattedTextField>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -51,35 +51,36 @@ public final class JFormattedTextFields {
      * @param <T> The final type of the target instance, at least {@link JFormattedTextField}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JFormattedTextField, S extends Setup<T, S>> extends JTextFields.Setup<T, S> {
 
         /**
          * @see JFormattedTextField#setDocument(Document)
          */
-        default S setDocument(final Document doc) {
-            return setup(result -> result.setDocument(doc));
+        default S setDocument(final Document arg0) {
+            return setup(result -> result.setDocument(arg0));
         }
 
         /**
          * @see JFormattedTextField#setFocusLostBehavior(int)
          */
-        default S setFocusLostBehavior(final int behavior) {
-            return setup(result -> result.setFocusLostBehavior(behavior));
+        default S setFocusLostBehavior(final int arg0) {
+            return setup(result -> result.setFocusLostBehavior(arg0));
         }
 
         /**
          * @see JFormattedTextField#setFormatterFactory(AbstractFormatterFactory)
          */
-        default S setFormatterFactory(final AbstractFormatterFactory tf) {
-            return setup(result -> result.setFormatterFactory(tf));
+        default S setFormatterFactory(final AbstractFormatterFactory arg0) {
+            return setup(result -> result.setFormatterFactory(arg0));
         }
 
         /**
          * @see JFormattedTextField#setValue(Object)
          */
-        default S setValue(final Object value) {
-            return setup(result -> result.setValue(value));
+        default S setValue(final Object arg0) {
+            return setup(result -> result.setValue(arg0));
         }
     }
 }

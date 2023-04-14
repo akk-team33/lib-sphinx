@@ -17,7 +17,7 @@ public final class JTextAreas {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JTextArea}.
      */
-    public static Builder<JTextArea, ?> builder() {
+    public static Builder<JTextArea> builder() {
         return new Builder<>(JTextArea::new, Builder.class);
     }
 
@@ -26,7 +26,7 @@ public final class JTextAreas {
      * 
      * @param <T> The final type of the target instances, at least {@link JTextArea}.
      */
-    public static <T extends JTextArea> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JTextArea> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -34,12 +34,12 @@ public final class JTextAreas {
      * Builder implementation to build target instances of {@link JTextArea}.
      * 
      * @param <T> The final type of the target instances, at least {@link JTextArea}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JTextArea, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JTextArea>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -50,49 +50,50 @@ public final class JTextAreas {
      * @param <T> The final type of the target instance, at least {@link JTextArea}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JTextArea, S extends Setup<T, S>> extends JTextComponents.Setup<T, S> {
 
         /**
          * @see JTextArea#setColumns(int)
          */
-        default S setColumns(final int columns) {
-            return setup(result -> result.setColumns(columns));
+        default S setColumns(final int arg0) {
+            return setup(result -> result.setColumns(arg0));
         }
 
         /**
          * @see JTextArea#setFont(Font)
          */
-        default S setFont(final Font f) {
-            return setup(result -> result.setFont(f));
+        default S setFont(final Font arg0) {
+            return setup(result -> result.setFont(arg0));
         }
 
         /**
          * @see JTextArea#setLineWrap(boolean)
          */
-        default S setLineWrap(final boolean wrap) {
-            return setup(result -> result.setLineWrap(wrap));
+        default S setLineWrap(final boolean arg0) {
+            return setup(result -> result.setLineWrap(arg0));
         }
 
         /**
          * @see JTextArea#setRows(int)
          */
-        default S setRows(final int rows) {
-            return setup(result -> result.setRows(rows));
+        default S setRows(final int arg0) {
+            return setup(result -> result.setRows(arg0));
         }
 
         /**
          * @see JTextArea#setTabSize(int)
          */
-        default S setTabSize(final int size) {
-            return setup(result -> result.setTabSize(size));
+        default S setTabSize(final int arg0) {
+            return setup(result -> result.setTabSize(arg0));
         }
 
         /**
          * @see JTextArea#setWrapStyleWord(boolean)
          */
-        default S setWrapStyleWord(final boolean word) {
-            return setup(result -> result.setWrapStyleWord(word));
+        default S setWrapStyleWord(final boolean arg0) {
+            return setup(result -> result.setWrapStyleWord(arg0));
         }
     }
 }

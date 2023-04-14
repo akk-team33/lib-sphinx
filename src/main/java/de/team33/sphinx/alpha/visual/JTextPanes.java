@@ -21,7 +21,7 @@ public final class JTextPanes {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JTextPane}.
      */
-    public static Builder<JTextPane, ?> builder() {
+    public static Builder<JTextPane> builder() {
         return new Builder<>(JTextPane::new, Builder.class);
     }
 
@@ -30,7 +30,7 @@ public final class JTextPanes {
      * 
      * @param <T> The final type of the target instances, at least {@link JTextPane}.
      */
-    public static <T extends JTextPane> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JTextPane> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -38,12 +38,12 @@ public final class JTextPanes {
      * Builder implementation to build target instances of {@link JTextPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JTextPane}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JTextPane, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JTextPane>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -54,63 +54,64 @@ public final class JTextPanes {
      * @param <T> The final type of the target instance, at least {@link JTextPane}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JTextPane, S extends Setup<T, S>> extends JEditorPanes.Setup<T, S> {
 
         /**
          * @see JTextPane#addStyle(String, Style)
          */
-        default S addStyle(final String nm, final Style parent) {
-            return setup(result -> result.addStyle(nm, parent));
+        default S addStyle(final String arg0, final Style arg1) {
+            return setup(result -> result.addStyle(arg0, arg1));
         }
 
         /**
          * @see JTextPane#removeStyle(String)
          */
-        default S removeStyle(final String nm) {
-            return setup(result -> result.removeStyle(nm));
+        default S removeStyle(final String arg0) {
+            return setup(result -> result.removeStyle(arg0));
         }
 
         /**
          * @see JTextPane#setCharacterAttributes(AttributeSet, boolean)
          */
-        default S setCharacterAttributes(final AttributeSet attr, final boolean replace) {
-            return setup(result -> result.setCharacterAttributes(attr, replace));
+        default S setCharacterAttributes(final AttributeSet attribs, final boolean replace) {
+            return setup(result -> result.setCharacterAttributes(attribs, replace));
         }
 
         /**
          * @see JTextPane#setDocument(Document)
          */
-        default S setDocument(final Document doc) {
-            return setup(result -> result.setDocument(doc));
+        default S setDocument(final Document arg0) {
+            return setup(result -> result.setDocument(arg0));
         }
 
         /**
          * @see JTextPane#setEditorKit(EditorKit)
          */
-        default S setEditorKit(final EditorKit kit) {
-            return setup(result -> result.setEditorKit(kit));
+        default S setEditorKit(final EditorKit arg0) {
+            return setup(result -> result.setEditorKit(arg0));
         }
 
         /**
          * @see JTextPane#setLogicalStyle(Style)
          */
-        default S setLogicalStyle(final Style s) {
-            return setup(result -> result.setLogicalStyle(s));
+        default S setLogicalStyle(final Style arg0) {
+            return setup(result -> result.setLogicalStyle(arg0));
         }
 
         /**
          * @see JTextPane#setParagraphAttributes(AttributeSet, boolean)
          */
-        default S setParagraphAttributes(final AttributeSet attr, final boolean replace) {
-            return setup(result -> result.setParagraphAttributes(attr, replace));
+        default S setParagraphAttributes(final AttributeSet attribs, final boolean replace) {
+            return setup(result -> result.setParagraphAttributes(attribs, replace));
         }
 
         /**
          * @see JTextPane#setStyledDocument(StyledDocument)
          */
-        default S setStyledDocument(final StyledDocument doc) {
-            return setup(result -> result.setStyledDocument(doc));
+        default S setStyledDocument(final StyledDocument arg0) {
+            return setup(result -> result.setStyledDocument(arg0));
         }
     }
 }

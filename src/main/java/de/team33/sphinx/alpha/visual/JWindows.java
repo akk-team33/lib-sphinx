@@ -21,7 +21,7 @@ public final class JWindows {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JWindow}.
      */
-    public static Builder<JWindow, ?> builder() {
+    public static Builder<JWindow> builder() {
         return new Builder<>(JWindow::new, Builder.class);
     }
 
@@ -30,7 +30,7 @@ public final class JWindows {
      * 
      * @param <T> The final type of the target instances, at least {@link JWindow}.
      */
-    public static <T extends JWindow> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JWindow> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -38,12 +38,12 @@ public final class JWindows {
      * Builder implementation to build target instances of {@link JWindow}.
      * 
      * @param <T> The final type of the target instances, at least {@link JWindow}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JWindow, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JWindow>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -54,49 +54,50 @@ public final class JWindows {
      * @param <T> The final type of the target instance, at least {@link JWindow}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JWindow, S extends Setup<T, S>> extends Windows.Setup<T, S> {
 
         /**
          * @see JWindow#remove(Component)
          */
-        default S remove(final Component comp) {
-            return setup(result -> result.remove(comp));
+        default S remove(final Component arg0) {
+            return setup(result -> result.remove(arg0));
         }
 
         /**
          * @see JWindow#setContentPane(Container)
          */
-        default S setContentPane(final Container contentPane) {
-            return setup(result -> result.setContentPane(contentPane));
+        default S setContentPane(final Container arg0) {
+            return setup(result -> result.setContentPane(arg0));
         }
 
         /**
          * @see JWindow#setGlassPane(Component)
          */
-        default S setGlassPane(final Component glassPane) {
-            return setup(result -> result.setGlassPane(glassPane));
+        default S setGlassPane(final Component arg0) {
+            return setup(result -> result.setGlassPane(arg0));
         }
 
         /**
          * @see JWindow#setLayeredPane(JLayeredPane)
          */
-        default S setLayeredPane(final JLayeredPane layeredPane) {
-            return setup(result -> result.setLayeredPane(layeredPane));
+        default S setLayeredPane(final JLayeredPane arg0) {
+            return setup(result -> result.setLayeredPane(arg0));
         }
 
         /**
          * @see JWindow#setLayout(LayoutManager)
          */
-        default S setLayout(final LayoutManager manager) {
-            return setup(result -> result.setLayout(manager));
+        default S setLayout(final LayoutManager arg0) {
+            return setup(result -> result.setLayout(arg0));
         }
 
         /**
          * @see JWindow#setTransferHandler(TransferHandler)
          */
-        default S setTransferHandler(final TransferHandler newHandler) {
-            return setup(result -> result.setTransferHandler(newHandler));
+        default S setTransferHandler(final TransferHandler arg0) {
+            return setup(result -> result.setTransferHandler(arg0));
         }
     }
 }

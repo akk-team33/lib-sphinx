@@ -21,7 +21,7 @@ public final class Dialogs {
      * 
      * @param <T> The final type of the target instances, at least {@link Dialog}.
      */
-    public static <T extends Dialog> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends Dialog> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -29,12 +29,12 @@ public final class Dialogs {
      * Builder implementation to build target instances of {@link Dialog}.
      * 
      * @param <T> The final type of the target instances, at least {@link Dialog}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends Dialog, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends Dialog>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -52,64 +52,64 @@ public final class Dialogs {
         /**
          * @see Dialog#setBackground(Color)
          */
-        default S setBackground(final Color bgColor) {
-            return setup(result -> result.setBackground(bgColor));
+        default S setBackground(final Color arg0) {
+            return setup(result -> result.setBackground(arg0));
         }
 
         /**
          * @see Dialog#setModal(boolean)
          */
-        default S setModal(final boolean modal) {
-            return setup(result -> result.setModal(modal));
+        default S setModal(final boolean arg0) {
+            return setup(result -> result.setModal(arg0));
         }
 
         /**
          * @see Dialog#setModalityType(ModalityType)
          */
-        default S setModalityType(final ModalityType type) {
-            return setup(result -> result.setModalityType(type));
+        default S setModalityType(final ModalityType arg0) {
+            return setup(result -> result.setModalityType(arg0));
         }
 
         /**
          * @see Dialog#setOpacity(float)
          */
-        default S setOpacity(final float opacity) {
-            return setup(result -> result.setOpacity(opacity));
+        default S setOpacity(final float arg0) {
+            return setup(result -> result.setOpacity(arg0));
         }
 
         /**
          * @see Dialog#setResizable(boolean)
          */
-        default S setResizable(final boolean resizable) {
-            return setup(result -> result.setResizable(resizable));
+        default S setResizable(final boolean arg0) {
+            return setup(result -> result.setResizable(arg0));
         }
 
         /**
          * @see Dialog#setShape(Shape)
          */
-        default S setShape(final Shape shape) {
-            return setup(result -> result.setShape(shape));
+        default S setShape(final Shape arg0) {
+            return setup(result -> result.setShape(arg0));
         }
 
         /**
          * @see Dialog#setTitle(String)
          */
-        default S setTitle(final String title) {
-            return setup(result -> result.setTitle(title));
+        default S setTitle(final String arg0) {
+            return setup(result -> result.setTitle(arg0));
         }
 
         /**
          * @see Dialog#setUndecorated(boolean)
          */
-        default S setUndecorated(final boolean undecorated) {
-            return setup(result -> result.setUndecorated(undecorated));
+        default S setUndecorated(final boolean arg0) {
+            return setup(result -> result.setUndecorated(arg0));
         }
 
         /**
          * @see Dialog#setVisible(boolean)
          */
-        default S setVisible(final boolean b) {
-            return setup(result -> result.setVisible(b));
+        default S setVisible(final boolean arg0) {
+            return setup(result -> result.setVisible(arg0));
         }
     }
 }

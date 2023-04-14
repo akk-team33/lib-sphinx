@@ -20,7 +20,7 @@ public final class JEditorPanes {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JEditorPane}.
      */
-    public static Builder<JEditorPane, ?> builder() {
+    public static Builder<JEditorPane> builder() {
         return new Builder<>(JEditorPane::new, Builder.class);
     }
 
@@ -29,7 +29,7 @@ public final class JEditorPanes {
      * 
      * @param <T> The final type of the target instances, at least {@link JEditorPane}.
      */
-    public static <T extends JEditorPane> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JEditorPane> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -37,12 +37,12 @@ public final class JEditorPanes {
      * Builder implementation to build target instances of {@link JEditorPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JEditorPane}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JEditorPane, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JEditorPane>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -53,49 +53,50 @@ public final class JEditorPanes {
      * @param <T> The final type of the target instance, at least {@link JEditorPane}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JEditorPane, S extends Setup<T, S>> extends JTextComponents.Setup<T, S> {
 
         /**
          * @see JEditorPane#setContentType(String)
          */
-        default S setContentType(final String type) {
-            return setup(result -> result.setContentType(type));
+        default S setContentType(final String arg0) {
+            return setup(result -> result.setContentType(arg0));
         }
 
         /**
          * @see JEditorPane#setEditorKit(EditorKit)
          */
-        default S setEditorKit(final EditorKit kit) {
-            return setup(result -> result.setEditorKit(kit));
+        default S setEditorKit(final EditorKit arg0) {
+            return setup(result -> result.setEditorKit(arg0));
         }
 
         /**
          * @see JEditorPane#setEditorKitForContentType(String, EditorKit)
          */
-        default S setEditorKitForContentType(final String type, final EditorKit k) {
-            return setup(result -> result.setEditorKitForContentType(type, k));
+        default S setEditorKitForContentType(final String arg0, final EditorKit arg1) {
+            return setup(result -> result.setEditorKitForContentType(arg0, arg1));
         }
 
         /**
          * @see JEditorPane#setPage(String)
          */
-        default S setPage(final String url) {
-            return setup(Conversion.consumer(result -> result.setPage(url)));
+        default S setPage(final String arg0) {
+            return setup(Conversion.consumer(result -> result.setPage(arg0)));
         }
 
         /**
          * @see JEditorPane#setPage(URL)
          */
-        default S setPage(final URL page) {
-            return setup(Conversion.consumer(result -> result.setPage(page)));
+        default S setPage(final URL arg0) {
+            return setup(Conversion.consumer(result -> result.setPage(arg0)));
         }
 
         /**
          * @see JEditorPane#setText(String)
          */
-        default S setText(final String t) {
-            return setup(result -> result.setText(t));
+        default S setText(final String arg0) {
+            return setup(result -> result.setText(arg0));
         }
     }
 }

@@ -18,7 +18,7 @@ public final class JProgressBars {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JProgressBar}.
      */
-    public static Builder<JProgressBar, ?> builder() {
+    public static Builder<JProgressBar> builder() {
         return new Builder<>(JProgressBar::new, Builder.class);
     }
 
@@ -27,7 +27,7 @@ public final class JProgressBars {
      * 
      * @param <T> The final type of the target instances, at least {@link JProgressBar}.
      */
-    public static <T extends JProgressBar> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JProgressBar> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -35,12 +35,12 @@ public final class JProgressBars {
      * Builder implementation to build target instances of {@link JProgressBar}.
      * 
      * @param <T> The final type of the target instances, at least {@link JProgressBar}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JProgressBar, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JProgressBar>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -51,77 +51,78 @@ public final class JProgressBars {
      * @param <T> The final type of the target instance, at least {@link JProgressBar}.
      * @param <S> The final type of the Setup implementation.
      */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JProgressBar, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
          * @see JProgressBar#setBorderPainted(boolean)
          */
-        default S setBorderPainted(final boolean b) {
-            return setup(result -> result.setBorderPainted(b));
+        default S setBorderPainted(final boolean arg0) {
+            return setup(result -> result.setBorderPainted(arg0));
         }
 
         /**
          * @see JProgressBar#setIndeterminate(boolean)
          */
-        default S setIndeterminate(final boolean newValue) {
-            return setup(result -> result.setIndeterminate(newValue));
+        default S setIndeterminate(final boolean arg0) {
+            return setup(result -> result.setIndeterminate(arg0));
         }
 
         /**
          * @see JProgressBar#setMaximum(int)
          */
-        default S setMaximum(final int n) {
-            return setup(result -> result.setMaximum(n));
+        default S setMaximum(final int arg0) {
+            return setup(result -> result.setMaximum(arg0));
         }
 
         /**
          * @see JProgressBar#setMinimum(int)
          */
-        default S setMinimum(final int n) {
-            return setup(result -> result.setMinimum(n));
+        default S setMinimum(final int arg0) {
+            return setup(result -> result.setMinimum(arg0));
         }
 
         /**
          * @see JProgressBar#setModel(BoundedRangeModel)
          */
-        default S setModel(final BoundedRangeModel newModel) {
-            return setup(result -> result.setModel(newModel));
+        default S setModel(final BoundedRangeModel arg0) {
+            return setup(result -> result.setModel(arg0));
         }
 
         /**
          * @see JProgressBar#setOrientation(int)
          */
-        default S setOrientation(final int newOrientation) {
-            return setup(result -> result.setOrientation(newOrientation));
+        default S setOrientation(final int arg0) {
+            return setup(result -> result.setOrientation(arg0));
         }
 
         /**
          * @see JProgressBar#setString(String)
          */
-        default S setString(final String s) {
-            return setup(result -> result.setString(s));
+        default S setString(final String arg0) {
+            return setup(result -> result.setString(arg0));
         }
 
         /**
          * @see JProgressBar#setStringPainted(boolean)
          */
-        default S setStringPainted(final boolean b) {
-            return setup(result -> result.setStringPainted(b));
+        default S setStringPainted(final boolean arg0) {
+            return setup(result -> result.setStringPainted(arg0));
         }
 
         /**
          * @see JProgressBar#setUI(ProgressBarUI)
          */
-        default S setUI(final ProgressBarUI ui) {
-            return setup(result -> result.setUI(ui));
+        default S setUI(final ProgressBarUI arg0) {
+            return setup(result -> result.setUI(arg0));
         }
 
         /**
          * @see JProgressBar#setValue(int)
          */
-        default S setValue(final int n) {
-            return setup(result -> result.setValue(n));
+        default S setValue(final int arg0) {
+            return setup(result -> result.setValue(arg0));
         }
     }
 }

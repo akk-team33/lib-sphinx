@@ -16,7 +16,7 @@ public final class JCheckBoxes {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JCheckBox}.
      */
-    public static Builder<JCheckBox, ?> builder() {
+    public static Builder<JCheckBox> builder() {
         return new Builder<>(JCheckBox::new, Builder.class);
     }
 
@@ -25,7 +25,7 @@ public final class JCheckBoxes {
      * 
      * @param <T> The final type of the target instances, at least {@link JCheckBox}.
      */
-    public static <T extends JCheckBox> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JCheckBox> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -33,12 +33,12 @@ public final class JCheckBoxes {
      * Builder implementation to build target instances of {@link JCheckBox}.
      * 
      * @param <T> The final type of the target instances, at least {@link JCheckBox}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JCheckBox, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JCheckBox>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -56,8 +56,8 @@ public final class JCheckBoxes {
         /**
          * @see JCheckBox#setBorderPaintedFlat(boolean)
          */
-        default S setBorderPaintedFlat(final boolean b) {
-            return setup(result -> result.setBorderPaintedFlat(b));
+        default S setBorderPaintedFlat(final boolean arg0) {
+            return setup(result -> result.setBorderPaintedFlat(arg0));
         }
     }
 }

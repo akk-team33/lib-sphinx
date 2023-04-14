@@ -16,7 +16,7 @@ public final class JButtons {
     /**
      * Returns a new {@link Builder} for target instances of type {@link JButton}.
      */
-    public static Builder<JButton, ?> builder() {
+    public static Builder<JButton> builder() {
         return new Builder<>(JButton::new, Builder.class);
     }
 
@@ -25,7 +25,7 @@ public final class JButtons {
      * 
      * @param <T> The final type of the target instances, at least {@link JButton}.
      */
-    public static <T extends JButton> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends JButton> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -33,12 +33,12 @@ public final class JButtons {
      * Builder implementation to build target instances of {@link JButton}.
      * 
      * @param <T> The final type of the target instances, at least {@link JButton}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends JButton, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends JButton>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -56,8 +56,8 @@ public final class JButtons {
         /**
          * @see JButton#setDefaultCapable(boolean)
          */
-        default S setDefaultCapable(final boolean defaultCapable) {
-            return setup(result -> result.setDefaultCapable(defaultCapable));
+        default S setDefaultCapable(final boolean arg0) {
+            return setup(result -> result.setDefaultCapable(arg0));
         }
     }
 }
