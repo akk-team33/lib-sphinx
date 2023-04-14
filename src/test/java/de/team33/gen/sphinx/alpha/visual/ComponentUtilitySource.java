@@ -18,7 +18,7 @@ public class ComponentUtilitySource {
             "    /**%n" +
             "     * Returns a new {@link Builder} for target instances of type {@link %1$s}.%n" +
             "     */%n" +
-            "    public static Builder<%1$s, ?> builder() {%n" +
+            "    public static Builder<%1$s> builder() {%n" +
             "        return new Builder<>(%1$s::new, Builder.class);%n" +
             "    }";
     private static final String METHOD2_FORMAT = //
@@ -28,7 +28,7 @@ public class ComponentUtilitySource {
             "     * %n" +
             "     * @param <T> The final type of the target instances, at least {@link %1$s}.%n" +
             "     */%n" +
-            "    public static <T extends %1$s> Builder<T, ?> builder(final Supplier<T> newTarget) {%n" +
+            "    public static <T extends %1$s> Builder<T> builder(final Supplier<T> newTarget) {%n" +
             "        return new Builder<>(newTarget, Builder.class);%n" +
             "    }";
     private static final String FORMAT = //

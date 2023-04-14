@@ -22,6 +22,8 @@ public class SetupInterfaceSource {
             "     * @param <T> The final type of the target instance, at least {@link %1$s}.%n" +
             "     * @param <S> The final type of the Setup implementation.%n" +
             "     */%n" +
+            "    @SuppressWarnings(\"ClassNameSameAsAncestorName\")%n" +
+            "    @FunctionalInterface%n" +
             "    public interface Setup<T extends %1$s, S extends Setup<T, S>> extends %2$ss.Setup<T, S> {%3$s%n" +
             "    }";
 

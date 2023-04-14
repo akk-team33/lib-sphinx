@@ -1,25 +1,28 @@
 package de.team33.sample.sphinx.alpha.visual;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.option.GridBag;
 import de.team33.sphinx.alpha.visual.JComboBoxes;
 import de.team33.sphinx.alpha.visual.JFrames;
 import de.team33.sphinx.alpha.visual.JPanels;
 
-import javax.swing.*;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
-import java.awt.*;
+import java.awt.Rectangle;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.prefs.Preferences;
 
-public class TinyDirectorySelector {
+public final class TinyDirectorySelector {
 
     private static final String APP_NODE = TinyDirectorySelector.class.getPackage().getName();
     private static final Preferences PREFERENCES = Preferences.userRoot().node(APP_NODE);
@@ -40,7 +43,7 @@ public class TinyDirectorySelector {
         this.service = service;
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final TinyDirectoryService service = new TinyDirectoryService();
         SwingUtilities.invokeLater(() -> new TinyDirectorySelector(service).run());
     }
@@ -57,7 +60,7 @@ public class TinyDirectorySelector {
             return JFrames.builder()
                           .setTitle(TinyDirectorySelector.class.getCanonicalName())
                           .setup(new BackedBounds(preferences, SIZE0)::setupFrame)
-                          .setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE)
+                          .setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE)
                           .setContentPane(newContentPane())
                           .build();
         }
@@ -85,10 +88,10 @@ public class TinyDirectorySelector {
 
     private class PathModel implements ComboBoxModel<Path> {
 
-        private List<ListDataListener> listeners = Collections.synchronizedList(new LinkedList<>());
+        private final List<ListDataListener> listeners = Collections.synchronizedList(new LinkedList<>());
 
         @Override
-        public void setSelectedItem(final Object anItem) {
+        public final void setSelectedItem(final Object anItem) {
             if (anItem instanceof Path) {
                 final Path path = (Path) anItem;
                 service.setPath(path);
@@ -101,27 +104,27 @@ public class TinyDirectorySelector {
         }
 
         @Override
-        public Object getSelectedItem() {
+        public final Object getSelectedItem() {
             return service.getPath();
         }
 
         @Override
-        public int getSize() {
+        public final int getSize() {
             return service.list().size();
         }
 
         @Override
-        public Path getElementAt(final int index) {
+        public final Path getElementAt(final int index) {
             return service.list().get(index);
         }
 
         @Override
-        public void addListDataListener(final ListDataListener l) {
+        public final void addListDataListener(final ListDataListener l) {
             listeners.add(l);
         }
 
         @Override
-        public void removeListDataListener(final ListDataListener l) {
+        public final void removeListDataListener(final ListDataListener l) {
             listeners.removeAll(Collections.singletonList(l));
         }
     }

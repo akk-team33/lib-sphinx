@@ -33,7 +33,7 @@ public final class Components {
      * 
      * @param <T> The final type of the target instances, at least {@link Component}.
      */
-    public static <T extends Component> Builder<T, ?> builder(final Supplier<T> newTarget) {
+    public static <T extends Component> Builder<T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -41,12 +41,12 @@ public final class Components {
      * Builder implementation to build target instances of {@link Component}.
      * 
      * @param <T> The final type of the target instances, at least {@link Component}.
-     * @param <B> The final type of the Builder implementation.
      */
-    public static class Builder<T extends Component, B extends Builder<T, B>>
-            extends LateBuilder<T, B> implements Setup<T, B> {
+    public static final class Builder<T extends Component>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
@@ -57,7 +57,7 @@ public final class Components {
      * @param <T> The final type of the target instance, at least {@link Component}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
     @FunctionalInterface
     public interface Setup<T extends Component, S extends Setup<T, S>>
             extends de.team33.patterns.building.elara.Setup<T, S> {
@@ -86,8 +86,8 @@ public final class Components {
         /**
          * @see Component#setBackground(Color)
          */
-        default S setBackground(final Color c) {
-            return setup(result -> result.setBackground(c));
+        default S setBackground(final Color color) {
+            return setup(result -> result.setBackground(color));
         }
 
         /**
@@ -128,8 +128,8 @@ public final class Components {
         /**
          * @see Component#setEnabled(boolean)
          */
-        default S setEnabled(final boolean b) {
-            return setup(result -> result.setEnabled(b));
+        default S setEnabled(final boolean enabled) {
+            return setup(result -> result.setEnabled(enabled));
         }
 
         /**
@@ -156,15 +156,15 @@ public final class Components {
         /**
          * @see Component#setFont(Font)
          */
-        default S setFont(final Font f) {
-            return setup(result -> result.setFont(f));
+        default S setFont(final Font font) {
+            return setup(result -> result.setFont(font));
         }
 
         /**
          * @see Component#setForeground(Color)
          */
-        default S setForeground(final Color c) {
-            return setup(result -> result.setForeground(c));
+        default S setForeground(final Color color) {
+            return setup(result -> result.setForeground(color));
         }
 
         /**
@@ -177,8 +177,8 @@ public final class Components {
         /**
          * @see Component#setLocale(Locale)
          */
-        default S setLocale(final Locale l) {
-            return setup(result -> result.setLocale(l));
+        default S setLocale(final Locale locale) {
+            return setup(result -> result.setLocale(locale));
         }
 
         /**
@@ -226,8 +226,8 @@ public final class Components {
         /**
          * @see Component#setSize(Dimension)
          */
-        default S setSize(final Dimension d) {
-            return setup(result -> result.setSize(d));
+        default S setSize(final Dimension size) {
+            return setup(result -> result.setSize(size));
         }
 
         /**
@@ -240,8 +240,8 @@ public final class Components {
         /**
          * @see Component#setVisible(boolean)
          */
-        default S setVisible(final boolean b) {
-            return setup(result -> result.setVisible(b));
+        default S setVisible(final boolean visible) {
+            return setup(result -> result.setVisible(visible));
         }
     }
 }

@@ -12,11 +12,11 @@ public class BuilderClassSource {
             "     * Builder implementation to build target instances of {@link %1$s}.%n" +
             "     * %n" +
             "     * @param <T> The final type of the target instances, at least {@link %1$s}.%n" +
-            "     * @param <B> The final type of the Builder implementation.%n" +
             "     */%n" +
-            "    public static class Builder<T extends %1$s, B extends Builder<T, B>>%n" +
-            "            extends LateBuilder<T, B> implements Setup<T, B> {%n%n" +
-            "        protected Builder(final Supplier<T> newResult, final Class<B> builderClass) {%n" +
+            "    public static final class Builder<T extends %1$s>%n" +
+            "            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {%n%n" +
+            "        @SuppressWarnings({\"rawtypes\", \"unchecked\"})%n" +
+            "        private Builder(final Supplier<T> newResult, final Class builderClass) {%n" +
             "            super(newResult, builderClass);%n" +
             "        }%n" +
             "    }";
