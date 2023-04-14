@@ -4,6 +4,7 @@ import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.option.GridBag;
 import de.team33.sphinx.alpha.visual.JComboBoxes;
 import de.team33.sphinx.alpha.visual.JFrames;
+import de.team33.sphinx.alpha.visual.JLabels;
 import de.team33.sphinx.alpha.visual.JPanels;
 
 import javax.swing.ComboBoxModel;
@@ -22,11 +23,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.prefs.Preferences;
 
-public final class TinyDirectorySelector {
+public final class TinyDirectorySample {
 
-    private static final String APP_NODE = TinyDirectorySelector.class.getPackage().getName();
+    private static final String APP_NODE = TinyDirectorySample.class.getPackage().getName();
     private static final Preferences PREFERENCES = Preferences.userRoot().node(APP_NODE);
-    private static final String WIN_NODE = TinyDirectorySelector.class.getSimpleName();
+    private static final String WIN_NODE = TinyDirectorySample.class.getSimpleName();
     private static final Rectangle SIZE0 = new Rectangle(0, 0, 640, 480);
     private static final GridBag.Constraints.Template GBC_TEMPLATE = GridBag.Constraints.builder()
                                                                                         .setGridX(0)
@@ -39,26 +40,29 @@ public final class TinyDirectorySelector {
     private final Action action = new Action();
     private final Reaction reaction = new Reaction();
 
-    private TinyDirectorySelector(final TinyDirectoryService service) {
+    private TinyDirectorySample(final TinyDirectoryService service) {
         this.service = service;
     }
 
     public static void main(final String[] args) {
         final TinyDirectoryService service = new TinyDirectoryService();
-        SwingUtilities.invokeLater(() -> new TinyDirectorySelector(service).run());
+        SwingUtilities.invokeLater(() -> new TinyDirectorySample(service).run());
     }
 
     private void run() {
         final Preferences preferences = PREFERENCES.node(WIN_NODE);
         final JFrame frame = visual.newFrame(preferences);
-        SwingUtilities.invokeLater(() -> frame.setVisible(true));
+        SwingUtilities.invokeLater(() -> {
+            frame.setVisible(true);
+            service.reload();
+        });
     }
 
     private class Visual {
 
         private JFrame newFrame(final Preferences preferences) {
             return JFrames.builder()
-                          .setTitle(TinyDirectorySelector.class.getCanonicalName())
+                          .setTitle(TinyDirectorySample.class.getCanonicalName())
                           .setup(new BackedBounds(preferences, SIZE0)::setupFrame)
                           .setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE)
                           .setContentPane(newContentPane())
@@ -66,17 +70,17 @@ public final class TinyDirectorySelector {
         }
 
         private JPanel newContentPane() {
+            final JComboBox<Path> comboBox = new JComboBox<>(new TinyDirectoryModel(service));
+            final JLabel label = JLabels.builder()
+                                        .setText("- empty -")
+                                        .setup(jLabel -> service.addListener(path -> jLabel.setText(path.toString())))
+                                        .build();
             return JPanels.builder()
                           .setLayout(GridBag.layout())
-                          .add(newSelector(), GBC_TEMPLATE.getY(0))
-                          .add(new JLabel("- empty -"), GBC_TEMPLATE.getY(1))
+                          .add(comboBox, GBC_TEMPLATE.getY(0))
+                          .add(label, GBC_TEMPLATE.getY(1))
                           .add(new JPanel(), GBC_TEMPLATE.getY(2, 1.0))
                           .build();
-        }
-
-        private JComboBox<Path> newSelector() {
-            return JComboBoxes.builder(new PathModel())
-                              .build();
         }
     }
 
@@ -84,48 +88,5 @@ public final class TinyDirectorySelector {
     }
 
     private class Reaction {
-    }
-
-    private class PathModel implements ComboBoxModel<Path> {
-
-        private final List<ListDataListener> listeners = Collections.synchronizedList(new LinkedList<>());
-
-        @Override
-        public final void setSelectedItem(final Object anItem) {
-            if (anItem instanceof Path) {
-                final Path path = (Path) anItem;
-                service.setPath(path);
-            }
-            listeners.forEach(this::update);
-        }
-
-        private void update(final ListDataListener listener) {
-            listener.contentsChanged(new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, Integer.MAX_VALUE));
-        }
-
-        @Override
-        public final Object getSelectedItem() {
-            return service.getPath();
-        }
-
-        @Override
-        public final int getSize() {
-            return service.list().size();
-        }
-
-        @Override
-        public final Path getElementAt(final int index) {
-            return service.list().get(index);
-        }
-
-        @Override
-        public final void addListDataListener(final ListDataListener l) {
-            listeners.add(l);
-        }
-
-        @Override
-        public final void removeListDataListener(final ListDataListener l) {
-            listeners.removeAll(Collections.singletonList(l));
-        }
     }
 }
