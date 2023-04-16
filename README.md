@@ -15,10 +15,14 @@ http://www.team33.de/dev/sphinx/
     <dependency>
       <groupId>de.team33.sphinx</groupId>
       <artifactId>sphinx-alpha</artifactId>
-      <version>1.0.0</version>
+      <version>1.1.0</version>
     </dependency>
 
 ## Change Log
+
+### 1.1.0
+
+* Refined Builder implementations
 
 ### 1.0.1
 
