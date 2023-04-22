@@ -1,12 +1,16 @@
 package de.team33.sample.sphinx.alpha.visual.dirselect;
 
 import de.team33.sample.sphinx.alpha.service.DirectoryService;
+import de.team33.sphinx.alpha.activity.Event;
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.option.GridBag;
+import de.team33.sphinx.alpha.visual.JButtons;
+import de.team33.sphinx.alpha.visual.JComboBoxes;
 import de.team33.sphinx.alpha.visual.JFrames;
 import de.team33.sphinx.alpha.visual.JLabels;
 import de.team33.sphinx.alpha.visual.JPanels;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -64,17 +68,26 @@ public final class TinyDirectorySample {
         }
 
         private JPanel newContentPane() {
-            final JComboBox<Path> comboBox = new JComboBox<>(new TinyDirectoryModel(service));
+            final JComboBox<Path> comboBox = JComboBoxes.builder(new TinyDirectoryModel(service))
+                                                        .setEditable(true)
+                                                        .on(Event.FOCUS_GAINED, System.out::println)
+                                                        .build();
             final JLabel label = JLabels.builder()
                                         .setText("- empty -")
                                         .setup(jLabel -> service.registry().add(DirectoryService.Channel.SET_PATH,
                                                                                 path -> jLabel.setText(path.toString())))
                                         .build();
+            final JButton jButton = JButtons.builder()
+                                            .setText("Anwenden")
+                                            .setDefaultCapable(true)
+                                            .on(Event.ACTION_PERFORMED, System.out::println)
+                                            .build();
             return JPanels.builder()
                           .setLayout(GridBag.layout())
                           .add(comboBox, GBC_TEMPLATE.getY(0))
                           .add(label, GBC_TEMPLATE.getY(1))
                           .add(new JPanel(), GBC_TEMPLATE.getY(2, 1.0))
+                          .add(jButton, GBC_TEMPLATE.getY(3))
                           .build();
         }
     }
