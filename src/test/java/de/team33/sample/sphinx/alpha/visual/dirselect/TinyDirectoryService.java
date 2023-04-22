@@ -1,4 +1,4 @@
-package de.team33.sample.sphinx.alpha.visual;
+package de.team33.sample.sphinx.alpha.visual.dirselect;
 
 import java.io.IOException;
 import java.nio.file.Files;

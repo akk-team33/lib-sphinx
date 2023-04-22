@@ -80,6 +80,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>de.team33.patterns</groupId>
+            <artifactId>notes-eris</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.team33.patterns</groupId>
+            <artifactId>execution-metis</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>

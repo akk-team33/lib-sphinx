@@ -1,26 +1,19 @@
-package de.team33.sample.sphinx.alpha.visual;
+package de.team33.sample.sphinx.alpha.visual.dirselect;
 
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.option.GridBag;
-import de.team33.sphinx.alpha.visual.JComboBoxes;
 import de.team33.sphinx.alpha.visual.JFrames;
 import de.team33.sphinx.alpha.visual.JLabels;
 import de.team33.sphinx.alpha.visual.JPanels;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
 import java.awt.Rectangle;
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.prefs.Preferences;
 
 public final class TinyDirectorySample {

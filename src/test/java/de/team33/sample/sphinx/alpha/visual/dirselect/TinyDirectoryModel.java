@@ -1,4 +1,4 @@
-package de.team33.sample.sphinx.alpha.visual;
+package de.team33.sample.sphinx.alpha.visual.dirselect;
 
 import de.team33.patterns.lazy.narvi.Lazy;
 
