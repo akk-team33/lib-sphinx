@@ -1,4 +1,4 @@
-package de.team33.sample.sphinx.alpha.visual.filetree;
+package de.team33.sample.sphinx.alpha.service;
 
 import de.team33.patterns.execution.metis.SimpleAsyncExecutor;
 import de.team33.patterns.notes.eris.Audience;
@@ -8,12 +8,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class FileService extends ProtoService<FileService> {
+public class DirectoryService extends ProtoService<DirectoryService> {
 
     private Path path = Paths.get(".").toAbsolutePath().normalize();
 
-    public FileService() {
-        super(new Audience(new SimpleAsyncExecutor()), FileService.class);
+    public DirectoryService() {
+        super(new Audience(new SimpleAsyncExecutor()), DirectoryService.class);
     }
 
     public final void reload() {
@@ -33,8 +33,8 @@ public class FileService extends ProtoService<FileService> {
 
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
-    public interface Channel<M> extends ProtoService.Channel<FileService, M> {
+    public interface Channel<M> extends ProtoService.Channel<DirectoryService, M> {
 
-        Channel<Path> SET_PATH = FileService::getPath;
+        Channel<Path> SET_PATH = DirectoryService::getPath;
     }
 }

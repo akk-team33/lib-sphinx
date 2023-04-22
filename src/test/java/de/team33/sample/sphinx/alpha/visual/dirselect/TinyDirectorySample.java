@@ -1,5 +1,6 @@
 package de.team33.sample.sphinx.alpha.visual.dirselect;
 
+import de.team33.sample.sphinx.alpha.service.DirectoryService;
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.option.GridBag;
 import de.team33.sphinx.alpha.visual.JFrames;
@@ -28,17 +29,17 @@ public final class TinyDirectorySample {
                                                                                         .setFill(GridBag.Fill.BOTH)
                                                                                         .template();
 
-    private final TinyDirectoryService service;
+    private final DirectoryService service;
     private final Visual visual = new Visual();
     private final Action action = new Action();
     private final Reaction reaction = new Reaction();
 
-    private TinyDirectorySample(final TinyDirectoryService service) {
+    private TinyDirectorySample(final DirectoryService service) {
         this.service = service;
     }
 
     public static void main(final String[] args) {
-        final TinyDirectoryService service = new TinyDirectoryService();
+        final DirectoryService service = new DirectoryService();
         SwingUtilities.invokeLater(() -> new TinyDirectorySample(service).run());
     }
 
@@ -66,7 +67,8 @@ public final class TinyDirectorySample {
             final JComboBox<Path> comboBox = new JComboBox<>(new TinyDirectoryModel(service));
             final JLabel label = JLabels.builder()
                                         .setText("- empty -")
-                                        .setup(jLabel -> service.addListener(path -> jLabel.setText(path.toString())))
+                                        .setup(jLabel -> service.registry().add(DirectoryService.Channel.SET_PATH,
+                                                                                path -> jLabel.setText(path.toString())))
                                         .build();
             return JPanels.builder()
                           .setLayout(GridBag.layout())

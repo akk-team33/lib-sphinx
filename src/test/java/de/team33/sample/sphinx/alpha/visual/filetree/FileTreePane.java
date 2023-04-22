@@ -26,10 +26,9 @@ public class FileTreePane {
 
     private JScrollPane jScrollPane() {
         final JTree jTree = jTree();
-        jTree.getSe
         return JScrollPanes.builder()
                            .setViewportView(jTree)
-                           .setup(sp -> sp.getViewport().scrollRectToVisible())
+                           //.setup(sp -> sp.getViewport().scrollRectToVisible())
                            .build();
     }
 
