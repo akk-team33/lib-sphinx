@@ -1,21 +1,23 @@
 package de.team33.sample.sphinx.alpha.visual.filetree;
 
+import de.team33.sample.sphinx.alpha.service.DirectoryService;
+import de.team33.sphinx.alpha.activity.Event;
 import de.team33.sphinx.alpha.visual.JScrollPanes;
 import de.team33.sphinx.alpha.visual.JTrees;
 
 import javax.swing.*;
-import javax.swing.event.TreeModelListener;
+import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreePath;
 import java.awt.*;
+import java.util.Optional;
 
 public class FileTreePane {
 
-    private final FileService service;
+    private final DirectoryService service;
     private final Component component;
 
-    public FileTreePane(final FileService service) {
+    public FileTreePane(final DirectoryService service) {
         this.service = service;
         this.component = jScrollPane();
     }
@@ -33,16 +35,25 @@ public class FileTreePane {
     }
 
     private JTree jTree() {
-        final TreeNode root = FileTree.rootNode();
+        final FSRootNode root = new FSRootNode();
         final DefaultTreeModel model = new DefaultTreeModel(root);
         return JTrees.builder()
                      .setModel(model)
                      .setRootVisible(false)
                      .setShowsRootHandles(true)
-                     .setSelectionPath(FileTree.path(root, service.getPath()))
+                     .setSelectionPath(root.treePath(service.getPath()))
                      .setRequestFocusEnabled(true)
                      .setExpandsSelectedPaths(true)
                      .setAutoscrolls(true)
+                     .on(Event.TREE_VALUE_CHANGED, this::treeValueChanged)
                      .build();
+    }
+
+    private void treeValueChanged(final TreeSelectionEvent event) {
+        Optional.of(event.getPath().getLastPathComponent())
+                .filter(PathTreeNode.class::isInstance)
+                .map(PathTreeNode.class::cast)
+                .map(PathTreeNode::getPath)
+                .ifPresent(service::setPath);
     }
 }
