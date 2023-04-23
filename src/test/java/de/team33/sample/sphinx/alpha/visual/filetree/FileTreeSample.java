@@ -1,10 +1,12 @@
 package de.team33.sample.sphinx.alpha.visual.filetree;
 
 import de.team33.sample.sphinx.alpha.service.DirectoryService;
+import de.team33.sample.sphinx.alpha.visual.dirselect.TinyDirectoryModel;
 import de.team33.sample.sphinx.alpha.visual.dirselect.TinyDirectorySample;
 import de.team33.sphinx.alpha.activity.Event;
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.option.GridBag;
+import de.team33.sphinx.alpha.visual.JComboBoxes;
 import de.team33.sphinx.alpha.visual.JFrames;
 import de.team33.sphinx.alpha.visual.JLabels;
 import de.team33.sphinx.alpha.visual.JPanels;
@@ -14,6 +16,7 @@ import de.team33.sphinx.alpha.visual.JTextFields;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.prefs.Preferences;
@@ -74,11 +77,14 @@ public class FileTreeSample {
                                                                             path -> field.setText(path.toString())))
                                                 .on(Event.FOCUS_LOST, event -> focusLost(event))
                                                 .build();
+        final JComboBox<Path> jComboBox = JComboBoxes.builder(new TinyDirectoryModel(service))
+                                                     .build();
         return JPanels.builder()
                       .setLayout(GridBag.layout())
-                      .add(label, GBC_TEMPLATE.getY(0))
+                      .add(jComboBox, GBC_TEMPLATE.getY(0))
                       .add(textField, GBC_TEMPLATE.getY(1))
-                      .add(newSplitPane(), GBC_TEMPLATE.getY(2, 1.0))
+                      .add(label, GBC_TEMPLATE.getY(2))
+                      .add(newSplitPane(), GBC_TEMPLATE.getY(3, 1.0))
                       .build();
     }
 

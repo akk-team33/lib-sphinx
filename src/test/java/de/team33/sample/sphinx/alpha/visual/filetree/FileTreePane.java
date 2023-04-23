@@ -8,7 +8,6 @@ import de.team33.sphinx.alpha.visual.JTrees;
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.util.Optional;
 
@@ -41,7 +40,9 @@ public class FileTreePane {
                      .setModel(model)
                      .setRootVisible(false)
                      .setShowsRootHandles(true)
-                     .setSelectionPath(root.treePath(service.getPath()))
+                     .setup(tree -> service.registry()
+                                           .add(DirectoryService.Channel.SET_PATH,
+                                                path -> tree.setSelectionPath(root.treePath(service.getPath()))))
                      .setRequestFocusEnabled(true)
                      .setExpandsSelectedPaths(true)
                      .setAutoscrolls(true)

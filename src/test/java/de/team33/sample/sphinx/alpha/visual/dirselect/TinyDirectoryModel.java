@@ -12,12 +12,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class TinyDirectoryModel extends AbstractListModel<Path> implements ComboBoxModel<Path> {
+public class TinyDirectoryModel extends AbstractListModel<Path> implements ComboBoxModel<Path> {
 
     private final DirectoryService service;
     private List<Path> paths = Collections.emptyList();
 
-    TinyDirectoryModel(final DirectoryService service) {
+    public TinyDirectoryModel(final DirectoryService service) {
         this.service = service;
         service.registry().add(DirectoryService.Channel.SET_PATH, path -> {
             this.paths = newPaths(path);
