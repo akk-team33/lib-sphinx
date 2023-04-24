@@ -1,6 +1,6 @@
 package de.team33.sample.sphinx.alpha.visual.filetree;
 
-import de.team33.sample.sphinx.alpha.service.DirectoryService;
+import de.team33.sample.sphinx.alpha.service.ServiceSample;
 import de.team33.sample.sphinx.alpha.visual.dirselect.TinyDirectoryModel;
 import de.team33.sample.sphinx.alpha.visual.dirselect.TinyDirectorySample;
 import de.team33.sphinx.alpha.activity.Event;
@@ -35,12 +35,12 @@ public class FileTreeSample {
                                                                                         .template();
 
     private final Preferences preferences;
-    private final DirectoryService service;
+    private final ServiceSample service;
     private final JFrame frame;
 
     public FileTreeSample() {
         preferences = PREFERENCES.node(WIN_NODE);
-        service = new DirectoryService();
+        service = new ServiceSample();
         frame = newFrame();
     }
 
@@ -68,12 +68,12 @@ public class FileTreeSample {
         final JLabel label = JLabels.builder()
                                     .setText("* selected path *")
                                     .setup(lbl -> service.registry()
-                                                         .add(DirectoryService.Channel.SET_PATH,
+                                                         .add(ServiceSample.Channel.SET_PATH,
                                                               path -> lbl.setText(path.toString())))
                                     .build();
         final JTextField textField = JTextFields.builder()
                                                 .setup(field -> service.registry()
-                                                                       .add(DirectoryService.Channel.SET_PATH,
+                                                                       .add(ServiceSample.Channel.SET_PATH,
                                                                             path -> field.setText(path.toString())))
                                                 .on(Event.FOCUS_LOST, event -> focusLost(event))
                                                 .build();

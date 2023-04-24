@@ -1,6 +1,6 @@
 package de.team33.sample.sphinx.alpha.visual.filetree;
 
-import de.team33.sample.sphinx.alpha.service.DirectoryService;
+import de.team33.sample.sphinx.alpha.service.ServiceSample;
 import de.team33.sphinx.alpha.activity.Event;
 import de.team33.sphinx.alpha.visual.JScrollPanes;
 import de.team33.sphinx.alpha.visual.JTrees;
@@ -13,10 +13,10 @@ import java.util.Optional;
 
 public class FileTreePane {
 
-    private final DirectoryService service;
+    private final ServiceSample service;
     private final Component component;
 
-    public FileTreePane(final DirectoryService service) {
+    public FileTreePane(final ServiceSample service) {
         this.service = service;
         this.component = jScrollPane();
     }
@@ -41,7 +41,7 @@ public class FileTreePane {
                      .setRootVisible(false)
                      .setShowsRootHandles(true)
                      .setup(tree -> service.registry()
-                                           .add(DirectoryService.Channel.SET_PATH,
+                                           .add(ServiceSample.Channel.SET_PATH,
                                                 path -> tree.setSelectionPath(root.treePath(service.getPath()))))
                      .setRequestFocusEnabled(true)
                      .setExpandsSelectedPaths(true)

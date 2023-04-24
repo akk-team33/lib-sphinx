@@ -1,6 +1,6 @@
 package de.team33.sample.sphinx.alpha.visual.dirselect;
 
-import de.team33.sample.sphinx.alpha.service.DirectoryService;
+import de.team33.sample.sphinx.alpha.service.ServiceSample;
 import de.team33.sphinx.alpha.activity.Event;
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.option.GridBag;
@@ -33,17 +33,17 @@ public final class TinyDirectorySample {
                                                                                         .setFill(GridBag.Fill.BOTH)
                                                                                         .template();
 
-    private final DirectoryService service;
+    private final ServiceSample service;
     private final Visual visual = new Visual();
     private final Action action = new Action();
     private final Reaction reaction = new Reaction();
 
-    private TinyDirectorySample(final DirectoryService service) {
+    private TinyDirectorySample(final ServiceSample service) {
         this.service = service;
     }
 
     public static void main(final String[] args) {
-        final DirectoryService service = new DirectoryService();
+        final ServiceSample service = new ServiceSample();
         SwingUtilities.invokeLater(() -> new TinyDirectorySample(service).run());
     }
 
@@ -74,7 +74,7 @@ public final class TinyDirectorySample {
                                                         .build();
             final JLabel label = JLabels.builder()
                                         .setText("- empty -")
-                                        .setup(jLabel -> service.registry().add(DirectoryService.Channel.SET_PATH,
+                                        .setup(jLabel -> service.registry().add(ServiceSample.Channel.SET_PATH,
                                                                                 path -> jLabel.setText(path.toString())))
                                         .build();
             final JButton jButton = JButtons.builder()

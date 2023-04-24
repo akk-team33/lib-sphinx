@@ -1,6 +1,6 @@
 package de.team33.sample.sphinx.alpha.visual.dirselect;
 
-import de.team33.sample.sphinx.alpha.service.DirectoryService;
+import de.team33.sample.sphinx.alpha.service.ServiceSample;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -14,12 +14,12 @@ import java.util.stream.Stream;
 
 public class TinyDirectoryModel extends AbstractListModel<Path> implements ComboBoxModel<Path> {
 
-    private final DirectoryService service;
+    private final ServiceSample service;
     private List<Path> paths = Collections.emptyList();
 
-    public TinyDirectoryModel(final DirectoryService service) {
+    public TinyDirectoryModel(final ServiceSample service) {
         this.service = service;
-        service.registry().add(DirectoryService.Channel.SET_PATH, path -> {
+        service.registry().add(ServiceSample.Channel.SET_PATH, path -> {
             this.paths = newPaths(path);
             fireContentsChanged(this, 0, Integer.MAX_VALUE);
         });

@@ -8,12 +8,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class DirectoryService extends ProtoService<DirectoryService> {
+public class ServiceSample extends ProtoService<ServiceSample> {
 
     private Path path = Paths.get(".").toAbsolutePath().normalize();
 
-    public DirectoryService() {
-        super(new Audience(new SimpleAsyncExecutor()), DirectoryService.class);
+    public ServiceSample() {
+        super(new Audience(new SimpleAsyncExecutor()), ServiceSample.class);
+    }
+
+    public Adapter<Path> pathAdapter() {
+        return Adapter.compose(this::setPath, listener -> registry().add(Channel.SET_PATH, listener));
     }
 
     public final void reload() {
@@ -33,8 +37,8 @@ public class DirectoryService extends ProtoService<DirectoryService> {
 
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
-    public interface Channel<M> extends ProtoService.Channel<DirectoryService, M> {
+    public interface Channel<M> extends ProtoService.Channel<ServiceSample, M> {
 
-        Channel<Path> SET_PATH = DirectoryService::getPath;
+        Channel<Path> SET_PATH = ServiceSample::getPath;
     }
 }
