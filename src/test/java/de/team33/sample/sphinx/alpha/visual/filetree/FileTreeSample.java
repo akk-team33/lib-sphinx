@@ -1,6 +1,7 @@
 package de.team33.sample.sphinx.alpha.visual.filetree;
 
 import de.team33.sample.sphinx.alpha.service.ServiceSample;
+import de.team33.sample.sphinx.alpha.visual.DirTree;
 import de.team33.sample.sphinx.alpha.visual.dirselect.TinyDirectoryModel;
 import de.team33.sample.sphinx.alpha.visual.dirselect.TinyDirectorySample;
 import de.team33.sphinx.alpha.activity.Event;
@@ -99,7 +100,8 @@ public class FileTreeSample {
         return JSplitPanes.builder()
                           .setDividerLocation(0.5)
                           .add(new FileTreePane(service).component(), JSplitPane.LEFT)
-                          .add(new JLabel("right"), JSplitPane.RIGHT)
+                          .add(new DirTree(service.pathAdapter()).panel(), JSplitPane.RIGHT)
+                          //.add(new JLabel("right"), JSplitPane.RIGHT)
                           .build();
     }
 }
