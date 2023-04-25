@@ -1,6 +1,6 @@
 # lib-sphinx
 
-    Extensions to the java swing library - edition "alpha"
+Team33 Sphinx Library Collection
 
 ## Home
 
@@ -18,7 +18,17 @@ http://www.team33.de/dev/sphinx/
       <version>1.1.0</version>
     </dependency>
 
+## Artifacts
+
+* sphinx-bom (Team33 Sphinx Library BOM)
+* sphinx-lib (Team33 Sphinx Library Parent)
+  * sphinx-alpha (Extensions to the java swing library - edition "alpha")
+
 ## Change Log
+
+### next
+
+* Restructured as multi module project 
 
 ### 1.1.0
 
