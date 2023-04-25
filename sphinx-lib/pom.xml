@@ -52,7 +52,7 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <executions>
-                        <!--execution>
+                        <execution>
                             <id>default-resources-home</id>
                             <phase>validate</phase>
                             <goals>
@@ -68,7 +68,7 @@
                                 </resources>
                                 <skip>${skipHome}</skip>
                             </configuration>
-                        </execution-->
+                        </execution>
                         <execution>
                             <id>apidoc-resources-home</id>
                             <phase>verify</phase>

@@ -12,9 +12,16 @@
     <artifactId>sphinx-bom</artifactId>
     <packaging>pom</packaging>
 
+    <name>Team33 Sphinx Library BOM</name>
+    <description>Team33 sphinx library collection - bill of materials</description>
+
     <dependencyManagement>
         <dependencies>
-
+            <dependency>
+                <groupId>de.team33.sphinx</groupId>
+                <artifactId>sphinx-alpha</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
