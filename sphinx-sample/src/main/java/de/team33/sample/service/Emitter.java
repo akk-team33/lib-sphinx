@@ -7,6 +7,7 @@ import java.util.function.Consumer;
  *
  * @param <T> The type of the represented property.
  */
+@FunctionalInterface
 public interface Emitter<T> {
 
     /**
