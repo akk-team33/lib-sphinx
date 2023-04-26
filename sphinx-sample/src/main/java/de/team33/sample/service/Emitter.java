@@ -12,5 +12,5 @@ public interface Emitter<T> {
     /**
      * @param listener
      */
-    void feed(Consumer<T> listener);
+    void connect(Consumer<T> listener);
 }

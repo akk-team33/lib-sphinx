@@ -1,6 +1,5 @@
 package de.team33.sample.service;
 
-import java.nio.file.Path;
 import java.util.function.Consumer;
 
 public interface Adapter<T> extends Consumer<T>, Emitter<T> {
@@ -9,8 +8,8 @@ public interface Adapter<T> extends Consumer<T>, Emitter<T> {
         return new Adapter<T>() {
 
             @Override
-            public void feed(final Consumer<T> listener) {
-                emitter.feed(listener);
+            public void connect(final Consumer<T> listener) {
+                emitter.connect(listener);
             }
 
             @Override
