@@ -1,6 +1,7 @@
 package de.team33.sphinx.alpha.activity;
 
 import javax.swing.event.*;
+import java.awt.dnd.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -1016,6 +1017,89 @@ public final class Listeners {
                 reaction.accept(e);
             }
         };
+    }
+
+    /**
+     * Converts a given {@link Consumer} into a {@link DropTargetListener}
+     * that reacts on a specific {@link DropTargetDragEvent}.
+     *
+     * @see DropTargetListener#dragEnter(DropTargetDragEvent)
+     */
+    public static DropTargetListener dropTargetDragEnter(final Consumer<? super DropTargetDragEvent> reaction) {
+        return new DropTargetAdapterEx() {
+            @Override
+            public void dragEnter(final DropTargetDragEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
+    /**
+     * Converts a given {@link Consumer} into a {@link DropTargetListener}
+     * that reacts on a specific {@link DropTargetDragEvent}.
+     *
+     * @see DropTargetListener#dragOver(DropTargetDragEvent)
+     */
+    public static DropTargetListener dropTargetDragOver(final Consumer<? super DropTargetDragEvent> reaction) {
+        return new DropTargetAdapterEx() {
+            @Override
+            public void dragOver(final DropTargetDragEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
+    /**
+     * Converts a given {@link Consumer} into a {@link DropTargetListener}
+     * that reacts on a specific {@link DropTargetDragEvent}.
+     *
+     * @see DropTargetListener#dropActionChanged(DropTargetDragEvent)
+     */
+    public static DropTargetListener dropTargetDragActionChanged(final Consumer<? super DropTargetDragEvent> reaction) {
+        return new DropTargetAdapterEx() {
+            @Override
+            public void dropActionChanged(final DropTargetDragEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
+    /**
+     * Converts a given {@link Consumer} into a {@link DropTargetListener}
+     * that reacts on a specific {@link DropTargetEvent}.
+     *
+     * @see DropTargetListener#dragExit(DropTargetEvent)
+     */
+    public static DropTargetListener dropTargetDragExit(final Consumer<? super DropTargetEvent> reaction) {
+        return new DropTargetAdapterEx() {
+            @Override
+            public void dragExit(final DropTargetEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
+    /**
+     * Converts a given {@link Consumer} into a {@link DropTargetListener}
+     * that reacts on a specific {@link DropTargetDropEvent}.
+     *
+     * @see DropTargetListener#drop(DropTargetDropEvent)
+     */
+    public static DropTargetListener dropTargetDrop(final Consumer<? super DropTargetDropEvent> reaction) {
+        return new DropTargetAdapterEx() {
+            @Override
+            public void drop(final DropTargetDropEvent event) {
+                reaction.accept(event);
+            }
+        };
+    }
+
+    abstract static class DropTargetAdapterEx extends DropTargetAdapter {
+        @SuppressWarnings("NoopMethodInAbstractClass")
+        @Override
+        public void drop(final DropTargetDropEvent dtde) {
+            // ignored
+        }
     }
 
     @SuppressWarnings({"NoopMethodInAbstractClass", "AbstractClassWithoutAbstractMethods"})

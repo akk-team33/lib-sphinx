@@ -1,9 +1,12 @@
 package de.team33.sphinx.alpha.activity;
 
+import de.team33.patterns.exceptional.e1.Conversion;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
+import java.awt.dnd.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -17,7 +20,7 @@ import java.util.function.Consumer;
  * @param <M> The message type being transferred in the context of the activity or event.
  */
 @FunctionalInterface
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ClassWithTooManyFields"})
 public interface Event<C, M> {
 
     /**
@@ -227,6 +230,71 @@ public interface Event<C, M> {
      */
     Event<Component, InputMethodEvent> CARET_POSITION_CHANGED =
             new EventAgent<>(Component::addInputMethodListener, Listeners::caretPositionChanged)::add;
+
+    /**
+     * Represents an event that can occur on a {@link Component}'s {@link DropTarget}.
+     *
+     * @see DropTargetListener#dragEnter(DropTargetDragEvent)
+     * @see DropTarget#addDropTargetListener(DropTargetListener)
+     * @see Component#getDropTarget()
+     */
+    Event<Component, DropTargetDragEvent> DROP_TARGET_DRAG_ENTER =
+            new EventAgent<>(Conversion.biConsumer((Component component,
+                                                    DropTargetListener l) -> component.getDropTarget()
+                                                                                      .addDropTargetListener(l)),
+                             Listeners::dropTargetDragEnter)::add;
+
+    /**
+     * Represents an event that can occur on a {@link Component}'s {@link DropTarget}.
+     *
+     * @see DropTargetListener#dragOver(DropTargetDragEvent)
+     * @see DropTarget#addDropTargetListener(DropTargetListener)
+     * @see Component#getDropTarget()
+     */
+    Event<Component, DropTargetDragEvent> DROP_TARGET_DRAG_OVER =
+            new EventAgent<>(Conversion.biConsumer((Component component,
+                                                    DropTargetListener l) -> component.getDropTarget()
+                                                                                      .addDropTargetListener(l)),
+                             Listeners::dropTargetDragOver)::add;
+
+    /**
+     * Represents an event that can occur on a {@link Component}'s {@link DropTarget}.
+     *
+     * @see DropTargetListener#dropActionChanged(DropTargetDragEvent)
+     * @see DropTarget#addDropTargetListener(DropTargetListener)
+     * @see Component#getDropTarget()
+     */
+    Event<Component, DropTargetDragEvent> DROP_TARGET_DRAG_ACTION_CHANGED =
+            new EventAgent<>(Conversion.biConsumer((Component component,
+                                                    DropTargetListener l) -> component.getDropTarget()
+                                                                                      .addDropTargetListener(l)),
+                             Listeners::dropTargetDragActionChanged)::add;
+
+    /**
+     * Represents an event that can occur on a {@link Component}'s {@link DropTarget}.
+     *
+     * @see DropTargetListener#dragExit(DropTargetEvent)
+     * @see DropTarget#addDropTargetListener(DropTargetListener)
+     * @see Component#getDropTarget()
+     */
+    Event<Component, DropTargetEvent> DROP_TARGET_DRAG_EXIT =
+            new EventAgent<>(Conversion.biConsumer((Component component,
+                                                    DropTargetListener l) -> component.getDropTarget()
+                                                                                      .addDropTargetListener(l)),
+                             Listeners::dropTargetDragExit)::add;
+
+    /**
+     * Represents an event that can occur on a {@link Component}'s {@link DropTarget}.
+     *
+     * @see DropTargetListener#drop(DropTargetDropEvent)
+     * @see DropTarget#addDropTargetListener(DropTargetListener)
+     * @see Component#getDropTarget()
+     */
+    Event<Component, DropTargetDropEvent> DROP_TARGET_DROP =
+            new EventAgent<>(Conversion.biConsumer((Component component,
+                                                    DropTargetListener l) -> component.getDropTarget()
+                                                                                      .addDropTargetListener(l)),
+                             Listeners::dropTargetDrop)::add;
 
     /**
      * Represents an event that can occur on {@link Container}s.
