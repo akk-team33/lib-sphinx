@@ -29,6 +29,7 @@ http://www.team33.de/dev/sphinx/
 ### next
 
 * Restructured as multi module project 
+* Added handling of DropTarget-Events
 
 ### 1.1.0
 
