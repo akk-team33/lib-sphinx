@@ -20,6 +20,10 @@
         <skipDeploy>true</skipDeploy>
     </properties>
 
+    <modules>
+        <module>visual-random</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
