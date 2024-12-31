@@ -1,7 +1,7 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import de.team33.patterns.exceptional.e1.Conversion;
+import de.team33.patterns.exceptional.dione.Conversion;
 
 import java.awt.Component;
 import java.awt.Container;

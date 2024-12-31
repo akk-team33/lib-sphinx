@@ -1,6 +1,6 @@
 package de.team33.sphinx.alpha.activity;
 
-import de.team33.patterns.exceptional.e1.Conversion;
+import de.team33.patterns.exceptional.dione.Conversion;
 
 import javax.swing.*;
 import javax.swing.event.*;
