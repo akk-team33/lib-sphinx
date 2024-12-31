@@ -9,7 +9,11 @@
         <version>1.1.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sphinx-sample</artifactId>
+    <artifactId>sphinx-annex</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Team33 Sphinx Annex Parent</name>
+    <description>Parent of team33 sphinx annex collection</description>
 
     <properties>
         <skipHome>true</skipHome>
@@ -43,19 +47,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>de.team33.patterns</groupId>
-            <artifactId>notes-eris</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.team33.patterns</groupId>
-            <artifactId>execution-metis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.team33.sphinx</groupId>
-            <artifactId>sphinx-alpha</artifactId>
-        </dependency>
-    </dependencies>
 </project>
