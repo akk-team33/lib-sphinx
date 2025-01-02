@@ -1,57 +1,48 @@
 package de.team33.sphinx.image.display.visual;
 
-import de.team33.sphinx.alpha.visual.JPanels;
+import de.team33.sphinx.image.display.business.ImageProcess;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.function.Supplier;
+import java.util.Optional;
 
-public class ImagePanel extends JPanel {
+class ImagePanel extends JPanel {
 
-    private final BufferedImage image;
+    private final ImageProcess process;
 
-    private ImagePanel(BufferedImage image) {
-        this.image = image;
+    ImagePanel(final ImageProcess process) {
+        this.process = process.addSetImageListener(this::onSetImage);
+    }
+
+    private void onSetImage(final ImageProcess sender) {
+        if (this.process == sender) {
+            invalidate();
+        }
     }
 
     @Override
-    protected void paintComponent(final Graphics g) {
+    protected final void paintComponent(final Graphics g) {
         super.paintComponent(g);
+        Optional.ofNullable(process.getImage())
+                .ifPresent(image -> {
+                    // Bildgröße und Panelgröße ermitteln
+                    int imgWidth = image.getWidth();
+                    int imgHeight = image.getHeight();
+                    int panelWidth = getWidth();
+                    int panelHeight = getHeight();
 
-        // Bildgröße und Panelgröße ermitteln
-        int imgWidth = image.getWidth();
-        int imgHeight = image.getHeight();
-        int panelWidth = getWidth();
-        int panelHeight = getHeight();
+                    // Berechnung des Skalierungsfaktors
+                    double scale = Math.min((double) panelWidth / imgWidth, (double) panelHeight / imgHeight);
 
-        // Berechnung des Skalierungsfaktors
-        double scale = Math.min((double) panelWidth / imgWidth, (double) panelHeight / imgHeight);
+                    // Neue Dimensionen des Bildes
+                    int newWidth = (int) (imgWidth * scale);
+                    int newHeight = (int) (imgHeight * scale);
 
-        // Neue Dimensionen des Bildes
-        int newWidth = (int) (imgWidth * scale);
-        int newHeight = (int) (imgHeight * scale);
+                    // Bild zentriert zeichnen
+                    int x = (panelWidth - newWidth) / 2;
+                    int y = (panelHeight - newHeight) / 2;
 
-        // Bild zentriert zeichnen
-        int x = (panelWidth - newWidth) / 2;
-        int y = (panelHeight - newHeight) / 2;
-
-        g.drawImage(image, x, y, newWidth, newHeight, this);
-    }
-
-    /**
-     * Returns a new {@link JPanels.Builder} for target instances of type {@link ImagePanel}.
-     */
-    public static JPanels.Builder<ImagePanel> builder(final BufferedImage image) {
-        return JPanels.builder(() -> new ImagePanel(image));
-    }
-
-    /**
-     * Returns a new {@link JPanels.Builder} for target instances as supplied by the given {@link Supplier}.
-     *
-     * @param <T> The final type of the target instances, at least {@link ImagePanel}.
-     */
-    public static <T extends ImagePanel> JPanels.Builder<T> builder(final Supplier<T> newTarget) {
-        return JPanels.builder(newTarget);
+                    g.drawImage(image, x, y, newWidth, newHeight, this);
+                });
     }
 }

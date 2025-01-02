@@ -1,18 +1,19 @@
 package de.team33.sphinx.image.display.visual;
 
-import de.team33.sphinx.alpha.visual.JFrames;
+import de.team33.sphinx.image.display.business.ImageProcess;
 
-import javax.swing.*;
+public class MainFrame extends StdFrame {
 
-public class MainFrame extends JFrame {
+    private final ImageProcess process;
 
-    private MainFrame() {
-        setLocationByPlatform(true);
-        setSize(640, 480);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    public MainFrame(final ImageProcess process) {
+        this.process = process.addSetImageListener(this::onSetImage);
+        setContentPane(new ImagePanel(process));
     }
 
-    public static JFrames.Builder<MainFrame> builder() {
-        return JFrames.builder(() -> new MainFrame());
+    private void onSetImage(final ImageProcess sender) {
+        if (process == sender) {
+            setTitle(sender.getImagePath());
+        }
     }
 }

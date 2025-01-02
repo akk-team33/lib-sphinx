@@ -1,28 +1,19 @@
 package de.team33.sphinx.image.display;
 
-import de.team33.sphinx.image.display.visual.ImagePanel;
+import de.team33.sphinx.image.display.business.ImageProcess;
 import de.team33.sphinx.image.display.visual.MainFrame;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class ImageDisplay implements Runnable {
 
-    private final MainFrame frame;
+    private final ImageProcess process = new ImageProcess();
+    private final MainFrame frame = new MainFrame(process);
 
     public ImageDisplay(final String imagePath) throws IOException {
-        final File file = new File(imagePath);
-        if (!file.isFile()) {
-            throw new IOException("not a regular file: " + imagePath);
-        }
-        final BufferedImage image = ImageIO.read(file);
-        frame = MainFrame.builder()
-                         .setTitle(imagePath)
-                         .add(ImagePanel.builder(image).build())
-                         .build();
+        process.setImage(Paths.get(imagePath));
     }
 
     public static void main(String[] args) throws IOException {
