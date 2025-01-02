@@ -1,4 +1,4 @@
-package de.team33.sphinx.visual.random.business;
+package de.team33.sphinx.random.display.business;
 
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;

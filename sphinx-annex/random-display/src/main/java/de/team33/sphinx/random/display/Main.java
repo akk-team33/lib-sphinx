@@ -1,12 +1,9 @@
-package de.team33.sphinx.visual.random;
+package de.team33.sphinx.random.display;
 
-import de.team33.sphinx.alpha.visual.JFrames;
-import de.team33.sphinx.visual.random.business.RandomProcess;
-import de.team33.sphinx.visual.random.visual.RandomFrame;
+import de.team33.sphinx.random.display.business.RandomProcess;
+import de.team33.sphinx.random.display.visual.RandomFrame;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.Random;
 
 public class Main implements Runnable {
 

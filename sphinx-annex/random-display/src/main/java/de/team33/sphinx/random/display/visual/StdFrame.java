@@ -1,4 +1,4 @@
-package de.team33.sphinx.visual.random.visual;
+package de.team33.sphinx.random.display.visual;
 
 import de.team33.sphinx.alpha.visual.JFrames;
 

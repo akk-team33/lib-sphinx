@@ -1,7 +1,7 @@
-package de.team33.sphinx.visual.random.visual;
+package de.team33.sphinx.random.display.visual;
 
 import de.team33.sphinx.alpha.activity.Event;
-import de.team33.sphinx.visual.random.business.RandomProcess;
+import de.team33.sphinx.random.display.business.RandomProcess;
 
 import java.awt.event.WindowEvent;
 
