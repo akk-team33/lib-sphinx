@@ -3,29 +3,34 @@ package de.team33.sphinx.random.display.business;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Consumer;
 
 public class RandomProcess {
 
-    private static final int WIDTH = 640;
-    private static final int HEIGHT = 480;
+    private static final int WIDTH = 256;
+    private static final int HEIGHT = 256;
 
-    private final Random random = new Random();
+    private final RandomGen random;
     private final List<Consumer<RandomProcess>> updateImageListeners = new LinkedList<>();
     private final BufferedImage image;
     private final Thread processingThread;
-    private boolean running;
+    private final AtomicBoolean running;
+    private final AtomicLong counter;
 
-    public RandomProcess() {
-        image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-        processingThread = new Thread(() -> run());
+    public RandomProcess(final RandomGen random) {
+        this.random = random;
+        this.image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+        this.counter = new AtomicLong(0);
+        this.running = new AtomicBoolean(false);
+        this.processingThread = new Thread(this::run);
     }
 
     private void run() {
-        this.running = true;
+        this.running.set(true);
         long time0 = System.currentTimeMillis();
-        while (running) {
+        while (running.get()) {
             step();
             final long timex = System.currentTimeMillis();
             if (timex - time0 > 100) {
@@ -38,7 +43,8 @@ public class RandomProcess {
     private void step() {
         final int x = random.nextInt(WIDTH);
         final int y = random.nextInt(HEIGHT);
-        image.setRGB(x, y, image.getRGB(x, y) + 0x0f);
+        image.setRGB(x, y, image.getRGB(x, y) + 0x40);
+        counter.incrementAndGet();
     }
 
     public final void start() {
@@ -46,7 +52,7 @@ public class RandomProcess {
     }
 
     public final void stop() {
-        this.running = false;
+        running.set(false);
         try {
             processingThread.join();
         } catch (InterruptedException e) {
@@ -61,5 +67,9 @@ public class RandomProcess {
 
     public final BufferedImage getImage() {
         return image;
+    }
+
+    public final long getCount() {
+        return counter.get();
     }
 }

@@ -13,6 +13,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>de.team33.patterns</groupId>
+            <artifactId>arbitrary-mimas</artifactId>
+        </dependency>
+        <dependency>
             <groupId>de.team33.sphinx</groupId>
             <artifactId>sphinx-alpha</artifactId>
         </dependency>
