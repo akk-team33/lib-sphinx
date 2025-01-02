@@ -36,5 +36,6 @@ public class ImageProcess {
         }
         this.image = ImageIO.read(file);
         this.imagePath = path.toAbsolutePath().normalize().toString();
+        setImageListeners.forEach(listener -> listener.accept(this));
     }
 }

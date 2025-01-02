@@ -7,18 +7,18 @@ import javax.swing.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-public class ImageDisplay implements Runnable {
+public class Main implements Runnable {
 
     private final ImageProcess process = new ImageProcess();
     private final MainFrame frame = new MainFrame(process);
 
-    public ImageDisplay(final String imagePath) throws IOException {
+    public Main(final String imagePath) throws IOException {
         process.setImage(Paths.get(imagePath));
     }
 
     public static void main(String[] args) throws IOException {
         final String imagePath = "/Users/andi/Pictures/2004-14-22 (Babs)/DSC_1772-1.jpg";
-        SwingUtilities.invokeLater(new ImageDisplay(imagePath));
+        SwingUtilities.invokeLater(new Main(imagePath));
     }
 
     @Override
