@@ -17,7 +17,7 @@ public class RandomFrame extends StdFrame {
 
     private void onUpdate(final RandomProcess sender) {
         if (sender == process) {
-            setTitle(String.valueOf(process.getCount()));
+            setTitle(String.format("%,d", process.getCount()));
         }
     }
 

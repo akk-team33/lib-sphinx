@@ -9,8 +9,8 @@ import java.util.function.Consumer;
 
 public class RandomProcess {
 
-    private static final int WIDTH = 256;
-    private static final int HEIGHT = 256;
+    private static final int WIDTH = 600;
+    private static final int HEIGHT = 400;
 
     private final RandomGen random;
     private final List<Consumer<RandomProcess>> updateImageListeners = new LinkedList<>();
@@ -43,8 +43,13 @@ public class RandomProcess {
     private void step() {
         final int x = random.nextInt(WIDTH);
         final int y = random.nextInt(HEIGHT);
-        image.setRGB(x, y, image.getRGB(x, y) + 0x40);
+        image.setRGB(x, y, next(image.getRGB(x, y)));
         counter.incrementAndGet();
+    }
+
+    private int next(final int rgb) {
+        final int small = (((rgb & 0xf00000) >> 12) | ((rgb & 0xf000) >> 8) | ((rgb & 0xf0) >> 4)) + 1;
+        return ((small & 0xf00) << 12) | ((small & 0xf0) << 8) | ((small & 0xf) << 4);
     }
 
     public final void start() {

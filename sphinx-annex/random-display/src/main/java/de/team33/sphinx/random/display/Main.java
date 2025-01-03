@@ -13,8 +13,8 @@ import java.util.Random;
 public class Main implements Runnable {
 
     private final Random random = new Random();
+    // private final Random random = new SecureRandom();
     // private final Generator generator = Generator.of(random);
-    // private final Generator generator = Generator.of(new SecureRandom());
     private final RandomProcess process = new RandomProcess(random::nextInt);
     // private final RandomProcess process = new RandomProcess(generator::anyInt);
     // private final RandomProcess process = new RandomProcess(faultyGen(generator));
