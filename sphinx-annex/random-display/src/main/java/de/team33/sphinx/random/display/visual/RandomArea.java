@@ -1,20 +1,20 @@
 package de.team33.sphinx.random.display.visual;
 
-import de.team33.sphinx.random.display.business.RandomProcess;
+import de.team33.sphinx.random.display.business.RandomAreaProcess;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Optional;
 
-class ImagePanel extends JPanel {
+class RandomArea extends JPanel {
 
-    private final RandomProcess process;
+    private final RandomAreaProcess process;
 
-    ImagePanel(final RandomProcess process) {
+    RandomArea(final RandomAreaProcess process) {
         this.process = process.addUpdateImageListener(this::onUpdateImage);
     }
 
-    private void onUpdateImage(final RandomProcess sender) {
+    private void onUpdateImage(final RandomAreaProcess sender) {
         if (this.process == sender) {
             repaint();
         }

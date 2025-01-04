@@ -1,21 +1,21 @@
 package de.team33.sphinx.random.display.visual;
 
 import de.team33.sphinx.alpha.activity.Event;
-import de.team33.sphinx.random.display.business.RandomProcess;
+import de.team33.sphinx.random.display.business.RandomAreaProcess;
 
 import java.awt.event.WindowEvent;
 
 public class RandomFrame extends StdFrame {
 
-    private final RandomProcess process;
+    private final RandomAreaProcess process;
 
-    public RandomFrame(final RandomProcess process) {
+    public RandomFrame(final RandomAreaProcess process) {
         this.process = process.addUpdateImageListener(this::onUpdate);
-        setContentPane(new ImagePanel(process));
+        setContentPane(new RandomArea(process));
         Event.WINDOW_CLOSING.add(this, this::onClosing);
     }
 
-    private void onUpdate(final RandomProcess sender) {
+    private void onUpdate(final RandomAreaProcess sender) {
         if (sender == process) {
             setTitle(String.format("%,d", process.getCount()));
         }

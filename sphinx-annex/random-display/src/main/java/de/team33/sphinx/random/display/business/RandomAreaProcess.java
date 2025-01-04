@@ -7,19 +7,19 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Consumer;
 
-public class RandomProcess {
+public class RandomAreaProcess {
 
     private static final int WIDTH = 600;
     private static final int HEIGHT = 400;
 
-    private final RandomGen random;
-    private final List<Consumer<RandomProcess>> updateImageListeners = new LinkedList<>();
+    private final Randomizer random;
+    private final List<Consumer<RandomAreaProcess>> updateImageListeners = new LinkedList<>();
     private final BufferedImage image;
     private final Thread processingThread;
     private final AtomicBoolean running;
     private final AtomicLong counter;
 
-    public RandomProcess(final RandomGen random) {
+    public RandomAreaProcess(final Randomizer random) {
         this.random = random;
         this.image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         this.counter = new AtomicLong(0);
@@ -65,7 +65,7 @@ public class RandomProcess {
         }
     }
 
-    public final RandomProcess addUpdateImageListener(final Consumer<RandomProcess> listener) {
+    public final RandomAreaProcess addUpdateImageListener(final Consumer<RandomAreaProcess> listener) {
         updateImageListeners.add(listener);
         return this;
     }
