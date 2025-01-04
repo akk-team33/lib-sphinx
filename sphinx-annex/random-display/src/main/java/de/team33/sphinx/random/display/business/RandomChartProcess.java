@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 public class RandomChartProcess {
 
     private static final int WIDTH = 1009;
-    private static final int HEIGHT = 10000;
+    private static final int HEIGHT = 30000;
 
     private final Randomizer random;
     private final List<Consumer<RandomChartProcess>> updateImageListeners = new LinkedList<>();
@@ -41,7 +41,7 @@ public class RandomChartProcess {
         while (running.get()) {
             step();
             final long timex = System.currentTimeMillis();
-            if (timex - time0 > 100) {
+            if (timex - time0 > 50) {
                 time0 = timex;
                 updateImageListeners.forEach(listener -> listener.accept(this));
             }
