@@ -17,8 +17,7 @@ public class Main implements Runnable {
     }
 
     public static void main(String[] args) throws IOException {
-        final String imagePath = "/Users/andi/Pictures/2004-14-22 (Babs)/DSC_1772-1.jpg";
-        SwingUtilities.invokeLater(new Main(imagePath));
+        SwingUtilities.invokeLater(new Main(args[0]));
     }
 
     @Override
