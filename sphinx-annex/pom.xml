@@ -21,6 +21,7 @@
     </properties>
 
     <modules>
+        <module>patterns-ophelia</module>
         <module>image-display</module>
         <module>random-display</module>
     </modules>
@@ -40,6 +41,11 @@
                 <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.team33.sphinx</groupId>
+                <artifactId>patterns-ophelia</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- Testing -->

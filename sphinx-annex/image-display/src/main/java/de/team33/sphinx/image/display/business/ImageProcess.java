@@ -1,28 +1,31 @@
 package de.team33.sphinx.image.display.business;
 
+import de.team33.sphinx.patterns.ophelia.Consumers;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 public class ImageProcess {
 
-    private final List<Consumer<ImageProcess>> setImageListeners = new LinkedList<>();
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private final Consumers<ImageProcess> setImageListeners = new Consumers<>();
     private BufferedImage image;
     private String imagePath;
 
     public final ImageProcess addSetImageListener(final Consumer<ImageProcess> listener) {
-        setImageListeners.add(Objects.requireNonNull(listener));
+        setImageListeners.add(listener);
         return this;
     }
 
-    public final BufferedImage getImage() {
-        return image;
+    public final Optional<BufferedImage> getImage() {
+        return Optional.ofNullable(image);
     }
 
     public final String getImagePath() {
@@ -36,6 +39,10 @@ public class ImageProcess {
         }
         this.image = ImageIO.read(file);
         this.imagePath = path.toAbsolutePath().normalize().toString();
-        setImageListeners.forEach(listener -> listener.accept(this));
+        setImageListeners.accept(this);
+    }
+
+    public final void shutdown() {
+        executor.shutdown();
     }
 }
