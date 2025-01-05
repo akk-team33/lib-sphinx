@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 public class ImageProcess {
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
-    private final Consumers<ImageProcess> setImageListeners = new Consumers<>();
+    private final Consumers<ImageProcess> setImageListeners = new Consumers<>(executor);
     private BufferedImage image;
     private String imagePath;
 
