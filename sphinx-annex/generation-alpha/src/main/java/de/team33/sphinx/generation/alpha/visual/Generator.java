@@ -41,11 +41,4 @@ public class Generator {
             LOG.log(INFO, () -> "failed (already existing?): " + fileName + " (" + filePath + ")");
         }
     }
-
-    private static Stream<Class<?>> ancestors(final Class<?> subject) {
-        return (null == subject)
-                ? Stream.empty()
-                : Stream.concat(ancestors(subject.getSuperclass()),
-                                Stream.of(subject));
-    }
 }
