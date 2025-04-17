@@ -4,7 +4,7 @@
 
     <groupId>de.team33.sphinx</groupId>
     <artifactId>sphinx-root</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Team33 Sphinx Library Root</name>
@@ -35,9 +35,11 @@
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <copyright.year>2024</copyright.year>
+        <copyright.year>2025</copyright.year>
+        <skipJavadoc>false</skipJavadoc>
         <skipHome>false</skipHome>
         <skipDeploy>false</skipDeploy>
+        <skipGPG>false</skipGPG>
     </properties>
 
     <modules>
@@ -53,33 +55,42 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M9</version>
+                    <version>3.1.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.1</version>
+                    <version>3.3.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.5.0</version>
+                    <version>3.11.2</version>
                     <configuration>
                         <show>protected</show>
                         <bottom><![CDATA[Copyright &copy; ${copyright.year} Andreas Kluge-Kaindl, Bremen (de). All rights reserved.]]></bottom>
                         <detectLinks>true</detectLinks>
+                        <skip>${skipJavadoc}</skip>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.1.0</version>
+                    <configuration>
+                        <skip>${skipGPG}</skip>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>3.3.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -88,6 +99,16 @@
                     <configuration>
                         <skip>${skipDeploy}</skip>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.5.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.6.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
