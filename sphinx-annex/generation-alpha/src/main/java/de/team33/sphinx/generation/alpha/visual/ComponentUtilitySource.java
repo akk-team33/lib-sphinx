@@ -7,6 +7,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -38,13 +39,14 @@ public class ComponentUtilitySource {
             " * Utility class to handle {@link %1$s}s.%n" +
             " */%n" +
             "@SuppressWarnings(\"unused\")%n" +
-            "public final class %1$ss {%n" +
+            "public final class %7$s {%n" +
             "%n" +
-            "    private %1$ss() {%n" +
+            "    private %7$s() {%n" +
             "    }%2$s%3$s%4$s%5$s%n" +
             "}%n";
 
     private final String target;
+    private final String name;
     private final String factoryMethod1;
     private final String factoryMethod2;
     private final BuilderClassSource builderSource;
@@ -55,6 +57,7 @@ public class ComponentUtilitySource {
     public ComponentUtilitySource(final Class<?> componentClass) {
         this.dependencies = new HashSet<>(Arrays.asList(LateBuilder.class, Supplier.class));
         this.target = componentClass.getSimpleName();
+        this.name = target + (Stream.of("s", "S", "x", "X").anyMatch(target::endsWith) ? "es" : "s");
         this.factoryMethod1 = hasDefaultConstructor(componentClass)
                 ? String.format(METHOD1_FORMAT, target)
                 : "";
@@ -67,7 +70,8 @@ public class ComponentUtilitySource {
                                    .filter(c -> !c.isPrimitive())
                                    .filter(c -> !"java.lang".equals(c.getPackage().getName()))
                                    .map(Class::getCanonicalName)
-                                   .sorted()
+                                   .collect(Collectors.toCollection(TreeSet::new))
+                                   .stream()
                                    .map(s -> String.format("import %s;", s))
                                    .collect(Collectors.joining(String.format("%n")));
     }
@@ -82,12 +86,12 @@ public class ComponentUtilitySource {
     }
 
     public final String getName() {
-        return target + "s";
+        return name;
     }
 
     @Override
     public final String toString() {
-        return String.format(FORMAT, target, factoryMethod1, factoryMethod2, builderSource, setupSource, imports);
+        return String.format(FORMAT, target, factoryMethod1, factoryMethod2, builderSource, setupSource, imports, name);
     }
 
     public static void main(final String[] args) {
