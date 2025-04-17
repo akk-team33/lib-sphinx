@@ -4,13 +4,16 @@ import de.team33.patterns.random.tarvos.Generator;
 
 import java.awt.*;
 import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.Random;
 
-public class Supply extends Random implements Generator {
+public class Supply implements Generator {
+
+    private final Random random = new SecureRandom();
 
     @Override
     public final BigInteger nextBits(final int i) {
-        return new BigInteger(i, this);
+        return new BigInteger(i, random);
     }
 
     public final Point nextPoint() {
