@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Insets;
 import java.util.function.Supplier;
 import javax.swing.DropMode;
@@ -75,13 +74,6 @@ public final class JTextComponents {
          */
         default S setCaretPosition(final int arg0) {
             return setup(result -> result.setCaretPosition(arg0));
-        }
-
-        /**
-         * @see JTextComponent#setComponentOrientation(ComponentOrientation)
-         */
-        default S setComponentOrientation(final ComponentOrientation arg0) {
-            return setup(result -> result.setComponentOrientation(arg0));
         }
 
         /**

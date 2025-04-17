@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Insets;
-import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.AbstractButton;
 import javax.swing.Action;
@@ -48,7 +47,7 @@ public final class AbstractButtons {
      * @param <T> The final type of the target instance, at least {@link AbstractButton}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends AbstractButton, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
@@ -102,13 +101,6 @@ public final class AbstractButtons {
         }
 
         /**
-         * @see AbstractButton#setEnabled(boolean)
-         */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
-        }
-
-        /**
          * @see AbstractButton#setFocusPainted(boolean)
          */
         default S setFocusPainted(final boolean arg0) {
@@ -151,17 +143,17 @@ public final class AbstractButtons {
         }
 
         /**
-         * @see AbstractButton#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
-        }
-
-        /**
          * @see AbstractButton#setMargin(Insets)
          */
         default S setMargin(final Insets arg0) {
             return setup(result -> result.setMargin(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setMnemonic(char)
+         */
+        default S setMnemonic(final char arg0) {
+            return setup(result -> result.setMnemonic(arg0));
         }
 
         /**

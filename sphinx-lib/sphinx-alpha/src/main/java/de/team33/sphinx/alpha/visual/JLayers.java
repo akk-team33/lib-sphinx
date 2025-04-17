@@ -2,11 +2,9 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
-import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.JLayer;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.plaf.LayerUI;
 
 /**
@@ -23,7 +21,7 @@ public final class JLayers {
      *
      * @param <C> The type of the layered component, at least {@link Component}.
      */
-    public static <C extends Component> Builder<C> builder(final C component) {
+    public static <C extends Component> Builder<C, JLayer<C>> builder(final C component) {
         return new Builder<>(() -> new JLayer<>(component), Builder.class);
     }
 
@@ -31,8 +29,9 @@ public final class JLayers {
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
      *
      * @param <C> The type of the layered component, at least {@link Component}.
+     * @param <T> The final type of the target instances, at least {@link JLayer}.
      */
-    public static <C extends Component> Builder<C> builder(final Supplier<JLayer<C>> newTarget) {
+    public static <C extends Component, T extends JLayer<C>> Builder<C, T> builder(final Supplier<T> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -40,47 +39,28 @@ public final class JLayers {
      * Builder implementation to build target instances of {@link JLayer}.
      *
      * @param <C> The type of the layered component, at least {@link Component}.
+     * @param <T> The final type of the target instances, at least {@link JLayer}.
      */
-    public static final class Builder<C extends Component>
-            extends LateBuilder<JLayer<C>, Builder<C>> implements Setup<C, Builder<C>> {
+    public static final class Builder<C extends Component, T extends JLayer<C>>
+            extends LateBuilder<T, Builder<C, T>> implements Setup<C, T, Builder<C, T>> {
 
         @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<JLayer<C>> newResult, final Class builderClass) {
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
 
     /**
      * Utility interface to set up a target instance of {@link JLayer}.
-     *
+     * 
      * @param <C> The type of the layered component, at least {@link Component}.
+     * @param <T> The final type of the target instance, at least {@link JLayer}.
      * @param <S> The final type of the Setup implementation.
      */
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
-    public interface Setup<C extends Component, S extends Setup<C, S>>
-            extends JComponents.Setup<JLayer<C>, S> {
-
-        /**
-         * @see JLayer#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JLayer#removeAll()
-         */
-        default S removeAll() {
-            return setup(JLayer::removeAll);
-        }
-
-        /**
-         * @see JLayer#setBorder(Border)
-         */
-        default S setBorder(final Border arg0) {
-            return setup(result -> result.setBorder(arg0));
-        }
+    public interface Setup<C extends Component, T extends JLayer<C>, S extends Setup<C, T, S>>
+            extends JComponents.Setup<T, S> {
 
         /**
          * @see JLayer#setGlassPane(JPanel)
@@ -94,13 +74,6 @@ public final class JLayers {
          */
         default S setLayerEventMask(final long arg0) {
             return setup(result -> result.setLayerEventMask(arg0));
-        }
-
-        /**
-         * @see JLayer#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
         }
 
         /**

@@ -2,11 +2,8 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import de.team33.patterns.exceptional.dione.Conversion;
-
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.Cursor;
-import java.awt.LayoutManager;
 import java.awt.Rectangle;
 import java.util.function.Supplier;
 import javax.swing.Icon;
@@ -61,16 +58,9 @@ public final class JInternalFrames {
      * @param <T> The final type of the target instance, at least {@link JInternalFrame}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JInternalFrame, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
-
-        /**
-         * @see JInternalFrame#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
 
         /**
          * @see JInternalFrame#setClosable(boolean)
@@ -94,13 +84,6 @@ public final class JInternalFrames {
         }
 
         /**
-         * @see JInternalFrame#setCursor(Cursor)
-         */
-        default S setCursor(final Cursor arg0) {
-            return setup(result -> result.setCursor(arg0));
-        }
-
-        /**
          * @see JInternalFrame#setDefaultCloseOperation(int)
          */
         default S setDefaultCloseOperation(final int arg0) {
@@ -112,13 +95,6 @@ public final class JInternalFrames {
          */
         default S setDesktopIcon(final JDesktopIcon arg0) {
             return setup(result -> result.setDesktopIcon(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setFocusCycleRoot(boolean)
-         */
-        default S setFocusCycleRoot(final boolean arg0) {
-            return setup(result -> result.setFocusCycleRoot(arg0));
         }
 
         /**
@@ -164,17 +140,17 @@ public final class JInternalFrames {
         }
 
         /**
+         * @see JInternalFrame#setLayer(int)
+         */
+        default S setLayer(final int arg0) {
+            return setup(result -> result.setLayer(arg0));
+        }
+
+        /**
          * @see JInternalFrame#setLayeredPane(JLayeredPane)
          */
         default S setLayeredPane(final JLayeredPane arg0) {
             return setup(result -> result.setLayeredPane(arg0));
-        }
-
-        /**
-         * @see JInternalFrame#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
         }
 
         /**

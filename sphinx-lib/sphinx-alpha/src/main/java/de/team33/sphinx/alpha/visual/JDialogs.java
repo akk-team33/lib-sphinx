@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
@@ -60,13 +59,6 @@ public final class JDialogs {
     public interface Setup<T extends JDialog, S extends Setup<T, S>> extends Dialogs.Setup<T, S> {
 
         /**
-         * @see JDialog#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
          * @see JDialog#setContentPane(Container)
          */
         default S setContentPane(final Container arg0) {
@@ -99,13 +91,6 @@ public final class JDialogs {
          */
         default S setLayeredPane(final JLayeredPane arg0) {
             return setup(result -> result.setLayeredPane(arg0));
-        }
-
-        /**
-         * @see JDialog#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
         }
 
         /**

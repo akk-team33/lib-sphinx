@@ -64,6 +64,13 @@ public final class JLabels {
         }
 
         /**
+         * @see JLabel#setDisplayedMnemonic(char)
+         */
+        default S setDisplayedMnemonic(final char arg0) {
+            return setup(result -> result.setDisplayedMnemonic(arg0));
+        }
+
+        /**
          * @see JLabel#setDisplayedMnemonic(int)
          */
         default S setDisplayedMnemonic(final int arg0) {

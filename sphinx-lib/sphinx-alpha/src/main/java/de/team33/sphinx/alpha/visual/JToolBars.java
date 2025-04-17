@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Dimension;
 import java.awt.Insets;
-import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.Action;
 import javax.swing.JToolBar;
@@ -69,7 +68,7 @@ public final class JToolBars {
          * @see JToolBar#addSeparator()
          */
         default S addSeparator() {
-            return setup(JToolBar::addSeparator);
+            return setup(result -> result.addSeparator());
         }
 
         /**
@@ -91,13 +90,6 @@ public final class JToolBars {
          */
         default S setFloatable(final boolean arg0) {
             return setup(result -> result.setFloatable(arg0));
-        }
-
-        /**
-         * @see JToolBar#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
         }
 
         /**

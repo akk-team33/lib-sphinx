@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-import javax.swing.ButtonModel;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.plaf.MenuItemUI;
@@ -52,7 +51,7 @@ public final class JMenuItems {
      * @param <T> The final type of the target instance, at least {@link JMenuItem}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "MethodOverloadsMethodOfSuperclass"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JMenuItem, S extends Setup<T, S>> extends AbstractButtons.Setup<T, S> {
 
@@ -68,20 +67,6 @@ public final class JMenuItems {
          */
         default S setArmed(final boolean arg0) {
             return setup(result -> result.setArmed(arg0));
-        }
-
-        /**
-         * @see JMenuItem#setEnabled(boolean)
-         */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
-        }
-
-        /**
-         * @see JMenuItem#setModel(ButtonModel)
-         */
-        default S setModel(final ButtonModel arg0) {
-            return setup(result -> result.setModel(arg0));
         }
 
         /**

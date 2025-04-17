@@ -4,8 +4,6 @@ import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
-import javax.swing.text.Document;
-import javax.swing.text.EditorKit;
 import javax.swing.text.Style;
 import javax.swing.text.StyledDocument;
 
@@ -75,22 +73,8 @@ public final class JTextPanes {
         /**
          * @see JTextPane#setCharacterAttributes(AttributeSet, boolean)
          */
-        default S setCharacterAttributes(final AttributeSet attribs, final boolean replace) {
-            return setup(result -> result.setCharacterAttributes(attribs, replace));
-        }
-
-        /**
-         * @see JTextPane#setDocument(Document)
-         */
-        default S setDocument(final Document arg0) {
-            return setup(result -> result.setDocument(arg0));
-        }
-
-        /**
-         * @see JTextPane#setEditorKit(EditorKit)
-         */
-        default S setEditorKit(final EditorKit arg0) {
-            return setup(result -> result.setEditorKit(arg0));
+        default S setCharacterAttributes(final AttributeSet arg0, final boolean arg1) {
+            return setup(result -> result.setCharacterAttributes(arg0, arg1));
         }
 
         /**
@@ -103,8 +87,8 @@ public final class JTextPanes {
         /**
          * @see JTextPane#setParagraphAttributes(AttributeSet, boolean)
          */
-        default S setParagraphAttributes(final AttributeSet attribs, final boolean replace) {
-            return setup(result -> result.setParagraphAttributes(attribs, replace));
+        default S setParagraphAttributes(final AttributeSet arg0, final boolean arg1) {
+            return setup(result -> result.setParagraphAttributes(arg0, arg1));
         }
 
         /**

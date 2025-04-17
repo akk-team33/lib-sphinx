@@ -4,7 +4,6 @@ import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFormattedTextField.AbstractFormatterFactory;
-import javax.swing.text.Document;
 
 /**
  * Utility class to handle {@link JFormattedTextField}s.
@@ -54,13 +53,6 @@ public final class JFormattedTextFields {
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JFormattedTextField, S extends Setup<T, S>> extends JTextFields.Setup<T, S> {
-
-        /**
-         * @see JFormattedTextField#setDocument(Document)
-         */
-        default S setDocument(final Document arg0) {
-            return setup(result -> result.setDocument(arg0));
-        }
 
         /**
          * @see JFormattedTextField#setFocusLostBehavior(int)

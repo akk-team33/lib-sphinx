@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import de.team33.patterns.exceptional.dione.Conversion;
-
 import java.net.URL;
 import java.util.function.Supplier;
 import javax.swing.JEditorPane;
@@ -90,13 +89,6 @@ public final class JEditorPanes {
          */
         default S setPage(final URL arg0) {
             return setup(Conversion.consumer(result -> result.setPage(arg0)));
-        }
-
-        /**
-         * @see JEditorPane#setText(String)
-         */
-        default S setText(final String arg0) {
-            return setup(result -> result.setText(arg0));
         }
     }
 }

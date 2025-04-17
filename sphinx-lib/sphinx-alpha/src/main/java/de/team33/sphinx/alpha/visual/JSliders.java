@@ -1,7 +1,6 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Font;
 import java.util.Dictionary;
 import java.util.function.Supplier;
 import javax.swing.BoundedRangeModel;
@@ -62,13 +61,6 @@ public final class JSliders {
          */
         default S setExtent(final int arg0) {
             return setup(result -> result.setExtent(arg0));
-        }
-
-        /**
-         * @see JSlider#setFont(Font)
-         */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
         }
 
         /**

@@ -74,13 +74,6 @@ public final class JRootPanes {
         }
 
         /**
-         * @see JRootPane#setDoubleBuffered(boolean)
-         */
-        default S setDoubleBuffered(final boolean arg0) {
-            return setup(result -> result.setDoubleBuffered(arg0));
-        }
-
-        /**
          * @see JRootPane#setGlassPane(Component)
          */
         default S setGlassPane(final Component arg0) {

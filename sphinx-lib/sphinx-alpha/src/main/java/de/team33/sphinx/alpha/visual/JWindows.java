@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.JLayeredPane;
 import javax.swing.JWindow;
@@ -59,13 +58,6 @@ public final class JWindows {
     public interface Setup<T extends JWindow, S extends Setup<T, S>> extends Windows.Setup<T, S> {
 
         /**
-         * @see JWindow#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
          * @see JWindow#setContentPane(Container)
          */
         default S setContentPane(final Container arg0) {
@@ -84,13 +76,6 @@ public final class JWindows {
          */
         default S setLayeredPane(final JLayeredPane arg0) {
             return setup(result -> result.setLayeredPane(arg0));
-        }
-
-        /**
-         * @see JWindow#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
         }
 
         /**

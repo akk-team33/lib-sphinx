@@ -61,7 +61,7 @@ public final class JTables {
      * @param <T> The final type of the target instance, at least {@link JTable}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JTable, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
@@ -104,7 +104,7 @@ public final class JTables {
          * @see JTable#removeEditor()
          */
         default S removeEditor() {
-            return setup(JTable::removeEditor);
+            return setup(result -> result.removeEditor());
         }
 
         /**

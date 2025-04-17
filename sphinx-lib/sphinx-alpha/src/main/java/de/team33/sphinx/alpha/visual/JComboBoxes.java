@@ -75,7 +75,7 @@ public final class JComboBoxes {
          * @see JComboBox#removeAllItems()
          */
         default S removeAllItems() {
-            return setup(JComboBox::removeAllItems);
+            return setup(result -> result.removeAllItems());
         }
 
         /**
@@ -118,13 +118,6 @@ public final class JComboBoxes {
          */
         default S setEditor(final ComboBoxEditor arg0) {
             return setup(result -> result.setEditor(arg0));
-        }
-
-        /**
-         * @see JComboBox#setEnabled(boolean)
-         */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
         }
 
         /**

@@ -1,10 +1,8 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Dialog.ModalityType;
-import java.awt.Shape;
 import java.util.function.Supplier;
 
 /**
@@ -50,13 +48,6 @@ public final class Dialogs {
     public interface Setup<T extends Dialog, S extends Setup<T, S>> extends Windows.Setup<T, S> {
 
         /**
-         * @see Dialog#setBackground(Color)
-         */
-        default S setBackground(final Color arg0) {
-            return setup(result -> result.setBackground(arg0));
-        }
-
-        /**
          * @see Dialog#setModal(boolean)
          */
         default S setModal(final boolean arg0) {
@@ -71,24 +62,10 @@ public final class Dialogs {
         }
 
         /**
-         * @see Dialog#setOpacity(float)
-         */
-        default S setOpacity(final float arg0) {
-            return setup(result -> result.setOpacity(arg0));
-        }
-
-        /**
          * @see Dialog#setResizable(boolean)
          */
         default S setResizable(final boolean arg0) {
             return setup(result -> result.setResizable(arg0));
-        }
-
-        /**
-         * @see Dialog#setShape(Shape)
-         */
-        default S setShape(final Shape arg0) {
-            return setup(result -> result.setShape(arg0));
         }
 
         /**
@@ -103,13 +80,6 @@ public final class Dialogs {
          */
         default S setUndecorated(final boolean arg0) {
             return setup(result -> result.setUndecorated(arg0));
-        }
-
-        /**
-         * @see Dialog#setVisible(boolean)
-         */
-        default S setVisible(final boolean arg0) {
-            return setup(result -> result.setVisible(arg0));
         }
     }
 }

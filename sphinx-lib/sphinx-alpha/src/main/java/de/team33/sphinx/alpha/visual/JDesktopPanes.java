@@ -1,7 +1,6 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Component;
 import java.util.function.Supplier;
 import javax.swing.DesktopManager;
 import javax.swing.JDesktopPane;
@@ -56,34 +55,6 @@ public final class JDesktopPanes {
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JDesktopPane, S extends Setup<T, S>> extends JLayeredPanes.Setup<T, S> {
-
-        /**
-         * @see JDesktopPane#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JDesktopPane#remove(int)
-         */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JDesktopPane#removeAll()
-         */
-        default S removeAll() {
-            return setup(JDesktopPane::removeAll);
-        }
-
-        /**
-         * @see JDesktopPane#setComponentZOrder(Component, int)
-         */
-        default S setComponentZOrder(final Component arg0, final int arg1) {
-            return setup(result -> result.setComponentZOrder(arg0, arg1));
-        }
 
         /**
          * @see JDesktopPane#setDesktopManager(DesktopManager)

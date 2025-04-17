@@ -4,9 +4,7 @@ import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.FocusTraversalPolicy;
-import java.awt.Font;
 import java.awt.LayoutManager;
-import java.util.Set;
 import java.util.function.Supplier;
 
 /**
@@ -111,7 +109,7 @@ public final class Containers {
          * @see Container#removeAll()
          */
         default S removeAll() {
-            return setup(Container::removeAll);
+            return setup(result -> result.removeAll());
         }
 
         /**
@@ -129,13 +127,6 @@ public final class Containers {
         }
 
         /**
-         * @see Container#setFocusTraversalKeys(int, Set)
-         */
-        default S setFocusTraversalKeys(final int arg0, final Set<? extends java.awt.AWTKeyStroke> arg1) {
-            return setup(result -> result.setFocusTraversalKeys(arg0, arg1));
-        }
-
-        /**
          * @see Container#setFocusTraversalPolicy(FocusTraversalPolicy)
          */
         default S setFocusTraversalPolicy(final FocusTraversalPolicy arg0) {
@@ -147,13 +138,6 @@ public final class Containers {
          */
         default S setFocusTraversalPolicyProvider(final boolean arg0) {
             return setup(result -> result.setFocusTraversalPolicyProvider(arg0));
-        }
-
-        /**
-         * @see Container#setFont(Font)
-         */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
         }
 
         /**

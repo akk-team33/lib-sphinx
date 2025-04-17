@@ -2,8 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -75,13 +73,6 @@ public final class JScrollPanes {
         }
 
         /**
-         * @see JScrollPane#setComponentOrientation(ComponentOrientation)
-         */
-        default S setComponentOrientation(final ComponentOrientation arg0) {
-            return setup(result -> result.setComponentOrientation(arg0));
-        }
-
-        /**
          * @see JScrollPane#setCorner(String, Component)
          */
         default S setCorner(final String arg0, final Component arg1) {
@@ -100,13 +91,6 @@ public final class JScrollPanes {
          */
         default S setHorizontalScrollBarPolicy(final int arg0) {
             return setup(result -> result.setHorizontalScrollBarPolicy(arg0));
-        }
-
-        /**
-         * @see JScrollPane#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
         }
 
         /**

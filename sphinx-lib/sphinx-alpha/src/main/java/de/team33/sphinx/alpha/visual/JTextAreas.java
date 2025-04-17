@@ -1,7 +1,6 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Font;
 import java.util.function.Supplier;
 import javax.swing.JTextArea;
 
@@ -59,13 +58,6 @@ public final class JTextAreas {
          */
         default S setColumns(final int arg0) {
             return setup(result -> result.setColumns(arg0));
-        }
-
-        /**
-         * @see JTextArea#setFont(Font)
-         */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
         }
 
         /**

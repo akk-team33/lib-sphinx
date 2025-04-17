@@ -56,7 +56,7 @@ public final class JTrees {
      * @param <T> The final type of the target instance, at least {@link JTree}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JTree, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 

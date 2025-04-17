@@ -56,27 +56,6 @@ public final class JSplitPanes {
     public interface Setup<T extends JSplitPane, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JSplitPane#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JSplitPane#remove(int)
-         */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JSplitPane#removeAll()
-         */
-        default S removeAll() {
-            return setup(JSplitPane::removeAll);
-        }
-
-        /**
          * @see JSplitPane#setBottomComponent(Component)
          */
         default S setBottomComponent(final Component arg0) {
@@ -93,7 +72,6 @@ public final class JSplitPanes {
         /**
          * @see JSplitPane#setDividerLocation(double)
          */
-        @SuppressWarnings("OverloadedMethodsWithSameNumberOfParameters")
         default S setDividerLocation(final double arg0) {
             return setup(result -> result.setDividerLocation(arg0));
         }
@@ -101,7 +79,6 @@ public final class JSplitPanes {
         /**
          * @see JSplitPane#setDividerLocation(int)
          */
-        @SuppressWarnings("OverloadedMethodsWithSameNumberOfParameters")
         default S setDividerLocation(final int arg0) {
             return setup(result -> result.setDividerLocation(arg0));
         }

@@ -60,7 +60,7 @@ public final class JLists {
      * @param <T> The final type of the target instance, at least {@link JList}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<E, T extends JList<E>, S extends Setup<E, T, S>> extends JComponents.Setup<T, S> {
 

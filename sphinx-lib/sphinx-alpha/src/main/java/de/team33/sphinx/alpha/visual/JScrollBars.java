@@ -63,13 +63,6 @@ public final class JScrollBars {
         }
 
         /**
-         * @see JScrollBar#setEnabled(boolean)
-         */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
-        }
-
-        /**
          * @see JScrollBar#setMaximum(int)
          */
         default S setMaximum(final int arg0) {

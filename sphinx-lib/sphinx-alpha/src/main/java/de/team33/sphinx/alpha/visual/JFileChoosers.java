@@ -1,7 +1,6 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-
 import java.io.File;
 import java.util.function.Supplier;
 import javax.swing.JComponent;
@@ -85,6 +84,13 @@ public final class JFileChoosers {
          */
         default S setAccessory(final JComponent arg0) {
             return setup(result -> result.setAccessory(arg0));
+        }
+
+        /**
+         * @see JFileChooser#setApproveButtonMnemonic(char)
+         */
+        default S setApproveButtonMnemonic(final char arg0) {
+            return setup(result -> result.setApproveButtonMnemonic(arg0));
         }
 
         /**

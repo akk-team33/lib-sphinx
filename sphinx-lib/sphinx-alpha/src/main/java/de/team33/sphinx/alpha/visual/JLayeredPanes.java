@@ -55,20 +55,6 @@ public final class JLayeredPanes {
     public interface Setup<T extends JLayeredPane, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
         /**
-         * @see JLayeredPane#remove(int)
-         */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JLayeredPane#removeAll()
-         */
-        default S removeAll() {
-            return setup(JLayeredPane::removeAll);
-        }
-
-        /**
          * @see JLayeredPane#setLayer(Component, int)
          */
         default S setLayer(final Component arg0, final int arg1) {
