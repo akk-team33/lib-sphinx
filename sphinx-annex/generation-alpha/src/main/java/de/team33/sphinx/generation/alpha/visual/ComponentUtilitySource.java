@@ -32,6 +32,16 @@ public class ComponentUtilitySource {
             "    public static <T extends %1$s> Builder<T> builder(final Supplier<T> newTarget) {%n" +
             "        return new Builder<>(newTarget, Builder.class);%n" +
             "    }";
+    private static final String METHOD3_FORMAT = //
+            "%n%n" +
+            "    /**%n" +
+            "     * Returns a new {@link Charger} for a given target instance.%n" +
+            "     * %n" +
+            "     * @param <T> The final type of the target instance, at least {@link %1$s}.%n" +
+            "     */%n" +
+            "    public static <T extends %1$s> Charger<T> charger(final T target) {%n" +
+            "        return new Charger<>(target, Charger.class);%n" +
+            "    }";
     private static final String FORMAT = //
             "package de.team33.sphinx.alpha.visual;%n%n" +
             "%6$s%n%n" +
@@ -42,14 +52,16 @@ public class ComponentUtilitySource {
             "public final class %7$s {%n" +
             "%n" +
             "    private %7$s() {%n" +
-            "    }%2$s%3$s%4$s%5$s%n" +
+            "    }%2$s%3$s%9$s%4$s%8$s%5$s%n" +
             "}%n";
 
     private final String target;
     private final String name;
     private final String factoryMethod1;
     private final String factoryMethod2;
+    private final String factoryMethod3;
     private final BuilderClassSource builderSource;
+    private final ChargerClassSource chargerSource;
     private final SetupInterfaceSource setupSource;
     private final String imports;
     private final Set<Class<?>> dependencies;
@@ -62,7 +74,9 @@ public class ComponentUtilitySource {
                 ? String.format(METHOD1_FORMAT, target)
                 : "";
         this.factoryMethod2 = String.format(METHOD2_FORMAT, target);
+        this.factoryMethod3 = String.format(METHOD3_FORMAT, target);
         this.builderSource = new BuilderClassSource(componentClass);
+        this.chargerSource = new ChargerClassSource(componentClass);
         this.setupSource = new SetupInterfaceSource(componentClass);
         dependencies.addAll(setupSource.getDependencies());
         this.imports = dependencies.stream()
@@ -91,7 +105,16 @@ public class ComponentUtilitySource {
 
     @Override
     public final String toString() {
-        return String.format(FORMAT, target, factoryMethod1, factoryMethod2, builderSource, setupSource, imports, name);
+        return String.format(FORMAT,
+                             target,
+                             factoryMethod1,
+                             factoryMethod2,
+                             builderSource,
+                             setupSource,
+                             imports,
+                             name,
+                             chargerSource,
+                             factoryMethod3);
     }
 
     public static void main(final String[] args) {
