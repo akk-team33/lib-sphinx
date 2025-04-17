@@ -63,7 +63,7 @@ public class Classes {
                          .distinct();
     }
 
-    private static Stream<Class<?>> ancestors(final Class<?> subject) {
+    public static Stream<Class<?>> ancestors(final Class<?> subject) {
         return (null == subject)
                 ? Stream.empty()
                 : Stream.concat(ancestors(subject.getSuperclass()),

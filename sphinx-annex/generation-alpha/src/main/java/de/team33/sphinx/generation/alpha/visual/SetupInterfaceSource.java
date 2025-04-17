@@ -1,14 +1,19 @@
 package de.team33.sphinx.generation.alpha.visual;
 
+import de.team33.sphinx.generation.alpha.Classes;
+
 import java.awt.*;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
+import static java.util.function.Predicate.not;
 
 public class SetupInterfaceSource {
 
@@ -31,12 +36,16 @@ public class SetupInterfaceSource {
     private final Set<Class<?>> dependencies;
 
     public SetupInterfaceSource(final Class<?> componentClass) {
-        this.dependencies = new HashSet<>(Arrays.asList(componentClass, componentClass.getSuperclass()));
+        this.dependencies = new HashSet<>(Arrays.asList(componentClass));
         this.target = componentClass.getSimpleName();
         this.ancestor = componentClass.getSuperclass().getSimpleName();
         this.methods = Stream.of(componentClass.getMethods())
-                             .filter(method -> !Modifier.isStatic(method.getModifiers()))
-                             .filter(method -> method.getDeclaringClass().equals(componentClass))
+                             .filter(not(method -> Modifier.isStatic(method.getModifiers())))
+                             .filter(not(Method::isSynthetic))
+                             .filter(not(Method::isBridge))
+                             .filter(not(method -> isDeprecated(method)))
+                           //.filter(method -> method.getDeclaringClass().equals(componentClass)) // more specific ...
+                             .filter(method -> isIntroducedBy(componentClass, method))
                              .filter(method -> Stream.of("set", "add", "remove")
                                                      .anyMatch(prefix -> method.getName().startsWith(prefix)))
                              .filter(method -> !method.getName().endsWith("Listener"))
@@ -46,6 +55,25 @@ public class SetupInterfaceSource {
                              .sorted(comparing(SetupMethodSource::getSignature))
                              .map(SetupMethodSource::toString)
                              .collect(Collectors.joining());
+    }
+
+    private static boolean isDeprecated(final Method method) {
+        return null != method.getAnnotation(Deprecated.class);
+    }
+
+    private static boolean isIntroducedBy(final Class<?> componentClass, final Method method) {
+        final Set<Class<?>> declaring = Classes.ancestors(componentClass)
+                                               .filter(c -> isDeclaring(c, method))
+                                               .collect(Collectors.toSet());
+        return (1 == declaring.size()) && declaring.contains(componentClass);
+    }
+
+    private static boolean isDeclaring(final Class<?> componentClass, final Method method) {
+        try {
+            return null != componentClass.getMethod(method.getName(), method.getParameterTypes());
+        } catch (final NoSuchMethodException e) {
+            return false;
+        }
     }
 
     public final Set<Class<?>> getDependencies() {

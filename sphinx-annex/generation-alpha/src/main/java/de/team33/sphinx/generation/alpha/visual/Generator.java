@@ -7,20 +7,19 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
-import java.util.stream.Stream;
 
-import static java.lang.System.Logger.Level.*;
+import static java.lang.System.Logger.Level.INFO;
 
 public class Generator {
 
     private static final Logger LOG = System.getLogger(Generator.class.getCanonicalName());
-    private static final Path PACKAGE_PATH = Paths.get("src", "main", "java", "de", "team33", "sphinx", "alpha", "visual")
+    private static final Path PACKAGE_PATH = Paths.get("sphinx-lib", "sphinx-alpha", "src", "main", "java", "de", "team33", "sphinx", "alpha", "visual")
                                                   .toAbsolutePath()
                                                   .normalize();
     public static final OpenOption[] OPEN_OPTIONS = {
-            StandardOpenOption.CREATE_NEW,
-            // StandardOpenOption.CREATE,
-            // StandardOpenOption.TRUNCATE_EXISTING
+            //StandardOpenOption.CREATE_NEW,
+            StandardOpenOption.CREATE,
+            StandardOpenOption.TRUNCATE_EXISTING
     }; // <-- overwrite or not?
 
     public static void main(final String[] args) {
