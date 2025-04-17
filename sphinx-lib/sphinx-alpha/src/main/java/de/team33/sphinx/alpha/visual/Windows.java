@@ -29,6 +29,15 @@ public final class Windows {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link Window}.
+     */
+    public static <T extends Window> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link Window}.
      * 
      * @param <T> The final type of the target instances, at least {@link Window}.
@@ -39,6 +48,21 @@ public final class Windows {
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link Window}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link Window}.
+     */
+    public static final class Charger<T extends Window>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 

@@ -32,6 +32,15 @@ public final class JTextComponents {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTextComponent}.
+     */
+    public static <T extends JTextComponent> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JTextComponent}.
      * 
      * @param <T> The final type of the target instances, at least {@link JTextComponent}.
@@ -42,6 +51,21 @@ public final class JTextComponents {
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JTextComponent}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTextComponent}.
+     */
+    public static final class Charger<T extends JTextComponent>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 

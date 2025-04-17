@@ -40,6 +40,15 @@ public final class JLists {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JList}.
+     */
+    public static <E, T extends JList<E>> Charger<E, T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JList}.
      * 
      * @param <T> The final type of the target instances, at least {@link JList}.
@@ -50,6 +59,21 @@ public final class JLists {
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JList}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JList}.
+     */
+    public static final class Charger<E, T extends JList<E>>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<E, T>>
+            implements Setup<E, T, Charger<E, T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 
@@ -165,8 +189,8 @@ public final class JLists {
         /**
          * @see JList#setSelectedValue(Object, boolean)
          */
-        default S setSelectedValue(final Object item, final boolean shouldScroll) {
-            return setup(result -> result.setSelectedValue(item, shouldScroll));
+        default S setSelectedValue(final Object arg0, final boolean arg1) {
+            return setup(result -> result.setSelectedValue(arg0, arg1));
         }
 
         /**
