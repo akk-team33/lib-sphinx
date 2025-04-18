@@ -1,13 +1,9 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Color;
 import java.awt.Frame;
-import java.awt.Image;
 import java.awt.MenuBar;
-import java.awt.MenuComponent;
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.util.function.Supplier;
 
 /**
@@ -36,6 +32,15 @@ public final class Frames {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link Frame}.
+     */
+    public static <T extends Frame> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link Frame}.
      * 
      * @param <T> The final type of the target instances, at least {@link Frame}.
@@ -50,6 +55,21 @@ public final class Frames {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link Frame}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link Frame}.
+     */
+    public static final class Charger<T extends Frame>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link Frame}.
      * 
      * @param <T> The final type of the target instance, at least {@link Frame}.
@@ -60,31 +80,10 @@ public final class Frames {
     public interface Setup<T extends Frame, S extends Setup<T, S>> extends Windows.Setup<T, S> {
 
         /**
-         * @see Frame#remove(MenuComponent)
-         */
-        default S remove(final MenuComponent arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see Frame#setBackground(Color)
-         */
-        default S setBackground(final Color arg0) {
-            return setup(result -> result.setBackground(arg0));
-        }
-
-        /**
          * @see Frame#setExtendedState(int)
          */
         default S setExtendedState(final int arg0) {
             return setup(result -> result.setExtendedState(arg0));
-        }
-
-        /**
-         * @see Frame#setIconImage(Image)
-         */
-        default S setIconImage(final Image arg0) {
-            return setup(result -> result.setIconImage(arg0));
         }
 
         /**
@@ -102,24 +101,10 @@ public final class Frames {
         }
 
         /**
-         * @see Frame#setOpacity(float)
-         */
-        default S setOpacity(final float arg0) {
-            return setup(result -> result.setOpacity(arg0));
-        }
-
-        /**
          * @see Frame#setResizable(boolean)
          */
         default S setResizable(final boolean arg0) {
             return setup(result -> result.setResizable(arg0));
-        }
-
-        /**
-         * @see Frame#setShape(Shape)
-         */
-        default S setShape(final Shape arg0) {
-            return setup(result -> result.setShape(arg0));
         }
 
         /**

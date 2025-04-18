@@ -31,6 +31,15 @@ public final class JLayeredPanes {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JLayeredPane}.
+     */
+    public static <T extends JLayeredPane> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JLayeredPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JLayeredPane}.
@@ -45,6 +54,21 @@ public final class JLayeredPanes {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JLayeredPane}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JLayeredPane}.
+     */
+    public static final class Charger<T extends JLayeredPane>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JLayeredPane}.
      * 
      * @param <T> The final type of the target instance, at least {@link JLayeredPane}.
@@ -53,20 +77,6 @@ public final class JLayeredPanes {
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JLayeredPane, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
-
-        /**
-         * @see JLayeredPane#remove(int)
-         */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JLayeredPane#removeAll()
-         */
-        default S removeAll() {
-            return setup(JLayeredPane::removeAll);
-        }
 
         /**
          * @see JLayeredPane#setLayer(Component, int)

@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
@@ -36,6 +35,15 @@ public final class JDialogs {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JDialog}.
+     */
+    public static <T extends JDialog> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JDialog}.
      * 
      * @param <T> The final type of the target instances, at least {@link JDialog}.
@@ -50,6 +58,21 @@ public final class JDialogs {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JDialog}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JDialog}.
+     */
+    public static final class Charger<T extends JDialog>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JDialog}.
      * 
      * @param <T> The final type of the target instance, at least {@link JDialog}.
@@ -58,13 +81,6 @@ public final class JDialogs {
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JDialog, S extends Setup<T, S>> extends Dialogs.Setup<T, S> {
-
-        /**
-         * @see JDialog#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
 
         /**
          * @see JDialog#setContentPane(Container)
@@ -99,13 +115,6 @@ public final class JDialogs {
          */
         default S setLayeredPane(final JLayeredPane arg0) {
             return setup(result -> result.setLayeredPane(arg0));
-        }
-
-        /**
-         * @see JDialog#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
         }
 
         /**

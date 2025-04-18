@@ -37,6 +37,15 @@ public final class JTrees {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTree}.
+     */
+    public static <T extends JTree> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JTree}.
      * 
      * @param <T> The final type of the target instances, at least {@link JTree}.
@@ -51,12 +60,27 @@ public final class JTrees {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JTree}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTree}.
+     */
+    public static final class Charger<T extends JTree>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JTree}.
      * 
      * @param <T> The final type of the target instance, at least {@link JTree}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JTree, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 

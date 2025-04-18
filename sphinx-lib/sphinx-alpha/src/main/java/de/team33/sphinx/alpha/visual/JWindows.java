@@ -3,7 +3,6 @@ package de.team33.sphinx.alpha.visual;
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.JLayeredPane;
 import javax.swing.JWindow;
@@ -35,6 +34,15 @@ public final class JWindows {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JWindow}.
+     */
+    public static <T extends JWindow> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JWindow}.
      * 
      * @param <T> The final type of the target instances, at least {@link JWindow}.
@@ -49,6 +57,21 @@ public final class JWindows {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JWindow}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JWindow}.
+     */
+    public static final class Charger<T extends JWindow>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JWindow}.
      * 
      * @param <T> The final type of the target instance, at least {@link JWindow}.
@@ -57,13 +80,6 @@ public final class JWindows {
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JWindow, S extends Setup<T, S>> extends Windows.Setup<T, S> {
-
-        /**
-         * @see JWindow#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
 
         /**
          * @see JWindow#setContentPane(Container)
@@ -84,13 +100,6 @@ public final class JWindows {
          */
         default S setLayeredPane(final JLayeredPane arg0) {
             return setup(result -> result.setLayeredPane(arg0));
-        }
-
-        /**
-         * @see JWindow#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
         }
 
         /**

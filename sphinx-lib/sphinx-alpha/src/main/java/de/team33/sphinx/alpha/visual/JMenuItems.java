@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
-import javax.swing.ButtonModel;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.plaf.MenuItemUI;
@@ -33,6 +32,15 @@ public final class JMenuItems {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JMenuItem}.
+     */
+    public static <T extends JMenuItem> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JMenuItem}.
      * 
      * @param <T> The final type of the target instances, at least {@link JMenuItem}.
@@ -47,12 +55,27 @@ public final class JMenuItems {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JMenuItem}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JMenuItem}.
+     */
+    public static final class Charger<T extends JMenuItem>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JMenuItem}.
      * 
      * @param <T> The final type of the target instance, at least {@link JMenuItem}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "MethodOverloadsMethodOfSuperclass"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JMenuItem, S extends Setup<T, S>> extends AbstractButtons.Setup<T, S> {
 
@@ -68,20 +91,6 @@ public final class JMenuItems {
          */
         default S setArmed(final boolean arg0) {
             return setup(result -> result.setArmed(arg0));
-        }
-
-        /**
-         * @see JMenuItem#setEnabled(boolean)
-         */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
-        }
-
-        /**
-         * @see JMenuItem#setModel(ButtonModel)
-         */
-        default S setModel(final ButtonModel arg0) {
-            return setup(result -> result.setModel(arg0));
         }
 
         /**

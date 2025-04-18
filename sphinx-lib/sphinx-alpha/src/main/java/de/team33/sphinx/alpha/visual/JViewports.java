@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.function.Supplier;
 import javax.swing.JViewport;
-import javax.swing.border.Border;
 import javax.swing.plaf.ViewportUI;
 
 /**
@@ -35,6 +34,15 @@ public final class JViewports {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JViewport}.
+     */
+    public static <T extends JViewport> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JViewport}.
      * 
      * @param <T> The final type of the target instances, at least {@link JViewport}.
@@ -49,6 +57,21 @@ public final class JViewports {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JViewport}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JViewport}.
+     */
+    public static final class Charger<T extends JViewport>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JViewport}.
      * 
      * @param <T> The final type of the target instance, at least {@link JViewport}.
@@ -57,20 +80,6 @@ public final class JViewports {
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JViewport, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
-
-        /**
-         * @see JViewport#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JViewport#setBorder(Border)
-         */
-        default S setBorder(final Border arg0) {
-            return setup(result -> result.setBorder(arg0));
-        }
 
         /**
          * @see JViewport#setExtentSize(Dimension)

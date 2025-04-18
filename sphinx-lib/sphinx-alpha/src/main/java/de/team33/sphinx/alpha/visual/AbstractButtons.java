@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Insets;
-import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.AbstractButton;
 import javax.swing.Action;
@@ -29,6 +28,15 @@ public final class AbstractButtons {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link AbstractButton}.
+     */
+    public static <T extends AbstractButton> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link AbstractButton}.
      * 
      * @param <T> The final type of the target instances, at least {@link AbstractButton}.
@@ -43,12 +51,27 @@ public final class AbstractButtons {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link AbstractButton}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link AbstractButton}.
+     */
+    public static final class Charger<T extends AbstractButton>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link AbstractButton}.
      * 
      * @param <T> The final type of the target instance, at least {@link AbstractButton}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends AbstractButton, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
@@ -102,13 +125,6 @@ public final class AbstractButtons {
         }
 
         /**
-         * @see AbstractButton#setEnabled(boolean)
-         */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
-        }
-
-        /**
          * @see AbstractButton#setFocusPainted(boolean)
          */
         default S setFocusPainted(final boolean arg0) {
@@ -151,17 +167,17 @@ public final class AbstractButtons {
         }
 
         /**
-         * @see AbstractButton#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
-        }
-
-        /**
          * @see AbstractButton#setMargin(Insets)
          */
         default S setMargin(final Insets arg0) {
             return setup(result -> result.setMargin(arg0));
+        }
+
+        /**
+         * @see AbstractButton#setMnemonic(char)
+         */
+        default S setMnemonic(final char arg0) {
+            return setup(result -> result.setMnemonic(arg0));
         }
 
         /**

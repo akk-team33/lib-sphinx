@@ -35,6 +35,15 @@ public final class JTabbedPanes {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTabbedPane}.
+     */
+    public static <T extends JTabbedPane> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JTabbedPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JTabbedPane}.
@@ -49,49 +58,29 @@ public final class JTabbedPanes {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JTabbedPane}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTabbedPane}.
+     */
+    public static final class Charger<T extends JTabbedPane>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JTabbedPane}.
      * 
      * @param <T> The final type of the target instance, at least {@link JTabbedPane}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JTabbedPane, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
-
-        /**
-         * @see JTabbedPane#add(Component)
-         */
-        default S add(final Component arg0) {
-            return setup(result -> result.add(arg0));
-        }
-
-        /**
-         * @see JTabbedPane#add(Component, Object)
-         */
-        default S add(final Component arg0, final Object arg1) {
-            return setup(result -> result.add(arg0, arg1));
-        }
-
-        /**
-         * @see JTabbedPane#add(Component, Object, int)
-         */
-        default S add(final Component arg0, final Object arg1, final int arg2) {
-            return setup(result -> result.add(arg0, arg1, arg2));
-        }
-
-        /**
-         * @see JTabbedPane#add(Component, int)
-         */
-        default S add(final Component arg0, final int arg1) {
-            return setup(result -> result.add(arg0, arg1));
-        }
-
-        /**
-         * @see JTabbedPane#add(String, Component)
-         */
-        default S add(final String arg0, final Component arg1) {
-            return setup(result -> result.add(arg0, arg1));
-        }
 
         /**
          * @see JTabbedPane#addTab(String, Component)
@@ -112,27 +101,6 @@ public final class JTabbedPanes {
          */
         default S addTab(final String arg0, final Icon arg1, final Component arg2, final String arg3) {
             return setup(result -> result.addTab(arg0, arg1, arg2, arg3));
-        }
-
-        /**
-         * @see JTabbedPane#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JTabbedPane#remove(int)
-         */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JTabbedPane#removeAll()
-         */
-        default S removeAll() {
-            return setup(JTabbedPane::removeAll);
         }
 
         /**
@@ -173,8 +141,8 @@ public final class JTabbedPanes {
         /**
          * @see JTabbedPane#setEnabledAt(int, boolean)
          */
-        default S setEnabledAt(final int index, final boolean enabled) {
-            return setup(result -> result.setEnabledAt(index, enabled));
+        default S setEnabledAt(final int arg0, final boolean arg1) {
+            return setup(result -> result.setEnabledAt(arg0, arg1));
         }
 
         /**

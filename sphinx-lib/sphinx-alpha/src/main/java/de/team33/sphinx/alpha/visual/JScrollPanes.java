@@ -2,8 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.LayoutManager;
 import java.util.function.Supplier;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -37,6 +35,15 @@ public final class JScrollPanes {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JScrollPane}.
+     */
+    public static <T extends JScrollPane> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JScrollPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JScrollPane}.
@@ -47,6 +54,21 @@ public final class JScrollPanes {
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JScrollPane}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JScrollPane}.
+     */
+    public static final class Charger<T extends JScrollPane>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 
@@ -75,13 +97,6 @@ public final class JScrollPanes {
         }
 
         /**
-         * @see JScrollPane#setComponentOrientation(ComponentOrientation)
-         */
-        default S setComponentOrientation(final ComponentOrientation arg0) {
-            return setup(result -> result.setComponentOrientation(arg0));
-        }
-
-        /**
          * @see JScrollPane#setCorner(String, Component)
          */
         default S setCorner(final String arg0, final Component arg1) {
@@ -100,13 +115,6 @@ public final class JScrollPanes {
          */
         default S setHorizontalScrollBarPolicy(final int arg0) {
             return setup(result -> result.setHorizontalScrollBarPolicy(arg0));
-        }
-
-        /**
-         * @see JScrollPane#setLayout(LayoutManager)
-         */
-        default S setLayout(final LayoutManager arg0) {
-            return setup(result -> result.setLayout(arg0));
         }
 
         /**

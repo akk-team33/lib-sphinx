@@ -42,6 +42,15 @@ public final class JTables {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTable}.
+     */
+    public static <T extends JTable> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JTable}.
      * 
      * @param <T> The final type of the target instances, at least {@link JTable}.
@@ -56,12 +65,27 @@ public final class JTables {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JTable}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTable}.
+     */
+    public static final class Charger<T extends JTable>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JTable}.
      * 
      * @param <T> The final type of the target instance, at least {@link JTable}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JTable, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
@@ -104,7 +128,7 @@ public final class JTables {
          * @see JTable#removeEditor()
          */
         default S removeEditor() {
-            return setup(JTable::removeEditor);
+            return setup(result -> result.removeEditor());
         }
 
         /**

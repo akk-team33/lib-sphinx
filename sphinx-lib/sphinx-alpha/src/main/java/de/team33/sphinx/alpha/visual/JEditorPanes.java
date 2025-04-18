@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import de.team33.patterns.exceptional.dione.Conversion;
-
 import java.net.URL;
 import java.util.function.Supplier;
 import javax.swing.JEditorPane;
@@ -34,6 +33,15 @@ public final class JEditorPanes {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JEditorPane}.
+     */
+    public static <T extends JEditorPane> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JEditorPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JEditorPane}.
@@ -44,6 +52,21 @@ public final class JEditorPanes {
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JEditorPane}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JEditorPane}.
+     */
+    public static final class Charger<T extends JEditorPane>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 
@@ -90,13 +113,6 @@ public final class JEditorPanes {
          */
         default S setPage(final URL arg0) {
             return setup(Conversion.consumer(result -> result.setPage(arg0)));
-        }
-
-        /**
-         * @see JEditorPane#setText(String)
-         */
-        default S setText(final String arg0) {
-            return setup(result -> result.setText(arg0));
         }
     }
 }

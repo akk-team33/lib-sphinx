@@ -1,10 +1,8 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Dialog.ModalityType;
-import java.awt.Shape;
 import java.util.function.Supplier;
 
 /**
@@ -26,6 +24,15 @@ public final class Dialogs {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link Dialog}.
+     */
+    public static <T extends Dialog> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link Dialog}.
      * 
      * @param <T> The final type of the target instances, at least {@link Dialog}.
@@ -40,6 +47,21 @@ public final class Dialogs {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link Dialog}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link Dialog}.
+     */
+    public static final class Charger<T extends Dialog>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link Dialog}.
      * 
      * @param <T> The final type of the target instance, at least {@link Dialog}.
@@ -48,13 +70,6 @@ public final class Dialogs {
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends Dialog, S extends Setup<T, S>> extends Windows.Setup<T, S> {
-
-        /**
-         * @see Dialog#setBackground(Color)
-         */
-        default S setBackground(final Color arg0) {
-            return setup(result -> result.setBackground(arg0));
-        }
 
         /**
          * @see Dialog#setModal(boolean)
@@ -71,24 +86,10 @@ public final class Dialogs {
         }
 
         /**
-         * @see Dialog#setOpacity(float)
-         */
-        default S setOpacity(final float arg0) {
-            return setup(result -> result.setOpacity(arg0));
-        }
-
-        /**
          * @see Dialog#setResizable(boolean)
          */
         default S setResizable(final boolean arg0) {
             return setup(result -> result.setResizable(arg0));
-        }
-
-        /**
-         * @see Dialog#setShape(Shape)
-         */
-        default S setShape(final Shape arg0) {
-            return setup(result -> result.setShape(arg0));
         }
 
         /**
@@ -103,13 +104,6 @@ public final class Dialogs {
          */
         default S setUndecorated(final boolean arg0) {
             return setup(result -> result.setUndecorated(arg0));
-        }
-
-        /**
-         * @see Dialog#setVisible(boolean)
-         */
-        default S setVisible(final boolean arg0) {
-            return setup(result -> result.setVisible(arg0));
         }
     }
 }

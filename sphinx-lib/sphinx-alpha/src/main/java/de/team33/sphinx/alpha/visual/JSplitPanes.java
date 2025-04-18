@@ -32,6 +32,15 @@ public final class JSplitPanes {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JSplitPane}.
+     */
+    public static <T extends JSplitPane> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JSplitPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JSplitPane}.
@@ -46,6 +55,21 @@ public final class JSplitPanes {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JSplitPane}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JSplitPane}.
+     */
+    public static final class Charger<T extends JSplitPane>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JSplitPane}.
      * 
      * @param <T> The final type of the target instance, at least {@link JSplitPane}.
@@ -54,27 +78,6 @@ public final class JSplitPanes {
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JSplitPane, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
-
-        /**
-         * @see JSplitPane#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JSplitPane#remove(int)
-         */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JSplitPane#removeAll()
-         */
-        default S removeAll() {
-            return setup(JSplitPane::removeAll);
-        }
 
         /**
          * @see JSplitPane#setBottomComponent(Component)
@@ -93,7 +96,6 @@ public final class JSplitPanes {
         /**
          * @see JSplitPane#setDividerLocation(double)
          */
-        @SuppressWarnings("OverloadedMethodsWithSameNumberOfParameters")
         default S setDividerLocation(final double arg0) {
             return setup(result -> result.setDividerLocation(arg0));
         }
@@ -101,7 +103,6 @@ public final class JSplitPanes {
         /**
          * @see JSplitPane#setDividerLocation(int)
          */
-        @SuppressWarnings("OverloadedMethodsWithSameNumberOfParameters")
         default S setDividerLocation(final int arg0) {
             return setup(result -> result.setDividerLocation(arg0));
         }

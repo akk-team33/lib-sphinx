@@ -1,7 +1,6 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Component;
 import java.util.function.Supplier;
 import javax.swing.DesktopManager;
 import javax.swing.JDesktopPane;
@@ -34,6 +33,15 @@ public final class JDesktopPanes {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JDesktopPane}.
+     */
+    public static <T extends JDesktopPane> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JDesktopPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JDesktopPane}.
@@ -48,6 +56,21 @@ public final class JDesktopPanes {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JDesktopPane}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JDesktopPane}.
+     */
+    public static final class Charger<T extends JDesktopPane>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JDesktopPane}.
      * 
      * @param <T> The final type of the target instance, at least {@link JDesktopPane}.
@@ -56,34 +79,6 @@ public final class JDesktopPanes {
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JDesktopPane, S extends Setup<T, S>> extends JLayeredPanes.Setup<T, S> {
-
-        /**
-         * @see JDesktopPane#remove(Component)
-         */
-        default S remove(final Component arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JDesktopPane#remove(int)
-         */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
-        }
-
-        /**
-         * @see JDesktopPane#removeAll()
-         */
-        default S removeAll() {
-            return setup(JDesktopPane::removeAll);
-        }
-
-        /**
-         * @see JDesktopPane#setComponentZOrder(Component, int)
-         */
-        default S setComponentZOrder(final Component arg0, final int arg1) {
-            return setup(result -> result.setComponentZOrder(arg0, arg1));
-        }
 
         /**
          * @see JDesktopPane#setDesktopManager(DesktopManager)

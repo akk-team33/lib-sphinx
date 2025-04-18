@@ -36,6 +36,15 @@ public final class JPopupMenus {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JPopupMenu}.
+     */
+    public static <T extends JPopupMenu> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JPopupMenu}.
      * 
      * @param <T> The final type of the target instances, at least {@link JPopupMenu}.
@@ -50,12 +59,27 @@ public final class JPopupMenus {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JPopupMenu}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JPopupMenu}.
+     */
+    public static final class Charger<T extends JPopupMenu>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JPopupMenu}.
      * 
      * @param <T> The final type of the target instance, at least {@link JPopupMenu}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "MethodOverloadsMethodOfSuperclass"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JPopupMenu, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
 
@@ -84,14 +108,7 @@ public final class JPopupMenus {
          * @see JPopupMenu#addSeparator()
          */
         default S addSeparator() {
-            return setup(JPopupMenu::addSeparator);
-        }
-
-        /**
-         * @see JPopupMenu#remove(int)
-         */
-        default S remove(final int arg0) {
-            return setup(result -> result.remove(arg0));
+            return setup(result -> result.addSeparator());
         }
 
         /**
@@ -120,13 +137,6 @@ public final class JPopupMenus {
          */
         default S setLightWeightPopupEnabled(final boolean arg0) {
             return setup(result -> result.setLightWeightPopupEnabled(arg0));
-        }
-
-        /**
-         * @see JPopupMenu#setLocation(int, int)
-         */
-        default S setLocation(final int arg0, final int arg1) {
-            return setup(result -> result.setLocation(arg0, arg1));
         }
 
         /**
@@ -162,13 +172,6 @@ public final class JPopupMenus {
          */
         default S setUI(final PopupMenuUI arg0) {
             return setup(result -> result.setUI(arg0));
-        }
-
-        /**
-         * @see JPopupMenu#setVisible(boolean)
-         */
-        default S setVisible(final boolean arg0) {
-            return setup(result -> result.setVisible(arg0));
         }
     }
 }

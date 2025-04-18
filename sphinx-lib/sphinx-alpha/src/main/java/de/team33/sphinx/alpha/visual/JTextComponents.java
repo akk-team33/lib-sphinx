@@ -2,7 +2,6 @@ package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Insets;
 import java.util.function.Supplier;
 import javax.swing.DropMode;
@@ -33,6 +32,15 @@ public final class JTextComponents {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTextComponent}.
+     */
+    public static <T extends JTextComponent> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JTextComponent}.
      * 
      * @param <T> The final type of the target instances, at least {@link JTextComponent}.
@@ -43,6 +51,21 @@ public final class JTextComponents {
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JTextComponent}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTextComponent}.
+     */
+    public static final class Charger<T extends JTextComponent>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 
@@ -75,13 +98,6 @@ public final class JTextComponents {
          */
         default S setCaretPosition(final int arg0) {
             return setup(result -> result.setCaretPosition(arg0));
-        }
-
-        /**
-         * @see JTextComponent#setComponentOrientation(ComponentOrientation)
-         */
-        default S setComponentOrientation(final ComponentOrientation arg0) {
-            return setup(result -> result.setComponentOrientation(arg0));
         }
 
         /**

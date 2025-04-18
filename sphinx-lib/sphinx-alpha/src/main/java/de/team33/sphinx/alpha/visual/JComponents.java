@@ -1,10 +1,6 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.util.Set;
 import java.util.function.Supplier;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
@@ -33,6 +29,15 @@ public final class JComponents {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JComponent}.
+     */
+    public static <T extends JComponent> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JComponent}.
      * 
      * @param <T> The final type of the target instances, at least {@link JComponent}.
@@ -47,12 +52,27 @@ public final class JComponents {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JComponent}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JComponent}.
+     */
+    public static final class Charger<T extends JComponent>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JComponent}.
      * 
      * @param <T> The final type of the target instance, at least {@link JComponent}.
      * @param <S> The final type of the Setup implementation.
      */
-    @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
+    @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JComponent, S extends Setup<T, S>> extends Containers.Setup<T, S> {
 
@@ -85,13 +105,6 @@ public final class JComponents {
         }
 
         /**
-         * @see JComponent#setBackground(Color)
-         */
-        default S setBackground(final Color arg0) {
-            return setup(result -> result.setBackground(arg0));
-        }
-
-        /**
          * @see JComponent#setBorder(Border)
          */
         default S setBorder(final Border arg0) {
@@ -120,34 +133,6 @@ public final class JComponents {
         }
 
         /**
-         * @see JComponent#setEnabled(boolean)
-         */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
-        }
-
-        /**
-         * @see JComponent#setFocusTraversalKeys(int, Set)
-         */
-        default S setFocusTraversalKeys(final int arg0, final Set<? extends java.awt.AWTKeyStroke> arg1) {
-            return setup(result -> result.setFocusTraversalKeys(arg0, arg1));
-        }
-
-        /**
-         * @see JComponent#setFont(Font)
-         */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
-        }
-
-        /**
-         * @see JComponent#setForeground(Color)
-         */
-        default S setForeground(final Color arg0) {
-            return setup(result -> result.setForeground(arg0));
-        }
-
-        /**
          * @see JComponent#setInheritsPopupMenu(boolean)
          */
         default S setInheritsPopupMenu(final boolean arg0) {
@@ -169,31 +154,10 @@ public final class JComponents {
         }
 
         /**
-         * @see JComponent#setMaximumSize(Dimension)
-         */
-        default S setMaximumSize(final Dimension arg0) {
-            return setup(result -> result.setMaximumSize(arg0));
-        }
-
-        /**
-         * @see JComponent#setMinimumSize(Dimension)
-         */
-        default S setMinimumSize(final Dimension arg0) {
-            return setup(result -> result.setMinimumSize(arg0));
-        }
-
-        /**
          * @see JComponent#setOpaque(boolean)
          */
         default S setOpaque(final boolean arg0) {
             return setup(result -> result.setOpaque(arg0));
-        }
-
-        /**
-         * @see JComponent#setPreferredSize(Dimension)
-         */
-        default S setPreferredSize(final Dimension arg0) {
-            return setup(result -> result.setPreferredSize(arg0));
         }
 
         /**
@@ -222,13 +186,6 @@ public final class JComponents {
          */
         default S setVerifyInputWhenFocusTarget(final boolean arg0) {
             return setup(result -> result.setVerifyInputWhenFocusTarget(arg0));
-        }
-
-        /**
-         * @see JComponent#setVisible(boolean)
-         */
-        default S setVisible(final boolean arg0) {
-            return setup(result -> result.setVisible(arg0));
         }
     }
 }

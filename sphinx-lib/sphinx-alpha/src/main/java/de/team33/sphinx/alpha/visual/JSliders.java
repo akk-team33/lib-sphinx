@@ -1,7 +1,6 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Font;
 import java.util.Dictionary;
 import java.util.function.Supplier;
 import javax.swing.BoundedRangeModel;
@@ -34,6 +33,15 @@ public final class JSliders {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JSlider}.
+     */
+    public static <T extends JSlider> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JSlider}.
      * 
      * @param <T> The final type of the target instances, at least {@link JSlider}.
@@ -44,6 +52,21 @@ public final class JSliders {
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JSlider}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JSlider}.
+     */
+    public static final class Charger<T extends JSlider>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 
@@ -62,13 +85,6 @@ public final class JSliders {
          */
         default S setExtent(final int arg0) {
             return setup(result -> result.setExtent(arg0));
-        }
-
-        /**
-         * @see JSlider#setFont(Font)
-         */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
         }
 
         /**

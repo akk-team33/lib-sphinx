@@ -4,9 +4,7 @@ import de.team33.patterns.building.elara.LateBuilder;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.FocusTraversalPolicy;
-import java.awt.Font;
 import java.awt.LayoutManager;
-import java.util.Set;
 import java.util.function.Supplier;
 
 /**
@@ -35,6 +33,15 @@ public final class Containers {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link Container}.
+     */
+    public static <T extends Container> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link Container}.
      * 
      * @param <T> The final type of the target instances, at least {@link Container}.
@@ -45,6 +52,21 @@ public final class Containers {
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link Container}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link Container}.
+     */
+    public static final class Charger<T extends Container>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 
@@ -111,7 +133,7 @@ public final class Containers {
          * @see Container#removeAll()
          */
         default S removeAll() {
-            return setup(Container::removeAll);
+            return setup(result -> result.removeAll());
         }
 
         /**
@@ -129,13 +151,6 @@ public final class Containers {
         }
 
         /**
-         * @see Container#setFocusTraversalKeys(int, Set)
-         */
-        default S setFocusTraversalKeys(final int arg0, final Set<? extends java.awt.AWTKeyStroke> arg1) {
-            return setup(result -> result.setFocusTraversalKeys(arg0, arg1));
-        }
-
-        /**
          * @see Container#setFocusTraversalPolicy(FocusTraversalPolicy)
          */
         default S setFocusTraversalPolicy(final FocusTraversalPolicy arg0) {
@@ -147,13 +162,6 @@ public final class Containers {
          */
         default S setFocusTraversalPolicyProvider(final boolean arg0) {
             return setup(result -> result.setFocusTraversalPolicyProvider(arg0));
-        }
-
-        /**
-         * @see Container#setFont(Font)
-         */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
         }
 
         /**

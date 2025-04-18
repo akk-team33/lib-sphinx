@@ -1,11 +1,9 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Font;
 import java.util.function.Supplier;
 import javax.swing.Action;
 import javax.swing.JTextField;
-import javax.swing.text.Document;
 
 /**
  * Utility class to handle {@link JTextField}s.
@@ -25,7 +23,7 @@ public final class JTextFields {
 
     /**
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
-     *
+     * 
      * @param <T> The final type of the target instances, at least {@link JTextField}.
      */
     public static <T extends JTextField> Builder<T> builder(final Supplier<T> newTarget) {
@@ -34,7 +32,7 @@ public final class JTextFields {
 
     /**
      * Returns a new {@link Charger} for a given target instance.
-     *
+     * 
      * @param <T> The final type of the target instance, at least {@link JTextField}.
      */
     public static <T extends JTextField> Charger<T> charger(final T target) {
@@ -57,11 +55,12 @@ public final class JTextFields {
 
     /**
      * Charger implementation to charge target instances of {@link JTextField}.
-     *
+     * 
      * @param <T> The final type of the target instance, at least {@link JTextField}.
      */
     public static final class Charger<T extends JTextField>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>> implements Setup<T, Charger<T>> {
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
 
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Charger(final T target, final Class chargerClass) {
@@ -98,20 +97,6 @@ public final class JTextFields {
          */
         default S setColumns(final int arg0) {
             return setup(result -> result.setColumns(arg0));
-        }
-
-        /**
-         * @see JTextField#setDocument(Document)
-         */
-        default S setDocument(final Document arg0) {
-            return setup(result -> result.setDocument(arg0));
-        }
-
-        /**
-         * @see JTextField#setFont(Font)
-         */
-        default S setFont(final Font arg0) {
-            return setup(result -> result.setFont(arg0));
         }
 
         /**

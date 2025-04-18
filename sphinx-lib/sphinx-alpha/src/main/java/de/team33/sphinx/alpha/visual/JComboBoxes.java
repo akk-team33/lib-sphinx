@@ -39,6 +39,16 @@ public final class JComboBoxes {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     *
+     * @param <E> The element type.
+     * @param <T> The final type of the target instance, at least {@link JComboBox}.
+     */
+    public static <E, T extends JComboBox<E>> Charger<E, T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JComboBox}.
      *
      * @param <E> The element type.
@@ -50,6 +60,21 @@ public final class JComboBoxes {
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JComboBox}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JComboBox}.
+     */
+    public static final class Charger<E, T extends JComboBox<E>>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<E, T>>
+            implements Setup<E, T, Charger<E, T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 
@@ -75,7 +100,7 @@ public final class JComboBoxes {
          * @see JComboBox#removeAllItems()
          */
         default S removeAllItems() {
-            return setup(JComboBox::removeAllItems);
+            return setup(result -> result.removeAllItems());
         }
 
         /**
@@ -118,13 +143,6 @@ public final class JComboBoxes {
          */
         default S setEditor(final ComboBoxEditor arg0) {
             return setup(result -> result.setEditor(arg0));
-        }
-
-        /**
-         * @see JComboBox#setEnabled(boolean)
-         */
-        default S setEnabled(final boolean arg0) {
-            return setup(result -> result.setEnabled(arg0));
         }
 
         /**

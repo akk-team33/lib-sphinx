@@ -4,8 +4,6 @@ import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
-import javax.swing.text.Document;
-import javax.swing.text.EditorKit;
 import javax.swing.text.Style;
 import javax.swing.text.StyledDocument;
 
@@ -35,6 +33,15 @@ public final class JTextPanes {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTextPane}.
+     */
+    public static <T extends JTextPane> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JTextPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JTextPane}.
@@ -45,6 +52,21 @@ public final class JTextPanes {
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JTextPane}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JTextPane}.
+     */
+    public static final class Charger<T extends JTextPane>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 
@@ -75,22 +97,8 @@ public final class JTextPanes {
         /**
          * @see JTextPane#setCharacterAttributes(AttributeSet, boolean)
          */
-        default S setCharacterAttributes(final AttributeSet attribs, final boolean replace) {
-            return setup(result -> result.setCharacterAttributes(attribs, replace));
-        }
-
-        /**
-         * @see JTextPane#setDocument(Document)
-         */
-        default S setDocument(final Document arg0) {
-            return setup(result -> result.setDocument(arg0));
-        }
-
-        /**
-         * @see JTextPane#setEditorKit(EditorKit)
-         */
-        default S setEditorKit(final EditorKit arg0) {
-            return setup(result -> result.setEditorKit(arg0));
+        default S setCharacterAttributes(final AttributeSet arg0, final boolean arg1) {
+            return setup(result -> result.setCharacterAttributes(arg0, arg1));
         }
 
         /**
@@ -103,8 +111,8 @@ public final class JTextPanes {
         /**
          * @see JTextPane#setParagraphAttributes(AttributeSet, boolean)
          */
-        default S setParagraphAttributes(final AttributeSet attribs, final boolean replace) {
-            return setup(result -> result.setParagraphAttributes(attribs, replace));
+        default S setParagraphAttributes(final AttributeSet arg0, final boolean arg1) {
+            return setup(result -> result.setParagraphAttributes(arg0, arg1));
         }
 
         /**

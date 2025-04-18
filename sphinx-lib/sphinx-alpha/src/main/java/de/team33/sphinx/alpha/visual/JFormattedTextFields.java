@@ -4,7 +4,6 @@ import de.team33.patterns.building.elara.LateBuilder;
 import java.util.function.Supplier;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFormattedTextField.AbstractFormatterFactory;
-import javax.swing.text.Document;
 
 /**
  * Utility class to handle {@link JFormattedTextField}s.
@@ -32,6 +31,15 @@ public final class JFormattedTextFields {
     }
 
     /**
+     * Returns a new {@link Charger} for a given target instance.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JFormattedTextField}.
+     */
+    public static <T extends JFormattedTextField> Charger<T> charger(final T target) {
+        return new Charger<>(target, Charger.class);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JFormattedTextField}.
      * 
      * @param <T> The final type of the target instances, at least {@link JFormattedTextField}.
@@ -46,6 +54,21 @@ public final class JFormattedTextFields {
     }
 
     /**
+     * Charger implementation to charge target instances of {@link JFormattedTextField}.
+     * 
+     * @param <T> The final type of the target instance, at least {@link JFormattedTextField}.
+     */
+    public static final class Charger<T extends JFormattedTextField>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
+        }
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JFormattedTextField}.
      * 
      * @param <T> The final type of the target instance, at least {@link JFormattedTextField}.
@@ -54,13 +77,6 @@ public final class JFormattedTextFields {
     @SuppressWarnings("ClassNameSameAsAncestorName")
     @FunctionalInterface
     public interface Setup<T extends JFormattedTextField, S extends Setup<T, S>> extends JTextFields.Setup<T, S> {
-
-        /**
-         * @see JFormattedTextField#setDocument(Document)
-         */
-        default S setDocument(final Document arg0) {
-            return setup(result -> result.setDocument(arg0));
-        }
 
         /**
          * @see JFormattedTextField#setFocusLostBehavior(int)
