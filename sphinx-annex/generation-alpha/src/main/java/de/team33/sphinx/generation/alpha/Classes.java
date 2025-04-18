@@ -3,8 +3,11 @@ package de.team33.sphinx.generation.alpha;
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import javax.swing.text.JTextComponent;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Classes {
@@ -68,5 +71,20 @@ public class Classes {
                 ? Stream.empty()
                 : Stream.concat(ancestors(subject.getSuperclass()),
                                 Stream.of(subject));
+    }
+
+    public static boolean isIntroducedBy(final Class<?> componentClass, final Method method) {
+        final Set<Class<?>> declaring = Classes.ancestors(componentClass)
+                                               .filter(c -> isDeclaring(c, method))
+                                               .collect(Collectors.toSet());
+        return (1 == declaring.size()) && declaring.contains(componentClass);
+    }
+
+    private static boolean isDeclaring(final Class<?> componentClass, final Method method) {
+        try {
+            return null != componentClass.getMethod(method.getName(), method.getParameterTypes());
+        } catch (final NoSuchMethodException e) {
+            return false;
+        }
     }
 }

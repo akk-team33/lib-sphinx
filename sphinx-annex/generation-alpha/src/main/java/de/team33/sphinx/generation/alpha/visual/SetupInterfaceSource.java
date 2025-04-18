@@ -44,8 +44,8 @@ public class SetupInterfaceSource {
                              .filter(not(Method::isSynthetic))
                              .filter(not(Method::isBridge))
                              .filter(not(method -> isDeprecated(method)))
-                           //.filter(method -> method.getDeclaringClass().equals(componentClass)) // more specific ...
-                             .filter(method -> isIntroducedBy(componentClass, method))
+                           //.filter(method -> componentClass.equals(method.getDeclaringClass())) // more specific ...
+                             .filter(method -> Classes.isIntroducedBy(componentClass, method))
                              .filter(method -> Stream.of("set", "add", "remove")
                                                      .anyMatch(prefix -> method.getName().startsWith(prefix)))
                              .filter(method -> !method.getName().endsWith("Listener"))
@@ -59,21 +59,6 @@ public class SetupInterfaceSource {
 
     private static boolean isDeprecated(final Method method) {
         return null != method.getAnnotation(Deprecated.class);
-    }
-
-    private static boolean isIntroducedBy(final Class<?> componentClass, final Method method) {
-        final Set<Class<?>> declaring = Classes.ancestors(componentClass)
-                                               .filter(c -> isDeclaring(c, method))
-                                               .collect(Collectors.toSet());
-        return (1 == declaring.size()) && declaring.contains(componentClass);
-    }
-
-    private static boolean isDeclaring(final Class<?> componentClass, final Method method) {
-        try {
-            return null != componentClass.getMethod(method.getName(), method.getParameterTypes());
-        } catch (final NoSuchMethodException e) {
-            return false;
-        }
     }
 
     public final Set<Class<?>> getDependencies() {
