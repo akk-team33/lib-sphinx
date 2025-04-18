@@ -4,15 +4,15 @@ import de.team33.sphinx.generation.alpha.Classes;
 
 import java.awt.*;
 import java.io.IOException;
-import java.lang.System.Logger;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
+import java.util.logging.Logger;
 
-import static java.lang.System.Logger.Level.INFO;
+import static java.util.logging.Level.INFO;
 
 public class Generator {
 
-    private static final Logger LOG = System.getLogger(Generator.class.getCanonicalName());
+    private static final Logger LOG = Logger.getLogger(Generator.class.getCanonicalName());
     private static final Path PACKAGE_PATH = Paths.get("sphinx-lib", "sphinx-alpha", "src", "main", "java", "de", "team33", "sphinx", "alpha", "visual")
                                                   .toAbsolutePath()
                                                   .normalize();

@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
-import static java.util.function.Predicate.not;
 
 public class SetupInterfaceSource {
 
@@ -43,7 +42,7 @@ public class SetupInterfaceSource {
                              .filter(not(method -> Modifier.isStatic(method.getModifiers())))
                              .filter(not(Method::isSynthetic))
                              .filter(not(Method::isBridge))
-                             .filter(not(method -> isDeprecated(method)))
+                             .filter(not(SetupInterfaceSource::isDeprecated))
                            //.filter(method -> componentClass.equals(method.getDeclaringClass())) // more specific ...
                              .filter(method -> Classes.isIntroducedBy(componentClass, method))
                              .filter(method -> Stream.of("set", "add", "remove")
@@ -55,6 +54,10 @@ public class SetupInterfaceSource {
                              .sorted(comparing(SetupMethodSource::getSignature))
                              .map(SetupMethodSource::toString)
                              .collect(Collectors.joining());
+    }
+
+    private static <T> Predicate<T> not(final Predicate<T> predicate) {
+        return predicate.negate();
     }
 
     private static boolean isDeprecated(final Method method) {

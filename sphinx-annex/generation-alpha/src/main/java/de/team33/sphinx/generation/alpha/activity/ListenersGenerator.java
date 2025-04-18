@@ -3,10 +3,9 @@ package de.team33.sphinx.generation.alpha.activity;
 import de.team33.sphinx.generation.alpha.Classes;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static java.util.function.Predicate.not;
 
 class ListenersGenerator {
 
@@ -39,5 +38,9 @@ class ListenersGenerator {
                .map(ListenersGenerator::new)
                .filter(not(ListenersGenerator::isEmpty))
                .forEach(System.out::print);
+    }
+
+    private static <T> Predicate<T> not(final Predicate<T> predicate) {
+        return predicate.negate();
     }
 }
