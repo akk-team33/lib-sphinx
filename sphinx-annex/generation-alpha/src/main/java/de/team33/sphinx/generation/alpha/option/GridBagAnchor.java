@@ -1,4 +1,4 @@
-package de.team33.gen.sphinx.alpha.option;
+package de.team33.sphinx.generation.alpha.option;
 
 import java.awt.*;
 import java.lang.reflect.Modifier;
