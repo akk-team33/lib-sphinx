@@ -2,29 +2,28 @@
 
 Team33 Sphinx Library Collection
 
+    Extensions to the java swing library
+
 ## Home
 
-http://www.team33.de/dev/sphinx/
+http://www.team33.de/dev/sphinx/1.x
 
 ## Requires
 
     Java 8 or later
-
-## maven dependency
-
-    <dependency>
-      <groupId>de.team33.sphinx</groupId>
-      <artifactId>sphinx-alpha</artifactId>
-      <version>1.1.0</version>
-    </dependency>
 
 ## Artifacts
 
 * sphinx-bom (Team33 Sphinx Library BOM)
 * sphinx-lib (Team33 Sphinx Library Parent)
   * sphinx-alpha (Extensions to the java swing library - edition "alpha")
+  * sphinx-luna (Extensions to the java swing library - edition "luna")
 
 ## Change Log
+
+### next
+
+* Added module sphinx-luna
 
 ### 1.2.0
 
