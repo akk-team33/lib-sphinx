@@ -1,13 +1,11 @@
-package de.team33.trial.sphinx.alpha.visual;
+package de.team33.sphinx.alpha.visual.trial;
 
 import de.team33.sphinx.alpha.activity.Event;
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.visual.JFrames;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
-import java.awt.Rectangle;
+import javax.swing.*;
+import java.awt.*;
 import java.util.prefs.Preferences;
 
 

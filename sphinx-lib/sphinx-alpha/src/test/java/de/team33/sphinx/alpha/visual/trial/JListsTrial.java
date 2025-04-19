@@ -1,8 +1,8 @@
-package de.team33.trial.sphinx.alpha.visual;
+package de.team33.sphinx.alpha.visual.trial;
 
 import de.team33.sphinx.alpha.model.ComboListModel;
-import de.team33.sphinx.alpha.visual.JComboBoxes;
 import de.team33.sphinx.alpha.visual.JFrames;
+import de.team33.sphinx.alpha.visual.JLists;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,30 +10,30 @@ import java.nio.file.AccessMode;
 import java.util.logging.Logger;
 
 
-class JComboBoxesTrial {
+class JListsTrial {
 
-    private static final GridBagConstraints GBC_COMBOBOX = newGBConstraints(0, 0.0);
-    private static final GridBagConstraints GBC_ACCBOX = newGBConstraints(1, 0.0);
+    private static final GridBagConstraints GBC_JLIST1 = newGBConstraints(0, 0.0);
+    private static final GridBagConstraints GBC_JLIST2 = newGBConstraints(1, 0.0);
     private static final GridBagConstraints GBC_JPANEL = newGBConstraints(2, 1.0);
-    private static Logger LOG = Logger.getLogger(JComboBoxesTrial.class.getCanonicalName());
+    private static Logger LOG = Logger.getLogger(JListsTrial.class.getCanonicalName());
 
     private final JFrame frame;
     private String selected = "unknown";
     private AccessMode accessMode;
 
-    public JComboBoxesTrial(final String[] args) {
-        final ComboBoxModel<String> model = ComboListModel.ofItems("Abc", "Def", "Ghi", "Jkl", "Mno", "Pqr", "Stu")
+    public JListsTrial(final String[] args) {
+        final ListModel<String> model = ComboListModel.ofItems("Abc", "Def", "Ghi", "Jkl", "Mno", "Pqr", "Stu")
                                                           .setBacking(this::getSelected,
                                                                       this::setSelected);
-        final JComboBox<String> comboBox = JComboBoxes.builder(model).build();
-        final ComboBoxModel<AccessMode> accModes = ComboListModel.of(AccessMode.class)
+        final JList<String> comboBox = JLists.builder(model).build();
+        final ListModel<AccessMode> accModes = ComboListModel.of(AccessMode.class)
                                                                  .setBacking(this::getAccessMode,
                                                                              this::setAccessMode);
-        final JComboBox<AccessMode> accBox = JComboBoxes.builder(accModes).build();
+        final JList<AccessMode> accBox = JLists.builder(accModes).build();
         this.frame = JFrames.builder()
                             .setLayout(new GridBagLayout())
-                            .add(comboBox, GBC_COMBOBOX)
-                            .add(accBox, GBC_ACCBOX)
+                            .add(comboBox, GBC_JLIST1)
+                            .add(accBox, GBC_JLIST2)
                             .add(new JPanel(), GBC_JPANEL)
                             .setLocation(100, 100)
                             .setSize(640, 480)
@@ -65,6 +65,6 @@ class JComboBoxesTrial {
     }
 
     public static void main(final String[] args) {
-        SwingUtilities.invokeLater(() -> new JComboBoxesTrial(args));
+        SwingUtilities.invokeLater(() -> new JListsTrial(args));
     }
 }

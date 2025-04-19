@@ -1,4 +1,4 @@
-package de.team33.test.sphinx.alpha.visual;
+package de.team33.sphinx.alpha.visual.publics;
 
 import de.team33.sphinx.alpha.visual.JFrames;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import javax.swing.*;
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JFramesTest {
 

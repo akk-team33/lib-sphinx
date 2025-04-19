@@ -1,4 +1,4 @@
-package de.team33.test.sphinx.alpha.visual;
+package de.team33.sphinx.alpha.visual.publics;
 
 import de.team33.patterns.random.tarvos.Generator;
 

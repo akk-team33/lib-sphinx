@@ -1,4 +1,4 @@
-package de.team33.trial.sphinx.alpha.visual;
+package de.team33.sphinx.alpha.visual.trial;
 
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.visual.JFrames;
@@ -6,20 +6,14 @@ import de.team33.sphinx.alpha.visual.JScrollPanes;
 import de.team33.sphinx.alpha.visual.JTables;
 import de.team33.sphinx.alpha.visual.JViewports;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.event.TableColumnModelListener;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
-import java.awt.Color;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

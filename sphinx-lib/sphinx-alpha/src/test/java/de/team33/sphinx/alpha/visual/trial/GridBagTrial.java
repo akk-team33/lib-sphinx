@@ -1,4 +1,4 @@
-package de.team33.trial.sphinx.alpha.visual;
+package de.team33.sphinx.alpha.visual.trial;
 
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.option.GridBag;
