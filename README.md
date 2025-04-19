@@ -21,7 +21,7 @@ http://www.team33.de/dev/sphinx/1.x
 
 ## Change Log
 
-### next
+### 1.3.0
 
 * Added module sphinx-luna
 
