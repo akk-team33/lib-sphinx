@@ -79,7 +79,7 @@
                                 <outputDirectory>${basedir}/../../target/home-collected/sphinx-lib/${project.artifactId}</outputDirectory>
                                 <resources>
                                     <resource>
-                                        <directory>${basedir}/../../sphinx-doc/src/main/template/module</directory>
+                                        <directory>${basedir}/../../sphinx-home/src/main/template/module</directory>
                                         <filtering>true</filtering>
                                     </resource>
                                 </resources>
