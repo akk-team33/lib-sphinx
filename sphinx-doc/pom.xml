@@ -17,6 +17,7 @@
     <description>Team33 sphinx library collection - documents home</description>
 
     <properties>
+        <skipJavadoc>true</skipJavadoc>
         <skipHome>true</skipHome>
         <skipDeploy>true</skipDeploy>
         <skipGPG>true</skipGPG>
