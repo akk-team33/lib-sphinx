@@ -45,7 +45,7 @@
     <modules>
         <module>sphinx-bom</module>
         <module>sphinx-lib</module>
-        <module>sphinx-doc</module>
+        <module>sphinx-home</module>
         <module>sphinx-sample</module>
         <module>sphinx-annex</module>
     </modules>
