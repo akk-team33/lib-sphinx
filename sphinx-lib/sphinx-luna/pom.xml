@@ -21,10 +21,5 @@
             <groupId>de.team33.patterns</groupId>
             <artifactId>exceptional-dione</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 </project>
