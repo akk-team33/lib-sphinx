@@ -1,16 +1,12 @@
-package de.team33.sample.sphinx.alpha.visual;
+package de.team33.sphinx.sample.alpha.visual;
 
-import de.team33.sample.sphinx.alpha.SampleService;
 import de.team33.sphinx.alpha.option.BackedBounds;
 import de.team33.sphinx.alpha.option.GridBag;
-import de.team33.sphinx.alpha.visual.JFrames;
 import de.team33.sphinx.alpha.visual.JPanels;
+import de.team33.sphinx.sample.alpha.SampleService;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
-import java.awt.Rectangle;
+import javax.swing.*;
+import java.awt.*;
 import java.util.prefs.Preferences;
 
 public class DirSelectMain {

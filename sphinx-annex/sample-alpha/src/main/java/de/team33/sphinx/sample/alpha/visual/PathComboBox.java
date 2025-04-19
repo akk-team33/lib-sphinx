@@ -1,9 +1,9 @@
-package de.team33.sample.sphinx.alpha.visual;
+package de.team33.sphinx.sample.alpha.visual;
 
-import de.team33.sample.service.Adapter;
-import de.team33.sample.sphinx.alpha.model.DirModel;
+import de.team33.sphinx.sample.alpha.model.DirModel;
+import de.team33.sphinx.sample.alpha.service.Adapter;
 
-import javax.swing.JComboBox;
+import javax.swing.*;
 import java.nio.file.Path;
 
 public class PathComboBox extends JComboBox<Path> {

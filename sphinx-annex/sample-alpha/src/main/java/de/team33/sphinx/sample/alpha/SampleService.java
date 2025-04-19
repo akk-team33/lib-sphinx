@@ -1,9 +1,9 @@
-package de.team33.sample.sphinx.alpha;
+package de.team33.sphinx.sample.alpha;
 
 import de.team33.patterns.execution.metis.SimpleAsyncExecutor;
 import de.team33.patterns.notes.eris.Audience;
 import de.team33.patterns.notes.eris.ProtoService;
-import de.team33.sample.service.Adapter;
+import de.team33.sphinx.sample.alpha.service.Adapter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

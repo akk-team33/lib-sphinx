@@ -1,6 +1,6 @@
-package de.team33.sample.services;
+package de.team33.sphinx.sample.alpha.services;
 
-import de.team33.sample.service.Emitter;
+import de.team33.sphinx.sample.alpha.service.Emitter;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;

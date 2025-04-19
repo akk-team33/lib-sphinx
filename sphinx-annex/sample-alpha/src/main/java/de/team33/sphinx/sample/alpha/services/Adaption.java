@@ -1,4 +1,4 @@
-package de.team33.sample.services;
+package de.team33.sphinx.sample.alpha.services;
 
 public interface Adaption<C, T> {
 

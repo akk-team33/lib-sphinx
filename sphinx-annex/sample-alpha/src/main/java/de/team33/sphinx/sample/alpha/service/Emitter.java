@@ -1,4 +1,4 @@
-package de.team33.sample.service;
+package de.team33.sphinx.sample.alpha.service;
 
 import java.util.function.Consumer;
 

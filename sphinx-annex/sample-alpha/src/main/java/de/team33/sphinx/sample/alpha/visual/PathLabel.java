@@ -1,8 +1,8 @@
-package de.team33.sample.sphinx.alpha.visual;
+package de.team33.sphinx.sample.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import de.team33.sample.service.Emitter;
 import de.team33.sphinx.alpha.visual.JLabels;
+import de.team33.sphinx.sample.alpha.service.Emitter;
 
 import javax.swing.*;
 import java.nio.file.Path;

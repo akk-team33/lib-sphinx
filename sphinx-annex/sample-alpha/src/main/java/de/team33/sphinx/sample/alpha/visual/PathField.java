@@ -1,11 +1,9 @@
-package de.team33.sample.sphinx.alpha.visual;
+package de.team33.sphinx.sample.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import de.team33.sample.service.Adapter;
-import de.team33.sample.service.Emitter;
 import de.team33.sphinx.alpha.activity.Event;
-import de.team33.sphinx.alpha.visual.JLabels;
 import de.team33.sphinx.alpha.visual.JTextFields;
+import de.team33.sphinx.sample.alpha.service.Adapter;
 
 import javax.swing.*;
 import java.awt.event.FocusEvent;

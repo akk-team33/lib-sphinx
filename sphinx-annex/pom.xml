@@ -25,6 +25,7 @@
         <module>image-display</module>
         <module>random-display</module>
         <module>generation-alpha</module>
+        <module>sample-alpha</module>
     </modules>
 
     <dependencyManagement>

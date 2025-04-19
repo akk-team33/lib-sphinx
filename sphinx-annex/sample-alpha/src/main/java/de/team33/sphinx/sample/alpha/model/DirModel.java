@@ -1,6 +1,6 @@
-package de.team33.sample.sphinx.alpha.model;
+package de.team33.sphinx.sample.alpha.model;
 
-import de.team33.sample.service.Adapter;
+import de.team33.sphinx.sample.alpha.service.Adapter;
 
 import javax.swing.*;
 import java.io.IOException;

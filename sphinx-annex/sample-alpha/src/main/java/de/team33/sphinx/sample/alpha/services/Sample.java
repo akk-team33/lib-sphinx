@@ -1,4 +1,4 @@
-package de.team33.sample.services;
+package de.team33.sphinx.sample.alpha.services;
 
 import de.team33.patterns.execution.metis.SimpleAsyncExecutor;
 import de.team33.patterns.notes.eris.Audience;
