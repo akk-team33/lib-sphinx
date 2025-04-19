@@ -15,6 +15,7 @@
 
     <modules>
         <module>sphinx-alpha</module>
+        <module>sphinx-luna</module>
     </modules>
 
     <dependencyManagement>
