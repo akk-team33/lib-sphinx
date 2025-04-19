@@ -26,10 +26,11 @@ http://www.team33.de/dev/sphinx/
 
 ## Change Log
 
-### next
+### 1.2.0
 
 * Restructured as multi module project 
 * Added handling of DropTarget-Events
+* Added Charger classes to visual utility classes
 
 ### 1.1.0
 
