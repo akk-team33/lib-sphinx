@@ -4,7 +4,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-class ChannelAgent<C, L, M> {
+class ChannelAgent<C, L, M> implements Channel<C, M> {
 
     private final BiConsumer<? super C, ? super L> addition;
     private final Function<? super Consumer<M>, ? extends L> mapping;
@@ -15,7 +15,8 @@ class ChannelAgent<C, L, M> {
         this.mapping = mapping;
     }
 
-    final void add(final C component, final Consumer<M> reaction) {
+    @Override
+    public final void add(final C component, final Consumer<M> reaction) {
         addition.accept(component, mapping.apply(reaction));
     }
 }

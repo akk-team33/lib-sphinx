@@ -51,8 +51,7 @@ public interface Channel<C, M> {
      * @see Component#addPropertyChangeListener(PropertyChangeListener)
      */
     Channel<Component, PropertyChangeEvent> PROPERTY_CHANGE =
-            new ChannelAgent<>((Component c, PropertyChangeListener l) -> c.addPropertyChangeListener(l),
-                               Listeners::propertyChange)::add;
+            new ChannelAgent<>(Component::addPropertyChangeListener, Listeners::propertyChange);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -61,7 +60,7 @@ public interface Channel<C, M> {
      * @see Component#addComponentListener(ComponentListener)
      */
     Channel<Component, ComponentEvent> COMPONENT_RESIZED =
-            new ChannelAgent<>(Component::addComponentListener, Listeners::componentResized)::add;
+            new ChannelAgent<>(Component::addComponentListener, Listeners::componentResized);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -70,7 +69,7 @@ public interface Channel<C, M> {
      * @see Component#addComponentListener(ComponentListener)
      */
     Channel<Component, ComponentEvent> COMPONENT_MOVED =
-            new ChannelAgent<>(Component::addComponentListener, Listeners::componentMoved)::add;
+            new ChannelAgent<>(Component::addComponentListener, Listeners::componentMoved);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -79,7 +78,7 @@ public interface Channel<C, M> {
      * @see Component#addComponentListener(ComponentListener)
      */
     Channel<Component, ComponentEvent> COMPONENT_SHOWN =
-            new ChannelAgent<>(Component::addComponentListener, Listeners::componentShown)::add;
+            new ChannelAgent<>(Component::addComponentListener, Listeners::componentShown);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -88,7 +87,7 @@ public interface Channel<C, M> {
      * @see Component#addComponentListener(ComponentListener)
      */
     Channel<Component, ComponentEvent> COMPONENT_HIDDEN =
-            new ChannelAgent<>(Component::addComponentListener, Listeners::componentHidden)::add;
+            new ChannelAgent<>(Component::addComponentListener, Listeners::componentHidden);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -97,7 +96,7 @@ public interface Channel<C, M> {
      * @see Component#addFocusListener(FocusListener)
      */
     Channel<Component, FocusEvent> FOCUS_GAINED =
-            new ChannelAgent<>(Component::addFocusListener, Listeners::focusGained)::add;
+            new ChannelAgent<>(Component::addFocusListener, Listeners::focusGained);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -106,7 +105,7 @@ public interface Channel<C, M> {
      * @see Component#addFocusListener(FocusListener)
      */
     Channel<Component, FocusEvent> FOCUS_LOST =
-            new ChannelAgent<>(Component::addFocusListener, Listeners::focusLost)::add;
+            new ChannelAgent<>(Component::addFocusListener, Listeners::focusLost);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -115,7 +114,7 @@ public interface Channel<C, M> {
      * @see Component#addHierarchyListener(HierarchyListener)
      */
     Channel<Component, HierarchyEvent> HIERARCHY_CHANGED =
-            new ChannelAgent<>(Component::addHierarchyListener, Listeners::hierarchyChanged)::add;
+            new ChannelAgent<>(Component::addHierarchyListener, Listeners::hierarchyChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -124,7 +123,7 @@ public interface Channel<C, M> {
      * @see Component#addHierarchyBoundsListener(HierarchyBoundsListener)
      */
     Channel<Component, HierarchyEvent> ANCESTOR_BOUNDS_MOVED =
-            new ChannelAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsMoved)::add;
+            new ChannelAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsMoved);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -133,7 +132,7 @@ public interface Channel<C, M> {
      * @see Component#addHierarchyBoundsListener(HierarchyBoundsListener)
      */
     Channel<Component, HierarchyEvent> ANCESTOR_BOUNDS_RESIZED =
-            new ChannelAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsResized)::add;
+            new ChannelAgent<>(Component::addHierarchyBoundsListener, Listeners::ancestorBoundsResized);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -142,7 +141,7 @@ public interface Channel<C, M> {
      * @see Component#addKeyListener(KeyListener)
      */
     Channel<Component, KeyEvent> KEY_TYPED =
-            new ChannelAgent<>(Component::addKeyListener, Listeners::keyTyped)::add;
+            new ChannelAgent<>(Component::addKeyListener, Listeners::keyTyped);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -151,7 +150,7 @@ public interface Channel<C, M> {
      * @see Component#addKeyListener(KeyListener)
      */
     Channel<Component, KeyEvent> KEY_PRESSED =
-            new ChannelAgent<>(Component::addKeyListener, Listeners::keyPressed)::add;
+            new ChannelAgent<>(Component::addKeyListener, Listeners::keyPressed);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -160,7 +159,7 @@ public interface Channel<C, M> {
      * @see Component#addKeyListener(KeyListener)
      */
     Channel<Component, KeyEvent> KEY_RELEASED =
-            new ChannelAgent<>(Component::addKeyListener, Listeners::keyReleased)::add;
+            new ChannelAgent<>(Component::addKeyListener, Listeners::keyReleased);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -169,7 +168,7 @@ public interface Channel<C, M> {
      * @see Component#addMouseListener(MouseListener)
      */
     Channel<Component, MouseEvent> MOUSE_PRESSED =
-            new ChannelAgent<>(Component::addMouseListener, Listeners::mousePressed)::add;
+            new ChannelAgent<>(Component::addMouseListener, Listeners::mousePressed);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -178,7 +177,7 @@ public interface Channel<C, M> {
      * @see Component#addMouseListener(MouseListener)
      */
     Channel<Component, MouseEvent> MOUSE_RELEASED =
-            new ChannelAgent<>(Component::addMouseListener, Listeners::mouseReleased)::add;
+            new ChannelAgent<>(Component::addMouseListener, Listeners::mouseReleased);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -187,7 +186,7 @@ public interface Channel<C, M> {
      * @see Component#addMouseListener(MouseListener)
      */
     Channel<Component, MouseEvent> MOUSE_CLICKED =
-            new ChannelAgent<>(Component::addMouseListener, Listeners::mouseClicked)::add;
+            new ChannelAgent<>(Component::addMouseListener, Listeners::mouseClicked);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -196,7 +195,7 @@ public interface Channel<C, M> {
      * @see Component#addMouseListener(MouseListener)
      */
     Channel<Component, MouseEvent> MOUSE_EXITED =
-            new ChannelAgent<>(Component::addMouseListener, Listeners::mouseExited)::add;
+            new ChannelAgent<>(Component::addMouseListener, Listeners::mouseExited);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -205,7 +204,7 @@ public interface Channel<C, M> {
      * @see Component#addMouseListener(MouseListener)
      */
     Channel<Component, MouseEvent> MOUSE_ENTERED =
-            new ChannelAgent<>(Component::addMouseListener, Listeners::mouseEntered)::add;
+            new ChannelAgent<>(Component::addMouseListener, Listeners::mouseEntered);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -214,7 +213,7 @@ public interface Channel<C, M> {
      * @see Component#addMouseMotionListener(MouseMotionListener)
      */
     Channel<Component, MouseEvent> MOUSE_MOVED =
-            new ChannelAgent<>(Component::addMouseMotionListener, Listeners::mouseMoved)::add;
+            new ChannelAgent<>(Component::addMouseMotionListener, Listeners::mouseMoved);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -223,7 +222,7 @@ public interface Channel<C, M> {
      * @see Component#addMouseMotionListener(MouseMotionListener)
      */
     Channel<Component, MouseEvent> MOUSE_DRAGGED =
-            new ChannelAgent<>(Component::addMouseMotionListener, Listeners::mouseDragged)::add;
+            new ChannelAgent<>(Component::addMouseMotionListener, Listeners::mouseDragged);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -232,7 +231,7 @@ public interface Channel<C, M> {
      * @see Component#addMouseWheelListener(MouseWheelListener)
      */
     Channel<Component, MouseWheelEvent> MOUSE_WHEEL_MOVED =
-            new ChannelAgent<>(Component::addMouseWheelListener, Listeners::mouseWheelMoved)::add;
+            new ChannelAgent<>(Component::addMouseWheelListener, Listeners::mouseWheelMoved);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -241,7 +240,7 @@ public interface Channel<C, M> {
      * @see Component#addInputMethodListener(InputMethodListener)
      */
     Channel<Component, InputMethodEvent> INPUT_METHOD_TEXT_CHANGED =
-            new ChannelAgent<>(Component::addInputMethodListener, Listeners::inputMethodTextChanged)::add;
+            new ChannelAgent<>(Component::addInputMethodListener, Listeners::inputMethodTextChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link Component}s.
@@ -250,7 +249,7 @@ public interface Channel<C, M> {
      * @see Component#addInputMethodListener(InputMethodListener)
      */
     Channel<Component, InputMethodEvent> CARET_POSITION_CHANGED =
-            new ChannelAgent<>(Component::addInputMethodListener, Listeners::caretPositionChanged)::add;
+            new ChannelAgent<>(Component::addInputMethodListener, Listeners::caretPositionChanged);
 
     /**
      * Represents a channel that handles events that can occur on a {@link Component}'s {@link DropTarget}.
@@ -263,7 +262,7 @@ public interface Channel<C, M> {
             new ChannelAgent<>(Conversion.biConsumer((Component component,
                                                       DropTargetListener l) -> component.getDropTarget()
                                                                                         .addDropTargetListener(l)),
-                               Listeners::dropTargetDragEnter)::add;
+                               Listeners::dropTargetDragEnter);
 
     /**
      * Represents a channel that handles events that can occur on a {@link Component}'s {@link DropTarget}.
@@ -276,7 +275,7 @@ public interface Channel<C, M> {
             new ChannelAgent<>(Conversion.biConsumer((Component component,
                                                       DropTargetListener l) -> component.getDropTarget()
                                                                                         .addDropTargetListener(l)),
-                               Listeners::dropTargetDragOver)::add;
+                               Listeners::dropTargetDragOver);
 
     /**
      * Represents a channel that handles events that can occur on a {@link Component}'s {@link DropTarget}.
@@ -289,7 +288,7 @@ public interface Channel<C, M> {
             new ChannelAgent<>(Conversion.biConsumer((Component component,
                                                       DropTargetListener l) -> component.getDropTarget()
                                                                                         .addDropTargetListener(l)),
-                               Listeners::dropTargetDragActionChanged)::add;
+                               Listeners::dropTargetDragActionChanged);
 
     /**
      * Represents a channel that handles events that can occur on a {@link Component}'s {@link DropTarget}.
@@ -302,7 +301,7 @@ public interface Channel<C, M> {
             new ChannelAgent<>(Conversion.biConsumer((Component component,
                                                       DropTargetListener l) -> component.getDropTarget()
                                                                                         .addDropTargetListener(l)),
-                               Listeners::dropTargetDragExit)::add;
+                               Listeners::dropTargetDragExit);
 
     /**
      * Represents a channel that handles events that can occur on a {@link Component}'s {@link DropTarget}.
@@ -315,7 +314,7 @@ public interface Channel<C, M> {
             new ChannelAgent<>(Conversion.biConsumer((Component component,
                                                       DropTargetListener l) -> component.getDropTarget()
                                                                                         .addDropTargetListener(l)),
-                               Listeners::dropTargetDrop)::add;
+                               Listeners::dropTargetDrop);
 
     /**
      * Represents a channel that handles events that can occur on {@link Container}s.
@@ -324,7 +323,7 @@ public interface Channel<C, M> {
      * @see Container#addContainerListener(ContainerListener)
      */
     Channel<Container, ContainerEvent> COMPONENT_ADDED =
-            new ChannelAgent<>(Container::addContainerListener, Listeners::componentAdded)::add;
+            new ChannelAgent<>(Container::addContainerListener, Listeners::componentAdded);
 
     /**
      * Represents a channel that handles events that can occur on {@link Container}s.
@@ -333,7 +332,7 @@ public interface Channel<C, M> {
      * @see Container#addContainerListener(ContainerListener)
      */
     Channel<Container, ContainerEvent> COMPONENT_REMOVED =
-            new ChannelAgent<>(Container::addContainerListener, Listeners::componentRemoved)::add;
+            new ChannelAgent<>(Container::addContainerListener, Listeners::componentRemoved);
 
     /**
      * Represents a channel that handles events that can occur on {@link JComponent}s.
@@ -342,7 +341,7 @@ public interface Channel<C, M> {
      * @see JComponent#addVetoableChangeListener(VetoableChangeListener)
      */
     Channel<JComponent, PropertyChangeEvent> VETOABLE_CHANGE =
-            new ChannelAgent<>(JComponent::addVetoableChangeListener, Listeners::vetoableChange)::add;
+            new ChannelAgent<>(JComponent::addVetoableChangeListener, Listeners::vetoableChange);
 
     /**
      * Represents a channel that handles events that can occur on {@link JComponent}s.
@@ -351,7 +350,7 @@ public interface Channel<C, M> {
      * @see JComponent#addAncestorListener(AncestorListener)
      */
     Channel<JComponent, AncestorEvent> ANCESTOR_ADDED =
-            new ChannelAgent<>(JComponent::addAncestorListener, Listeners::ancestorAdded)::add;
+            new ChannelAgent<>(JComponent::addAncestorListener, Listeners::ancestorAdded);
 
     /**
      * Represents a channel that handles events that can occur on {@link JComponent}s.
@@ -360,7 +359,7 @@ public interface Channel<C, M> {
      * @see JComponent#addAncestorListener(AncestorListener)
      */
     Channel<JComponent, AncestorEvent> ANCESTOR_REMOVED =
-            new ChannelAgent<>(JComponent::addAncestorListener, Listeners::ancestorRemoved)::add;
+            new ChannelAgent<>(JComponent::addAncestorListener, Listeners::ancestorRemoved);
 
     /**
      * Represents a channel that handles events that can occur on {@link JComponent}s.
@@ -369,7 +368,7 @@ public interface Channel<C, M> {
      * @see JComponent#addAncestorListener(AncestorListener)
      */
     Channel<JComponent, AncestorEvent> ANCESTOR_MOVED =
-            new ChannelAgent<>(JComponent::addAncestorListener, Listeners::ancestorMoved)::add;
+            new ChannelAgent<>(JComponent::addAncestorListener, Listeners::ancestorMoved);
 
     /**
      * Represents a channel that handles events that can occur on {@link JTextComponent}s.
@@ -378,7 +377,7 @@ public interface Channel<C, M> {
      * @see JTextComponent#addCaretListener(CaretListener)
      */
     Channel<JTextComponent, CaretEvent> CARET_UPDATE =
-            new ChannelAgent<>(JTextComponent::addCaretListener, Listeners::caretUpdate)::add;
+            new ChannelAgent<>(JTextComponent::addCaretListener, Listeners::caretUpdate);
 
     /**
      * Represents a channel that handles events that can occur on {@link JProgressBar}s.
@@ -387,7 +386,7 @@ public interface Channel<C, M> {
      * @see JProgressBar#addChangeListener(ChangeListener)
      */
     Channel<JProgressBar, ChangeEvent> JPB_STATE_CHANGED =
-            new ChannelAgent<>(JProgressBar::addChangeListener, Listeners::stateChanged)::add;
+            new ChannelAgent<>(JProgressBar::addChangeListener, Listeners::stateChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JTabbedPane}s.
@@ -396,7 +395,7 @@ public interface Channel<C, M> {
      * @see JTabbedPane#addChangeListener(ChangeListener)
      */
     Channel<JTabbedPane, ChangeEvent> JTP_STATE_CHANGED =
-            new ChannelAgent<>(JTabbedPane::addChangeListener, Listeners::stateChanged)::add;
+            new ChannelAgent<>(JTabbedPane::addChangeListener, Listeners::stateChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JTextField}s.
@@ -405,7 +404,7 @@ public interface Channel<C, M> {
      * @see JTextField#addActionListener(ActionListener)
      */
     Channel<JTextField, ActionEvent> JTF_ACTION_PERFORMED =
-            new ChannelAgent<>(JTextField::addActionListener, Listeners::actionPerformed)::add;
+            new ChannelAgent<>(JTextField::addActionListener, Listeners::actionPerformed);
 
     /**
      * Represents a channel that handles events that can occur on {@link JPopupMenu}s.
@@ -414,7 +413,7 @@ public interface Channel<C, M> {
      * @see JPopupMenu#addPopupMenuListener(PopupMenuListener)
      */
     Channel<JPopupMenu, PopupMenuEvent> POPUP_MENU_WILL_BECOME_VISIBLE =
-            new ChannelAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuWillBecomeVisible)::add;
+            new ChannelAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuWillBecomeVisible);
 
     /**
      * Represents a channel that handles events that can occur on {@link JPopupMenu}s.
@@ -423,7 +422,7 @@ public interface Channel<C, M> {
      * @see JPopupMenu#addPopupMenuListener(PopupMenuListener)
      */
     Channel<JPopupMenu, PopupMenuEvent> POPUP_MENU_WILL_BECOME_INVISIBLE =
-            new ChannelAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuWillBecomeInvisible)::add;
+            new ChannelAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuWillBecomeInvisible);
 
     /**
      * Represents a channel that handles events that can occur on {@link JPopupMenu}s.
@@ -432,7 +431,7 @@ public interface Channel<C, M> {
      * @see JPopupMenu#addPopupMenuListener(PopupMenuListener)
      */
     Channel<JPopupMenu, PopupMenuEvent> POPUP_MENU_CANCELED =
-            new ChannelAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuCanceled)::add;
+            new ChannelAgent<>(JPopupMenu::addPopupMenuListener, Listeners::popupMenuCanceled);
 
     /**
      * Represents a channel that handles events that can occur on {@link JPopupMenu}s.
@@ -441,7 +440,7 @@ public interface Channel<C, M> {
      * @see JPopupMenu#addMenuKeyListener(MenuKeyListener)
      */
     Channel<JPopupMenu, MenuKeyEvent> MENU_KEY_PRESSED =
-            new ChannelAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyPressed)::add;
+            new ChannelAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyPressed);
 
     /**
      * Represents a channel that handles events that can occur on {@link JPopupMenu}s.
@@ -450,7 +449,7 @@ public interface Channel<C, M> {
      * @see JPopupMenu#addMenuKeyListener(MenuKeyListener)
      */
     Channel<JPopupMenu, MenuKeyEvent> MENU_KEY_RELEASED =
-            new ChannelAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyReleased)::add;
+            new ChannelAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyReleased);
 
     /**
      * Represents a channel that handles events that can occur on {@link JPopupMenu}s.
@@ -459,7 +458,7 @@ public interface Channel<C, M> {
      * @see JPopupMenu#addMenuKeyListener(MenuKeyListener)
      */
     Channel<JPopupMenu, MenuKeyEvent> MENU_KEY_TYPED =
-            new ChannelAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyTyped)::add;
+            new ChannelAgent<>(JPopupMenu::addMenuKeyListener, Listeners::menuKeyTyped);
 
     /**
      * Represents a channel that handles events that can occur on {@link Window}s.
@@ -468,7 +467,7 @@ public interface Channel<C, M> {
      * @see Window#addWindowStateListener(WindowStateListener)
      */
     Channel<Window, WindowEvent> WINDOW_STATE_CHANGED =
-            new ChannelAgent<>(Window::addWindowStateListener, Listeners::windowStateChanged)::add;
+            new ChannelAgent<>(Window::addWindowStateListener, Listeners::windowStateChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link Window}s.
@@ -477,7 +476,7 @@ public interface Channel<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Channel<Window, WindowEvent> WINDOW_OPENED =
-            new ChannelAgent<>(Window::addWindowListener, Listeners::windowOpened)::add;
+            new ChannelAgent<>(Window::addWindowListener, Listeners::windowOpened);
 
     /**
      * Represents a channel that handles events that can occur on {@link Window}s.
@@ -486,7 +485,7 @@ public interface Channel<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Channel<Window, WindowEvent> WINDOW_CLOSING =
-            new ChannelAgent<>(Window::addWindowListener, Listeners::windowClosing)::add;
+            new ChannelAgent<>(Window::addWindowListener, Listeners::windowClosing);
 
     /**
      * Represents a channel that handles events that can occur on {@link Window}s.
@@ -495,7 +494,7 @@ public interface Channel<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Channel<Window, WindowEvent> WINDOW_CLOSED =
-            new ChannelAgent<>(Window::addWindowListener, Listeners::windowClosed)::add;
+            new ChannelAgent<>(Window::addWindowListener, Listeners::windowClosed);
 
     /**
      * Represents a channel that handles events that can occur on {@link Window}s.
@@ -504,7 +503,7 @@ public interface Channel<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Channel<Window, WindowEvent> WINDOW_ICONIFIED =
-            new ChannelAgent<>(Window::addWindowListener, Listeners::windowIconified)::add;
+            new ChannelAgent<>(Window::addWindowListener, Listeners::windowIconified);
 
     /**
      * Represents a channel that handles events that can occur on {@link Window}s.
@@ -513,7 +512,7 @@ public interface Channel<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Channel<Window, WindowEvent> WINDOW_DEICONIFIED =
-            new ChannelAgent<>(Window::addWindowListener, Listeners::windowDeiconified)::add;
+            new ChannelAgent<>(Window::addWindowListener, Listeners::windowDeiconified);
 
     /**
      * Represents a channel that handles events that can occur on {@link Window}s.
@@ -522,7 +521,7 @@ public interface Channel<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Channel<Window, WindowEvent> WINDOW_ACTIVATED =
-            new ChannelAgent<>(Window::addWindowListener, Listeners::windowActivated)::add;
+            new ChannelAgent<>(Window::addWindowListener, Listeners::windowActivated);
 
     /**
      * Represents a channel that handles events that can occur on {@link Window}s.
@@ -531,7 +530,7 @@ public interface Channel<C, M> {
      * @see Window#addWindowListener(WindowListener)
      */
     Channel<Window, WindowEvent> WINDOW_DEACTIVATED =
-            new ChannelAgent<>(Window::addWindowListener, Listeners::windowDeactivated)::add;
+            new ChannelAgent<>(Window::addWindowListener, Listeners::windowDeactivated);
 
     /**
      * Represents a channel that handles events that can occur on {@link Window}s.
@@ -540,7 +539,7 @@ public interface Channel<C, M> {
      * @see Window#addWindowFocusListener(WindowFocusListener)
      */
     Channel<Window, WindowEvent> WINDOW_GAINED_FOCUS =
-            new ChannelAgent<>(Window::addWindowFocusListener, Listeners::windowGainedFocus)::add;
+            new ChannelAgent<>(Window::addWindowFocusListener, Listeners::windowGainedFocus);
 
     /**
      * Represents a channel that handles events that can occur on {@link Window}s.
@@ -549,7 +548,7 @@ public interface Channel<C, M> {
      * @see Window#addWindowFocusListener(WindowFocusListener)
      */
     Channel<Window, WindowEvent> WINDOW_LOST_FOCUS =
-            new ChannelAgent<>(Window::addWindowFocusListener, Listeners::windowLostFocus)::add;
+            new ChannelAgent<>(Window::addWindowFocusListener, Listeners::windowLostFocus);
 
     /**
      * Represents a channel that handles events that can occur on {@link AbstractButton}s.
@@ -558,7 +557,7 @@ public interface Channel<C, M> {
      * @see AbstractButton#addItemListener(ItemListener)
      */
     Channel<AbstractButton, ItemEvent> ITEM_STATE_CHANGED =
-            new ChannelAgent<>(AbstractButton::addItemListener, Listeners::itemStateChanged)::add;
+            new ChannelAgent<>(AbstractButton::addItemListener, Listeners::itemStateChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link AbstractButton}s.
@@ -567,7 +566,7 @@ public interface Channel<C, M> {
      * @see AbstractButton#addActionListener(ActionListener)
      */
     Channel<AbstractButton, ActionEvent> ACTION_PERFORMED =
-            new ChannelAgent<>(AbstractButton::addActionListener, Listeners::actionPerformed)::add;
+            new ChannelAgent<>(AbstractButton::addActionListener, Listeners::actionPerformed);
 
     /**
      * Represents a channel that handles events that can occur on {@link AbstractButton}s.
@@ -576,7 +575,7 @@ public interface Channel<C, M> {
      * @see AbstractButton#addChangeListener(ChangeListener)
      */
     Channel<AbstractButton, ChangeEvent> STATE_CHANGED =
-            new ChannelAgent<>(AbstractButton::addChangeListener, Listeners::stateChanged)::add;
+            new ChannelAgent<>(AbstractButton::addChangeListener, Listeners::stateChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JMenuItem}s.
@@ -585,7 +584,7 @@ public interface Channel<C, M> {
      * @see JMenuItem#addMenuDragMouseListener(MenuDragMouseListener)
      */
     Channel<JMenuItem, MenuDragMouseEvent> MENU_DRAG_MOUSE_ENTERED =
-            new ChannelAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseEntered)::add;
+            new ChannelAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseEntered);
 
     /**
      * Represents a channel that handles events that can occur on {@link JMenuItem}s.
@@ -594,7 +593,7 @@ public interface Channel<C, M> {
      * @see JMenuItem#addMenuDragMouseListener(MenuDragMouseListener)
      */
     Channel<JMenuItem, MenuDragMouseEvent> MENU_DRAG_MOUSE_EXITED =
-            new ChannelAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseExited)::add;
+            new ChannelAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseExited);
 
     /**
      * Represents a channel that handles events that can occur on {@link JMenuItem}s.
@@ -603,7 +602,7 @@ public interface Channel<C, M> {
      * @see JMenuItem#addMenuDragMouseListener(MenuDragMouseListener)
      */
     Channel<JMenuItem, MenuDragMouseEvent> MENU_DRAG_MOUSE_DRAGGED =
-            new ChannelAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseDragged)::add;
+            new ChannelAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseDragged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JMenuItem}s.
@@ -612,7 +611,7 @@ public interface Channel<C, M> {
      * @see JMenuItem#addMenuDragMouseListener(MenuDragMouseListener)
      */
     Channel<JMenuItem, MenuDragMouseEvent> MENU_DRAG_MOUSE_RELEASED =
-            new ChannelAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseReleased)::add;
+            new ChannelAgent<>(JMenuItem::addMenuDragMouseListener, Listeners::menuDragMouseReleased);
 
     /**
      * Represents a channel that handles events that can occur on {@link JMenuItem}s.
@@ -621,7 +620,7 @@ public interface Channel<C, M> {
      * @see JMenuItem#addMenuKeyListener(MenuKeyListener)
      */
     Channel<JMenuItem, MenuKeyEvent> MENU_ITEM_KEY_PRESSED =
-            new ChannelAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyPressed)::add;
+            new ChannelAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyPressed);
 
     /**
      * Represents a channel that handles events that can occur on {@link JMenuItem}s.
@@ -630,7 +629,7 @@ public interface Channel<C, M> {
      * @see JMenuItem#addMenuKeyListener(MenuKeyListener)
      */
     Channel<JMenuItem, MenuKeyEvent> MENU_ITEM_KEY_RELEASED =
-            new ChannelAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyReleased)::add;
+            new ChannelAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyReleased);
 
     /**
      * Represents a channel that handles events that can occur on {@link JMenuItem}s.
@@ -639,7 +638,7 @@ public interface Channel<C, M> {
      * @see JMenuItem#addMenuKeyListener(MenuKeyListener)
      */
     Channel<JMenuItem, MenuKeyEvent> MENU_ITEM_KEY_TYPED =
-            new ChannelAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyTyped)::add;
+            new ChannelAgent<>(JMenuItem::addMenuKeyListener, Listeners::menuKeyTyped);
 
     /**
      * Represents a channel that handles events that can occur on {@link JSlider}s.
@@ -648,7 +647,7 @@ public interface Channel<C, M> {
      * @see JSlider#addChangeListener(ChangeListener)
      */
     Channel<JSlider, ChangeEvent> JSL_STATE_CHANGED =
-            new ChannelAgent<>(JSlider::addChangeListener, Listeners::stateChanged)::add;
+            new ChannelAgent<>(JSlider::addChangeListener, Listeners::stateChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JComboBox}s.
@@ -657,8 +656,7 @@ public interface Channel<C, M> {
      * @see JComboBox#addItemListener(ItemListener)
      */
     Channel<JComboBox<?>, ItemEvent> JCB_ITEM_STATE_CHANGED =
-            new ChannelAgent<>((JComboBox<?> c, ItemListener l) -> c.addItemListener(l),
-                               Listeners::itemStateChanged)::add;
+            new ChannelAgent<>(JComboBox::addItemListener, Listeners::itemStateChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JComboBox}s.
@@ -667,8 +665,7 @@ public interface Channel<C, M> {
      * @see JComboBox#addActionListener(ActionListener)
      */
     Channel<JComboBox<?>, ActionEvent> JCB_ACTION_PERFORMED =
-            new ChannelAgent<>((JComboBox<?> c, ActionListener l) -> c.addActionListener(l),
-                               Listeners::actionPerformed)::add;
+            new ChannelAgent<>(JComboBox::addActionListener, Listeners::actionPerformed);
 
     /**
      * Represents a channel that handles events that can occur on {@link JComboBox}s.
@@ -677,8 +674,7 @@ public interface Channel<C, M> {
      * @see JComboBox#addPopupMenuListener(PopupMenuListener)
      */
     Channel<JComboBox<?>, PopupMenuEvent> JCB_POPUP_WILL_BECOME_VISIBLE =
-            new ChannelAgent<>((JComboBox<?> c, PopupMenuListener l) -> c.addPopupMenuListener(l),
-                               Listeners::popupMenuWillBecomeVisible)::add;
+            new ChannelAgent<>(JComboBox::addPopupMenuListener, Listeners::popupMenuWillBecomeVisible);
 
     /**
      * Represents a channel that handles events that can occur on {@link JComboBox}s.
@@ -687,8 +683,7 @@ public interface Channel<C, M> {
      * @see JComboBox#addPopupMenuListener(PopupMenuListener)
      */
     Channel<JComboBox<?>, PopupMenuEvent> JCB_POPUP_WILL_BECOME_INVISIBLE =
-            new ChannelAgent<>((JComboBox<?> c, PopupMenuListener l) -> c.addPopupMenuListener(l),
-                               Listeners::popupMenuWillBecomeInvisible)::add;
+            new ChannelAgent<>(JComboBox::addPopupMenuListener, Listeners::popupMenuWillBecomeInvisible);
 
     /**
      * Represents a channel that handles events that can occur on {@link JComboBox}s.
@@ -697,8 +692,7 @@ public interface Channel<C, M> {
      * @see JComboBox#addPopupMenuListener(PopupMenuListener)
      */
     Channel<JComboBox<?>, PopupMenuEvent> JCB_POPUP_CANCELED =
-            new ChannelAgent<>((JComboBox<?> c, PopupMenuListener l) -> c.addPopupMenuListener(l),
-                               Listeners::popupMenuCanceled)::add;
+            new ChannelAgent<>(JComboBox::addPopupMenuListener, Listeners::popupMenuCanceled);
 
     /**
      * Represents a channel that handles events that can occur on {@link JTree}s.
@@ -707,7 +701,7 @@ public interface Channel<C, M> {
      * @see JTree#addTreeExpansionListener(TreeExpansionListener)
      */
     Channel<JTree, TreeExpansionEvent> TREE_EXPANDED =
-            new ChannelAgent<>(JTree::addTreeExpansionListener, Listeners::treeExpanded)::add;
+            new ChannelAgent<>(JTree::addTreeExpansionListener, Listeners::treeExpanded);
 
     /**
      * Represents a channel that handles events that can occur on {@link JTree}s.
@@ -716,7 +710,7 @@ public interface Channel<C, M> {
      * @see JTree#addTreeExpansionListener(TreeExpansionListener)
      */
     Channel<JTree, TreeExpansionEvent> TREE_COLLAPSED =
-            new ChannelAgent<>(JTree::addTreeExpansionListener, Listeners::treeCollapsed)::add;
+            new ChannelAgent<>(JTree::addTreeExpansionListener, Listeners::treeCollapsed);
 
     /**
      * Represents a channel that handles events that can occur on {@link JTree}s.
@@ -725,7 +719,7 @@ public interface Channel<C, M> {
      * @see JTree#addTreeWillExpandListener(TreeWillExpandListener)
      */
     Channel<JTree, TreeExpansionEvent> TREE_WILL_EXPAND =
-            new ChannelAgent<>(JTree::addTreeWillExpandListener, Listeners::treeWillExpand)::add;
+            new ChannelAgent<>(JTree::addTreeWillExpandListener, Listeners::treeWillExpand);
 
     /**
      * Represents a channel that handles events that can occur on {@link JTree}s.
@@ -734,7 +728,7 @@ public interface Channel<C, M> {
      * @see JTree#addTreeWillExpandListener(TreeWillExpandListener)
      */
     Channel<JTree, TreeExpansionEvent> TREE_WILL_COLLAPSE =
-            new ChannelAgent<>(JTree::addTreeWillExpandListener, Listeners::treeWillCollapse)::add;
+            new ChannelAgent<>(JTree::addTreeWillExpandListener, Listeners::treeWillCollapse);
 
     /**
      * Represents a channel that handles events that can occur on {@link JTree}s.
@@ -743,7 +737,7 @@ public interface Channel<C, M> {
      * @see JTree#addTreeSelectionListener(TreeSelectionListener)
      */
     Channel<JTree, TreeSelectionEvent> TREE_VALUE_CHANGED =
-            new ChannelAgent<>(JTree::addTreeSelectionListener, Listeners::treeValueChanged)::add;
+            new ChannelAgent<>(JTree::addTreeSelectionListener, Listeners::treeValueChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JSpinner}s.
@@ -752,7 +746,7 @@ public interface Channel<C, M> {
      * @see JSpinner#addChangeListener(ChangeListener)
      */
     Channel<JSpinner, ChangeEvent> JSP_STATE_CHANGED =
-            new ChannelAgent<>(JSpinner::addChangeListener, Listeners::stateChanged)::add;
+            new ChannelAgent<>(JSpinner::addChangeListener, Listeners::stateChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JScrollBar}s.
@@ -761,7 +755,7 @@ public interface Channel<C, M> {
      * @see JScrollBar#addAdjustmentListener(AdjustmentListener)
      */
     Channel<JScrollBar, AdjustmentEvent> ADJUSTMENT_VALUE_CHANGED =
-            new ChannelAgent<>(JScrollBar::addAdjustmentListener, Listeners::adjustmentValueChanged)::add;
+            new ChannelAgent<>(JScrollBar::addAdjustmentListener, Listeners::adjustmentValueChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JList}s.
@@ -770,8 +764,7 @@ public interface Channel<C, M> {
      * @see JList#addListSelectionListener(ListSelectionListener)
      */
     Channel<JList<?>, ListSelectionEvent> LIST_VALUE_CHANGED =
-            new ChannelAgent<>((JList<?> c, ListSelectionListener l) -> c.addListSelectionListener(l),
-                               Listeners::listValueChanged)::add;
+            new ChannelAgent<>(JList::addListSelectionListener, Listeners::listValueChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JInternalFrame}s.
@@ -780,7 +773,7 @@ public interface Channel<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Channel<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_OPENED =
-            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameOpened)::add;
+            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameOpened);
 
     /**
      * Represents a channel that handles events that can occur on {@link JInternalFrame}s.
@@ -789,7 +782,7 @@ public interface Channel<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Channel<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_CLOSING =
-            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameClosing)::add;
+            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameClosing);
 
     /**
      * Represents a channel that handles events that can occur on {@link JInternalFrame}s.
@@ -798,7 +791,7 @@ public interface Channel<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Channel<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_CLOSED =
-            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameClosed)::add;
+            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameClosed);
 
     /**
      * Represents a channel that handles events that can occur on {@link JInternalFrame}s.
@@ -807,7 +800,7 @@ public interface Channel<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Channel<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_ICONIFIED =
-            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameIconified)::add;
+            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameIconified);
 
     /**
      * Represents a channel that handles events that can occur on {@link JInternalFrame}s.
@@ -816,7 +809,7 @@ public interface Channel<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Channel<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_DEICONIFIED =
-            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameDeiconified)::add;
+            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameDeiconified);
 
     /**
      * Represents a channel that handles events that can occur on {@link JInternalFrame}s.
@@ -825,7 +818,7 @@ public interface Channel<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Channel<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_ACTIVATED =
-            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameActivated)::add;
+            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameActivated);
 
     /**
      * Represents a channel that handles events that can occur on {@link JInternalFrame}s.
@@ -834,7 +827,7 @@ public interface Channel<C, M> {
      * @see JInternalFrame#addInternalFrameListener(InternalFrameListener)
      */
     Channel<JInternalFrame, InternalFrameEvent> INTERNAL_FRAME_DEACTIVATED =
-            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameDeactivated)::add;
+            new ChannelAgent<>(JInternalFrame::addInternalFrameListener, Listeners::internalFrameDeactivated);
 
     /**
      * Represents a channel that handles events that can occur on {@link JEditorPane}s.
@@ -843,7 +836,7 @@ public interface Channel<C, M> {
      * @see JEditorPane#addHyperlinkListener(HyperlinkListener)
      */
     Channel<JEditorPane, HyperlinkEvent> HYPERLINK_UPDATE =
-            new ChannelAgent<>(JEditorPane::addHyperlinkListener, Listeners::hyperlinkUpdate)::add;
+            new ChannelAgent<>(JEditorPane::addHyperlinkListener, Listeners::hyperlinkUpdate);
 
     /**
      * Represents a channel that handles events that can occur on {@link JViewport}s.
@@ -852,7 +845,7 @@ public interface Channel<C, M> {
      * @see JViewport#addChangeListener(ChangeListener)
      */
     Channel<JViewport, ChangeEvent> JVP_STATE_CHANGED =
-            new ChannelAgent<>(JViewport::addChangeListener, Listeners::stateChanged)::add;
+            new ChannelAgent<>(JViewport::addChangeListener, Listeners::stateChanged);
 
     /**
      * Represents a channel that handles events that can occur on {@link JFileChooser}s.
@@ -861,7 +854,7 @@ public interface Channel<C, M> {
      * @see JFileChooser#addActionListener(ActionListener)
      */
     Channel<JFileChooser, ActionEvent> JFC_ACTION_PERFORMED =
-            new ChannelAgent<>(JFileChooser::addActionListener, Listeners::actionPerformed)::add;
+            new ChannelAgent<>(JFileChooser::addActionListener, Listeners::actionPerformed);
 
     /**
      * Represents a channel that handles events that can occur on {@link JMenu}s.
@@ -870,7 +863,7 @@ public interface Channel<C, M> {
      * @see JMenu#addMenuListener(MenuListener)
      */
     Channel<JMenu, MenuEvent> MENU_SELECTED =
-            new ChannelAgent<>(JMenu::addMenuListener, Listeners::menuSelected)::add;
+            new ChannelAgent<>(JMenu::addMenuListener, Listeners::menuSelected);
 
     /**
      * Represents a channel that handles events that can occur on {@link JMenu}s.
@@ -879,7 +872,7 @@ public interface Channel<C, M> {
      * @see JMenu#addMenuListener(MenuListener)
      */
     Channel<JMenu, MenuEvent> MENU_DESELECTED =
-            new ChannelAgent<>(JMenu::addMenuListener, Listeners::menuDeselected)::add;
+            new ChannelAgent<>(JMenu::addMenuListener, Listeners::menuDeselected);
 
     /**
      * Represents a channel that handles events that can occur on {@link JMenu}s.
@@ -888,7 +881,7 @@ public interface Channel<C, M> {
      * @see JMenu#addMenuListener(MenuListener)
      */
     Channel<JMenu, MenuEvent> MENU_CANCELED =
-            new ChannelAgent<>(JMenu::addMenuListener, Listeners::menuCanceled)::add;
+            new ChannelAgent<>(JMenu::addMenuListener, Listeners::menuCanceled);
 
     /**
      * Retrieves a channel that handles events that can occur on {@link Component}s
@@ -899,7 +892,7 @@ public interface Channel<C, M> {
      */
     static Channel<Component, PropertyChangeEvent> propertyChange(final String propertyName) {
         return new ChannelAgent<>((Component c, PropertyChangeListener l) -> c.addPropertyChangeListener(propertyName, l),
-                                  Listeners::propertyChange)::add;
+                                  Listeners::propertyChange);
     }
 
     /**
