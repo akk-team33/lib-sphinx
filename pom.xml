@@ -4,7 +4,7 @@
 
     <groupId>de.team33.sphinx</groupId>
     <artifactId>sphinx-root</artifactId>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.3.2</version>
     <packaging>pom</packaging>
 
     <name>Team33 Sphinx Library Root</name>
@@ -132,6 +132,15 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
+                    <excludeArtifacts>
+                        <artifact>sphinx-home</artifact>
+                        <artifact>sphinx-annex</artifact>
+                        <artifact>patterns-ophelia</artifact>
+                        <artifact>image-display</artifact>
+                        <artifact>random-display</artifact>
+                        <artifact>generation-alpha</artifact>
+                        <artifact>sample-alpha</artifact>
+                    </excludeArtifacts>
                 </configuration>
             </plugin>
         </plugins>

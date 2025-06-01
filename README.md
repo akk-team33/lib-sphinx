@@ -21,6 +21,10 @@ http://www.team33.de/dev/sphinx/1.x
 
 ## Change Log
 
+### 1.3.2
+
+* Switched deployment to maven central
+
 ### 1.3.1
 
 * sphinx-luna: Refined javadoc
