@@ -1,6 +1,7 @@
 package de.team33.sphinx.luna.publics;
 
 import de.team33.sphinx.luna.Channel;
+import de.team33.sphinx.luna.Route;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
@@ -22,7 +23,7 @@ class ChannelTest {
         final Given<Container, ContainerEvent> given = new Given<>(new JPanel());
         final JLabel label = new JLabel();
 
-        Channel.COMPONENT_ADDED.add(given.component(), given::onMessage);
+        final Route route = Channel.COMPONENT_ADDED.add(given.component(), given::onMessage);
         given.component().add(label);
 
         assertEquals(1, given.received().size());
@@ -30,6 +31,10 @@ class ChannelTest {
         assertSame(given.component(), received.getComponent());
         assertSame(given.component(), received.getContainer());
         assertSame(label, received.getChild());
+
+        route.close();
+        given.component().add(new JLabel());
+        assertEquals(1, given.received().size());
     }
 
     static class Given<C extends Component, M extends ComponentEvent> {

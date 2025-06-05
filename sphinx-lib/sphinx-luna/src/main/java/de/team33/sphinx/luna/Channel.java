@@ -323,7 +323,9 @@ public interface Channel<C, M> {
      * @see Container#addContainerListener(ContainerListener)
      */
     Channel<Container, ContainerEvent> COMPONENT_ADDED =
-            new ChannelAgent<>(Container::addContainerListener, Listeners::componentAdded);
+            new ChannelAgent<>(Container::addContainerListener,
+                               Container::removeContainerListener,
+                               Listeners::componentAdded);
 
     /**
      * Represents a channel that handles events that can occur on {@link Container}s.
@@ -898,6 +900,9 @@ public interface Channel<C, M> {
     /**
      * Adds an appropriate {@link Consumer} to a given component of type {@code <C>} to process the associated
      * message of type {@code <M>} when an activity or event as expected in this context occurs.
+     *
+     * @return A {@link Route} that can be {@link Route#close() closed} to stop processing associated messages.
+     * May be ignored if processing should not be stopped within the lifecycle of the component.
      */
-    void add(C component, Consumer<M> reaction);
+    Route add(C component, Consumer<M> reaction);
 }
