@@ -9,7 +9,7 @@
         <version>1.4.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>generation-alpha</artifactId>
+    <artifactId>generation</artifactId>
 
     <dependencies>
         <dependency>

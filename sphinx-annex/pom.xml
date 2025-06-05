@@ -24,7 +24,7 @@
         <module>patterns-ophelia</module>
         <module>image-display</module>
         <module>random-display</module>
-        <module>generation-alpha</module>
+        <module>generation</module>
         <module>sample-alpha</module>
     </modules>
 

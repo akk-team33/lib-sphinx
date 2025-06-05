@@ -60,7 +60,7 @@
                         <artifact>patterns-ophelia</artifact>
                         <artifact>image-display</artifact>
                         <artifact>random-display</artifact>
-                        <artifact>generation-alpha</artifact>
+                        <artifact>generation</artifact>
                         <artifact>sample-alpha</artifact>
                     </excludeArtifacts>
                 </configuration>
