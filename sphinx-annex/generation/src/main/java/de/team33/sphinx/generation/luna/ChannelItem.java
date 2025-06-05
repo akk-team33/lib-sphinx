@@ -1,22 +1,22 @@
-package de.team33.sphinx.generation.alpha.activity;
+package de.team33.sphinx.generation.luna;
 
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.lang.reflect.Method;
 
-class EventItem {
+class ChannelItem {
 
     private static final String FORMAT = //
             "%n%n" +
             "    /**%n" +
-            "     * Represents an event that can occur on {@link %1$s}s.%n" +
+            "     * Represents a channel that handles events that can occur on {@link %1$s}s.%n" +
             "     *%n" +
             "     * @see %6$s#%5$s(%2$s)%n" +
             "     * @see %1$s#%4$s(%6$s)%n" +
             "     */%n" +
-            "    Event<%1$s, %2$s> %3$s =%n" +
-            "            new EventAgent<>(%1$s::%4$s, Listeners::%5$s).event();";
+            "    Channel<%1$s, %2$s> %3$s =%n" +
+            "            new ChannelAgent<>(%1$s::%4$s, Listeners::%5$s);";
 
     private final String addListenerClassName;
     private final String eventClassName;
@@ -25,7 +25,7 @@ class EventItem {
     private final String toListenerMethodName;
     private final String listenerClassName;
 
-    EventItem(final Method addListenerMethod, final Method listenerMethod) {
+    ChannelItem(final Method addListenerMethod, final Method listenerMethod) {
         assert 1 == addListenerMethod.getParameterCount();
         assert 1 == listenerMethod.getParameterCount();
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -70,7 +70,7 @@ class EventItem {
                                                                 WindowListener.class);
         final Method listenerMethod = WindowListener.class.getMethod("windowClosing",
                                                                      WindowEvent.class);
-        final EventItem source = new EventItem(addListenerMethod, listenerMethod);
+        final ChannelItem source = new ChannelItem(addListenerMethod, listenerMethod);
         System.out.println(source);
     }
 }

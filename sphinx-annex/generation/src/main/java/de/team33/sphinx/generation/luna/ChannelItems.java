@@ -1,4 +1,4 @@
-package de.team33.sphinx.generation.alpha.activity;
+package de.team33.sphinx.generation.luna;
 
 import java.awt.*;
 import java.awt.event.WindowListener;
@@ -7,29 +7,29 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class EventItems {
+class ChannelItems {
 
-    private final List<EventItem> items;
+    private final List<ChannelItem> items;
 
-    EventItems(final Method addListenerMethod) {
+    ChannelItems(final Method addListenerMethod) {
         assert 1 == addListenerMethod.getParameterCount();
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         items = Stream.of(addListenerMethod.getParameterTypes()[0].getMethods())
-                      .map(listenerMethod -> new EventItem(addListenerMethod, listenerMethod))
+                      .map(listenerMethod -> new ChannelItem(addListenerMethod, listenerMethod))
                       .collect(Collectors.toList());
     }
 
     @Override
     public final String toString() {
         return items.stream()
-                    .map(EventItem::toString)
+                    .map(ChannelItem::toString)
                     .collect(Collectors.joining());
     }
 
     public static void main(final String[] args) throws NoSuchMethodException {
         final Method addListenerMethod = Window.class.getMethod("addWindowListener",
                                                                 WindowListener.class);
-        final EventItems source = new EventItems(addListenerMethod);
+        final ChannelItems source = new ChannelItems(addListenerMethod);
         System.out.println(source);
     }
 }
