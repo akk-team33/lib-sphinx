@@ -1,6 +1,6 @@
 package de.team33.sphinx.generation.alpha.visual;
 
-import de.team33.sphinx.generation.alpha.Classes;
+import de.team33.sphinx.generation.Classes;
 
 import java.awt.*;
 import java.lang.reflect.Method;

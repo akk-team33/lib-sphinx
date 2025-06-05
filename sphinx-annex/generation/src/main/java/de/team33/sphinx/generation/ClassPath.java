@@ -1,4 +1,4 @@
-package de.team33.sphinx.generation.alpha;
+package de.team33.sphinx.generation;
 
 import java.io.IOException;
 import java.io.InputStream;

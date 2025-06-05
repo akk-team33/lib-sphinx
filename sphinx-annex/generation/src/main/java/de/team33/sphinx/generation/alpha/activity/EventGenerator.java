@@ -1,6 +1,6 @@
 package de.team33.sphinx.generation.alpha.activity;
 
-import de.team33.sphinx.generation.alpha.Classes;
+import de.team33.sphinx.generation.Classes;
 
 import java.util.List;
 import java.util.stream.Collectors;
