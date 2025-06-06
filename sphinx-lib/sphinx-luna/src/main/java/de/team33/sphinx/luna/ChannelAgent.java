@@ -18,7 +18,6 @@ class ChannelAgent<C, L, M> implements Channel<C, M> {
         this.mapping = mapping;
     }
 
-    @SuppressWarnings("ReturnOfNull")
     @Override
     public final Link add(final C component, final Consumer<M> reaction) {
         final L swingListener = mapping.apply(reaction);
