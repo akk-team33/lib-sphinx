@@ -1,7 +1,7 @@
 package de.team33.sphinx.luna.publics;
 
 import de.team33.sphinx.luna.Channel;
-import de.team33.sphinx.luna.Route;
+import de.team33.sphinx.luna.Link;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
@@ -23,7 +23,7 @@ class ChannelTest {
         final Given<Container, ContainerEvent> given = new Given<>(new JPanel());
         final JLabel label = new JLabel();
 
-        final Route route = Channel.COMPONENT_ADDED.add(given.component(), given::onMessage);
+        final Link link = Channel.COMPONENT_ADDED.add(given.component(), given::onMessage);
         given.component().add(label);
 
         assertEquals(1, given.received().size());
@@ -32,9 +32,12 @@ class ChannelTest {
         assertSame(given.component(), received.getContainer());
         assertSame(label, received.getChild());
 
-        route.close();
+        link.unlink();
         given.component().add(new JLabel());
         assertEquals(1, given.received().size());
+
+        // what happens when already unlinked? ...
+        link.unlink();
     }
 
     static class Given<C extends Component, M extends ComponentEvent> {

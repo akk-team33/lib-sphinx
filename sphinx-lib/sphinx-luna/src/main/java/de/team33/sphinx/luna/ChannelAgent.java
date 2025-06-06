@@ -25,7 +25,7 @@ class ChannelAgent<C, L, M> implements Channel<C, M> {
 
     @SuppressWarnings("ReturnOfNull")
     @Override
-    public final Route add(final C component, final Consumer<M> reaction) {
+    public final Link add(final C component, final Consumer<M> reaction) {
         final L swingListener = mapping.apply(reaction);
         addition.accept(component, swingListener);
         return (null == removal) ? null : () -> removal.accept(component, swingListener);
