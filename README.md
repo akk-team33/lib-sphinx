@@ -21,6 +21,14 @@ http://www.team33.de/dev/sphinx/1.x
 
 ## Change Log
 
+### 1.3.4
+
+* sphinx-luna: added option to remove listeners added through Channel.add()
+
+### 1.3.3
+
+* Using de.team33:mvn-config-alpha:1.0.0 as parent pom
+
 ### 1.3.2
 
 * Switched deployment to maven central
