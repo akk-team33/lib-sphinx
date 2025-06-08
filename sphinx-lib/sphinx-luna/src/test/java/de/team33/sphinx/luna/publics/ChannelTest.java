@@ -11,7 +11,6 @@ import java.awt.event.ContainerEvent;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -24,6 +23,8 @@ class ChannelTest {
         final JLabel label = new JLabel();
 
         final Link link = Channel.COMPONENT_ADDED.add(given.component(), given::onMessage);
+        assertEquals(0, given.received().size());
+
         given.component().add(label);
 
         assertEquals(1, given.received().size());
@@ -38,16 +39,13 @@ class ChannelTest {
 
         // what happens when already unlinked? ...
         link.unlink();
+        // ... (should be) nothing!
     }
 
     static class Given<C extends Component, M extends ComponentEvent> {
 
         private final C component;
         private final List<M> received = new LinkedList<>();
-
-        Given(final Supplier<C> newComponent) {
-            this(newComponent.get());
-        }
 
         Given(final C component) {
             this.component = component;
