@@ -21,6 +21,10 @@ http://www.team33.de/dev/sphinx/1.x
 
 ## Change Log
 
+### 1.3.5
+
+* sphinx-alpha: added Windows.pack()
+
 ### 1.3.4
 
 * sphinx-luna: added option to remove listeners added through Channel.add()

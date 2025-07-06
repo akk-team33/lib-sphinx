@@ -1,11 +1,9 @@
 package de.team33.sphinx.alpha.visual;
 
 import de.team33.patterns.building.elara.LateBuilder;
-import java.awt.Component;
+
+import java.awt.*;
 import java.awt.Dialog.ModalExclusionType;
-import java.awt.Image;
-import java.awt.Shape;
-import java.awt.Window;
 import java.awt.Window.Type;
 import java.util.List;
 import java.util.function.Supplier;
@@ -151,6 +149,13 @@ public final class Windows {
          */
         default S setType(final Type arg0) {
             return setup(result -> result.setType(arg0));
+        }
+
+        /**
+         * @see Window#pack()
+         */
+        default S pack() {
+            return setup(Window::pack);
         }
     }
 }
