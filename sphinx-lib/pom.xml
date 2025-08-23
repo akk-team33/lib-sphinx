@@ -15,7 +15,6 @@
     <description>Parent of team33 sphinx library collection</description>
 
     <modules>
-        <module>sphinx-alpha</module>
         <module>sphinx-luna</module>
     </modules>
 
