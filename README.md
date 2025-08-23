@@ -6,11 +6,11 @@ Team33 Sphinx Library Collection
 
 ## Home
 
-http://www.team33.de/dev/sphinx/1.x
+https://www.team33.de/dev/sphinx/2.x
 
 ## Requires
 
-    Java 8 or later
+    Java 17 or later
 
 ## Artifacts
 
@@ -20,6 +20,10 @@ http://www.team33.de/dev/sphinx/1.x
   * sphinx-luna (Extensions to the java swing library - edition "luna")
 
 ## Change Log
+
+### 2.0.0
+
+* Requires Java 17 or later
 
 ### 1.3.5
 
