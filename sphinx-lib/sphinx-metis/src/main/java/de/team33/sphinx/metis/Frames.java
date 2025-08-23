@@ -22,109 +22,129 @@ public final class Frames {
     }
 
     /**
-     * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link Frame}.
+     * Returns a new {@link Builder} for target instances of type {@link Frame}.
+     *
+     * @see #builder(Supplier)
+     * @see Frame#Frame(String)
      */
-    public static <T extends Frame> Builder<T> builder(final Supplier<T> newTarget) {
+    public static Builder<Frame> builder(final String title) {
+        return new Builder<>(() -> new Frame(title), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link Frame}.
+     *
+     * @see #builder(Supplier)
+     * @see Frame#Frame(String, GraphicsConfiguration)
+     */
+    public static Builder<Frame> builder(final String title, final GraphicsConfiguration gc) {
+        return new Builder<>(() -> new Frame(title, gc), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
+     *
+     * @param <F> The final type of the target instances, at least {@link Frame}.
+     */
+    public static <F extends Frame> Builder<F> builder(final Supplier<F> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
     /**
      * Returns a new {@link Charger} for a given target instance.
-     * 
-     * @param <T> The final type of the target instance, at least {@link Frame}.
+     *
+     * @param <F> The final type of the target instance, at least {@link Frame}.
      */
-    public static <T extends Frame> Charger<T> charger(final T target) {
+    public static <F extends Frame> Charger<F> charger(final F target) {
         return new Charger<>(target, Charger.class);
     }
 
     /**
-     * Builder implementation to build target instances of {@link Frame}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link Frame}.
+     * Utility interface to set up a target instance of {@link Frame}.
+     *
+     * @param <F> The final type of the target instance, at least {@link Frame}.
+     * @param <S> The final type of the Setup implementation.
      */
-    public static final class Builder<T extends Frame>
-            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
+    public interface Setup<F extends Frame, S extends Setup<F, S>> extends Windows.Setup<F, S> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
+        /**
+         * @see Frame#setExtendedState(int)
+         */
+        default S setExtendedState(final int state) {
+            return setup(result -> result.setExtendedState(state));
+        }
+
+        /**
+         * @see Frame#setMaximizedBounds(Rectangle)
+         */
+        default S setMaximizedBounds(final Rectangle bounds) {
+            return setup(result -> result.setMaximizedBounds(bounds));
+        }
+
+        /**
+         * @see Frame#setMenuBar(MenuBar)
+         */
+        default S setMenuBar(final MenuBar menuBar) {
+            return setup(result -> result.setMenuBar(menuBar));
+        }
+
+        /**
+         * @see Frame#setResizable(boolean)
+         */
+        default S setResizable(final boolean resizable) {
+            return setup(result -> result.setResizable(resizable));
+        }
+
+        /**
+         * @see Frame#setState(int)
+         */
+        default S setState(final int state) {
+            return setup(result -> result.setState(state));
+        }
+
+        /**
+         * @see Frame#setTitle(String)
+         */
+        default S setTitle(final String title) {
+            return setup(result -> result.setTitle(title));
+        }
+
+        /**
+         * @see Frame#setUndecorated(boolean)
+         */
+        default S setUndecorated(final boolean undecorated) {
+            return setup(result -> result.setUndecorated(undecorated));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link Frame}.
+     *
+     * @param <F> The final type of the target instances, at least {@link Frame}.
+     */
+    public static final class Builder<F extends Frame>
+            extends LateBuilder<F, Builder<F>> implements Setup<F, Builder<F>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<F> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
 
     /**
      * Charger implementation to charge target instances of {@link Frame}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link Frame}.
+     *
+     * @param <F> The final type of the target instance, at least {@link Frame}.
      */
-    public static final class Charger<T extends Frame>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
+    public static final class Charger<F extends Frame>
+            extends de.team33.patterns.building.elara.Charger<F, Charger<F>>
+            implements Setup<F, Charger<F>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
+        @SuppressWarnings("unchecked")
+        private Charger(final F target, final Class chargerClass) {
             super(target, chargerClass);
-        }
-    }
-
-    /**
-     * Utility interface to set up a target instance of {@link Frame}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link Frame}.
-     * @param <S> The final type of the Setup implementation.
-     */
-    @SuppressWarnings("ClassNameSameAsAncestorName")
-    @FunctionalInterface
-    public interface Setup<T extends Frame, S extends Setup<T, S>> extends Windows.Setup<T, S> {
-
-        /**
-         * @see Frame#setExtendedState(int)
-         */
-        default S setExtendedState(final int arg0) {
-            return setup(result -> result.setExtendedState(arg0));
-        }
-
-        /**
-         * @see Frame#setMaximizedBounds(Rectangle)
-         */
-        default S setMaximizedBounds(final Rectangle arg0) {
-            return setup(result -> result.setMaximizedBounds(arg0));
-        }
-
-        /**
-         * @see Frame#setMenuBar(MenuBar)
-         */
-        default S setMenuBar(final MenuBar arg0) {
-            return setup(result -> result.setMenuBar(arg0));
-        }
-
-        /**
-         * @see Frame#setResizable(boolean)
-         */
-        default S setResizable(final boolean arg0) {
-            return setup(result -> result.setResizable(arg0));
-        }
-
-        /**
-         * @see Frame#setState(int)
-         */
-        default S setState(final int arg0) {
-            return setup(result -> result.setState(arg0));
-        }
-
-        /**
-         * @see Frame#setTitle(String)
-         */
-        default S setTitle(final String arg0) {
-            return setup(result -> result.setTitle(arg0));
-        }
-
-        /**
-         * @see Frame#setUndecorated(boolean)
-         */
-        default S setUndecorated(final boolean arg0) {
-            return setup(result -> result.setUndecorated(arg0));
         }
     }
 }
