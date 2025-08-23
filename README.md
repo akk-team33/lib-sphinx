@@ -16,13 +16,20 @@ https://www.team33.de/dev/sphinx/2.x
 
 * sphinx-bom (Team33 Sphinx Library BOM)
 * sphinx-lib (Team33 Sphinx Library Parent)
-  * sphinx-alpha (Extensions to the java swing library - edition "alpha")
   * sphinx-luna (Extensions to the java swing library - edition "luna")
+  * sphinx-metis (Extensions to the java swing library - edition "metis")
+
+## Still Supported
+
+* (sphinx-lib - previous releases)
+  * sphinx-alpha (Extensions to the java swing library - edition "alpha") - 1.3.5
 
 ## Change Log
 
 ### 2.0.0
 
+* Added module sphinx-metis
+* Nailed module sphinx-alpha to 1.3.5
 * Requires Java 17 or later
 
 ### 1.3.5
