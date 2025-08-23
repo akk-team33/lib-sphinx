@@ -23,9 +23,9 @@ public final class Components {
     /**
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
      *
-     * @param <T> The final type of the target instances, at least {@link Component}.
+     * @param <C> The final type of the target instances, at least {@link Component}.
      */
-    public static <T extends Component> Builder<T> builder(final Supplier<T> newTarget) {
+    public static <C extends Component> Builder<C> builder(final Supplier<C> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
@@ -39,60 +39,30 @@ public final class Components {
     }
 
     /**
-     * Builder implementation to build target instances of {@link Component}.
-     *
-     * @param <T> The final type of the target instances, at least {@link Component}.
-     */
-    public static final class Builder<T extends Component>
-            extends LateBuilder<T, Builder<T>>
-            implements Setup<T, Builder<T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
-            super(newResult, builderClass);
-        }
-    }
-
-    /**
-     * Charger implementation to charge target instances of {@link Component}.
-     *
-     * @param <T> The final type of the target instance, at least {@link Component}.
-     */
-    public static final class Charger<T extends Component>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
-            super(target, chargerClass);
-        }
-    }
-
-    /**
      * Utility interface to set up a target instance of {@link Component}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link Component}.
+     *
+     * @param <C> The final type of the target instance, at least {@link Component}.
      * @param <S> The final type of the Setup implementation.
      */
     @SuppressWarnings({"ClassNameSameAsAncestorName", "ClassWithTooManyMethods"})
     @FunctionalInterface
-    public interface Setup<T extends Component, S extends Setup<T, S>>
-            extends de.team33.patterns.building.elara.Setup<T, S> {
+    public interface Setup<C extends Component, S extends Setup<C, S>>
+            extends de.team33.patterns.building.elara.Setup<C, S> {
 
         /**
          * Adds a reaction on a specific {@link Channel}.
          */
-        default <M> S add(final Channel<? super T, M> channel, final Consumer<M> reaction) {
-            return setup(t -> channel.add(t, reaction));
+        default <M> S add(final Channel<? super C, M> channel, final Consumer<M> reaction) {
+            return setup(c -> channel.add(c, reaction));
         }
 
         /**
          * Adds a reaction on a specific {@link Channel} and collects a resulting {@link Link}.
          */
-        default <M> S add(final Channel<? super T, M> channel,
+        default <M> S add(final Channel<? super C, M> channel,
                           final Consumer<M> reaction,
                           final Consumer<Link> collector) {
-            return setup(t -> collector.accept(channel.add(t, reaction)));
+            return setup(c -> collector.accept(channel.add(c, reaction)));
         }
 
         /**
@@ -268,6 +238,36 @@ public final class Components {
          */
         default S setVisible(final boolean visible) {
             return setup(result -> result.setVisible(visible));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link Component}.
+     *
+     * @param <C> The final type of the target instances, at least {@link Component}.
+     */
+    public static final class Builder<C extends Component>
+            extends LateBuilder<C, Builder<C>>
+            implements Setup<C, Builder<C>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<C> newResult, final Class builderClass) {
+            super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link Component}.
+     *
+     * @param <C> The final type of the target instance, at least {@link Component}.
+     */
+    public static final class Charger<C extends Component>
+            extends de.team33.patterns.building.elara.Charger<C, Charger<C>>
+            implements Setup<C, Charger<C>> {
+
+        @SuppressWarnings("unchecked")
+        private Charger(final C target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 }
