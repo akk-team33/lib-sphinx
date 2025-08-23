@@ -16,6 +16,7 @@
 
     <modules>
         <module>sphinx-luna</module>
+        <module>sphinx-metis</module>
     </modules>
 
     <dependencyManagement>

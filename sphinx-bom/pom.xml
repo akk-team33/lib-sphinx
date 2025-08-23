@@ -22,6 +22,11 @@
                 <artifactId>sphinx-luna</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>de.team33.sphinx</groupId>
+                <artifactId>sphinx-metis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!-- nailed (suspended) ... -->
             <dependency>
