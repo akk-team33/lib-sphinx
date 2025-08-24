@@ -34,6 +34,13 @@ public final class JComponents {
     }
 
     /**
+     * Returns a new {@link Setup} for a given {@link JComponent} instance.
+     */
+    public static Setup<JComponent, ?> setup(final JComponent target) {
+        return charger(target);
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link JComponent}.
      *
      * @param <C> The final type of the target instance, at least {@link JComponent}.

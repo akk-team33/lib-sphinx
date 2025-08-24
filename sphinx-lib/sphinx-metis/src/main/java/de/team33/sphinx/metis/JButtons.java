@@ -23,66 +23,73 @@ public final class JButtons {
 
     /**
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JButton}.
+     *
+     * @param <B> The final type of the target instances, at least {@link JButton}.
      */
-    public static <T extends JButton> Builder<T> builder(final Supplier<T> newTarget) {
+    public static <B extends JButton> Builder<B> builder(final Supplier<B> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
     /**
      * Returns a new {@link Charger} for a given target instance.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JButton}.
+     *
+     * @param <B> The final type of the target instance, at least {@link JButton}.
      */
-    public static <T extends JButton> Charger<T> charger(final T target) {
+    public static <B extends JButton> Charger<B> charger(final B target) {
         return new Charger<>(target, Charger.class);
     }
 
     /**
-     * Builder implementation to build target instances of {@link JButton}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JButton}.
+     * Returns a new {@link Setup} for a given {@link JButton} instance.
      */
-    public static final class Builder<T extends JButton>
-            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
+    public static Setup<JButton, ?> setup(final JButton target) {
+        return charger(target);
+    }
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
+    /**
+     * Utility interface to set up a target instance of {@link JButton}.
+     *
+     * @param <B> The final type of the target instance, at least {@link JButton}.
+     * @param <S> The final type of the Setup implementation.
+     */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
+    public interface Setup<B extends JButton, S extends Setup<B, S>> extends AbstractButtons.Setup<B, S> {
+
+        /**
+         * @see JButton#setDefaultCapable(boolean)
+         */
+        default S setDefaultCapable(final boolean capable) {
+            return setup(result -> result.setDefaultCapable(capable));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link JButton}.
+     *
+     * @param <B> The final type of the target instances, at least {@link JButton}.
+     */
+    public static final class Builder<B extends JButton>
+            extends LateBuilder<B, Builder<B>> implements Setup<B, Builder<B>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<B> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
 
     /**
      * Charger implementation to charge target instances of {@link JButton}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JButton}.
+     *
+     * @param <B> The final type of the target instance, at least {@link JButton}.
      */
-    public static final class Charger<T extends JButton>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
+    public static final class Charger<B extends JButton>
+            extends de.team33.patterns.building.elara.Charger<B, Charger<B>>
+            implements Setup<B, Charger<B>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
+        @SuppressWarnings("unchecked")
+        private Charger(final B target, final Class chargerClass) {
             super(target, chargerClass);
-        }
-    }
-
-    /**
-     * Utility interface to set up a target instance of {@link JButton}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JButton}.
-     * @param <S> The final type of the Setup implementation.
-     */
-    @SuppressWarnings("ClassNameSameAsAncestorName")
-    @FunctionalInterface
-    public interface Setup<T extends JButton, S extends Setup<T, S>> extends AbstractButtons.Setup<T, S> {
-
-        /**
-         * @see JButton#setDefaultCapable(boolean)
-         */
-        default S setDefaultCapable(final boolean arg0) {
-            return setup(result -> result.setDefaultCapable(arg0));
         }
     }
 }
