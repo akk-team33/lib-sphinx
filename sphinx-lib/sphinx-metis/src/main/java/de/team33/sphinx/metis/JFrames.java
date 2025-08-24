@@ -17,108 +17,148 @@ public final class JFrames {
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JFrame}.
+     *
+     * @see #builder(Supplier)
+     * @see JFrame#JFrame()
      */
     public static Builder<JFrame> builder() {
         return new Builder<>(JFrame::new, Builder.class);
     }
 
     /**
-     * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JFrame}.
+     * Returns a new {@link Builder} for target instances of type {@link JFrame}.
+     *
+     * @see #builder(Supplier)
+     * @see JFrame#JFrame(String)
      */
-    public static <T extends JFrame> Builder<T> builder(final Supplier<T> newTarget) {
+    public static Builder<JFrame> builder(final String title) {
+        return new Builder<>(() -> new JFrame(title), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JFrame}.
+     *
+     * @see #builder(Supplier)
+     * @see JFrame#JFrame(GraphicsConfiguration)
+     */
+    public static Builder<JFrame> builder(final GraphicsConfiguration gc) {
+        return new Builder<>(() -> new JFrame(gc), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JFrame}.
+     *
+     * @see #builder(Supplier)
+     * @see JFrame#JFrame(String, GraphicsConfiguration)
+     */
+    public static Builder<JFrame> builder(final String title, final GraphicsConfiguration gc) {
+        return new Builder<>(() -> new JFrame(title, gc), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
+     *
+     * @param <F> The final type of the target instances, at least {@link JFrame}.
+     */
+    public static <F extends JFrame> Builder<F> builder(final Supplier<F> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
     /**
      * Returns a new {@link Charger} for a given target instance.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JFrame}.
+     *
+     * @param <F> The final type of the target instance, at least {@link JFrame}.
      */
-    public static <T extends JFrame> Charger<T> charger(final T target) {
+    public static <F extends JFrame> Charger<F> charger(final F target) {
         return new Charger<>(target, Charger.class);
     }
 
     /**
-     * Builder implementation to build target instances of {@link JFrame}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JFrame}.
+     * Returns a new {@link Setup} for a given {@link JFrame} instance.
      */
-    public static final class Builder<T extends JFrame>
-            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
+    public static Setup<JFrame, ?> setup(final JFrame target) {
+        return charger(target);
+    }
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
+    /**
+     * Utility interface to set up a target instance of {@link JFrame}.
+     *
+     * @param <F> The final type of the target instance, at least {@link JFrame}.
+     * @param <S> The final type of the Setup implementation.
+     */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
+    public interface Setup<F extends JFrame, S extends Setup<F, S>> extends Frames.Setup<F, S> {
+
+        /**
+         * @see JFrame#setContentPane(Container)
+         */
+        default S setContentPane(final Container contentPane) {
+            return setup(result -> result.setContentPane(contentPane));
+        }
+
+        /**
+         * @see JFrame#setDefaultCloseOperation(int)
+         */
+        default S setDefaultCloseOperation(final int operation) {
+            return setup(result -> result.setDefaultCloseOperation(operation));
+        }
+
+        /**
+         * @see JFrame#setGlassPane(Component)
+         */
+        default S setGlassPane(final Component glassPane) {
+            return setup(result -> result.setGlassPane(glassPane));
+        }
+
+        /**
+         * @see JFrame#setJMenuBar(JMenuBar)
+         */
+        default S setJMenuBar(final JMenuBar menuBar) {
+            return setup(result -> result.setJMenuBar(menuBar));
+        }
+
+        /**
+         * @see JFrame#setLayeredPane(JLayeredPane)
+         */
+        default S setLayeredPane(final JLayeredPane layeredPane) {
+            return setup(result -> result.setLayeredPane(layeredPane));
+        }
+
+        /**
+         * @see JFrame#setTransferHandler(TransferHandler)
+         */
+        default S setTransferHandler(final TransferHandler handler) {
+            return setup(result -> result.setTransferHandler(handler));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link JFrame}.
+     *
+     * @param <F> The final type of the target instances, at least {@link JFrame}.
+     */
+    public static final class Builder<F extends JFrame>
+            extends LateBuilder<F, Builder<F>> implements Setup<F, Builder<F>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<F> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
 
     /**
      * Charger implementation to charge target instances of {@link JFrame}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JFrame}.
+     *
+     * @param <F> The final type of the target instance, at least {@link JFrame}.
      */
-    public static final class Charger<T extends JFrame>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
+    public static final class Charger<F extends JFrame>
+            extends de.team33.patterns.building.elara.Charger<F, Charger<F>>
+            implements Setup<F, Charger<F>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
+        @SuppressWarnings("unchecked")
+        private Charger(final F target, final Class chargerClass) {
             super(target, chargerClass);
-        }
-    }
-
-    /**
-     * Utility interface to set up a target instance of {@link JFrame}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JFrame}.
-     * @param <S> The final type of the Setup implementation.
-     */
-    @SuppressWarnings("ClassNameSameAsAncestorName")
-    @FunctionalInterface
-    public interface Setup<T extends JFrame, S extends Setup<T, S>> extends Frames.Setup<T, S> {
-
-        /**
-         * @see JFrame#setContentPane(Container)
-         */
-        default S setContentPane(final Container arg0) {
-            return setup(result -> result.setContentPane(arg0));
-        }
-
-        /**
-         * @see JFrame#setDefaultCloseOperation(int)
-         */
-        default S setDefaultCloseOperation(final int arg0) {
-            return setup(result -> result.setDefaultCloseOperation(arg0));
-        }
-
-        /**
-         * @see JFrame#setGlassPane(Component)
-         */
-        default S setGlassPane(final Component arg0) {
-            return setup(result -> result.setGlassPane(arg0));
-        }
-
-        /**
-         * @see JFrame#setJMenuBar(JMenuBar)
-         */
-        default S setJMenuBar(final JMenuBar arg0) {
-            return setup(result -> result.setJMenuBar(arg0));
-        }
-
-        /**
-         * @see JFrame#setLayeredPane(JLayeredPane)
-         */
-        default S setLayeredPane(final JLayeredPane arg0) {
-            return setup(result -> result.setLayeredPane(arg0));
-        }
-
-        /**
-         * @see JFrame#setTransferHandler(TransferHandler)
-         */
-        default S setTransferHandler(final TransferHandler arg0) {
-            return setup(result -> result.setTransferHandler(arg0));
         }
     }
 }

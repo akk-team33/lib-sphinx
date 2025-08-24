@@ -39,6 +39,13 @@ public final class Components {
     }
 
     /**
+     * Returns a new {@link Setup} for a given {@link Component} instance.
+     */
+    public static Setup<Component, ?> setup(final Component target) {
+        return charger(target);
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link Component}.
      *
      * @param <C> The final type of the target instance, at least {@link Component}.

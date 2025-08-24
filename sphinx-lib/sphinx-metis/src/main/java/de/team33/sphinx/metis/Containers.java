@@ -40,6 +40,13 @@ public final class Containers {
     }
 
     /**
+     * Returns a new {@link Setup} for a given {@link Container} instance.
+     */
+    public static Setup<Container, ?> setup(final Container target) {
+        return charger(target);
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link Container}.
      *
      * @param <C> The final type of the target instance, at least {@link Container}.

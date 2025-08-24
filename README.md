@@ -34,7 +34,7 @@ https://www.team33.de/dev/sphinx/2.x
 
 ### 1.3.5
 
-* sphinx-alpha: added Windows.pack()
+* sphinx-alpha: added Windows.Setup.pack()
 
 ### 1.3.4
 

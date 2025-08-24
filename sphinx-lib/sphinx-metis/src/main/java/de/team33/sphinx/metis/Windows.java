@@ -60,6 +60,13 @@ public final class Windows {
     }
 
     /**
+     * Returns a new {@link Setup} for a given {@link Window} instance.
+     */
+    public static Setup<Window, ?> setup(final Window target) {
+        return charger(target);
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link Window}.
      *
      * @param <W> The final type of the target instance, at least {@link Window}.

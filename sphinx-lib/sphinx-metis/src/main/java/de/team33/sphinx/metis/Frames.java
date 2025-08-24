@@ -60,6 +60,13 @@ public final class Frames {
     }
 
     /**
+     * Returns a new {@link Setup} for a given {@link Frame} instance.
+     */
+    public static Setup<Frame, ?> setup(final Frame target) {
+        return charger(target);
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link Frame}.
      *
      * @param <F> The final type of the target instance, at least {@link Frame}.
