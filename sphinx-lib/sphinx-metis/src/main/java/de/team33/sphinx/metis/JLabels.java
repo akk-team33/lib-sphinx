@@ -18,157 +18,217 @@ public final class JLabels {
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JLabel}.
+     *
+     * @see #builder(Supplier)
+     * @see JLabel#JLabel()
      */
     public static Builder<JLabel> builder() {
         return new Builder<>(JLabel::new, Builder.class);
     }
 
     /**
-     * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JLabel}.
+     * Returns a new {@link Builder} for target instances of type {@link JLabel}.
+     *
+     * @see #builder(Supplier)
+     * @see JLabel#JLabel(String)
      */
-    public static <T extends JLabel> Builder<T> builder(final Supplier<T> newTarget) {
+    public static Builder<JLabel> builder(final String text) {
+        return new Builder<>(() -> new JLabel(text), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JLabel}.
+     *
+     * @see #builder(Supplier)
+     * @see JLabel#JLabel(String, int)
+     */
+    public static Builder<JLabel> builder(final String text, final int alignment) {
+        return new Builder<>(() -> new JLabel(text, alignment), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JLabel}.
+     *
+     * @see #builder(Supplier)
+     * @see JLabel#JLabel(Icon)
+     */
+    public static Builder<JLabel> builder(final Icon icon) {
+        return new Builder<>(() -> new JLabel(icon), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JLabel}.
+     *
+     * @see #builder(Supplier)
+     * @see JLabel#JLabel(Icon, int)
+     */
+    public static Builder<JLabel> builder(final Icon icon, final int alignment) {
+        return new Builder<>(() -> new JLabel(icon, alignment), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JLabel}.
+     *
+     * @see #builder(Supplier)
+     * @see JLabel#JLabel(String, Icon, int)
+     */
+    public static Builder<JLabel> builder(final String text, final Icon icon, final int alignment) {
+        return new Builder<>(() -> new JLabel(text, icon, alignment), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
+     *
+     * @param <L> The final type of the target instances, at least {@link JLabel}.
+     */
+    public static <L extends JLabel> Builder<L> builder(final Supplier<L> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
     /**
      * Returns a new {@link Charger} for a given target instance.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JLabel}.
+     *
+     * @param <L> The final type of the target instance, at least {@link JLabel}.
      */
-    public static <T extends JLabel> Charger<T> charger(final T target) {
+    public static <L extends JLabel> Charger<L> charger(final L target) {
         return new Charger<>(target, Charger.class);
     }
 
     /**
-     * Builder implementation to build target instances of {@link JLabel}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JLabel}.
+     * Returns a new {@link Setup} for a given {@link JLabel} instance.
      */
-    public static final class Builder<T extends JLabel>
-            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
+    public static Setup<JLabel, ?> setup(final JLabel target) {
+        return charger(target);
+    }
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
+    /**
+     * Utility interface to set up a target instance of {@link JLabel}.
+     *
+     * @param <L> The final type of the target instance, at least {@link JLabel}.
+     * @param <S> The final type of the Setup implementation.
+     */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
+    public interface Setup<L extends JLabel, S extends Setup<L, S>> extends JComponents.Setup<L, S> {
+
+        /**
+         * @see JLabel#setDisabledIcon(Icon)
+         */
+        default S setDisabledIcon(final Icon icon) {
+            return setup(result -> result.setDisabledIcon(icon));
+        }
+
+        /**
+         * @see JLabel#setDisplayedMnemonic(char)
+         */
+        default S setDisplayedMnemonic(final char mnemonic) {
+            return setup(result -> result.setDisplayedMnemonic(mnemonic));
+        }
+
+        /**
+         * @see JLabel#setDisplayedMnemonic(int)
+         */
+        default S setDisplayedMnemonic(final int mnemonic) {
+            return setup(result -> result.setDisplayedMnemonic(mnemonic));
+        }
+
+        /**
+         * @see JLabel#setDisplayedMnemonicIndex(int)
+         */
+        default S setDisplayedMnemonicIndex(final int index) {
+            return setup(result -> result.setDisplayedMnemonicIndex(index));
+        }
+
+        /**
+         * @see JLabel#setHorizontalAlignment(int)
+         */
+        default S setHorizontalAlignment(final int alignment) {
+            return setup(result -> result.setHorizontalAlignment(alignment));
+        }
+
+        /**
+         * @see JLabel#setHorizontalTextPosition(int)
+         */
+        default S setHorizontalTextPosition(final int position) {
+            return setup(result -> result.setHorizontalTextPosition(position));
+        }
+
+        /**
+         * @see JLabel#setIcon(Icon)
+         */
+        default S setIcon(final Icon icon) {
+            return setup(result -> result.setIcon(icon));
+        }
+
+        /**
+         * @see JLabel#setIconTextGap(int)
+         */
+        default S setIconTextGap(final int gap) {
+            return setup(result -> result.setIconTextGap(gap));
+        }
+
+        /**
+         * @see JLabel#setLabelFor(Component)
+         */
+        default S setLabelFor(final Component component) {
+            return setup(result -> result.setLabelFor(component));
+        }
+
+        /**
+         * @see JLabel#setText(String)
+         */
+        default S setText(final String text) {
+            return setup(result -> result.setText(text));
+        }
+
+        /**
+         * @see JLabel#setUI(LabelUI)
+         */
+        default S setUI(final LabelUI ui) {
+            return setup(result -> result.setUI(ui));
+        }
+
+        /**
+         * @see JLabel#setVerticalAlignment(int)
+         */
+        default S setVerticalAlignment(final int alignment) {
+            return setup(result -> result.setVerticalAlignment(alignment));
+        }
+
+        /**
+         * @see JLabel#setVerticalTextPosition(int)
+         */
+        default S setVerticalTextPosition(final int position) {
+            return setup(result -> result.setVerticalTextPosition(position));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link JLabel}.
+     *
+     * @param <L> The final type of the target instances, at least {@link JLabel}.
+     */
+    public static final class Builder<L extends JLabel>
+            extends LateBuilder<L, Builder<L>> implements Setup<L, Builder<L>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<L> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
 
     /**
      * Charger implementation to charge target instances of {@link JLabel}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JLabel}.
+     *
+     * @param <L> The final type of the target instance, at least {@link JLabel}.
      */
-    public static final class Charger<T extends JLabel>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
+    public static final class Charger<L extends JLabel>
+            extends de.team33.patterns.building.elara.Charger<L, Charger<L>>
+            implements Setup<L, Charger<L>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
+        @SuppressWarnings("unchecked")
+        private Charger(final L target, final Class chargerClass) {
             super(target, chargerClass);
-        }
-    }
-
-    /**
-     * Utility interface to set up a target instance of {@link JLabel}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JLabel}.
-     * @param <S> The final type of the Setup implementation.
-     */
-    @SuppressWarnings("ClassNameSameAsAncestorName")
-    @FunctionalInterface
-    public interface Setup<T extends JLabel, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
-
-        /**
-         * @see JLabel#setDisabledIcon(Icon)
-         */
-        default S setDisabledIcon(final Icon arg0) {
-            return setup(result -> result.setDisabledIcon(arg0));
-        }
-
-        /**
-         * @see JLabel#setDisplayedMnemonic(char)
-         */
-        default S setDisplayedMnemonic(final char arg0) {
-            return setup(result -> result.setDisplayedMnemonic(arg0));
-        }
-
-        /**
-         * @see JLabel#setDisplayedMnemonic(int)
-         */
-        default S setDisplayedMnemonic(final int arg0) {
-            return setup(result -> result.setDisplayedMnemonic(arg0));
-        }
-
-        /**
-         * @see JLabel#setDisplayedMnemonicIndex(int)
-         */
-        default S setDisplayedMnemonicIndex(final int arg0) {
-            return setup(result -> result.setDisplayedMnemonicIndex(arg0));
-        }
-
-        /**
-         * @see JLabel#setHorizontalAlignment(int)
-         */
-        default S setHorizontalAlignment(final int arg0) {
-            return setup(result -> result.setHorizontalAlignment(arg0));
-        }
-
-        /**
-         * @see JLabel#setHorizontalTextPosition(int)
-         */
-        default S setHorizontalTextPosition(final int arg0) {
-            return setup(result -> result.setHorizontalTextPosition(arg0));
-        }
-
-        /**
-         * @see JLabel#setIcon(Icon)
-         */
-        default S setIcon(final Icon arg0) {
-            return setup(result -> result.setIcon(arg0));
-        }
-
-        /**
-         * @see JLabel#setIconTextGap(int)
-         */
-        default S setIconTextGap(final int arg0) {
-            return setup(result -> result.setIconTextGap(arg0));
-        }
-
-        /**
-         * @see JLabel#setLabelFor(Component)
-         */
-        default S setLabelFor(final Component arg0) {
-            return setup(result -> result.setLabelFor(arg0));
-        }
-
-        /**
-         * @see JLabel#setText(String)
-         */
-        default S setText(final String arg0) {
-            return setup(result -> result.setText(arg0));
-        }
-
-        /**
-         * @see JLabel#setUI(LabelUI)
-         */
-        default S setUI(final LabelUI arg0) {
-            return setup(result -> result.setUI(arg0));
-        }
-
-        /**
-         * @see JLabel#setVerticalAlignment(int)
-         */
-        default S setVerticalAlignment(final int arg0) {
-            return setup(result -> result.setVerticalAlignment(arg0));
-        }
-
-        /**
-         * @see JLabel#setVerticalTextPosition(int)
-         */
-        default S setVerticalTextPosition(final int arg0) {
-            return setup(result -> result.setVerticalTextPosition(arg0));
         }
     }
 }
