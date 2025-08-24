@@ -4,6 +4,7 @@ import de.team33.patterns.building.elara.LateBuilder;
 
 import javax.swing.*;
 import javax.swing.plaf.PanelUI;
+import java.awt.*;
 import java.util.function.Supplier;
 
 /**
@@ -17,73 +18,113 @@ public final class JPanels {
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JPanel}.
+     *
+     * @see #builder(Supplier)
+     * @see JPanel#JPanel()
      */
     public static Builder<JPanel> builder() {
         return new Builder<>(JPanel::new, Builder.class);
     }
 
     /**
-     * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JPanel}.
+     * Returns a new {@link Builder} for target instances of type {@link JPanel}.
+     *
+     * @see #builder(Supplier)
+     * @see JPanel#JPanel(boolean)
      */
-    public static <T extends JPanel> Builder<T> builder(final Supplier<T> newTarget) {
+    public static Builder<JPanel> builder(final boolean doubleBuffered) {
+        return new Builder<>(() -> new JPanel(doubleBuffered), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JPanel}.
+     *
+     * @see #builder(Supplier)
+     * @see JPanel#JPanel(LayoutManager)
+     */
+    public static Builder<JPanel> builder(final LayoutManager layout) {
+        return new Builder<>(() -> new JPanel(layout), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JPanel}.
+     *
+     * @see #builder(Supplier)
+     * @see JPanel#JPanel(LayoutManager, boolean)
+     */
+    public static Builder<JPanel> builder(final LayoutManager layout, final boolean doubleBuffered) {
+        return new Builder<>(() -> new JPanel(layout, doubleBuffered), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
+     *
+     * @param <P> The final type of the target instances, at least {@link JPanel}.
+     */
+    public static <P extends JPanel> Builder<P> builder(final Supplier<P> newTarget) {
         return new Builder<>(newTarget, Builder.class);
     }
 
     /**
      * Returns a new {@link Charger} for a given target instance.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JPanel}.
+     *
+     * @param <P> The final type of the target instance, at least {@link JPanel}.
      */
-    public static <T extends JPanel> Charger<T> charger(final T target) {
+    public static <P extends JPanel> Charger<P> charger(final P target) {
         return new Charger<>(target, Charger.class);
     }
 
     /**
-     * Builder implementation to build target instances of {@link JPanel}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JPanel}.
+     * Returns a new {@link Setup} for a given {@link JPanel} instance.
      */
-    public static final class Builder<T extends JPanel>
-            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
+    public static Setup<JPanel, ?> setup(final JPanel target) {
+        return charger(target);
+    }
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
+    /**
+     * Utility interface to set up a target instance of {@link JPanel}.
+     *
+     * @param <P> The final type of the target instance, at least {@link JPanel}.
+     * @param <S> The final type of the Setup implementation.
+     */
+    @SuppressWarnings("ClassNameSameAsAncestorName")
+    @FunctionalInterface
+    public interface Setup<P extends JPanel, S extends Setup<P, S>> extends JComponents.Setup<P, S> {
+
+        /**
+         * @see JPanel#setUI(PanelUI)
+         */
+        default S setUI(final PanelUI ui) {
+            return setup(result -> result.setUI(ui));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link JPanel}.
+     *
+     * @param <P> The final type of the target instances, at least {@link JPanel}.
+     */
+    public static final class Builder<P extends JPanel>
+            extends LateBuilder<P, Builder<P>> implements Setup<P, Builder<P>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<P> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
     }
 
     /**
      * Charger implementation to charge target instances of {@link JPanel}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JPanel}.
+     *
+     * @param <P> The final type of the target instance, at least {@link JPanel}.
      */
-    public static final class Charger<T extends JPanel>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
+    public static final class Charger<P extends JPanel>
+            extends de.team33.patterns.building.elara.Charger<P, Charger<P>>
+            implements Setup<P, Charger<P>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
+        @SuppressWarnings("unchecked")
+        private Charger(final P target, final Class chargerClass) {
             super(target, chargerClass);
-        }
-    }
-
-    /**
-     * Utility interface to set up a target instance of {@link JPanel}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JPanel}.
-     * @param <S> The final type of the Setup implementation.
-     */
-    @SuppressWarnings("ClassNameSameAsAncestorName")
-    @FunctionalInterface
-    public interface Setup<T extends JPanel, S extends Setup<T, S>> extends JComponents.Setup<T, S> {
-
-        /**
-         * @see JPanel#setUI(PanelUI)
-         */
-        default S setUI(final PanelUI arg0) {
-            return setup(result -> result.setUI(arg0));
         }
     }
 }
