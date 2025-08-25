@@ -338,7 +338,7 @@ public final class JTrees {
     public static final class Builder<T extends JTree>
             extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
+        @SuppressWarnings("unchecked")
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
@@ -353,7 +353,7 @@ public final class JTrees {
             extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
             implements Setup<T, Charger<T>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
+        @SuppressWarnings("unchecked")
         private Charger(final T target, final Class chargerClass) {
             super(target, chargerClass);
         }
