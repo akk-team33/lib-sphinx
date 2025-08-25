@@ -19,14 +19,49 @@ public final class JTables {
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JTable}.
+     *
+     * @see #builder(Supplier)
+     * @see JTable#JTable()
      */
     public static Builder<JTable> builder() {
         return new Builder<>(JTable::new, Builder.class);
     }
 
     /**
+     * Returns a new {@link Builder} for target instances of type {@link JTable}.
+     *
+     * @see #builder(Supplier)
+     * @see JTable#JTable(TableModel)
+     */
+    public static Builder<JTable> builder(final TableModel model) {
+        return new Builder<>(() -> new JTable(model), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JTable}.
+     *
+     * @see #builder(Supplier)
+     * @see JTable#JTable(TableModel, TableColumnModel)
+     */
+    public static Builder<JTable> builder(final TableModel tableModel, final TableColumnModel columnModel) {
+        return new Builder<>(() -> new JTable(tableModel, columnModel), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JTable}.
+     *
+     * @see #builder(Supplier)
+     * @see JTable#JTable(TableModel, TableColumnModel, ListSelectionModel)
+     */
+    public static Builder<JTable> builder(final TableModel tableModel,
+                                          final TableColumnModel columnModel,
+                                          final ListSelectionModel selectionModel) {
+        return new Builder<>(() -> new JTable(tableModel, columnModel, selectionModel), Builder.class);
+    }
+
+    /**
      * Returns a new {@link Builder} for target instances as supplied by the given {@link Supplier}.
-     * 
+     *
      * @param <T> The final type of the target instances, at least {@link JTable}.
      */
     public static <T extends JTable> Builder<T> builder(final Supplier<T> newTarget) {
@@ -35,7 +70,7 @@ public final class JTables {
 
     /**
      * Returns a new {@link Charger} for a given target instance.
-     * 
+     *
      * @param <T> The final type of the target instance, at least {@link JTable}.
      */
     public static <T extends JTable> Charger<T> charger(final T target) {
@@ -50,37 +85,8 @@ public final class JTables {
     }
 
     /**
-     * Builder implementation to build target instances of {@link JTable}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JTable}.
-     */
-    public static final class Builder<T extends JTable>
-            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
-
-        @SuppressWarnings("unchecked")
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
-            super(newResult, builderClass);
-        }
-    }
-
-    /**
-     * Charger implementation to charge target instances of {@link JTable}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JTable}.
-     */
-    public static final class Charger<T extends JTable>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
-
-        @SuppressWarnings("unchecked")
-        private Charger(final T target, final Class chargerClass) {
-            super(target, chargerClass);
-        }
-    }
-
-    /**
      * Utility interface to set up a target instance of {@link JTable}.
-     * 
+     *
      * @param <T> The final type of the target instance, at least {@link JTable}.
      * @param <S> The final type of the Setup implementation.
      */
@@ -394,6 +400,35 @@ public final class JTables {
          */
         default S setValueAt(final Object value, final int rowIndex, final int colIndex) {
             return setup(result -> result.setValueAt(value, rowIndex, colIndex));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link JTable}.
+     *
+     * @param <T> The final type of the target instances, at least {@link JTable}.
+     */
+    public static final class Builder<T extends JTable>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
+            super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JTable}.
+     *
+     * @param <T> The final type of the target instance, at least {@link JTable}.
+     */
+    public static final class Charger<T extends JTable>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings("unchecked")
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 }
