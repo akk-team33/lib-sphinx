@@ -3,6 +3,7 @@ package de.team33.sphinx.metis;
 import de.team33.patterns.building.elara.LateBuilder;
 
 import javax.swing.*;
+import javax.swing.text.Document;
 import java.util.function.Supplier;
 
 /**
@@ -16,9 +17,52 @@ public final class JTextFields {
 
     /**
      * Returns a new {@link Builder} for target instances of type {@link JTextField}.
+     *
+     * @see #builder(Supplier)
+     * @see JTextField#JTextField()
      */
     public static Builder<JTextField> builder() {
         return new Builder<>(JTextField::new, Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JTextField}.
+     *
+     * @see #builder(Supplier)
+     * @see JTextField#JTextField(String)
+     */
+    public static Builder<JTextField> builder(String text) {
+        return new Builder<>(() -> new JTextField(text), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JTextField}.
+     *
+     * @see #builder(Supplier)
+     * @see JTextField#JTextField(String, int)
+     */
+    public static Builder<JTextField> builder(int columns) {
+        return new Builder<>(() -> new JTextField(columns), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JTextField}.
+     *
+     * @see #builder(Supplier)
+     * @see JTextField#JTextField(String, int)
+     */
+    public static Builder<JTextField> builder(String text, int columns) {
+        return new Builder<>(() -> new JTextField(text, columns), Builder.class);
+    }
+
+    /**
+     * Returns a new {@link Builder} for target instances of type {@link JTextField}.
+     *
+     * @see #builder(Supplier)
+     * @see JTextField#JTextField(Document, String, int)
+     */
+    public static Builder<JTextField> builder(Document doc, String text, int columns) {
+        return new Builder<>(() -> new JTextField(doc, text, columns), Builder.class);
     }
 
     /**
@@ -40,37 +84,15 @@ public final class JTextFields {
     }
 
     /**
-     * Builder implementation to build target instances of {@link JTextField}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JTextField}.
+     * Returns a new {@link Setup} for a given {@link JTextField} instance.
      */
-    public static final class Builder<T extends JTextField>
-            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
-            super(newResult, builderClass);
-        }
-    }
-
-    /**
-     * Charger implementation to charge target instances of {@link JTextField}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JTextField}.
-     */
-    public static final class Charger<T extends JTextField>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
-            super(target, chargerClass);
-        }
+    public static Setup<JTextField, ?> setup(final JTextField target) {
+        return charger(target);
     }
 
     /**
      * Utility interface to set up a target instance of {@link JTextField}.
-     * 
+     *
      * @param <T> The final type of the target instance, at least {@link JTextField}.
      * @param <S> The final type of the Setup implementation.
      */
@@ -81,36 +103,65 @@ public final class JTextFields {
         /**
          * @see JTextField#setAction(Action)
          */
-        default S setAction(final Action arg0) {
-            return setup(result -> result.setAction(arg0));
+        default S setAction(final Action action) {
+            return setup(result -> result.setAction(action));
         }
 
         /**
          * @see JTextField#setActionCommand(String)
          */
-        default S setActionCommand(final String arg0) {
-            return setup(result -> result.setActionCommand(arg0));
+        default S setActionCommand(final String command) {
+            return setup(result -> result.setActionCommand(command));
         }
 
         /**
          * @see JTextField#setColumns(int)
          */
-        default S setColumns(final int arg0) {
-            return setup(result -> result.setColumns(arg0));
+        default S setColumns(final int columns) {
+            return setup(result -> result.setColumns(columns));
         }
 
         /**
          * @see JTextField#setHorizontalAlignment(int)
          */
-        default S setHorizontalAlignment(final int arg0) {
-            return setup(result -> result.setHorizontalAlignment(arg0));
+        default S setHorizontalAlignment(final int alignment) {
+            return setup(result -> result.setHorizontalAlignment(alignment));
         }
 
         /**
          * @see JTextField#setScrollOffset(int)
          */
-        default S setScrollOffset(final int arg0) {
-            return setup(result -> result.setScrollOffset(arg0));
+        default S setScrollOffset(final int offset) {
+            return setup(result -> result.setScrollOffset(offset));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link JTextField}.
+     *
+     * @param <T> The final type of the target instances, at least {@link JTextField}.
+     */
+    public static final class Builder<T extends JTextField>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
+            super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JTextField}.
+     *
+     * @param <T> The final type of the target instance, at least {@link JTextField}.
+     */
+    public static final class Charger<T extends JTextField>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings("unchecked")
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 }

@@ -46,33 +46,10 @@ public final class JComboBoxes {
     }
 
     /**
-     * Builder implementation to build target instances of {@link JComboBox}.
-     *
-     * @param <E> The element type.
-     * @param <T> The final type of the target instances, at least {@link JComboBox}.
+     * Returns a new {@link Setup} for a given {@link JComboBox} instance.
      */
-    public static final class Builder<E, T extends JComboBox<E>>
-            extends LateBuilder<T, Builder<E, T>> implements Setup<E, T, Builder<E, T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
-            super(newResult, builderClass);
-        }
-    }
-
-    /**
-     * Charger implementation to charge target instances of {@link JComboBox}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JComboBox}.
-     */
-    public static final class Charger<E, T extends JComboBox<E>>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<E, T>>
-            implements Setup<E, T, Charger<E, T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
-            super(target, chargerClass);
-        }
+    public static <E> Setup<E, JComboBox<E>, ?> setup(final JComboBox<E> target) {
+        return charger(target);
     }
 
     /**
@@ -97,7 +74,7 @@ public final class JComboBoxes {
          * @see JComboBox#removeAllItems()
          */
         default S removeAllItems() {
-            return setup(result -> result.removeAllItems());
+            return setup(JComboBox::removeAllItems);
         }
 
         /**
@@ -210,6 +187,36 @@ public final class JComboBoxes {
          */
         default S setUI(final ComboBoxUI arg0) {
             return setup(result -> result.setUI(arg0));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link JComboBox}.
+     *
+     * @param <E> The element type.
+     * @param <T> The final type of the target instances, at least {@link JComboBox}.
+     */
+    public static final class Builder<E, T extends JComboBox<E>>
+            extends LateBuilder<T, Builder<E, T>> implements Setup<E, T, Builder<E, T>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
+            super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JComboBox}.
+     *
+     * @param <T> The final type of the target instance, at least {@link JComboBox}.
+     */
+    public static final class Charger<E, T extends JComboBox<E>>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<E, T>>
+            implements Setup<E, T, Charger<E, T>> {
+
+        @SuppressWarnings("unchecked")
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 }

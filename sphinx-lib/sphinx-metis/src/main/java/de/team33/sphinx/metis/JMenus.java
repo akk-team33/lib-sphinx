@@ -40,37 +40,15 @@ public final class JMenus {
     }
 
     /**
-     * Builder implementation to build target instances of {@link JMenu}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JMenu}.
+     * Returns a new {@link Setup} for a given {@link JMenu} instance.
      */
-    public static final class Builder<T extends JMenu>
-            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
-            super(newResult, builderClass);
-        }
-    }
-
-    /**
-     * Charger implementation to charge target instances of {@link JMenu}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JMenu}.
-     */
-    public static final class Charger<T extends JMenu>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
-            super(target, chargerClass);
-        }
+    public static Setup<JMenu, ?> setup(final JMenu target) {
+        return charger(target);
     }
 
     /**
      * Utility interface to set up a target instance of {@link JMenu}.
-     * 
+     *
      * @param <T> The final type of the target instance, at least {@link JMenu}.
      * @param <S> The final type of the Setup implementation.
      */
@@ -103,7 +81,7 @@ public final class JMenus {
          * @see JMenu#addSeparator()
          */
         default S addSeparator() {
-            return setup(result -> result.addSeparator());
+            return setup(JMenu::addSeparator);
         }
 
         /**
@@ -132,6 +110,35 @@ public final class JMenus {
          */
         default S setPopupMenuVisible(final boolean arg0) {
             return setup(result -> result.setPopupMenuVisible(arg0));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link JMenu}.
+     *
+     * @param <T> The final type of the target instances, at least {@link JMenu}.
+     */
+    public static final class Builder<T extends JMenu>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
+            super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JMenu}.
+     *
+     * @param <T> The final type of the target instance, at least {@link JMenu}.
+     */
+    public static final class Charger<T extends JMenu>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings("unchecked")
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 }

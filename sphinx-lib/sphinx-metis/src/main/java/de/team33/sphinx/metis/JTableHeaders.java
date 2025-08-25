@@ -45,37 +45,15 @@ public final class JTableHeaders {
     }
 
     /**
-     * Builder implementation to build target instances of {@link JTableHeader}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JTableHeader}.
+     * Returns a new {@link Setup} for a given {@link JTableHeader} instance.
      */
-    public static final class Builder<T extends JTableHeader>
-            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
-            super(newResult, builderClass);
-        }
-    }
-
-    /**
-     * Charger implementation to charge target instances of {@link JTableHeader}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JTableHeader}.
-     */
-    public static final class Charger<T extends JTableHeader>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
-            super(target, chargerClass);
-        }
+    public static Setup<JTableHeader, ?> setup(final JTableHeader target) {
+        return charger(target);
     }
 
     /**
      * Utility interface to set up a target instance of {@link JTableHeader}.
-     * 
+     *
      * @param <T> The final type of the target instance, at least {@link JTableHeader}.
      * @param <S> The final type of the Setup implementation.
      */
@@ -86,71 +64,100 @@ public final class JTableHeaders {
         /**
          * @see JTableHeader#setColumnModel(TableColumnModel)
          */
-        default S setColumnModel(final TableColumnModel arg0) {
-            return setup(result -> result.setColumnModel(arg0));
+        default S setColumnModel(final TableColumnModel model) {
+            return setup(result -> result.setColumnModel(model));
         }
 
         /**
          * @see JTableHeader#setDefaultRenderer(TableCellRenderer)
          */
-        default S setDefaultRenderer(final TableCellRenderer arg0) {
-            return setup(result -> result.setDefaultRenderer(arg0));
+        default S setDefaultRenderer(final TableCellRenderer renderer) {
+            return setup(result -> result.setDefaultRenderer(renderer));
         }
 
         /**
          * @see JTableHeader#setDraggedColumn(TableColumn)
          */
-        default S setDraggedColumn(final TableColumn arg0) {
-            return setup(result -> result.setDraggedColumn(arg0));
+        default S setDraggedColumn(final TableColumn column) {
+            return setup(result -> result.setDraggedColumn(column));
         }
 
         /**
          * @see JTableHeader#setDraggedDistance(int)
          */
-        default S setDraggedDistance(final int arg0) {
-            return setup(result -> result.setDraggedDistance(arg0));
+        default S setDraggedDistance(final int distance) {
+            return setup(result -> result.setDraggedDistance(distance));
         }
 
         /**
          * @see JTableHeader#setReorderingAllowed(boolean)
          */
-        default S setReorderingAllowed(final boolean arg0) {
-            return setup(result -> result.setReorderingAllowed(arg0));
+        default S setReorderingAllowed(final boolean allowed) {
+            return setup(result -> result.setReorderingAllowed(allowed));
         }
 
         /**
          * @see JTableHeader#setResizingAllowed(boolean)
          */
-        default S setResizingAllowed(final boolean arg0) {
-            return setup(result -> result.setResizingAllowed(arg0));
+        default S setResizingAllowed(final boolean allowed) {
+            return setup(result -> result.setResizingAllowed(allowed));
         }
 
         /**
          * @see JTableHeader#setResizingColumn(TableColumn)
          */
-        default S setResizingColumn(final TableColumn arg0) {
-            return setup(result -> result.setResizingColumn(arg0));
+        default S setResizingColumn(final TableColumn column) {
+            return setup(result -> result.setResizingColumn(column));
         }
 
         /**
          * @see JTableHeader#setTable(JTable)
          */
-        default S setTable(final JTable arg0) {
-            return setup(result -> result.setTable(arg0));
+        default S setTable(final JTable table) {
+            return setup(result -> result.setTable(table));
         }
 
         /**
          * @see JTableHeader#setUI(TableHeaderUI)
          */
-        default S setUI(final TableHeaderUI arg0) {
-            return setup(result -> result.setUI(arg0));
+        default S setUI(final TableHeaderUI ui) {
+            return setup(result -> result.setUI(ui));
         }
 
         /**
          * @see JTableHeader#setUpdateTableInRealTime(boolean)
          */
-        default S setUpdateTableInRealTime(final boolean arg0) {
-            return setup(result -> result.setUpdateTableInRealTime(arg0));
+        default S setUpdateTableInRealTime(final boolean updateInRealTime) {
+            return setup(result -> result.setUpdateTableInRealTime(updateInRealTime));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link JTableHeader}.
+     *
+     * @param <T> The final type of the target instances, at least {@link JTableHeader}.
+     */
+    public static final class Builder<T extends JTableHeader>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
+            super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JTableHeader}.
+     *
+     * @param <T> The final type of the target instance, at least {@link JTableHeader}.
+     */
+    public static final class Charger<T extends JTableHeader>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings("unchecked")
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 }

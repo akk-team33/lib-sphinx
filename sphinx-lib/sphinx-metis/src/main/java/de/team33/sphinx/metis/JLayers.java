@@ -46,6 +46,15 @@ public final class JLayers {
     }
 
     /**
+     * Returns a new {@link Setup} for a given {@link JLayer} instance.
+     *
+     * @param <C> The type of the layered component, at least {@link Component}.
+     */
+    public static <C extends Component> Setup<C, JLayer<C>, ?> setup(final JLayer<C> target) {
+        return charger(target);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JLayer}.
      *
      * @param <C> The type of the layered component, at least {@link Component}.
@@ -54,7 +63,7 @@ public final class JLayers {
     public static final class Builder<C extends Component, T extends JLayer<C>>
             extends LateBuilder<T, Builder<C, T>> implements Setup<C, T, Builder<C, T>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
+        @SuppressWarnings("unchecked")
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
@@ -70,7 +79,7 @@ public final class JLayers {
             extends de.team33.patterns.building.elara.Charger<T, Charger<C, T>>
             implements Setup<C, T, Charger<C, T>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
+        @SuppressWarnings("unchecked")
         private Charger(final T target, final Class chargerClass) {
             super(target, chargerClass);
         }

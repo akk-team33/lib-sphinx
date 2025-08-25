@@ -75,6 +75,13 @@ public final class Dialogs {
     }
 
     /**
+     * Returns a new {@link Setup} for a given {@link Dialog} instance.
+     */
+    public static Setup<Dialog, ?> setup(final Dialog target) {
+        return charger(target);
+    }
+
+    /**
      * Utility interface to set up a target instance of {@link Dialog}.
      *
      * @param <D> The final type of the target instance, at least {@link Dialog}.

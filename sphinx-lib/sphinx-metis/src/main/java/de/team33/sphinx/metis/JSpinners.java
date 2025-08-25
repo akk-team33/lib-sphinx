@@ -41,6 +41,13 @@ public final class JSpinners {
     }
 
     /**
+     * Returns a new {@link Setup} for a given {@link JSpinner} instance.
+     */
+    public static Setup<JSpinner, ?> setup(final JSpinner target) {
+        return charger(target);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JSpinner}.
      * 
      * @param <T> The final type of the target instances, at least {@link JSpinner}.
@@ -48,7 +55,7 @@ public final class JSpinners {
     public static final class Builder<T extends JSpinner>
             extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
+        @SuppressWarnings("unchecked")
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
@@ -63,7 +70,7 @@ public final class JSpinners {
             extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
             implements Setup<T, Charger<T>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
+        @SuppressWarnings("unchecked")
         private Charger(final T target, final Class chargerClass) {
             super(target, chargerClass);
         }

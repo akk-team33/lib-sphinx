@@ -38,11 +38,21 @@ public final class JLists {
 
     /**
      * Returns a new {@link Charger} for a given target instance.
-     * 
+     *
+     * @param <E> The element type.
      * @param <T> The final type of the target instance, at least {@link JList}.
      */
     public static <E, T extends JList<E>> Charger<E, T> charger(final T target) {
         return new Charger<>(target, Charger.class);
+    }
+
+    /**
+     * Returns a new {@link Setup} for a given {@link JList} instance.
+     *
+     * @param <E> The element type.
+     */
+    public static <E> Setup<E, JList<E>, ?> setup(final JList<E> target) {
+        return charger(target);
     }
 
     /**
@@ -53,7 +63,7 @@ public final class JLists {
     public static final class Builder<E, T extends JList<E>>
             extends LateBuilder<T, Builder<E, T>> implements Setup<E, T, Builder<E, T>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
+        @SuppressWarnings("unchecked")
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
@@ -68,7 +78,7 @@ public final class JLists {
             extends de.team33.patterns.building.elara.Charger<T, Charger<E, T>>
             implements Setup<E, T, Charger<E, T>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
+        @SuppressWarnings("unchecked")
         private Charger(final T target, final Class chargerClass) {
             super(target, chargerClass);
         }

@@ -43,6 +43,13 @@ public final class JTextPanes {
     }
 
     /**
+     * Returns a new {@link Setup} for a given {@link JTextPane} instance.
+     */
+    public static Setup<JTextPane, ?> setup(final JTextPane target) {
+        return charger(target);
+    }
+
+    /**
      * Builder implementation to build target instances of {@link JTextPane}.
      * 
      * @param <T> The final type of the target instances, at least {@link JTextPane}.
@@ -50,7 +57,7 @@ public final class JTextPanes {
     public static final class Builder<T extends JTextPane>
             extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
+        @SuppressWarnings("unchecked")
         private Builder(final Supplier<T> newResult, final Class builderClass) {
             super(newResult, builderClass);
         }
@@ -65,7 +72,7 @@ public final class JTextPanes {
             extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
             implements Setup<T, Charger<T>> {
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
+        @SuppressWarnings("unchecked")
         private Charger(final T target, final Class chargerClass) {
             super(target, chargerClass);
         }

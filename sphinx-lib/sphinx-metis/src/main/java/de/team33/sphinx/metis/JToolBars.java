@@ -42,37 +42,15 @@ public final class JToolBars {
     }
 
     /**
-     * Builder implementation to build target instances of {@link JToolBar}.
-     * 
-     * @param <T> The final type of the target instances, at least {@link JToolBar}.
+     * Returns a new {@link Setup} for a given {@link JToolBar} instance.
      */
-    public static final class Builder<T extends JToolBar>
-            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Builder(final Supplier<T> newResult, final Class builderClass) {
-            super(newResult, builderClass);
-        }
-    }
-
-    /**
-     * Charger implementation to charge target instances of {@link JToolBar}.
-     * 
-     * @param <T> The final type of the target instance, at least {@link JToolBar}.
-     */
-    public static final class Charger<T extends JToolBar>
-            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
-            implements Setup<T, Charger<T>> {
-
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        private Charger(final T target, final Class chargerClass) {
-            super(target, chargerClass);
-        }
+    public static Setup<JToolBar, ?> setup(final JToolBar target) {
+        return charger(target);
     }
 
     /**
      * Utility interface to set up a target instance of {@link JToolBar}.
-     * 
+     *
      * @param <T> The final type of the target instance, at least {@link JToolBar}.
      * @param <S> The final type of the Setup implementation.
      */
@@ -91,7 +69,7 @@ public final class JToolBars {
          * @see JToolBar#addSeparator()
          */
         default S addSeparator() {
-            return setup(result -> result.addSeparator());
+            return setup(JToolBar::addSeparator);
         }
 
         /**
@@ -141,6 +119,35 @@ public final class JToolBars {
          */
         default S setUI(final ToolBarUI arg0) {
             return setup(result -> result.setUI(arg0));
+        }
+    }
+
+    /**
+     * Builder implementation to build target instances of {@link JToolBar}.
+     *
+     * @param <T> The final type of the target instances, at least {@link JToolBar}.
+     */
+    public static final class Builder<T extends JToolBar>
+            extends LateBuilder<T, Builder<T>> implements Setup<T, Builder<T>> {
+
+        @SuppressWarnings("unchecked")
+        private Builder(final Supplier<T> newResult, final Class builderClass) {
+            super(newResult, builderClass);
+        }
+    }
+
+    /**
+     * Charger implementation to charge target instances of {@link JToolBar}.
+     *
+     * @param <T> The final type of the target instance, at least {@link JToolBar}.
+     */
+    public static final class Charger<T extends JToolBar>
+            extends de.team33.patterns.building.elara.Charger<T, Charger<T>>
+            implements Setup<T, Charger<T>> {
+
+        @SuppressWarnings("unchecked")
+        private Charger(final T target, final Class chargerClass) {
+            super(target, chargerClass);
         }
     }
 }
