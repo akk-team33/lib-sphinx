@@ -19,8 +19,8 @@ class ChannelAgent<C, L, M> implements Channel<C, M> {
     }
 
     @Override
-    public final Link add(final C component, final Consumer<M> reaction) {
-        final L swingListener = mapping.apply(reaction);
+    public final Subscription subscribe(final C component, final Consumer<M> listener) {
+        final L swingListener = mapping.apply(listener);
         addition.accept(component, swingListener);
         return () -> removal.accept(component, swingListener);
     }

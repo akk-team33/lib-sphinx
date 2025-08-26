@@ -11,7 +11,7 @@ public class ChannelSample {
 
     public ChannelSample() {
         button = new JButton();
-        Channel.ACTION_PERFORMED.add(button, this::onActionPerformed);
+        Channel.ACTION_PERFORMED.subscribe(button, this::onActionPerformed);
     }
 
     private void onActionPerformed(final ActionEvent event) {

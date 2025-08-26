@@ -28,7 +28,7 @@ import java.util.function.Consumer;
  *
  *     public ChannelSample() {
  *         button = new JButton();
- *         <b>Channel.ACTION_PERFORMED.add(button, this::onActionPerformed);</b>
+ *         <b>Channel.ACTION_PERFORMED.subscribe(button, this::onActionPerformed);</b>
  *     }
  *
  *     private void onActionPerformed(final ActionEvent message) {
@@ -37,8 +37,8 @@ import java.util.function.Consumer;
  * }
  * </pre>
  *
- * @param <C> The component type in whose context the activity or event takes place.
- * @param <M> The message type being transferred in the context of the activity or event.
+ * @param <C> The component type in whose context the event takes place.
+ * @param <M> The message type being transferred in the context of the event.
  */
 @FunctionalInterface
 @SuppressWarnings({"unused", "ClassWithTooManyFields", "InterfaceWithOnlyOneDirectInheritor"})
@@ -993,11 +993,22 @@ public interface Channel<C, M> {
     }
 
     /**
-     * Adds a suitable {@link Consumer} to a given component of type {@code <C>} to process messages of type
-     * {@code <M>} when a corresponding activity or event occurs in that component.
-     *
-     * @return A {@link Link} that can be {@link Link#unlink() unlinked} to stop processing associated messages.
-     * Can be ignored if processing should not be stopped within the component's lifecycle.
+     * @deprecated use {@link #subscribe(Object, Consumer)} instead!
      */
-    Link add(C component, Consumer<M> reaction);
+    @Deprecated
+    default Link add(final C component, final Consumer<M> reaction) {
+        return subscribe(component, reaction)::cancel;
+    }
+
+    /**
+     * Subscribes to messages of type {@code <M>} sent by a given <em>component</em> of type {@code <C>}
+     * in case of a specific event and provides a suitable {@link Consumer} as a <em>listener</em> for
+     * message processing.
+     *
+     * @return A {@link Subscription} that can be {@link Subscription#cancel() canceled} later
+     * to stop processing associated messages.
+     * <p>
+     * Can usually be ignored if processing should not be stopped within the <em>component</em>'s lifecycle.
+     */
+    Subscription subscribe(C component, Consumer<M> listener);
 }

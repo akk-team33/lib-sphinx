@@ -2,7 +2,7 @@ package de.team33.sphinx.metis;
 
 import de.team33.patterns.building.elara.LateBuilder;
 import de.team33.sphinx.luna.Channel;
-import de.team33.sphinx.luna.Link;
+import de.team33.sphinx.luna.Subscription;
 
 import java.awt.*;
 import java.awt.dnd.DropTarget;
@@ -57,19 +57,28 @@ public final class Components {
             extends de.team33.patterns.building.elara.Setup<C, S> {
 
         /**
-         * Adds a reaction on a specific {@link Channel}.
+         * Subscribes to messages of type {@code <M>} sent by the underlying target instance in case of an event
+         * specified by the given <em>channel</em> and provides a suitable <em>listener</em> for message processing.
+         *
+         * @see #subscribe(Channel, Consumer, Consumer)
          */
-        default <M> S add(final Channel<? super C, M> channel, final Consumer<M> reaction) {
-            return setup(c -> channel.add(c, reaction));
+        default <M> S subscribe(final Channel<? super C, M> channel, final Consumer<M> listener) {
+            return setup(c -> channel.subscribe(c, listener));
         }
 
         /**
-         * Adds a reaction on a specific {@link Channel} and collects a resulting {@link Link}.
+         * Subscribes to messages of type {@code <M>} sent by the underlying target instance in case of an event
+         * specified by the given <em>channel</em> and provides a suitable <em>listener</em> for message processing.
+         * <p>
+         * Additionally, collects a resulting {@link Subscription} that can be {@link Subscription#cancel() canceled}
+         * later to stop processing further messages.
+         *
+         * @see #subscribe(Channel, Consumer)
          */
-        default <M> S add(final Channel<? super C, M> channel,
-                          final Consumer<M> reaction,
-                          final Consumer<Link> collector) {
-            return setup(c -> collector.accept(channel.add(c, reaction)));
+        default <M> S subscribe(final Channel<? super C, M> channel,
+                                final Consumer<M> listener,
+                                final Consumer<Subscription> collector) {
+            return setup(c -> collector.accept(channel.subscribe(c, listener)));
         }
 
         /**

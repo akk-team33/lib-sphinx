@@ -2,6 +2,7 @@ package de.team33.sphinx.luna.publics;
 
 import de.team33.sphinx.luna.Channel;
 import de.team33.sphinx.luna.Link;
+import de.team33.sphinx.luna.Subscription;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
@@ -19,6 +20,32 @@ class ChannelTest {
 
     @Test
     final void componentAdded() {
+        final Given<Container, ContainerEvent> given = new Given<>(new JPanel());
+        final JLabel label = new JLabel();
+
+        final Subscription subscription = Channel.COMPONENT_ADDED.subscribe(given.component(), given::onMessage);
+        assertEquals(0, given.received().size());
+
+        given.component().add(label);
+
+        assertEquals(1, given.received().size());
+        final ContainerEvent received = given.received().get(0);
+        assertSame(given.component(), received.getComponent());
+        assertSame(given.component(), received.getContainer());
+        assertSame(label, received.getChild());
+
+        subscription.cancel();
+        given.component().add(new JLabel());
+        assertEquals(1, given.received().size());
+
+        // what happens when already unlinked? ...
+        subscription.cancel();
+        // ... (should be) nothing!
+    }
+
+    @Test
+    @Deprecated
+    final void componentAdded_old_style() {
         final Given<Container, ContainerEvent> given = new Given<>(new JPanel());
         final JLabel label = new JLabel();
 

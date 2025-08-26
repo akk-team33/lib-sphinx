@@ -1,8 +1,13 @@
 package de.team33.sphinx.luna;
 
+import java.util.function.Consumer;
+
 /**
- * Represents a link between two instances that may need to be {@link #unlink() unlinked} later.
+ * @deprecated use {@link Subscription} instead.
+ * @see Channel#add(Object, Consumer)
+ * @see Channel#subscribe(Object, Consumer)
  */
+@Deprecated
 @FunctionalInterface
 public interface Link {
 
