@@ -26,9 +26,10 @@ https://www.team33.de/dev/sphinx/2.x
 
 ## Change Log
 
-### 2.0.0
+### 2.0.1
 
 * Added module sphinx-metis
+* Refactored module sphinx-luna
 * Nailed module sphinx-alpha to 1.3.5
 * Requires Java 17 or later
 
