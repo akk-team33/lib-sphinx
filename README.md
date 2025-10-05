@@ -26,6 +26,10 @@ https://www.team33.de/dev/sphinx/2.x
 
 ## Change Log
 
+### 2.1.0
+
+* Updated dependency de.team33.patterns:*:2.3.0
+
 ### 2.0.1
 
 * Added module sphinx-metis
