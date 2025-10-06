@@ -6,7 +6,9 @@ import javax.swing.*;
 import javax.swing.plaf.TableUI;
 import javax.swing.table.*;
 import java.awt.*;
+import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 /**
  * Utility class to handle {@link JTable}s.
@@ -82,6 +84,26 @@ public final class JTables {
      */
     public static Setup<JTable, ?> setup(final JTable target) {
         return charger(target);
+    }
+
+    private static Helper helper(final JTable target) {
+        return new Helper(target);
+    }
+
+    public static void resizeColumns(final JTable target) {
+        resizeColumns(target, Integer.MAX_VALUE);
+    }
+
+    public static void resizeColumns(final JTable target, final int maxWidth) {
+        helper(target).resizeColumns(maxWidth);
+    }
+
+    public static void resizeColumn(final JTable target, final int colIndex) {
+        resizeColumn(target, colIndex, Integer.MAX_VALUE);
+    }
+
+    public static void resizeColumn(final JTable target, final int colIndex, final int maxWidth) {
+        helper(target).resizeColumn(colIndex, maxWidth);
     }
 
     /**
@@ -429,6 +451,33 @@ public final class JTables {
         @SuppressWarnings("unchecked")
         private Charger(final T target, final Class chargerClass) {
             super(target, chargerClass);
+        }
+    }
+
+    private record Helper(JTable table) {
+
+        final void resizeColumns(final int maxWidth) {
+            IntStream.range(0, table.getColumnModel().getColumnCount())
+                     .forEach(colIndex -> resizeColumn(colIndex, maxWidth));
+        }
+
+        final void resizeColumn(final int colIndex, final int maxWidth) {
+            final TableColumn column = table.getColumnModel().getColumn(colIndex);
+            final TableCellRenderer headRenderer = Optional.ofNullable(column.getHeaderRenderer())
+                                                           .orElseGet(() -> table.getTableHeader()
+                                                                                 .getDefaultRenderer());
+            final Component head = headRenderer.getTableCellRendererComponent(
+                    table, column.getHeaderValue(), false, false, 0, colIndex);
+            final int width = IntStream.range(0, table.getRowCount())
+                                       .map(rowIndex -> preferredCellWidth(colIndex, rowIndex))
+                                       .reduce(head.getPreferredSize().width, Integer::max);
+            column.setPreferredWidth(Integer.min(maxWidth, width + 8));
+        }
+
+        private int preferredCellWidth(final int colIndex, final int rowIndex) {
+            final TableCellRenderer cellRenderer = table.getCellRenderer(rowIndex, colIndex);
+            final Component cell = table.prepareRenderer(cellRenderer, rowIndex, colIndex);
+            return cell.getPreferredSize().width;
         }
     }
 }

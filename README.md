@@ -26,6 +26,12 @@ https://www.team33.de/dev/sphinx/2.x
 
 ## Change Log
 
+### 2.1.1
+
+* sphinx-metis:
+  * added method JTables.resizeColumn(...)
+  * added method JTables.resizeColumns(...)
+
 ### 2.1.0
 
 * Updated dependency de.team33.patterns:*:2.3.0
