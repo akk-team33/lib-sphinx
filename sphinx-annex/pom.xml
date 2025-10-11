@@ -26,6 +26,7 @@
         <module>random-display</module>
         <module>generation</module>
         <module>sample-alpha</module>
+        <module>sphinx-omega</module>
     </modules>
 
     <dependencyManagement>
